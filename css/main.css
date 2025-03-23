@@ -978,13 +978,13 @@ svg.loading {
   margin: 4px;
 }
 .loading-wrap:after {
-  content: '���ڼ���';
+  content: '正在加载';
   color: var(--text-p1);
   display: block;
   font-size: 14px;
 }
 .loading-wrap.error:after {
-  content: '����ʧ�ܣ����Ժ����ԡ�';
+  content: '加载失败，请稍后重试。';
 }
 audio,
 video {
