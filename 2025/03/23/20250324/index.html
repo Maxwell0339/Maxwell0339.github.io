@@ -514,7 +514,7 @@
 
   <script type="module">
   const el = document.querySelector('#comments #giscus');
-  util.viewportLazyload(el, load_discus, true);
+  util.viewportLazyload(el, load_discus, false);
 
   function load_discus() {
     if (!el) return;
