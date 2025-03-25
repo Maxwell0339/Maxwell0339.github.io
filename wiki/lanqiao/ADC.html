@@ -96,10 +96,8 @@
   </div><article class="md-text content"><h1 id="嵌入式ADC"><a href="#嵌入式ADC" class="headerlink" title="嵌入式ADC"></a>嵌入式ADC</h1><p>在cubemx中选择PB12，PB15分别设置为ADC输出模式（ADC1_IN11和ADC2_IN15）</p>
 <p>生成代码后，在adc.c文件中写单通道采样函数，需要在adc.h文件中声明</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> <span class="title function_">getADC</span><span class="params">(ADC_HandleTypeDef *pin)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint16_t</span> adc;</span><br><span class="line">    HAL_ADC_Start(pin);</span><br><span class="line">    adc = HAL_ADC_GetValue(pin);</span><br><span class="line">    <span class="keyword">return</span> adc*<span class="number">3.3</span>/<span class="number">4096</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>在主函数中，用ACD_Proc()调用采样功能</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ADC_Proc</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> text[<span class="number">20</span>];</span><br><span class="line">    adc_value1 = getADC(&amp;hadc1);</span><br><span class="line">    adc_value2 = getADC(&amp;hadc2);</span><br><span class="line">    <span class="built_in">sprintf</span>(text,<span class="string">&quot;ADC1:%.2f,ADC2:%.2f&quot;</span>,adc_value1,adc_value2);</span><br><span class="line">    LCD_DisplayStringLine(Line4,(<span class="type">uint8_t</span> *)text);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>需要注意的是，记得在adc.c中使用校准函数对采样进行校准，否则采样最大值为3.25V</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* USER CODE BEGIN ADC1_Init 2 */</span></span><br><span class="line">HAL_ADCEx_Calibration_Start(&amp;hadc1,ADC_SINGLE_ENDED);</span><br><span class="line"><span class="comment">/* USER CODE END ADC1_Init 2 */</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN ADC2_Init 2 */</span></span><br><span class="line">HAL_ADCEx_Calibration_Start(&amp;hadc2,ADC_SINGLE_ENDED);</span><br><span class="line"><span class="comment">/* USER CODE END ADC2_Init 2 */</span></span><br></pre></td></tr></table></figure>
 
@@ -621,6 +619,26 @@
       })
     }
   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    processEscapes: true
+  }
+});
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});
+MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for(i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
 </script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
