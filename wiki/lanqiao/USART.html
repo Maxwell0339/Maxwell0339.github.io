@@ -28,8 +28,8 @@
 <meta property="og:description" content="嵌入式USART先在cubemx配置USART中断，调试时配合串口调试助手。 注意字符串操作要使用string库 考点1：串口发送例如，向上位机发送Hello World!  1234567891011121314151617char tx_buf[20];  &#x2F;&#x2F;字符缓存区uint8_t rx_data; sprintf(tx_buf,&quot;Hello World!\r\n&quot;);">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/24/lsx6l5.png">
-<meta property="article:published_time" content="2025-03-24T05:21:58.982Z">
-<meta property="article:modified_time" content="2025-03-24T05:21:58.982Z">
+<meta property="article:published_time" content="2025-03-25T08:55:25.053Z">
+<meta property="article:modified_time" content="2025-03-25T08:55:25.053Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -84,7 +84,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/lanqiao/LED.html">蓝桥杯</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-03-24T05:21:58.982Z">2025-03-24</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-03-25T08:55:25.053Z">2025-03-25</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -121,7 +121,6 @@
 
 <p>例如，省赛中解析车牌字符串：</p>
 <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/03/24/lsx6l5.png" />
-
 
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Usart_Proc</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(rx_count==<span class="number">22</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">sscanf</span>(rx_buf,<span class="string">&quot;%4s:%4s:%12s&quot;</span>,car_type,car_num,car_time);</span><br><span class="line">        <span class="built_in">sprintf</span>(tx_buf,<span class="string">&quot;car_type:%4s\r\n&quot;</span>,car_type);</span><br><span class="line">        HAL_UART_Transmit(&amp;huart1,(<span class="type">uint8_t</span>*)tx_buf,<span class="built_in">strlen</span>(tx_buf),<span class="number">50</span>);</span><br><span class="line">        <span class="built_in">sprintf</span>(tx_buf,<span class="string">&quot;car_num:%4s\r\n&quot;</span>,car_num);</span><br><span class="line">        HAL_UART_Transmit(&amp;huart1,(<span class="type">uint8_t</span>*)tx_buf,<span class="built_in">strlen</span>(tx_buf),<span class="number">50</span>);</span><br><span class="line">        <span class="built_in">sprintf</span>(tx_buf,<span class="string">&quot;car_time:%4s\r\n&quot;</span>,car_time);</span><br><span class="line">        HAL_UART_Transmit(&amp;huart1,(<span class="type">uint8_t</span>*)tx_buf,<span class="built_in">strlen</span>(tx_buf),<span class="number">50</span>);</span><br><span class="line">        rx_count=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">memset</span>(rx_buf,<span class="number">0</span>,<span class="number">20</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

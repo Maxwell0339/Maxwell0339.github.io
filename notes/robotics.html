@@ -17,21 +17,24 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>notes - Maxwell's Blog</title>
+  <title>notes：Robotics(EN) - Maxwell's Blog</title>
 
   
-    <meta name="description" content="写在前面面向期末的笔记，全英的。（课是全英的课">
+    <meta name="description" content="Chap1. Spatial Descriptions and TransformationsSec 1.1 Descriptions: Positions, Orientations and Frames Descriptions of a position $$\mathbf{^A P} &#x3D; \begin{bmatrix} P_x \ P_y \ P_z \end{bmatrix}$">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Maxwell&#39;s Blog">
-<meta property="og:url" content="https://maxwell0339.github.io/notes/index.html">
+<meta property="og:title" content="Robotics(EN)">
+<meta property="og:url" content="https://maxwell0339.github.io/notes/robotics.html">
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
-<meta property="og:description" content="写在前面面向期末的笔记，全英的。（课是全英的课">
+<meta property="og:description" content="Chap1. Spatial Descriptions and TransformationsSec 1.1 Descriptions: Positions, Orientations and Frames Descriptions of a position $$\mathbf{^A P} &#x3D; \begin{bmatrix} P_x \ P_y \ P_z \end{bmatrix}$">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-25T08:18:48.291Z">
-<meta property="article:modified_time" content="2025-03-25T08:18:48.291Z">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/rcbtv2.png">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/re1z8g.png">
+<meta property="article:published_time" content="2025-03-25T09:09:39.233Z">
+<meta property="article:modified_time" content="2025-03-25T09:09:39.233Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.dexbug.com/i/2025/03/25/rcbtv2.png">
   
   
   
@@ -67,7 +70,7 @@
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/notes/autocontrol.html#start"><span class="toc-text">ME Control(EN)</span></a><a class="link" href="/notes/robotics.html"><span class="toc-text">Robotics(EN)</span></a><a class="link" href="/notes/sensors.html"><span class="toc-text">Sensors and Measurement System(EN)</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/notes/autocontrol.html#start"><span class="toc-text">ME Control(EN)</span></a><a class="link active" href="/notes/robotics.html"><span class="toc-text">Robotics(EN)</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/notes/sensors.html"><span class="toc-text">Sensors and Measurement System(EN)</span></a></div></widget>
 
 
 
@@ -80,11 +83,141 @@
 
 
 
-<article class="md-text content"><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>面向期末的笔记，全英的。（课是全英的课</p>
+<div class="article banner top">
+  <div class="content">
+    <div class="top"></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Robotics(EN)</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h2 id="Chap1-Spatial-Descriptions-and-Transformations"><a href="#Chap1-Spatial-Descriptions-and-Transformations" class="headerlink" title="Chap1. Spatial Descriptions and Transformations"></a>Chap1. Spatial Descriptions and Transformations</h2><h3 id="Sec-1-1-Descriptions-Positions-Orientations-and-Frames"><a href="#Sec-1-1-Descriptions-Positions-Orientations-and-Frames" class="headerlink" title="Sec 1.1 Descriptions: Positions, Orientations and Frames"></a>Sec 1.1 Descriptions: Positions, Orientations and Frames</h3><ol>
+<li><p><strong>Descriptions of a position</strong></p>
+<p>$$<br>\mathbf{^A P} &#x3D; \begin{bmatrix} P_x \ P_y \ P_z \end{bmatrix}<br>$$</p>
+<p>Position is represented in a column vector $(n \times 1)$</p>
+</li>
+<li><p><strong>Description of an orientation</strong></p>
+<p>Rotation matrix</p>
+<p>$$<br>{}^A_BR &#x3D; \left[ {}^A\widehat{X}_B \quad {}^A\widehat{Y}_B \quad {}^A\widehat{Z}_B \right]<br>$$</p>
+<blockquote>
+<p><strong>Properties</strong>  </p>
+<ul>
+<li>Transpose of rotation matrix describing $ \left { A  \right } $ relative to $\left { B \right } $ equals to the matrix describing $ \left { B \right } $ relative to $\left {  A\right } $  :</li>
+<li>$$<br>{}^A_BR &#x3D; {}^B_AR^T<br>$$</li>
+<li>Rotation matrix describing a rectangular coordinate system $\left {A \right } $ relative to another is orthogonal:  </li>
+<li>$$<br>{}^B_AR^{-1} &#x3D; {}^B_AR^T<br>$$</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>Description of a frame</strong></p>
+</li>
+</ol>
+<p>A frame (coordinate system) can be described by a vector and a rotation matrix:</p>
+<p>$$<br>{B} &#x3D; {^A_BR, ^A\mathbf{P}_{BORG}}<br>$$</p>
+<blockquote>
+<p><strong>Attention</strong>  </p>
+<ul>
+<li>${}^A_BR(x, \alpha)$: ${B}$ rotated counterclockwise about ${A}$’s x-axis by $\alpha$ degrees  </li>
+<li>${}^A_BR(y, \beta)$: ${B}$ rotated counterclockwise about ${A}$’s y-axis by $\beta$ degrees  </li>
+<li>${}^A_BR(z, \gamma)$: ${B}$ rotated counterclockwise about ${A}$’s z-axis by $\gamma$ degrees</li>
+</ul>
+<p><strong>Rotation Matrices</strong>:  </p>
+<p>$$<br>{}^A_BR(x, \alpha) &#x3D; \begin{bmatrix} 1 &amp; 0 &amp; 0 \ 0 &amp; \cos\alpha &amp; -\sin\alpha \ 0 &amp; \sin\alpha &amp; \cos\alpha \end{bmatrix}<br>$$</p>
+<p>$$<br>{}^A_BR(y, \beta) &#x3D; \begin{bmatrix} \cos\beta &amp; 0 &amp; \sin\beta \ 0 &amp; 1 &amp; 0 \ -\sin\beta &amp; 0 &amp; \cos\beta \end{bmatrix}<br>$$</p>
+<p>$$<br>{}^A_BR(z, \gamma) &#x3D; \begin{bmatrix} \cos\gamma &amp; -\sin\gamma &amp; 0 \ \sin\gamma &amp; \cos\gamma &amp; 0 \ 0 &amp; 0 &amp; 1 \end{bmatrix}<br>$$</p>
+</blockquote>
+<hr>
+<h2 id="Sec-1-2-Mappings"><a href="#Sec-1-2-Mappings" class="headerlink" title="Sec 1.2 Mappings"></a>Sec 1.2 Mappings</h2><p>Mapping changes the description of a point from one frame to another.</p>
+<ol>
+<li><p><strong>Mappings involving translated frames</strong><br> If ${A}$ and ${B}$ have the same orientation but differ by translation ${}^AP_{BORG}$:  </p>
+<p>$$<br>^AP &#x3D; ^BP + ^AP_{BORG}<br>$$</p>
+<p>$$</p>
+</li>
+<li><p><strong>Mappings involving rotated frames</strong><br> If ${A}$ and ${B}$ share the same origin but differ by rotation ${}^A_BR$:  </p>
+<p>$$<br>{}^AP &#x3D; {}^A_BR , {}^BP<br>$$</p>
+</li>
+<li><p><strong>Mapings involving general frames</strong><br> For frames differing by both translation and rotation:  </p>
+<p>$$<br>{}^AP &#x3D; {}^A_BR , {}^BP + {}^AP_{BORG}<br>$$</p>
+</li>
+</ol>
+<p><strong>Homogeneous Transform Matrix</strong>:</p>
+<p>$$<br>{}^A_BT &#x3D; \begin{bmatrix} {}^A_BR &amp; {}^A\mathbf{P}_{BORG} \ \mathbf{0} &amp; 1 \end{bmatrix}<br>$$</p>
+<p>$$<br>\begin{bmatrix} {}^AP \ 1 \end{bmatrix} &#x3D; {}^A_BT \begin{bmatrix} {}^BP \ 1 \end{bmatrix}<br>$$</p>
+<blockquote>
+<p><strong>Attention</strong><br>Mapping describes the <strong>same point</strong> in different frames. Translation and rotation relate frames, not point positions.</p>
+</blockquote>
+<hr>
+<h3 id="Sec-1-3-Operators"><a href="#Sec-1-3-Operators" class="headerlink" title="Sec 1.3 Operators"></a>Sec 1.3 Operators</h3><p>Operators translate points, rotate vectors, or both.</p>
+<ol>
+<li><p><strong>Translational operators</strong></p>
+<p>Translating point $P_1$ by ${}^A\mathbf{Q}$:</p>
+<p>$$<br>{}^AP_2 &#x3D; {}^AP_1 + {}^A\mathbf{Q}<br>$$</p>
+<p>Matrix form:</p>
+<p>$$<br>D_Q &#x3D; \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; q_x \ 0 &amp; 1 &amp; 0 &amp; q_y \ 0 &amp; 0 &amp; 1 &amp; q_z \ 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}<br>$$</p>
+<p>$$<br>\begin{bmatrix} {}^AP_2 \ 1 \end{bmatrix} &#x3D; D_Q \begin{bmatrix} {}^AP_1 \ 1 \end{bmatrix}<br>$$</p>
+</li>
+<li><p><strong>Rotational operators</strong></p>
+<p>Rotating vector ${}^AP_1$ by $R$:</p>
+<p>$$<br>{}^AP_2 &#x3D; R , {}^AP_1<br>$$</p>
+<p>$R$ is equivalent to a rotation matrix ${}^A_BR$.</p>
+</li>
+<li><p><strong>Transformation operators</strong></p>
+<p>Combining translation and rotation:</p>
+<p>$$<br>\begin{bmatrix} {}^AP_2 \ 1 \end{bmatrix} &#x3D; T \begin{bmatrix} {}^AP_1 \ 1 \end{bmatrix}<br>$$</p>
+<p>where $T &#x3D; \begin{bmatrix} R &amp; \mathbf{Q} \ 0 &amp; 1 \end{bmatrix}$.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Attention</strong><br>Operators act on vectors <strong>before</strong> transformation, while mappings describe vectors <strong>after</strong> transformation.</p>
+</blockquote>
+<hr>
+<h3 id="Sec-1-4-Transformation-Arithmetic"><a href="#Sec-1-4-Transformation-Arithmetic" class="headerlink" title="Sec 1.4 Transformation Arithmetic"></a>Sec 1.4 Transformation Arithmetic</h3><ol>
+<li><p><strong>Compound Transformation</strong></p>
+<ul>
+<li><p><strong>Problem</strong>: Transform ${}^CP$ to ${}^AP$ via intermediate frames:</p>
+<p>$$<br>{}^A_CT &#x3D; {}^A_BT {}^B_CT<br>$$</p>
+<p>$$<br>\begin{bmatrix} {}^AP \ 1 \end{bmatrix} &#x3D; {}^A_CT \begin{bmatrix} {}^CP \ 1 \end{bmatrix}<br>$$</p>
+<p><strong>Fixed reference frame transformations</strong>:  </p>
+<p>$$<br>{}^3_1T &#x3D; {}^3_2T {}^2_1T<br>$$</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Inverse transformation</strong></p>
+<ul>
+<li><p><strong>Method 1</strong>: ${}^B_AT &#x3D; {}^A_BT^{-1}$</p>
+</li>
+<li><p><strong>Method 2</strong>:</p>
+<p>$$<br>{}^B_AT &#x3D; \begin{bmatrix} {}^A_BR^T &amp; -{}^A_BR^T , {}^AP_{BORG} \ \mathbf{0} &amp; 1 \end{bmatrix}<br>$$</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Sec-1-5-More-on-Representation-of-Orientation"><a href="#Sec-1-5-More-on-Representation-of-Orientation" class="headerlink" title="Sec 1.5 More on Representation of Orientation"></a>Sec 1.5 More on Representation of Orientation</h3><ol>
+<li><p><strong>X-Y-Z Fixed Angles</strong><br> Rotate ${B}$ about fixed axes of ${A}$ (order: X→Y→Z):  </p>
+<p>$$<br>{}^A_BR &#x3D; R(z, \alpha) R(y, \beta) R(x, \gamma)<br>$$</p>
+</li>
+<li><p><strong>Z-Y-X Euler Angles</strong><br> Rotate ${B}$ about its own axes (order: Z→Y→X):  </p>
+<img class="lazy" title="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/03/25/rcbtv2.png" alt="">
+
+<p>$$<br>{}^A_BR &#x3D; R(z, \alpha) R(y, \beta) R(x, \gamma)<br>$$</p>
+</li>
+<li><p><strong>Z-Y-Z Euler Angles</strong><br> Rotate ${B}$ about its own axes (order: Z→Y→Z): </p>
+<p>$$<br>{}^A_BR &#x3D; R(z, \alpha) R(y, \beta) R(z, \gamma)<br>$$</p>
+</li>
+<li><p><strong>Comparison</strong></p>
+<img class="lazy" title="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/03/25/re1z8g.png" alt="">
+
+<h2 id="Chap-2-Manipulator-Kinematics"><a href="#Chap-2-Manipulator-Kinematics" class="headerlink" title="Chap 2. Manipulator Kinematics"></a>Chap 2. Manipulator Kinematics</h2></li>
+</ol>
 
 <div class="article-footer fs14"></div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/sensors.html">Sensors and Measurement System(EN)</a></div><div class="item" id="next"></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/autocontrol.html">ME Control(EN)</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/sensors.html">Sensors and Measurement System(EN)</a></div></section></div>
 
 
 
@@ -150,7 +283,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Spatial-Descriptions-and-Transformations"><span class="toc-text">Chap1. Spatial Descriptions and Transformations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Descriptions-Positions-Orientations-and-Frames"><span class="toc-text">Sec 1.1 Descriptions: Positions, Orientations and Frames</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sec-1-2-Mappings"><span class="toc-text">Sec 1.2 Mappings</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Operators"><span class="toc-text">Sec 1.3 Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Transformation-Arithmetic"><span class="toc-text">Sec 1.4 Transformation Arithmetic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-More-on-Representation-of-Orientation"><span class="toc-text">Sec 1.5 More on Representation of Orientation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Manipulator-Kinematics"><span class="toc-text">Chap 2. Manipulator Kinematics</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
@@ -600,6 +733,26 @@
       })
     }
   });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    processEscapes: true
+  }
+});
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});
+MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for(i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
 </script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
