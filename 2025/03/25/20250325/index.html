@@ -27,11 +27,18 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="前言 个人不是特别推荐使用vscode或者Texstudio去搭建Latex书写环境。使用 overleaf在线编辑 是一个不错的选择，虽然有时候编译的时间会比较慢。  什么是 LaTeX？LaTeX 是基于 TeX 语法体系的排版工具，通过代码实现内容与样式的分离式写作。 相较于Word，我更为青睐LaTeX的主要原因在于其卓越的排版表现，尤其在数学公式处理方面优势显著。尽管Word可通过Mat">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/03/27/krypqs.png">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/03/27/lkmn62.png">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/03/27/lzyf3u.png">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/03/29/61bmj.png">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/03/29/7rohw.png">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/03/29/avnrv.png">
 <meta property="article:published_time" content="2025-03-25T02:40:52.626Z">
-<meta property="article:modified_time" content="2025-03-26T16:25:01.442Z">
+<meta property="article:modified_time" content="2025-03-28T16:33:49.749Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="LaTex">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.dexbug.com/i/2025/03/27/krypqs.png">
   
   
   
@@ -79,7 +86,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-03-25T02:40:52.626Z">2025-03-25</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-03-26T16:25:01.442Z">2025-03-27</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-03-25T02:40:52.626Z">2025-03-25</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-03-28T16:33:49.749Z">2025-03-29</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -109,15 +116,19 @@
 <p>使用<code>\usepackage&#123;&#125;</code>来添加你想要的宏包。常见的宏包有:</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125; </span><br><span class="line"><span class="comment">%这个宏包引入了插图命令 \includegraphics，我们的文档如果需要插图都将用到它。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;amsmath&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;mathtools&#125;</span><br><span class="line"><span class="comment">%这是两个常见的数学扩展包,提供更多的数学符号等</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;geometry&#125;</span><br><span class="line"><span class="comment">%修改页面尺寸、页边距、页眉页脚等参数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;float&#125;</span><br><span class="line"><span class="comment">%为浮动体提供不浮动的 H 模式；提供自定义浮动体结构的功能</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;tikz&#125;</span><br><span class="line"><span class="comment">%tikz绘图神器,可以用于绘制一些流程图等</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br><span class="line"><span class="comment">%面向中文的排版框架，如果文章内容为中文请添加该宏包。</span></span><br></pre></td></tr></table></figure>
 <p>除了宏包指令以及一些文档配置指令外，剩下我们所有的内容都需要在<code>\begin&#123;document&#125;</code>和<code>\end&#123;document&#125;</code>中。</p>
+<blockquote>
+<p>由于Latex不支持中文，需要使用ctex宏包。还需要在左上角的菜单中将编译方式改成XeLaTex。</p>
+<p><img class="lazy" title="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/03/27/krypqs.png" alt=""></p>
+</blockquote>
 <h2 id="标题设置"><a href="#标题设置" class="headerlink" title="标题设置"></a>标题设置</h2><p>LaTex可以设置不同级别的标题，基本的格式为</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\section</span>&#123;一级标题&#125;</span><br><span class="line"><span class="keyword">\subsection</span>&#123;二级标题&#125;</span><br><span class="line"><span class="keyword">\subsubsection</span>&#123;三级标题&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Latex最多支持七级结构：part、chapter、section、subsection、subsubsection、paragraph、subparagraph。</p>
 </blockquote>
-<p>我们一般使用上面列出的三个即可。如果需要生成目录，在第一个标题前使用<code>\tebleofcontents</code>即可生成目录。</p>
-<h2 id="有序列表和无序列表"><a href="#有序列表和无序列表" class="headerlink" title="有序列表和无序列表"></a>有序列表和无序列表</h2><p>使用<code>\begin&#123;enumerate&#125;</code> 创建有序列表</p>
+<p>我们一般使用上面列出的三种结构。如果需要生成目录，在第一个标题前使用<code>\tebleofcontents</code>即可生成目录。</p>
+<h2 id="有序列表和无序列表"><a href="#有序列表和无序列表" class="headerlink" title="有序列表和无序列表"></a>有序列表和无序列表</h2><p>使用<code>\begin&#123;enumerate&#125;</code>创建有序列表</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;enumerate&#125;</span><br><span class="line">    <span class="keyword">\item</span> 你的内容1</span><br><span class="line">    <span class="keyword">\item</span> 你的内容2</span><br><span class="line"><span class="keyword">\end</span>&#123;enumerate&#125;</span><br></pre></td></tr></table></figure>
-<p>使用<code>\begin&#123;itemize&#125;</code> 创建无需列表</p>
+<p>使用<code>\begin&#123;itemize&#125;</code>创建无序列表</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line">    <span class="keyword">\item</span> 你的内容1</span><br><span class="line">    <span class="keyword">\item</span> 你的内容2</span><br><span class="line"><span class="keyword">\end</span>&#123;itemize&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="正文分段"><a href="#正文分段" class="headerlink" title="正文分段"></a>正文分段</h2><p>一般来说，LaTeX默认的第一段不是首行缩进的, 这不符合我们的中文习惯。要实现首行缩进也很简单。请使用<code>\setlength&#123;\parindent&#125;&#123;2em&#125;</code> 设置全局首行缩进两个字符（需要使用宏包<code>\usepackage&#123;indentfirst&#125;</code>）。</p>
 <p>如果需要取消某个段落的首行缩进，请在该段落前使用<code>\noindent</code>。如果需要全局取消首行缩进，请使用<code>\setlength&#123;\parindent&#125;&#123;0pt&#125;</code></p>
@@ -125,7 +136,117 @@
 <p>LaTex是如何区分段落的呢？只需要在两段文字之间增加一行空白段落即可！例如</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">    这是一段文字。</span><br><span class="line"></span><br><span class="line">    这是另一段文字。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h2 id="图片添加"><a href="#图片添加" class="headerlink" title="图片添加"></a>图片添加</h2><h2 id="表格插入"><a href="#表格插入" class="headerlink" title="表格插入"></a>表格插入</h2><h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><h2 id="参考文献引用"><a href="#参考文献引用" class="headerlink" title="参考文献引用"></a>参考文献引用</h2><p>（持续更新。。。）</p>
+<h2 id="图片添加"><a href="#图片添加" class="headerlink" title="图片添加"></a>图片添加</h2><p>使用<code>\usepackage&#123;graphicx&#125;</code>宏包后，就可以在LaTex正文添加图片了。基本的语法规则为：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[htbp]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\includegraphics</span>[scale=0.2]&#123;example.png&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;figure title&#125;</span><br><span class="line">    <span class="keyword">\label</span>&#123;figure&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解释：</p>
+<ul>
+<li><p><code>\begin&#123;figure&#125;</code>和<code>\end&#123;figure&#125;</code>是固定的用法，用于插入图片。</p>
+</li>
+<li><p><code>\centering</code>表示将图片置中。</p>
+</li>
+<li><p><code>\caption&#123;图片标题&#125;</code>用来设置图片标题</p>
+</li>
+<li><p><code>\label&#123;标签&#125;</code>用来设置标签，可以让图片在正文中被引用。</p>
+</li>
+</ul>
+</blockquote>
+<p>记得要将添加的图片添加到项目文件夹内，可以新建一个文件夹用来存放图片，也可以将图片和.tex文件放在同目录内。<code>\includegraphics[]&#123;&#125;</code>的第二个参数就是图片的文件地址。</p>
+<p><img class="lazy" title="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/03/27/lkmn62.png" alt=""></p>
+<p>图片的位置也可以通过参数控制。<code>\begin&#123;figure&#125;[htbp]</code>中的htbp就可以控制图片位置。具体意义如下：</p>
+<blockquote>
+<p><strong>h</strong>：表示当前位置（here），也就是说图片将放在你设置的当前位置，但是如果这一页的空间不足以放下这个图片，此时图片会转到下一页；</p>
+<p><strong>t</strong>：顶端（top），此时优先将图片放置在页面的顶部；</p>
+<p><strong>b</strong>：底部（bottom）此时优先将图片放置在页面底部；</p>
+<p><strong>p</strong>：将图片设置为浮动状态，系统会自动排版图片的位置。</p>
+</blockquote>
+<h2 id="表格引用"><a href="#表格引用" class="headerlink" title="表格引用"></a>表格引用</h2><p>首先，绘制一张表格需要创建table 和 tabular 环境。在文章开头还需要加上宏包<code>\usepackage&#123;array&#125;</code>。一个简单的表格绘制代码如下所示：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;table&#125;[!htp]</span><br><span class="line">    <span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\caption</span>&#123;Start with a simple form&#125; <span class="keyword">\label</span>&#123;one&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;tabular&#125;&#123;l|c|r&#125;</span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">        1  <span class="built_in">&amp;</span> 2 <span class="built_in">&amp;</span> 3 <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">        01 <span class="built_in">&amp;</span> 02 <span class="built_in">&amp;</span> 03 <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">        001 <span class="built_in">&amp;</span> 002 <span class="built_in">&amp;</span> 003 <span class="keyword">\\</span></span><br><span class="line">        <span class="keyword">\hline</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"> <span class="keyword">\end</span>&#123;table&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img class="lazy" title="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/03/27/lzyf3u.png" alt=""></p>
+<p> 表格的具体内容位于<code>\begin&#123;tabular&#125;</code>和<code>\end&#123;tabular&#125;</code> 之间，修改其中的内容就可以修改表格了。</p>
+<blockquote>
+<p><code>&#123;l|c|r&#125;</code>是来约定表格的每列属性的。用<code>|</code>分割和添加列</p>
+<p><code>\hline</code>绘制一条横线用来分隔表格每一行</p>
+<p><code>\\</code>是换行标志</p>
+<p><code>&amp;</code>是列分隔符，用来区分没列的元素</p>
+</blockquote>
+<p>所以一个基本的表格内容构造是由以上元素的构成。如果需要进行高阶操作例如单元格合并，后续会开一个专栏去讲解一些图片和表格的一些更高阶的操作。</p>
+<h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><p>我最欣赏LaTex的一点就是它的数学公式编辑功能了。如果你想在你的文字段落中添加数学公式，使用一个美元符号<code>$</code>来包含这个公式。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">    这是你的内容，我们的数学公式是<span class="built_in">$</span>y=x<span class="built_in">$</span>。这是一个正比例函数。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>效果为：</p>
+<p><img class="lazy" title="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/03/29/61bmj.png" alt=""></p>
+<p>如果说，你想让你的数学公式另起一段，在新的一行添加需要的数学公式，请使用两个美元$$$$符号来包含这个公式。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">    这是你的内容，我们的数学公式是:</span><br><span class="line">    <span class="built_in">$</span><span class="built_in">$</span>y=2x<span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p> 效果为：<br> <img class="lazy" title="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/03/29/7rohw.png" alt=""></p>
+<p>或者，你需要用序号来编号你文章中的数学公式，使用<code>\begin&#123;equation&#125;</code>和<code>\end&#123;equation&#125;</code>，在这两段命令之间添加公式，注意不要使用美元符号了！</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">    这是你的内容，我们的数学公式是:</span><br><span class="line">    <span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">        y=3x</span><br><span class="line">    <span class="keyword">\end</span>&#123;equation&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p><img class="lazy" title="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/03/29/avnrv.png" alt=""></p>
+<p>数学公式内容的编写也有相应的语法，下面给大家列一些常见的符号，更多的可以使用<a target="_blank" rel="noopener" href="https://www.latexlive.com/">Latex公式编辑器</a>去编辑公式。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">语法</th>
+<th style="text-align:center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">分数</td>
+<td style="text-align:center"><code>\frac&#123;a&#125;&#123;b&#125;</code></td>
+<td style="text-align:center">$\frac{a}{b}$</td>
+</tr>
+<tr>
+<td style="text-align:center">点乘</td>
+<td style="text-align:center"><code>A \Cdot B</code></td>
+<td style="text-align:center">$A\cdot B$</td>
+</tr>
+<tr>
+<td style="text-align:center">叉乘</td>
+<td style="text-align:center"><code>A \times B</code></td>
+<td style="text-align:center">$A \times B$</td>
+</tr>
+<tr>
+<td style="text-align:center">下标</td>
+<td style="text-align:center"><code>A_&#123;b&#125;</code></td>
+<td style="text-align:center">$A_{b}$</td>
+</tr>
+<tr>
+<td style="text-align:center">上标</td>
+<td style="text-align:center"><code>A^&#123;b&#125;</code></td>
+<td style="text-align:center">$A^{b}$</td>
+</tr>
+<tr>
+<td style="text-align:center">三角函数</td>
+<td style="text-align:center"><code>\sin a \cos a \tan a</code></td>
+<td style="text-align:center">$\sin a\cos a\tan a$</td>
+</tr>
+<tr>
+<td style="text-align:center">根号</td>
+<td style="text-align:center"><code>\sqrt&#123;A&#125;</code></td>
+<td style="text-align:center">$\sqrt{A}$</td>
+</tr>
+<tr>
+<td style="text-align:center">向量</td>
+<td style="text-align:center"><code>\overrightarrow&#123;a&#125;</code></td>
+<td style="text-align:center">$\overrightarrow{a}$</td>
+</tr>
+<tr>
+<td style="text-align:center">积分</td>
+<td style="text-align:center"><code>\int_&#123;a&#125;^&#123;b&#125;</code></td>
+<td style="text-align:center">$\int_{a}^{b}$</td>
+</tr>
+<tr>
+<td style="text-align:center">微分</td>
+<td style="text-align:center"><code>\frac&#123;\mathrm&#123;d&#125; y&#125;&#123;\mathrm&#123;d&#125; x&#125;</code></td>
+<td style="text-align:center">$\frac{\mathrm{d} y}{\mathrm{d} x}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>（持续更新。。。）</p>
 
 <div class="article-footer fs14">
     <section id="license">
@@ -219,7 +340,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E7%8E%AF%E5%A2%83"><span class="toc-text">语法环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E8%AE%BE%E7%BD%AE"><span class="toc-text">标题设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8%E5%92%8C%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-text">有序列表和无序列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87%E5%88%86%E6%AE%B5"><span class="toc-text">正文分段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E6%B7%BB%E5%8A%A0"><span class="toc-text">图片添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E6%8F%92%E5%85%A5"><span class="toc-text">表格插入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="toc-text">数学公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E5%BC%95%E7%94%A8"><span class="toc-text">参考文献引用</span></a></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E7%8E%AF%E5%A2%83"><span class="toc-text">语法环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E8%AE%BE%E7%BD%AE"><span class="toc-text">标题设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8%E5%92%8C%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-text">有序列表和无序列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87%E5%88%86%E6%AE%B5"><span class="toc-text">正文分段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E6%B7%BB%E5%8A%A0"><span class="toc-text">图片添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC%E5%BC%95%E7%94%A8"><span class="toc-text">表格引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="toc-text">数学公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">参考文献</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
