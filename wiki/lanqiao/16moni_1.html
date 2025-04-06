@@ -17,21 +17,23 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>蓝桥杯：ADC - Maxwell's Blog</title>
+  <title>蓝桥杯：16届蓝桥杯模拟试题1 - Maxwell's Blog</title>
 
   
-    <meta name="description" content="嵌入式ADC在cubemx中选择PB12，PB15分别设置为ADC输出模式（ADC1_IN11和ADC2_IN15） 生成代码后，在adc.c文件中写单通道采样函数，需要在adc.h文件中声明 1234567double getADC(ADC_HandleTypeDef *pin)&#123;    uint16_t adc;    HAL_ADC_Start(pin);    adc &#x3D; HAL">
+    <meta name="description" content="原题请在80MHz主频下完成以下任务 功能要求：  功能概述：  通过微控制器的ADC功能，检测电位器R37上输出的模拟电压信号; 通过板载AT24C02 EEPROM芯片，存储密码值; 依试题要求，通过LCD完成数据显示等功能; 依试题要求通过按键完成参数设置功能; 依试题要求，通过LED完成状态指示功能。   性能要求：  按键响应时间:≤0.1秒 电压采集刷新时间:≤0.5秒 AT24C02">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ADC">
-<meta property="og:url" content="https://maxwell0339.github.io/wiki/lanqiao/ADC.html">
+<meta property="og:title" content="16届蓝桥杯模拟试题1">
+<meta property="og:url" content="https://maxwell0339.github.io/wiki/lanqiao/16moni_1.html">
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
-<meta property="og:description" content="嵌入式ADC在cubemx中选择PB12，PB15分别设置为ADC输出模式（ADC1_IN11和ADC2_IN15） 生成代码后，在adc.c文件中写单通道采样函数，需要在adc.h文件中声明 1234567double getADC(ADC_HandleTypeDef *pin)&#123;    uint16_t adc;    HAL_ADC_Start(pin);    adc &#x3D; HAL">
+<meta property="og:description" content="原题请在80MHz主频下完成以下任务 功能要求：  功能概述：  通过微控制器的ADC功能，检测电位器R37上输出的模拟电压信号; 通过板载AT24C02 EEPROM芯片，存储密码值; 依试题要求，通过LCD完成数据显示等功能; 依试题要求通过按键完成参数设置功能; 依试题要求，通过LED完成状态指示功能。   性能要求：  按键响应时间:≤0.1秒 电压采集刷新时间:≤0.5秒 AT24C02">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-23T16:52:32.363Z">
-<meta property="article:modified_time" content="2025-03-23T16:52:32.363Z">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/04/06/qke1je.png">
+<meta property="article:published_time" content="2025-04-06T09:28:18.234Z">
+<meta property="article:modified_time" content="2025-04-06T09:28:18.234Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.dexbug.com/i/2025/04/06/qke1je.png">
   
   
   
@@ -67,7 +69,7 @@
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/wiki/lanqiao/LED.html#start"><span class="toc-text">LED</span></a><a class="link" href="/wiki/lanqiao/KEY.html"><span class="toc-text">KEY</span></a><a class="link" href="/wiki/lanqiao/LCD.html"><span class="toc-text">LCD</span></a><a class="link" href="/wiki/lanqiao/USART.html"><span class="toc-text">USART</span></a><a class="link active" href="/wiki/lanqiao/ADC.html"><span class="toc-text">ADC</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/lanqiao/TIM.html"><span class="toc-text">TIM</span></a><a class="link" href="/wiki/lanqiao/RTC.html"><span class="toc-text">RTC</span></a><a class="link" href="/wiki/lanqiao/IIC.html"><span class="toc-text">IIC</span></a><a class="link" href="/wiki/lanqiao/16moni_1.html"><span class="toc-text">16届蓝桥杯模拟试题1</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/wiki/lanqiao/LED.html#start"><span class="toc-text">LED</span></a><a class="link" href="/wiki/lanqiao/KEY.html"><span class="toc-text">KEY</span></a><a class="link" href="/wiki/lanqiao/LCD.html"><span class="toc-text">LCD</span></a><a class="link" href="/wiki/lanqiao/USART.html"><span class="toc-text">USART</span></a><a class="link" href="/wiki/lanqiao/ADC.html"><span class="toc-text">ADC</span></a><a class="link" href="/wiki/lanqiao/TIM.html"><span class="toc-text">TIM</span></a><a class="link" href="/wiki/lanqiao/RTC.html"><span class="toc-text">RTC</span></a><a class="link" href="/wiki/lanqiao/IIC.html"><span class="toc-text">IIC</span></a><a class="link active" href="/wiki/lanqiao/16moni_1.html"><span class="toc-text">16届蓝桥杯模拟试题1</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
 
 
 </div>
@@ -82,28 +84,104 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/lanqiao/LED.html">蓝桥杯</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-03-23T16:52:32.363Z">2025-03-24</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-04-06T09:28:18.234Z">2025-04-06</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>ADC</span></h1>
+        <h1 class="text title"><span>16届蓝桥杯模拟试题1</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h1 id="嵌入式ADC"><a href="#嵌入式ADC" class="headerlink" title="嵌入式ADC"></a>嵌入式ADC</h1><p>在cubemx中选择PB12，PB15分别设置为ADC输出模式（ADC1_IN11和ADC2_IN15）</p>
-<p>生成代码后，在adc.c文件中写单通道采样函数，需要在adc.h文件中声明</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> <span class="title function_">getADC</span><span class="params">(ADC_HandleTypeDef *pin)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint16_t</span> adc;</span><br><span class="line">    HAL_ADC_Start(pin);</span><br><span class="line">    adc = HAL_ADC_GetValue(pin);</span><br><span class="line">    <span class="keyword">return</span> adc*<span class="number">3.3</span>/<span class="number">4096</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在主函数中，用ACD_Proc()调用采样功能</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">ADC_Proc</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> text[<span class="number">20</span>];</span><br><span class="line">    adc_value1 = getADC(&amp;hadc1);</span><br><span class="line">    adc_value2 = getADC(&amp;hadc2);</span><br><span class="line">    <span class="built_in">sprintf</span>(text,<span class="string">&quot;ADC1:%.2f,ADC2:%.2f&quot;</span>,adc_value1,adc_value2);</span><br><span class="line">    LCD_DisplayStringLine(Line4,(<span class="type">uint8_t</span> *)text);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要注意的是，记得在adc.c中使用校准函数对采样进行校准，否则采样最大值为3.25V</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* USER CODE BEGIN ADC1_Init 2 */</span></span><br><span class="line">HAL_ADCEx_Calibration_Start(&amp;hadc1,ADC_SINGLE_ENDED);</span><br><span class="line"><span class="comment">/* USER CODE END ADC1_Init 2 */</span></span><br><span class="line"><span class="comment">/* USER CODE BEGIN ADC2_Init 2 */</span></span><br><span class="line">HAL_ADCEx_Calibration_Start(&amp;hadc2,ADC_SINGLE_ENDED);</span><br><span class="line"><span class="comment">/* USER CODE END ADC2_Init 2 */</span></span><br></pre></td></tr></table></figure>
-
+  </div><article class="md-text content"><h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p>请在80MHz主频下完成以下任务<br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/04/06/qke1je.png"></p>
+<p>功能要求：</p>
+<ol>
+<li><p>功能概述：</p>
+<ul>
+<li>通过微控制器的ADC功能，检测电位器R37上输出的模拟电压信号;</li>
+<li>通过板载AT24C02 EEPROM芯片，存储密码值;</li>
+<li>依试题要求，通过LCD完成数据显示等功能;</li>
+<li>依试题要求通过按键完成参数设置功能;</li>
+<li>依试题要求，通过LED完成状态指示功能。</li>
+</ul>
+</li>
+<li><p>性能要求：</p>
+<ul>
+<li>按键响应时间:≤0.1秒</li>
+<li>电压采集刷新时间:≤0.5秒</li>
+<li>AT24C02:数据掉电不丢失</li>
+</ul>
+</li>
+<li><p>显示功能：</p>
+<ul>
+<li><p>输入界面：显示要素包含界面名称(Lock)，输入密码(Pass Word)。<br><img src = "https://img.dexbug.com/i/2025/04/06/r12e0c.png"><br>输入密码值从左往右输入，未输入的密码值使用”*”代替。</p>
+</li>
+<li><p>修改界面：显示要素包含界面名称(Set)，待修改密码(Change)。<br><img src = "https://img.dexbug.com/i/2025/04/06/r28pzw.png"><br>修改密码值从左往右输入，未输入的修改密码值使用“*”代替。</p>
+</li>
+<li><p>LCD通用要求：</p>
+<blockquote>
+<p>显示背景色(BackColor):黑色</p>
+<p>显示前景色(TextColor):白色</p>
+<p>请严格按照图示要求设计各个信息项的名称(区分字母大小写)和行列位置。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>密码机制：使用微控制器的ADC功能读取电位器R37的电压值，经转换关系转化后作为输入的密码：<br><img src = "https://img.dexbug.com/i/2025/04/06/r9wox1.png"><br>输入界面输入密码与修改界面输入密码的机制相同。</p>
+</li>
+<li><p>存储功能：当前密码值存储于AT24C02的指定位置，密码数据掉电不丢失，存储表如下图所示。<br><img src = "https://img.dexbug.com/i/2025/04/06/rank1y.png"></p>
+</li>
+<li><p>解锁功能： 输入界面下，完成三位密码值输入后自动尝试解锁，若输入密码值和存储密码值一致，则进入修改界面，否则输入的密码值更置为“*”，可以重新开始输入密码。</p>
+<p> 进入修改界面后3秒不进行修改密码操作则返回输入界面。</p>
+</li>
+<li><p>按键功能</p>
+<ul>
+<li><p>B1:定义为“确认”按键：</p>
+<blockquote>
+<p>在输入界面，按下B1按键，确定一位输入密码。</p>
+<p>在修改界面，按下B1按键，确定一位修改的密码。若三位修改密码值输入完成，则将密码值修改成功，同时对当前密码值进行存储，并返回到输入界面。</p>
+</blockquote>
+</li>
+<li><p>通用按键要求：</p>
+<blockquote>
+<p>按键应进行有效的防抖处理，避免出现一次按键动作触发多次功能等情形。</p>
+<p>按键动作不应影响数据采集过程和屏幕显示效果。</p>
+<p>当前界面下无功能的按键按下，不触发其它界面的功能。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>LED功能</p>
+<ul>
+<li>LD1:处于输入界面时，指示灯LD1点亮，否则熄灭。</li>
+<li>LD2:处于修改界面时，指示灯LD2点亮，否则熄灭。</li>
+<li>LD3-LD8指示灯。</li>
+</ul>
+</li>
+</ol>
+<p>初始状态说明：</p>
+<p>请严格按照以下要求设置作品的初始状态：</p>
+<ul>
+<li>处于输入界面</li>
+<li>初始状态密码默认为：012</li>
+</ul>
+<h1 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h1><h2 id="Cubemx配置："><a href="#Cubemx配置：" class="headerlink" title="Cubemx配置："></a>Cubemx配置：</h2><ol>
+<li><p>时钟树配置<br><img src ="https://img.dexbug.com/i/2025/04/06/schh38.png"><br><img src = "https://img.dexbug.com/i/2025/04/06/sd7xfg.png"></p>
+</li>
+<li><p>引脚配置<br><img src = "https://img.dexbug.com/i/2025/04/06/sdryzp.png"></p>
+</li>
+</ol>
+<h2 id="LED模块"><a href="#LED模块" class="headerlink" title="LED模块"></a>LED模块</h2><p>在cubemx中配置好时钟和引脚后，新建工程文件，打开工程文件，新增文件“led.c”和“led.h”。</p>
+<figure class="highlight c"><figcaption><span>/led.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;led.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">LED_Disp</span><span class="params">(<span class="type">uint8_t</span> led)</span></span><br><span class="line">&#123;</span><br><span class="line">	HAL_GPIO_WritePin(GPIOC, <span class="number">0xff</span>&lt;&lt;<span class="number">8</span>, GPIO_PIN_SET);</span><br><span class="line">	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);</span><br><span class="line">	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);</span><br><span class="line">	</span><br><span class="line">	HAL_GPIO_WritePin(GPIOC, led&lt;&lt;<span class="number">8</span>, GPIO_PIN_RESET);</span><br><span class="line">	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);</span><br><span class="line">	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><figcaption><span>/led.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __LED_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __LED_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">LED_Disp</span><span class="params">(<span class="type">uint8_t</span> led)</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="按键模块"><a href="#按键模块" class="headerlink" title="按键模块"></a>按键模块</h2><p>新建文件“key.c”和“key.h”：</p>
+<figure class="highlight c"><figcaption><span>\key.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;key.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">keys</span> <span class="title">key</span>[4] =</span> &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">key_state</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	key[<span class="number">0</span>].key_state = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_0);</span><br><span class="line">	key[<span class="number">1</span>].key_state = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_1);</span><br><span class="line">	key[<span class="number">2</span>].key_state = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_2);</span><br><span class="line">	key[<span class="number">3</span>].key_state = HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">uint8_t</span> i = <span class="number">0</span>; i&lt; <span class="number">4</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">switch</span>(key[i].judge_state)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">				<span class="keyword">if</span>(key[i].key_state == <span class="number">0</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					key[i].judge_state =<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				<span class="keyword">if</span>(key[i].key_state == <span class="number">1</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					key[i].key_ispressed = <span class="number">1</span>;</span><br><span class="line">					key[i].judge_state = <span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">default</span>:<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><figcaption><span>\key.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __KEY_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __KEY_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;main.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">keys</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">uint8_t</span> judge_state;</span><br><span class="line">	<span class="type">uint8_t</span> key_state;</span><br><span class="line">	<span class="type">uint8_t</span> key_ispressed;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">keys</span> <span class="title">key</span>[];</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">key_state</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <div class="article-footer fs14"></div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/lanqiao/USART.html">USART</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/lanqiao/TIM.html">TIM</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/lanqiao/IIC.html">IIC</a></div><div class="item" id="next"></div></section></div>
 
 
 
@@ -169,7 +247,7 @@
 <widget class="widget-wrapper ghrepo"><div class="widget-body"><div class="items ds-ghinfo" api="https://api.github.com/repos/Maxwell0339/Maxwell0339.github.io.git"><a class="repo" href="https://github.com/Maxwell0339/Maxwell0339.github.io.git" target="_blank" rel="external nofollow noopener noreferrer"><div class="repo-name flex-row"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>Maxwell0339/Maxwell0339.github.io.git</div><div class="repo-desc"><span type="text" id="description">&nbsp;</span></div><div class="grid"><div class="flex-row"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path></svg><span type="text" id="stargazers_count"></span></div><div class="flex-row"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path></svg><span type="text" id="forks_count"></span></div><div class="flex-row ds-ghinfo" index="0" api="https://api.github.com/repos/Maxwell0339/Maxwell0339.github.io.git/tags"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg><span type="text" id="latest-tag-name">0</span></div></div></a></div></div></widget>
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8FADC"><span class="toc-text">嵌入式ADC</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E9%A2%98"><span class="toc-text">原题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">设计思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cubemx%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="toc-text">Cubemx配置：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LED%E6%A8%A1%E5%9D%97"><span class="toc-text">LED模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%94%AE%E6%A8%A1%E5%9D%97"><span class="toc-text">按键模块</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
