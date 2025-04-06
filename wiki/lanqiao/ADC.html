@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="嵌入式ADC在cubemx中选择PB12，PB15分别设置为ADC输出模式（ADC1_IN11和ADC2_IN15） 生成代码后，在adc.c文件中写单通道采样函数，需要在adc.h文件中声明 1234567double getADC(ADC_HandleTypeDef *pin)&#123;    uint16_t adc;    HAL_ADC_Start(pin);    adc &#x3D; HAL">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-23T16:52:32.363Z">
-<meta property="article:modified_time" content="2025-03-23T16:52:32.363Z">
+<meta property="article:published_time" content="2025-04-06T11:44:29.834Z">
+<meta property="article:modified_time" content="2025-04-06T11:44:29.834Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -67,7 +67,7 @@
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/wiki/lanqiao/LED.html#start"><span class="toc-text">LED</span></a><a class="link" href="/wiki/lanqiao/KEY.html"><span class="toc-text">KEY</span></a><a class="link" href="/wiki/lanqiao/LCD.html"><span class="toc-text">LCD</span></a><a class="link" href="/wiki/lanqiao/USART.html"><span class="toc-text">USART</span></a><a class="link active" href="/wiki/lanqiao/ADC.html"><span class="toc-text">ADC</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/lanqiao/TIM.html"><span class="toc-text">TIM</span></a><a class="link" href="/wiki/lanqiao/RTC.html"><span class="toc-text">RTC</span></a><a class="link" href="/wiki/lanqiao/IIC.html"><span class="toc-text">IIC</span></a></div><div class="widget-header dis-select"><span class="name">...</span></div><div class="widget-body fs14"><a class="link" href="/wiki/lanqiao/16moni_1.html"><span class="toc-text">16届蓝桥杯模拟试题1</span></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/wiki/lanqiao/LED.html#start"><span class="toc-text">LED</span></a><a class="link" href="/wiki/lanqiao/KEY.html"><span class="toc-text">KEY</span></a><a class="link" href="/wiki/lanqiao/LCD.html"><span class="toc-text">LCD</span></a><a class="link" href="/wiki/lanqiao/USART.html"><span class="toc-text">USART</span></a><a class="link active" href="/wiki/lanqiao/ADC.html"><span class="toc-text">ADC</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/wiki/lanqiao/TIM.html"><span class="toc-text">TIM</span></a><a class="link" href="/wiki/lanqiao/RTC.html"><span class="toc-text">RTC</span></a><a class="link" href="/wiki/lanqiao/IIC.html"><span class="toc-text">IIC</span></a><a class="link" href="/wiki/lanqiao/16moni_1.html"><span class="toc-text">16届蓝桥杯模拟试题1</span></a></div></widget>
 
 
 </div>
@@ -82,7 +82,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/lanqiao/LED.html">蓝桥杯</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-03-23T16:52:32.363Z">2025-03-24</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-04-06T11:44:29.834Z">2025-04-06</time></span></div></div></div>
     
     <div class="bottom only-title">
       
