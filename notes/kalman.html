@@ -30,8 +30,8 @@
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zalnhq.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zauqbp.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zj1sky.png">
-<meta property="article:published_time" content="2025-04-13T08:00:42.309Z">
-<meta property="article:modified_time" content="2025-04-13T08:00:42.309Z">
+<meta property="article:published_time" content="2025-04-13T08:03:25.708Z">
+<meta property="article:modified_time" content="2025-04-13T08:03:25.708Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -156,6 +156,15 @@
 <p>The second-order Runge–Kutta numerical integration procedure is easy to state. Given a first-order differential equation of the form:</p>
 <script type="math/tex; mode=display">\dot{x} = f(x, t)</script><p>where  $ t $  is time, we seek to find a recursive relationship for  $ x $  as a function of time. With the second-order Runge–Kutta numerical technique the value of  $ x $  at the next integration interval  $ h $  is given by</p>
 <script type="math/tex; mode=display">x_k = x_{k-1} + 0.5h[f(x, t) + f(x, t + h)]</script><p>Finding the area under a curve using trapezoids is equivalent to second-order Runge–Kutta integration.</p>
+<ol>
+<li>Noise and random variables</li>
+</ol>
+<ul>
+<li>The mean squared value of  $x$  is defined as:  $E(x^2) = \int_{-\infty}^{\infty} x^2 p(x) dx$ </li>
+<li>The root mean square or <em>rms</em> of  $x$  is defined as:  $rms = \sqrt{E(x^2)}$</li>
+<li>The variance of  $x$  is defined as:  $\sigma^2 = E[x - E(x)]^2 = E(x^2) - E^2(x)$ </li>
+<li>If we have independent random variables  $x_1, x_2 … x_n$ , then the variance of the sum can be shown to be the sum of the variances,  $\sigma^2 = \sigma_1^2 + \sigma_2^2 + \cdots + \sigma_n^2$</li>
+</ul>
 
 <div class="article-footer fs14"></div>
 </article>
