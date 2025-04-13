@@ -20,18 +20,22 @@
   <title>notes：Fundamentals of  Kalman Filter and Inertia Navigation(EN) - Maxwell's Blog</title>
 
   
-    <meta name="description" content="This is a blog about my undergraduate life, including my study, my life, and my thoughts.">
+    <meta name="description" content="Basic Requirement  Formulate an filtering problem. Build a state space model of a system. Solve linear state estimation problems with Kalman filter. Learn the principles of inertial navigation. Learn&#x2F;">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fundamentals of  Kalman Filter and Inertia Navigation(EN)">
 <meta property="og:url" content="https://maxwell0339.github.io/notes/kalman.html">
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
-<meta property="og:description" content="This is a blog about my undergraduate life, including my study, my life, and my thoughts.">
+<meta property="og:description" content="Basic Requirement  Formulate an filtering problem. Build a state space model of a system. Solve linear state estimation problems with Kalman filter. Learn the principles of inertial navigation. Learn&#x2F;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-12T09:01:38.789Z">
-<meta property="article:modified_time" content="2025-04-12T09:01:38.789Z">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zalnhq.png">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zauqbp.png">
+<meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zj1sky.png">
+<meta property="article:published_time" content="2025-04-13T08:00:42.309Z">
+<meta property="article:modified_time" content="2025-04-13T08:00:42.309Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.dexbug.com/i/2025/04/12/zalnhq.png">
   
   
   
@@ -93,7 +97,66 @@
     </div>
     
   </div>
-  </div><article class="md-text content">
+  </div><article class="md-text content"><p><strong>Basic Requirement</strong></p>
+<ol>
+<li>Formulate an filtering problem.</li>
+<li>Build a state space model of a system.</li>
+<li>Solve linear state estimation problems with Kalman filter.</li>
+<li>Learn the principles of inertial navigation.</li>
+<li>Learn/implement  basic INS-GNSS integrated navigation system.</li>
+</ol>
+<h2 id="Lesson-1"><a href="#Lesson-1" class="headerlink" title="Lesson 1"></a>Lesson <em>1</em></h2><p>Why is Kalman filter so popular?</p>
+<p>Kalman filter is BULE (Best Linear Unbiased Estimator)</p>
+<ul>
+<li>Powerful</li>
+<li>Convenient to use</li>
+</ul>
+<ol>
+<li>Example1 - Measure the center temperature of a rocket flame</li>
+</ol>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/04/12/zalnhq.png" alt=""></p>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/04/12/zauqbp.png" /></p>
+<ol>
+<li>Example2 - Data Merging</li>
+</ol>
+<blockquote>
+<p><strong>Notation</strong></p>
+<p>$e_{EST}$  —— state estimation error</p>
+<p>$e_{MEA}$  — measurement error</p>
+<p>$K$  — Kalman gain</p>
+<p>$X$  — true state</p>
+<p>$\hat{X}$  — estimated state</p>
+<p>$y$  — measurement</p>
+<p>$K = \frac{e_{EST}}{e_{EST} + e_{MEA}}$</p>
+<p>$\hat{X}_k = \hat{X}_{k-1} + K(y - \hat{y})$</p>
+<p>$e_{EST} = (1 - K)e_{EST}$</p>
+</blockquote>
+<p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.dexbug.com/i/2025/04/12/zj1sky.png" /></p>
+<ol>
+<li>Example3 - A simple 0-order Kalman filter</li>
+</ol>
+<ul>
+<li>$K = \frac{E_{\hat{X}}}{E_{\hat{X}} + E_y}$</li>
+<li>$\hat{X}_t = \hat{X}_{t-1} + K (y - \hat{X}_{t-1})$</li>
+<li>$E_{\hat{X}_{t}} = (1 - K)E_{\hat{X}_{t-1}}$</li>
+</ul>
+<h2 id="Lesson-2"><a href="#Lesson-2" class="headerlink" title="Lesson 2"></a>Lesson <em>2</em></h2><ol>
+<li>Numerical integration of differential equations</li>
+</ol>
+<ul>
+<li>Euler integration</li>
+</ul>
+<p>Consider a first-order differential equation of the form:</p>
+<script type="math/tex; mode=display">\dot{x} = f(x, t)</script><p>We know from calculus that the definition of a derivative of a function can be approximated by</p>
+<script type="math/tex; mode=display">\dot{x} = f(x, t) = \frac{x(t + h) - x(t)}{h} = \frac{x_k - x_{k-1}}{h}</script><p>for small  $ h $ . Rearranging terms yields</p>
+<script type="math/tex; mode=display">x_k = x_{k-1} + hf(x, t)</script><p>The preceding equation is known as Euler integration.</p>
+<ul>
+<li>Second-order Runge–Kutta</li>
+</ul>
+<p>The second-order Runge–Kutta numerical integration procedure is easy to state. Given a first-order differential equation of the form:</p>
+<script type="math/tex; mode=display">\dot{x} = f(x, t)</script><p>where  $ t $  is time, we seek to find a recursive relationship for  $ x $  as a function of time. With the second-order Runge–Kutta numerical technique the value of  $ x $  at the next integration interval  $ h $  is given by</p>
+<script type="math/tex; mode=display">x_k = x_{k-1} + 0.5h[f(x, t) + f(x, t + h)]</script><p>Finding the area under a curve using trapezoids is equivalent to second-order Runge–Kutta integration.</p>
+
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/dc.html">Digital Circuit(EN)</a></div><div class="item" id="next"></div></section></div>
@@ -158,7 +221,14 @@
 </center>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel blur'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-1"><span class="toc-text">Lesson 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-2"><span class="toc-text">Lesson 2</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
