@@ -30,8 +30,8 @@
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zalnhq.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zauqbp.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zj1sky.png">
-<meta property="article:published_time" content="2025-04-15T14:58:00.637Z">
-<meta property="article:modified_time" content="2025-04-15T14:58:00.637Z">
+<meta property="article:published_time" content="2025-04-15T16:28:37.680Z">
+<meta property="article:modified_time" content="2025-04-15T16:28:37.680Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -234,36 +234,11 @@ a_1
 <h3 id="Third-order-LS-filter"><a href="#Third-order-LS-filter" class="headerlink" title="Third order LS filter*"></a>Third order LS filter*</h3><p>We can also fit the measurement data with the best cubic or third - order curve in the least squares sense. This means we are seeking estimates to fit the formula for the cubic</p>
 <script type="math/tex; mode=display">\hat{x} = a_0 + a_1t + a_2t^2 + a_3t^3</script><p>or</p>
 <script type="math/tex; mode=display">\hat{x}_k = a_0 + a_1(k - 1)T_s + a_2[(k - 1)T_s]^2 + a_3[(k - 1)T_s]^3</script><p><img src = "https://img.dexbug.com/i/2025/04/15/xzlumw.png"></p>
-<h2 id="Lesson-5"><a href="#Lesson-5" class="headerlink" title="Lesson 5"></a>Lesson <em>5</em></h2><p>Least-squares coefficients for different order polynomial fits to measurement data</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Order</th>
-<th>Equations</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Zeroth</td>
-<td>$a_0 = \frac{\sum_{k = 1}^{n}x^*_k}{n}$</td>
-</tr>
-<tr>
-<td>First</td>
-<td>$\begin{bmatrix}a_0 \\ a_1\end{bmatrix} = \begin{bmatrix}n &amp; \sum_{k = 1}^{n}(k - 1)T_s \\ \sum_{k = 1}^{n}(k - 1)T_s &amp; \sum_{k = 1}^{n}[(k - 1)T_s]^2\end{bmatrix}^{-1}\begin{bmatrix}\sum_{k = 1}^{n}x^<em>_k \\ \sum_{k = 1}^{n}(k - 1)T_sx^</em>_k\end{bmatrix}$</td>
-</tr>
-<tr>
-<td>Second</td>
-<td>$\begin{bmatrix}a_0 \\ a_1 \\ a_2\end{bmatrix} = \begin{bmatrix}n &amp; \sum_{k = 1}^{n}(k - 1)T_s &amp; \sum_{k = 1}^{n}[(k - 1)T_s]^2 \\ \sum_{k = 1}^{n}(k - 1)T_s &amp; \sum_{k = 1}^{n}[(k - 1)T_s]^2 &amp; \sum_{k = 1}^{n}[(k - 1)T_s]^3 \\ \sum_{k = 1}^{n}[(k - 1)T_s]^2 &amp; \sum_{k = 1}^{n}[(k - 1)T_s]^3 &amp; \sum_{k = 1}^{n}[(k - 1)T_s]^4\end{bmatrix}^{-1}\begin{bmatrix}\sum_{k = 1}^{n}x^<em>_k \\ \sum_{k = 1}^{n}(k - 1)T_sx^</em>_k \\ \sum_{k = 1}^{n}[(k - 1)T_s]^2x^*_k\end{bmatrix}$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="Accelerometer-testing-example"><a href="#Accelerometer-testing-example" class="headerlink" title="Accelerometer testing example"></a>Accelerometer testing example</h3><p>Accelerometer measurements are taken for different accelerometer orientation angles. where $\theta_𝑘$ is the angle the accelerometer makes with the vertical for the $k$th measurement, $g$ is gravity.<br><img src = "https://img.dexbug.com/i/2025/04/15/z8s3s8.png"></p>
+<h2 id="Lesson-5"><a href="#Lesson-5" class="headerlink" title="Lesson 5"></a>Lesson <em>5</em></h2><h3 id="Accelerometer-testing-example"><a href="#Accelerometer-testing-example" class="headerlink" title="Accelerometer testing example"></a>Accelerometer testing example</h3><p>Accelerometer measurements are taken for different accelerometer orientation angles. where $\theta_𝑘$ is the angle the accelerometer makes with the vertical for the $k$th measurement, $g$ is gravity.<br><img src = "https://img.dexbug.com/i/2025/04/15/z8s3s8.png"></p>
 <script type="math/tex; mode=display">
 \text{Theory} = g \cos\theta_k</script><p>Actually, the accelerometer output will also consist of additional terms caused by imperfections in the accelerometer.</p>
 <script type="math/tex; mode=display">
-\text{Output} = g \cos\theta_k + \bm B + \bm{SF}g \cos\theta_k + \bm{K}(g \cos\theta_k)^2</script><p>Therefore, the accelerometer error is simply the difference between the actual output and theory($\theta_k$ is the actual angle and $\theta^*_k$ is the measured angle):</p>
+\text{Output} = g \cos\theta_k + B + SFg \cos\theta_k + K(g \cos\theta_k)^2</script><p>Therefore, the accelerometer error is simply the difference between the actual output and theory($\theta_k$ is the actual angle and $\theta^*_k$ is the measured angle):</p>
 <p><strong>Error = Accelerometer Output – Theory</strong></p>
 <script type="math/tex; mode=display">= g\cos\theta_k + B + SF \ g\cos\theta_k + K(g\cos\theta_k)^2 - g\cos\theta^*_k</script><p>Initially, the simulation is set up so there is no noise on the angle $\theta^*_k$. The error or measurement equation for the first example will be given by:</p>
 <script type="math/tex; mode=display">\theta^*_k = \theta_k, \quad x_k = g\cos\theta_k, \quad y^*_k = B + SF \ g\cos\theta_k + K(g\cos\theta_k)^2</script><p>Let $x_k = g\cos\theta_k$</p>
@@ -298,7 +273,7 @@ a_1
 </div>
 <blockquote>
 <p><strong>No angle noise</strong><br><img src = "https://img.dexbug.com/i/2025/04/15/zj4vzi.png"></p>
-<p><strong>1 $\bm{\mu r}$ of angle noise on the vertical angle</strong><br><img src = "https://img.dexbug.com/i/2025/04/15/zlguqs.png"></p>
+<p><strong>1 $\mu r$ of angle noise on the vertical angle</strong><br><img src = "https://img.dexbug.com/i/2025/04/15/zlguqs.png"></p>
 </blockquote>
 <h3 id="Making-Least-Squares-filter-recursive"><a href="#Making-Least-Squares-filter-recursive" class="headerlink" title="Making Least-Squares filter recursive"></a>Making Least-Squares filter recursive</h3><p>If we were trying to fit a zeroth - order polynomial or constant to a set of measurement data the best estimate can be expressed as</p>
 <script type="math/tex; mode=display">\hat{x}_k = a_0 = \frac{\sum_{i = 1}^{k}x^*_i}{k}</script><p>By changing subscripts we can rewrite the preceding expression as</p>
