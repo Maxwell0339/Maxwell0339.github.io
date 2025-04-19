@@ -30,8 +30,8 @@
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zalnhq.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zauqbp.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zj1sky.png">
-<meta property="article:published_time" content="2025-04-16T13:45:04.693Z">
-<meta property="article:modified_time" content="2025-04-16T13:45:04.693Z">
+<meta property="article:published_time" content="2025-04-19T12:31:11.408Z">
+<meta property="article:modified_time" content="2025-04-19T12:31:11.408Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -373,7 +373,379 @@ x^*_k&=a_0 + a_1t + a_2t^2 + a_3t^3\\
 <blockquote>
 <p>The zeroth-order, first-order, and second order polynomial Kalman and recursive least-squares filters are identical in every way when the Kalman filter has zero process noise and infinite initial covariance matrix. </p>
 </blockquote>
-<h2 id="Lesson-8"><a href="#Lesson-8" class="headerlink" title="Lesson 8"></a>Lesson <em>8</em></h2>
+<h2 id="Lesson-8"><a href="#Lesson-8" class="headerlink" title="Lesson 8"></a>Lesson <em>8</em></h2><h3 id="Comparing-Recursive-Least-Squares-and-Kalman-Filters"><a href="#Comparing-Recursive-Least-Squares-and-Kalman-Filters" class="headerlink" title="Comparing Recursive Least-Squares and Kalman Filters"></a>Comparing Recursive Least-Squares and Kalman Filters</h3><blockquote>
+<p>Least-Square Filters = Kalman Filters($Q=0,P_0=infinity$)<br>Kalman Filter is NOT Sensitive to the initial value of $P_0$<br>For a specific system, Kalman Filter with Lower order gets better estimation accuracy </p>
+</blockquote>
+<p>When the process noise is zero the error in the state estimate will eventually approach zero as more measurements are taken.</p>
+<p>One engineering fix to the divergence problem is the use of process noise. </p>
+<p>Although the addition of process noise to the first-order filter prevents divergence, it also increases the errors in the estimate to the point where we would have been better off using the second-order polynomial Kalman filter without process noise</p>
+<h3 id="Kalman-Filter-in-a-non-polynomial-world"><a href="#Kalman-Filter-in-a-non-polynomial-world" class="headerlink" title="Kalman Filter in a non-polynomial world"></a>Kalman Filter in a non-polynomial world</h3><p><strong>Extended Kalman Filtering</strong></p>
+<p>Theoretical Equations</p>
+<script type="math/tex; mode=display">
+\dot{\mathbf{x}} = f(\mathbf{x})+\mathbf{w} \quad \mathbf{Q} = E(\mathbf{w}\mathbf{w}^T)</script><script type="math/tex; mode=display">\mathbf{z} = h(\mathbf{x})+\mathbf{v} \quad \mathbf{R} = E(\mathbf{v}\mathbf{v}^T)</script><p>Linearize the model via Jaccobian Matrix</p>
+<script type="math/tex; mode=display">\mathbf{F}=\left.\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}}\right|_{\mathbf{x}=\hat{\mathbf{x}}}</script><script type="math/tex; mode=display">\mathbf{H}=\left.\frac{\partial h(\mathbf{x})}{\partial \mathbf{x}}\right|_{\mathbf{x}=\hat{\mathbf{x}}}</script><script type="math/tex; mode=display">\boldsymbol{\Phi}_k = \mathbf{I}+\mathbf{F}T_s+\frac{\mathbf{F}^2T_s^2}{2!}+\frac{\mathbf{F}^3T_s^3}{3!}+\cdots</script><h2 id="Lesson-9"><a href="#Lesson-9" class="headerlink" title="Lesson 9"></a>Lesson <em>9</em></h2><h3 id="What-is-navigation-System"><a href="#What-is-navigation-System" class="headerlink" title="What is navigation System?"></a>What is navigation System?</h3><ul>
+<li><p>Techniques and methods for guiding a carrier from its starting point to<br>its destination.</p>
+</li>
+<li><p>Provide navigation parameters, position, speed and attitude of the carrier.</p>
+</li>
+</ul>
+<h3 id="What-is-Guidance-System"><a href="#What-is-Guidance-System" class="headerlink" title="What is Guidance System?"></a>What is Guidance System?</h3><ul>
+<li>Guidance is a technology and method that automatically guides the carrier to the destination according to the pre-planned route.</li>
+</ul>
+<h3 id="Relationship-between-navigation-and-guidance"><a href="#Relationship-between-navigation-and-guidance" class="headerlink" title="Relationship between navigation and guidance"></a>Relationship between navigation and guidance</h3><ul>
+<li><p>Navigation system: Provide navigation parameters and achieve navigation tasks</p>
+</li>
+<li><p>Guidance: Automatic guidance and control of aircraft according to a certain law to fly to the target or predetermined orbit technology or method.</p>
+</li>
+<li><p>Guidance contains not only the measurement value of the application navigation system, but also the whole closed-loop working process of automatic control.</p>
+</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/nfp29e.png"></p>
+<p>Base-Station based navigation:</p>
+<ul>
+<li>GNSS</li>
+<li>UWB</li>
+<li>RF</li>
+<li>WiFi</li>
+</ul>
+<p>Dead Reckoning:</p>
+<ul>
+<li>IMU</li>
+<li>Odometer</li>
+<li>Magnetic Compass</li>
+</ul>
+<p>Map Match:</p>
+<ul>
+<li>Road vector Map</li>
+<li>Vision Sensors</li>
+<li>Lidars</li>
+<li>Sonar</li>
+<li>SoOP</li>
+</ul>
+<h3 id="Inertial-navigation"><a href="#Inertial-navigation" class="headerlink" title="Inertial navigation"></a>Inertial navigation</h3><p><img src = "https://img.dexbug.com/i/2025/04/19/nlx3lo.png"></p>
+<p>Features of inertial navigation system:</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/nmttf8.png"></p>
+<p>Error characteristics of inertial navigation:</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/nnipdw.png"> </p>
+<h2 id="Lesson-10"><a href="#Lesson-10" class="headerlink" title="Lesson 10"></a>Lesson <em>10</em></h2><h3 id="Basic-principle-of-inertial-navigation"><a href="#Basic-principle-of-inertial-navigation" class="headerlink" title="Basic principle of inertial navigation"></a>Basic principle of inertial navigation</h3><ul>
+<li><p>calculate the change in velocity and position by performing successive mathematical integrations of the acceleration with respect to time.</p>
+</li>
+<li><p>it is necessary to keep track of the direction in which the accelerometers are pointing.</p>
+</li>
+<li><p>Rotational motion of the body with respect to inertial reference frame may be sensed using gyroscopic sensors that are used to determine the orientation of the accelerometers at all times.</p>
+</li>
+</ul>
+<p>What does INS consist of ?</p>
+<ul>
+<li>gyroscopes</li>
+<li>accelerometers</li>
+</ul>
+<p>There are mainly two types of INS:</p>
+<ul>
+<li>Gimbaled INS </li>
+<li>Strap-down INS</li>
+</ul>
+<h3 id="Strapdown-INS"><a href="#Strapdown-INS" class="headerlink" title="Strapdown INS"></a>Strapdown INS</h3><p>Two-dimensional navigation for stabilized platform</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/ov5bs0.png"></p>
+<p>Strapdown inertial navigation unit block diagram</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/ovlcjm.png"></p>
+<h3 id="Reference-Frames"><a href="#Reference-Frames" class="headerlink" title="Reference Frames"></a>Reference Frames</h3><p><img src = "https://img.dexbug.com/i/2025/04/19/oxv7uv.png"></p>
+<h4 id="The-inertial-frame-i-frame"><a href="#The-inertial-frame-i-frame" class="headerlink" title="The inertial frame(i-frame)"></a>The inertial frame(i-frame)</h4><p>Origin-$O_i$ :Center of earth non-rotating with fixed stars;</p>
+<p>$X_i$ axis: In equatorial plane</p>
+<p>$Y_i$ axis: In equatorial plane</p>
+<p>$Z_i$ axis: Coincident with polar axis(normally assumed to be invariant in direction)</p>
+<h4 id="The-earth-frame-e-frame"><a href="#The-earth-frame-e-frame" class="headerlink" title="The earth frame(e-frame)"></a>The earth frame(e-frame)</h4><p>Origin - $O_e$: Center of Earth, fixed with respect to Earth</p>
+<p>$Z_e$ axis: Along with polar axis</p>
+<p>$X_e$ axis: Intersection of the plane of Greenwich meridian with equatorial plane</p>
+<p>$Y_e$ axis: obey right - hand rule.</p>
+<p>The e - frame <strong>rotates with respect to the inertial frame</strong> at a rate $\Omega$ about the axis $Z_e$.</p>
+<script type="math/tex; mode=display">\omega_{ie}=\frac{1 + 365.25}{365.25\times24}\frac{2\pi}{3600}\approx7.292115\times 10^{-5} \text{ (rad/s)}</script><h4 id="The-body-frame-b-frame"><a href="#The-body-frame-b-frame" class="headerlink" title="The body frame(b-frame)"></a>The body frame(b-frame)</h4><p>Origin - $O_b$: Origin at the center of the carrier (or the navigation system)</p>
+<p>$X_b$ axis: Forward</p>
+<p>$Y_b$ axis: Right</p>
+<p>$Z_b$ axis: Down</p>
+<p>Sometimes the x, y, z are chosen to be <strong>Right, Forward, Up</strong> or <strong>Pitch, Roll, Yaw</strong> </p>
+<h4 id="The-Local-Geographic-frame-L-frame"><a href="#The-Local-Geographic-frame-L-frame" class="headerlink" title="The Local Geographic frame(L-frame)"></a>The Local Geographic frame(L-frame)</h4><p>Origin - $O_L$: Origin at the location of the navigation system</p>
+<p>$X_L$ axis: Align with local North</p>
+<p>$Y_L$ axis: Align with local East</p>
+<p>$Z_L$ axis: Align with vertical down</p>
+<p>Sometimes the x, y, z are chosen to be <strong>East, North, Up</strong>.</p>
+<p>Above is also defined as <strong>Local Geographic Frame (L - frame)</strong>, and n frame is chosen as L - frame, n - frame can also be <strong>i - frame</strong> when performing interstellar missions. </p>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/p1odw6.png"></p>
+<h3 id="Transform-between-Frames"><a href="#Transform-between-Frames" class="headerlink" title="Transform between Frames"></a>Transform between Frames</h3><p><strong>Direction cosine matrix(DCM)</strong></p>
+<p>A direction cosine matrix (DCM) is a transformation matrix that transforms one coordinate reference frame to another.</p>
+<script type="math/tex; mode=display">
+\mathbf{r^n} = \mathbf{C^n_br^b}</script><p>The rotation matrix $\mathbf{C^n_b}$ is generated from the Euler angles by multiplying the three matrices<br>generated by rotations about the axes.</p>
+<p><strong>Euler angles</strong></p>
+<p>rotate through angle $\psi$ about reference $z$-axis</p>
+<p>rotate through angle $\theta$ about new $y$-axis</p>
+<p>rotate through angle $\phi$ about new $x$-axis</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/p55nye.png"></p>
+<p><strong>Quaternions</strong></p>
+<p>A quaternion representation of rotation is written as a vector (normalized quaternion):</p>
+<script type="math/tex; mode=display">\mathbf{q}=\begin{bmatrix}
+a\\
+b\\
+c\\
+d
+\end{bmatrix}=\begin{bmatrix}
+\cos(\mu/2)\\
+(\mu_x/\mu)\sin(\mu/2)\\
+(\mu_y/\mu)\sin(\mu/2)\\
+(\mu_z/\mu)\sin(\mu/2)
+\end{bmatrix}</script><p>where $\mu_x, \mu_y, \mu_z$ are the components of the angle vector $\boldsymbol{\mu}$ and $\mu$ the magnitude of $\boldsymbol{\mu}$. </p>
+<p><strong>Use of quaternion for vector transformation</strong></p>
+<script type="math/tex; mode=display">\mathbf{q}=a + \mathbf{i}b+\mathbf{j}c+\mathbf{k}d</script><script type="math/tex; mode=display">\mathbf{r}^b=\mathbf{i}x+\mathbf{j}y+\mathbf{k}z</script><script type="math/tex; mode=display">
+\mathbf{r}^{b^\prime}=0+\mathbf{i}x+\mathbf{j}y+\mathbf{k}z</script><p>This is expressed in reference axes as $\mathbf{r}^{n^\prime}$ using:</p>
+<script type="math/tex; mode=display">\mathbf{r}^{n^\prime}=\mathbf{q}\mathbf{r}^{b^\prime}\mathbf{q}^*</script><p>where $\mathbf{q}^*=(a - \mathbf{i}b - \mathbf{j}c - \mathbf{k}d)$, the complex conjugate of $\mathbf{q}$. </p>
+<h2 id="Lesson-11"><a href="#Lesson-11" class="headerlink" title="Lesson 11"></a>Lesson <em>11</em></h2><h3 id="Types-of-inertial-navigation"><a href="#Types-of-inertial-navigation" class="headerlink" title="Types of inertial navigation"></a>Types of inertial navigation</h3><h4 id="Gimbaled-inertial-navigation-system"><a href="#Gimbaled-inertial-navigation-system" class="headerlink" title="Gimbaled inertial navigation system"></a>Gimbaled inertial navigation system</h4><p>Three-axis gyro-stabilized platform, the accelerometer is fixed on the platform, its sensitive axis is parallel to the platform axis, and the three stable axes of the platform simulate a navigation coordinate system.</p>
+<ul>
+<li><p>Advantages: Directly simulate the navigation coordinate system, the calculation is relatively simple; it can isolate the angular motion of the carrier, and the system has high precision.</p>
+</li>
+<li><p>Disadvantages: The structure is complex, the volume is large, and the production cost is high.</p>
+</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/vvz2o3.png"></p>
+<h4 id="Strap-down-inertial-navigation"><a href="#Strap-down-inertial-navigation" class="headerlink" title="Strap-down inertial navigation"></a>Strap-down inertial navigation</h4><p>There is <strong>no stable platform</strong>, and the accelerometer and gyroscope are directly fixed to the carrier. When the carrier rotates, the sensitive axes of the accelerometers and gyroscopes also follow the rotation. The gyroscope measures the angular motion of the carrier, calculates the attitude angle of the carrier, and determines the direction of the sensitive axis of the accelerometer. Then through the coordinate transformation, the signal output by the accelerometer is transformed into the navigation coordinate system, and the navigation calculation is performed. </p>
+<ul>
+<li><p>Advantages: No mechanical platform, simple structure, small size, easy maintenance.</p>
+</li>
+<li><p>Disadvantages: High requirements for components; large amount of calculation in coordinate transformation.</p>
+</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/vx70y7.png"></p>
+<h3 id="Type-of-gyroscope"><a href="#Type-of-gyroscope" class="headerlink" title="Type of gyroscope"></a>Type of gyroscope</h3><p><img src = "https://img.dexbug.com/i/2025/04/19/vxdl7h.png"></p>
+<p><strong>Comparison of gyroscopes with different precision</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Types</th>
+<th>Accuracy (drift)</th>
+<th>Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High precision (inertial stage) gyroscope</td>
+<td>&lt;$10^{-3}\ ^{\circ}/$h</td>
+<td>Long - range launch vehicles, intercontinental missiles, nuclear submarines</td>
+</tr>
+<tr>
+<td>Medium precision (navigational stage) gyroscope</td>
+<td>&lt;$10^{-2}\ ^{\circ}/$h</td>
+<td>Aircraft attitude system, Marine platform compass</td>
+</tr>
+<tr>
+<td>Low and medium precision gyroscope</td>
+<td>About $0.1\ ^{\circ}/$h</td>
+<td>All tactical weapons, fire control and stable aim systems</td>
+</tr>
+<tr>
+<td>Low precision gyroscope</td>
+<td>$0.1\sim1\ ^{\circ}/$h</td>
+<td>Motion detection in traffic vehicles and industrial fields</td>
+</tr>
+<tr>
+<td>Angular rate sensor</td>
+<td>$0.01\ ^{\circ}/$s</td>
+<td>Motion detection in traffic vehicles and industrial fields</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Error-model-of-gyroscope"><a href="#Error-model-of-gyroscope" class="headerlink" title="Error model of gyroscope"></a>Error model of gyroscope</h3><script type="math/tex; mode=display">\begin{align*}
+\tilde{\omega}_x - \omega_x&=S_x\omega_x+M_y\omega_y+M_z\omega_z\\
+&+B_{g_x}a_x + B_{g_z}a_z + B_{a_{xz}}a_ya_z\\
+&+n_x\\
+&+B_f
+\end{align*}</script><ul>
+<li>$a_x$: Acceleration of the input axis of the gyro</li>
+<li>$a_z$: Acceleration of the gyroscope rotor shaft</li>
+<li>$S_x$: Scale factor error</li>
+<li>$M_y, M_z$: Cross coupling coefficient</li>
+<li>$B_{g_x}, B_{g_z}$: The bias coefficient with respect to $\mathbf{g}$</li>
+<li>$B_{a_{xz}}$: Inelastic bias coefficient</li>
+<li>$B_f$: A bias independent of $\mathbf{g}$</li>
+<li>$n_x$: Zero mean random bias </li>
+</ul>
+<h3 id="Mechanical-model-of-accelerometer"><a href="#Mechanical-model-of-accelerometer" class="headerlink" title="Mechanical model of accelerometer"></a>Mechanical model of accelerometer</h3><p><img src = "https://img.dexbug.com/i/2025/04/19/vzhtx1.png"></p>
+<p>For the spring - mass system, the sensitive mass force balance equation is as follows:</p>
+<script type="math/tex; mode=display">m\frac{d^2x}{dt^2}=C\frac{dx}{dt}+kx</script><ul>
+<li>$x$: Sensitive mass displacement</li>
+<li>$C$: Damping coefficient</li>
+<li>$k$: Spring elasticity coefficient </li>
+</ul>
+<h4 id="Pendulum-accelerometer"><a href="#Pendulum-accelerometer" class="headerlink" title="Pendulum accelerometer"></a>Pendulum accelerometer</h4><p>Quartz flexible pendulum accelerometer is mainly used in inertial navigation system</p>
+<ul>
+<li><p>Advantages: small volume, high precision, fast start, impact resistance</p>
+</li>
+<li><p>Application: requirements of a variety of carriers and inertial systems, including ships, vehicles and aircraft inertial navigation system, missile and rocket inertial guidance system, satellite and spacecraft control system</p>
+</li>
+</ul>
+<h4 id="Silicon-micro-accelerometer"><a href="#Silicon-micro-accelerometer" class="headerlink" title="Silicon micro accelerometer"></a>Silicon micro accelerometer</h4><p>It is based on integrated circuit technology and micromachining technology.</p>
+<ul>
+<li><p>Advantages: low cost, small size, low power consumption and mass production</p>
+</li>
+<li><p>Application: national defense, inertial navigation, seismic detection, industry, medical, automation and consumer electronics.</p>
+</li>
+</ul>
+<p><strong>Followed by the Lesson <em>10</em>, What if the rotation angle is small?</strong></p>
+<script type="math/tex; mode=display">\mathbf{C}^b_a=\begin{bmatrix}
+1&\alpha_z&-\alpha_y\\
+-\alpha_z&1&\alpha_x\\
+\alpha_y&-\alpha_x&1
+\end{bmatrix}=\mathbf{I}-\begin{bmatrix}
+0&-\alpha_z&\alpha_y\\
+\alpha_z&0&-\alpha_x\\
+-\alpha_y&\alpha_x&0
+\end{bmatrix}</script><p>Where $[\boldsymbol{\alpha}\times]=\begin{bmatrix}<br>0&amp;-\alpha_z&amp;\alpha_y\\<br>\alpha_z&amp;0&amp;-\alpha_x\\<br>-\alpha_y&amp;\alpha_x&amp;0<br>\end{bmatrix}$, called <strong>skewed matrix</strong> </p>
+<p><strong>Quaternion operations</strong></p>
+<script type="math/tex; mode=display">\mathbf{Q} = q_0 + q_1\mathbf{i}+q_2\mathbf{j}+q_3\mathbf{k}</script><script type="math/tex; mode=display">\mathbf{P} = p_0 + p_1\mathbf{i}+p_2\mathbf{j}+p_3\mathbf{k}</script><ul>
+<li>Summing: </li>
+</ul>
+<script type="math/tex; mode=display">\mathbf{Q}\pm\mathbf{P}=(q_0\pm p_0)+(q_1\pm p_1)\mathbf{i}+(q_2\pm p_2)\mathbf{j}+(q_3\pm p_3)\mathbf{k}</script><ul>
+<li>Multiplication:</li>
+</ul>
+<script type="math/tex; mode=display">\begin{align*}
+\mathbf{P}\otimes\mathbf{Q}&=(p_0 + p_1\mathbf{i}+p_2\mathbf{j}+p_3\mathbf{k})\otimes(q_0 + q_1\mathbf{i}+q_2\mathbf{j}+q_3\mathbf{k})\\
+&=(p_0q_0 - p_1q_1 - p_2q_2 - p_3q_3)\\&+(p_0q_1 + p_1q_0 + p_2q_3 - p_3q_2)\mathbf{i}\\
+&+(p_0q_2 + p_2q_0 + p_3q_1 - p_1q_3)\mathbf{j}\\&+(p_0q_3 + p_3q_0 + p_1q_2 - p_2q_1)\mathbf{k}\\
+&=r_0 + r_1\mathbf{i}+r_2\mathbf{j}+r_3\mathbf{k}
+\end{align*}</script><script type="math/tex; mode=display">
+\begin{align*}
+    \begin{bmatrix}
+    r_0\\
+    r_1\\
+    r_2\\
+    r_3
+    \end{bmatrix}=
+    \begin{bmatrix}
+    p_0&-p_1&-p_2&-p_3\\
+    p_1&p_0&-p_3&p_2\\
+    p_2&p_3&p_0&-p_1\\
+    p_3&-p_2&p_1&p_0
+    \end{bmatrix}
+    \begin{bmatrix}
+    q_0\\
+    q_1\\
+    q_2\\
+    q_3
+    \end{bmatrix}
+    \\=
+    \begin{bmatrix}
+    q_0&-q_1&-q_2&-q_3\\
+    q_1&q_0&q_3&-q_2\\
+    q_2&-q_3&q_0&q_1\\
+    q_3&q_2&-q_1&q_0
+    \end{bmatrix}
+    \begin{bmatrix}
+    p_0\\
+    p_1\\
+    p_2\\
+    p_3
+    \end{bmatrix}
+\end{align*}</script><h3 id="Relationship-between-DCM-Euler-angle-and-Quaternion"><a href="#Relationship-between-DCM-Euler-angle-and-Quaternion" class="headerlink" title="Relationship between DCM,Euler angle,and Quaternion"></a>Relationship between DCM,Euler angle,and Quaternion</h3><p><strong>Euler angle or Quaternion-&gt;DCM</strong><br><img src = "https://img.dexbug.com/i/2025/04/19/w6vvcc.png"></p>
+<p><strong>DCM -&gt; Euler angle</strong></p>
+<script type="math/tex; mode=display">\begin{align*}
+\phi&=\arctan\left(\frac{c_{32}}{c_{33}}\right)\\
+\theta&=\arcsin(-c_{31})\\
+\psi&=\arctan\left(\frac{c_{21}}{c_{11}}\right)
+\end{align*}</script><p><strong>Euler -&gt; Quaternion</strong></p>
+<script type="math/tex; mode=display">\begin{align*}
+a&=\cos\frac{\phi}{2}\cos\frac{\theta}{2}\cos\frac{\psi}{2}+\sin\frac{\phi}{2}\sin\frac{\theta}{2}\sin\frac{\psi}{2}\\
+b&=\sin\frac{\phi}{2}\cos\frac{\theta}{2}\cos\frac{\psi}{2}-\cos\frac{\phi}{2}\sin\frac{\theta}{2}\sin\frac{\psi}{2}\\
+c&=\cos\frac{\phi}{2}\sin\frac{\theta}{2}\cos\frac{\psi}{2}+\sin\frac{\phi}{2}\cos\frac{\theta}{2}\sin\frac{\psi}{2}\\
+d&=\cos\frac{\phi}{2}\cos\frac{\theta}{2}\sin\frac{\psi}{2}+\sin\frac{\phi}{2}\sin\frac{\theta}{2}\cos\frac{\psi}{2}
+\end{align*}</script><blockquote>
+<ul>
+<li>$\mathbf{f}^a$ — vector $\mathbf{f}$ in a - frame</li>
+<li>$\mathbf{f}^b$ — vector $\mathbf{f}$ in b - frame</li>
+</ul>
+<p>Transformation between frame a and b:</p>
+<script type="math/tex; mode=display">\begin{align*}
+\mathbf{f}^a&=\mathbf{C}^a_b\mathbf{f}^b\\
+\mathbf{r}^{a^\prime}&=\mathbf{q}^a_b\mathbf{r}^{b^\prime}\mathbf{q}^{a*}_b,\\
+\mathbf{r}^{a^\prime}&=[0, rax, ray, raz]^T,\\
+\mathbf{r}^{b^\prime}&=[0, rbx, rby, rbz]^T
+\end{align*}</script></blockquote>
+<h3 id="Differential-equation-for-Quaternion"><a href="#Differential-equation-for-Quaternion" class="headerlink" title="Differential equation for Quaternion*"></a>Differential equation for Quaternion*</h3><script type="math/tex; mode=display">\begin{align*}
+\dot{\mathbf{q}}^n_b&=\frac{1}{2}[\boldsymbol{\Omega}^b_{nb}]\mathbf{q}^n_b\\
+[\boldsymbol{\Omega}^b_{nb}]&=[\boldsymbol{\omega}^b_{ab}\times]=
+\begin{bmatrix}
+0&\omega_x&\omega_y&\omega_z\\
+-\omega_x&0&\omega_z&-\omega_y\\
+-\omega_y&-\omega_z&0&\omega_x\\
+-\omega_z&\omega_y&-\omega_x&0
+\end{bmatrix}
+\end{align*}</script><p>Solution:</p>
+<script type="math/tex; mode=display">\mathbf{q}(t_k)=
+\begin{bmatrix}
+\cos\frac{\phi}{2}\\
+\sin\frac{\phi}{2}\cdot\frac{\boldsymbol{\varphi}}{\phi}
+\end{bmatrix}\otimes\mathbf{q}(t_{k - 1})</script><h3 id="Differential-equation-for-DCM"><a href="#Differential-equation-for-DCM" class="headerlink" title="Differential equation for DCM*"></a>Differential equation for DCM*</h3><script type="math/tex; mode=display">\dot{\mathbf{C}}^a_b=\mathbf{C}^a_b\boldsymbol{\Omega}^b_{ba}</script><p>Let frame b rotate with respect to a frame during $\Delta t$ for angle $\boldsymbol{\phi}^b_{ab}=[\phi_x, \phi_y, \phi_z]$</p>
+<script type="math/tex; mode=display">\begin{align*}
+\mathbf{C}^b_a(t+\Delta t)&=(\mathbf{I}-[\boldsymbol{\phi}\times])\mathbf{C}^b_a(t)=\mathbf{C}^b_a(t)-[\boldsymbol{\phi}\times]\mathbf{C}^b_a(t)\\
+\dot{\mathbf{C}}^b_a(t)&=\lim_{\Delta t\rightarrow0}\frac{\mathbf{C}^b_a(t + \Delta t)-\mathbf{C}^b_a(t)}{\Delta t}\\&=-\lim_{\Delta t\rightarrow0}\left[\frac{\boldsymbol{\phi}^b_{ab}\times}{\Delta t}\right]\mathbf{C}^b_a(t)=-[\boldsymbol{\Omega}^b_{ab}\times]\mathbf{C}^b_a(t)\\
+\dot{\mathbf{C}}^a_b(t)&=\mathbf{C}^a_b(t)[\boldsymbol{\Omega}^b_{ab}\times]\\
+\boldsymbol{\Omega}^b_{ab}&=\boldsymbol{\Omega}^b_{ib}-\mathbf{C}^b_a\boldsymbol{\Omega}^a_{ia}
+\end{align*}</script><h3 id="The-shape-of-the-earth"><a href="#The-shape-of-the-earth" class="headerlink" title="The shape of the earth"></a>The shape of the earth</h3><ul>
+<li>the length of the semi - major axis, $R$</li>
+<li>the length of the semi - minor axis, $r = R(1 - f)$</li>
+<li>the flattening of the ellipsoid, $f=(R - r)/R$</li>
+<li>the major eccentricity of the ellipsoid, $e = [f(2 - f)]^{1/2}$ </li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/19/xbbqbd.png"></p>
+<p><strong>Variations of gravitational attraction over the Earth</strong></p>
+<ul>
+<li>Theoretical gravity vector: g, downward</li>
+<li>Gravity vector in Practice: Vary with position &amp; hight</li>
+</ul>
+<blockquote>
+<p>Reason:</p>
+<ul>
+<li>variations between mass attraction and g vector</li>
+<li>Centrifugal acceleration being a function of latitude</li>
+<li>inhomogeneous mass distribution of the Earth</li>
+</ul>
+</blockquote>
+<h3 id="Earth-parameters"><a href="#Earth-parameters" class="headerlink" title="Earth parameters"></a>Earth parameters</h3><p>The motions of the earth are composed of:</p>
+<ul>
+<li>rotation around the axis of rotation relative to the sun</li>
+<li>revolution around the sun</li>
+</ul>
+<p>Then: <strong>angular velocity of the earth’s rotation relative to the inertial space is different from the angular velocity of the earth’s rotation relative to the sun around its axis of rotation</strong>.</p>
+<p>The angular velocity of the earth‘s rotation relative to the inertial space can be measured by the gyroscope.</p>
+<script type="math/tex; mode=display">\omega_{ie}=\frac{1 + 365.25}{365.25\times24\times3600}\cdot2\pi\approx7.292115\times 10^{-5}\text{ (rad/s)}</script><p><strong>Gravitational acceleration</strong></p>
+<script type="math/tex; mode=display">\mathbf{g}=\mathbf{G}_m-\overline{\boldsymbol{\omega}}_{ie}\times(\overline{\boldsymbol{\omega}}_{ie}\times\overline{\boldsymbol{R}})</script><ul>
+<li>$\overline{\boldsymbol{R}}$ - The position vector of the point relative to the center of the earth</li>
+<li>$\overline{\boldsymbol{\omega}}_{ie}$ - Angular velocity of the earth</li>
+<li>$\times$ - Skew - symmetric matrix </li>
+</ul>
+<h3 id="Universal-Navigational-Equations"><a href="#Universal-Navigational-Equations" class="headerlink" title="Universal Navigational Equations"></a>Universal Navigational Equations</h3><p><strong>Prerequisite</strong></p>
+<ul>
+<li>Specific force — $\mathbf{f}^a$</li>
+</ul>
+<script type="math/tex; mode=display">\mathbf{f}^a=\mathbf{C}^a_b\mathbf{f}^b</script><ul>
+<li>Position vector in Earth fixed frame — $\mathbf{r}^e$</li>
+<li>Mathematical Platform: </li>
+</ul>
+<script type="math/tex; mode=display">\dot{\mathbf{C}}^a_b=\mathbf{C}^a_b\boldsymbol{\Omega}^b_{ba}</script><script type="math/tex; mode=display">\boldsymbol{\Omega}^b_{ba}=\begin{bmatrix}
+0&-\omega_z&\omega_y\\
+\omega_z&0&-\omega_x\\
+-\omega_y&\omega_x&0
+\end{bmatrix}\quad \text{skew - symmetric matrix}</script><h4 id="Navigation-algorithm"><a href="#Navigation-algorithm" class="headerlink" title="Navigation algorithm"></a>Navigation algorithm</h4><p><strong>The velocity and position equations:</strong></p>
+<script type="math/tex; mode=display">\begin{align*}
+\mathbf{v}^n&=\int_0^t\mathbf{f}^n\mathrm{d}t-\int_0^t[2\boldsymbol{\omega}_{ie}+\boldsymbol{\omega}_{en}]\times\mathbf{v}^n\mathrm{d}t+\int_0^t\mathbf{g}\mathrm{d}t\\
+\mathbf{x}^n&=\int_0^t\mathbf{v}^n\mathrm{d}t
+\end{align*}</script><p>The vectors in the above equations may be expressed in component form as follows:</p>
+<script type="math/tex; mode=display">\begin{align*}
+\mathbf{v}^n&=[v_N \quad v_E \quad v_D]^T\\
+\mathbf{x}^n&=[x_N\quad  x_E\quad -h]^T\\
+\boldsymbol{\omega}_{ie}&=[\Omega\cos L\quad 0\quad -\Omega\sin L]^T\\
+\boldsymbol{\omega}_{en}&=\left[\frac{v_E}{R_0 + h}\quad \frac{-v_N}{R_0 + h}\quad \frac{-v_E\tan L}{R_0 + h}\right]^T\\
+\mathbf{g}&=[0\quad 0\quad g]^T
+\end{align*}</script><p>The expressions apply for navigation in the vicinity of the Earth, in the local vertical geographic frame. </p>
+<h2 id="Lesson-12"><a href="#Lesson-12" class="headerlink" title="Lesson 12"></a>Lesson <em>12</em></h2>
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/dc.html">Digital Circuit(EN)</a></div><div class="item" id="next"></div></section></div>
@@ -442,7 +814,7 @@ x^*_k&=a_0 + a_1t + a_2t^2 + a_3t^3\\
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-1"><span class="toc-text">Lesson 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example1-Measure-the-center-temperature-of-a-rocket-flame"><span class="toc-text">Example1 - Measure the center temperature of a rocket flame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example2-Data-Merging"><span class="toc-text">Example2 - Data Merging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example3-A-simple-0-order-Kalman-filter"><span class="toc-text">Example3 - A simple 0-order Kalman filter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-2"><span class="toc-text">Lesson 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Numerical-integration-of-differential-equations"><span class="toc-text">Numerical integration of differential equations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Noise-and-random-variables"><span class="toc-text">Noise and random variables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#State-space-notation"><span class="toc-text">State space notation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamental-matrix"><span class="toc-text">Fundamental matrix</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-3"><span class="toc-text">Lesson 3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Least-squares-method"><span class="toc-text">Least squares method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zero-order-of-one-state-filter"><span class="toc-text">Zero order of one-state filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#First-order-or-two-state-filter"><span class="toc-text">First order or two-state filter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-4-may-not-in-the-exam"><span class="toc-text">Lesson 4(may not in the exam)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-LS-filter"><span class="toc-text">Second order LS filter*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Third-order-LS-filter"><span class="toc-text">Third order LS filter*</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-5"><span class="toc-text">Lesson 5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Accelerometer-testing-example"><span class="toc-text">Accelerometer testing example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Making-Least-Squares-filter-recursive"><span class="toc-text">Making Least-Squares filter recursive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-properties-of-One-State-filters"><span class="toc-text">Recursive properties of One-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-properties-of-One-State-filters-1"><span class="toc-text">Recursive properties of One-State filters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-6"><span class="toc-text">Lesson 6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Filters-properties-of-Two-State-filters"><span class="toc-text">Filters properties of Two-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Properties-of-Second-Order-or-Three-State-filter"><span class="toc-text">Properties of Second-Order or Three-State filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-filter-summary"><span class="toc-text">Recursive filter summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-7"><span class="toc-text">Lesson 7</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Polynomial-Kalman-Filters"><span class="toc-text">Polynomial Kalman Filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#General-Equations"><span class="toc-text">General Equations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kalman-Filter-in-Discrete-Form"><span class="toc-text">Kalman Filter in Discrete Form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Derivation-of-Scalar-Riccati-Equations-may-not-in-the-exam"><span class="toc-text">Derivation of Scalar Riccati Equations (may not in the exam)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Polynomial-Kalman-Filter-Zero-Process-Noise"><span class="toc-text">Polynomial Kalman Filter (Zero Process Noise)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparing-Zeroth-Order-Recursive-Least-Squares-and-Kalman-Filters"><span class="toc-text">Comparing Zeroth-Order Recursive Least-Squares and Kalman Filters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-8"><span class="toc-text">Lesson 8</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-1"><span class="toc-text">Lesson 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example1-Measure-the-center-temperature-of-a-rocket-flame"><span class="toc-text">Example1 - Measure the center temperature of a rocket flame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example2-Data-Merging"><span class="toc-text">Example2 - Data Merging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example3-A-simple-0-order-Kalman-filter"><span class="toc-text">Example3 - A simple 0-order Kalman filter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-2"><span class="toc-text">Lesson 2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Numerical-integration-of-differential-equations"><span class="toc-text">Numerical integration of differential equations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Noise-and-random-variables"><span class="toc-text">Noise and random variables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#State-space-notation"><span class="toc-text">State space notation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamental-matrix"><span class="toc-text">Fundamental matrix</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-3"><span class="toc-text">Lesson 3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Least-squares-method"><span class="toc-text">Least squares method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zero-order-of-one-state-filter"><span class="toc-text">Zero order of one-state filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#First-order-or-two-state-filter"><span class="toc-text">First order or two-state filter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-4-may-not-in-the-exam"><span class="toc-text">Lesson 4(may not in the exam)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-LS-filter"><span class="toc-text">Second order LS filter*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Third-order-LS-filter"><span class="toc-text">Third order LS filter*</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-5"><span class="toc-text">Lesson 5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Accelerometer-testing-example"><span class="toc-text">Accelerometer testing example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Making-Least-Squares-filter-recursive"><span class="toc-text">Making Least-Squares filter recursive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-properties-of-One-State-filters"><span class="toc-text">Recursive properties of One-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-properties-of-One-State-filters-1"><span class="toc-text">Recursive properties of One-State filters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-6"><span class="toc-text">Lesson 6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Filters-properties-of-Two-State-filters"><span class="toc-text">Filters properties of Two-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Properties-of-Second-Order-or-Three-State-filter"><span class="toc-text">Properties of Second-Order or Three-State filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-filter-summary"><span class="toc-text">Recursive filter summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-7"><span class="toc-text">Lesson 7</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Polynomial-Kalman-Filters"><span class="toc-text">Polynomial Kalman Filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#General-Equations"><span class="toc-text">General Equations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kalman-Filter-in-Discrete-Form"><span class="toc-text">Kalman Filter in Discrete Form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Derivation-of-Scalar-Riccati-Equations-may-not-in-the-exam"><span class="toc-text">Derivation of Scalar Riccati Equations (may not in the exam)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Polynomial-Kalman-Filter-Zero-Process-Noise"><span class="toc-text">Polynomial Kalman Filter (Zero Process Noise)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparing-Zeroth-Order-Recursive-Least-Squares-and-Kalman-Filters"><span class="toc-text">Comparing Zeroth-Order Recursive Least-Squares and Kalman Filters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-8"><span class="toc-text">Lesson 8</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparing-Recursive-Least-Squares-and-Kalman-Filters"><span class="toc-text">Comparing Recursive Least-Squares and Kalman Filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kalman-Filter-in-a-non-polynomial-world"><span class="toc-text">Kalman Filter in a non-polynomial world</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-9"><span class="toc-text">Lesson 9</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-navigation-System"><span class="toc-text">What is navigation System?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-Guidance-System"><span class="toc-text">What is Guidance System?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Relationship-between-navigation-and-guidance"><span class="toc-text">Relationship between navigation and guidance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inertial-navigation"><span class="toc-text">Inertial navigation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-10"><span class="toc-text">Lesson 10</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-principle-of-inertial-navigation"><span class="toc-text">Basic principle of inertial navigation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strapdown-INS"><span class="toc-text">Strapdown INS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference-Frames"><span class="toc-text">Reference Frames</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-inertial-frame-i-frame"><span class="toc-text">The inertial frame(i-frame)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-earth-frame-e-frame"><span class="toc-text">The earth frame(e-frame)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-body-frame-b-frame"><span class="toc-text">The body frame(b-frame)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Local-Geographic-frame-L-frame"><span class="toc-text">The Local Geographic frame(L-frame)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transform-between-Frames"><span class="toc-text">Transform between Frames</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-11"><span class="toc-text">Lesson 11</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Types-of-inertial-navigation"><span class="toc-text">Types of inertial navigation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Gimbaled-inertial-navigation-system"><span class="toc-text">Gimbaled inertial navigation system</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Strap-down-inertial-navigation"><span class="toc-text">Strap-down inertial navigation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-of-gyroscope"><span class="toc-text">Type of gyroscope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error-model-of-gyroscope"><span class="toc-text">Error model of gyroscope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mechanical-model-of-accelerometer"><span class="toc-text">Mechanical model of accelerometer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pendulum-accelerometer"><span class="toc-text">Pendulum accelerometer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Silicon-micro-accelerometer"><span class="toc-text">Silicon micro accelerometer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Relationship-between-DCM-Euler-angle-and-Quaternion"><span class="toc-text">Relationship between DCM,Euler angle,and Quaternion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Differential-equation-for-Quaternion"><span class="toc-text">Differential equation for Quaternion*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Differential-equation-for-DCM"><span class="toc-text">Differential equation for DCM*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-shape-of-the-earth"><span class="toc-text">The shape of the earth</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Earth-parameters"><span class="toc-text">Earth parameters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Universal-Navigational-Equations"><span class="toc-text">Universal Navigational Equations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Navigation-algorithm"><span class="toc-text">Navigation algorithm</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lesson-12"><span class="toc-text">Lesson 12</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
