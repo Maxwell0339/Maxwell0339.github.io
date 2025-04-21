@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Short answer questions In the prediction step of the Kalman filter, the calculation of the a priori covariance matrix $P_k^?$ is involved. Explain the formula for $P_k^?$ in detail and interpret its p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-21T15:01:47.025Z">
-<meta property="article:modified_time" content="2025-04-21T15:01:47.025Z">
+<meta property="article:published_time" content="2025-04-21T15:14:14.384Z">
+<meta property="article:modified_time" content="2025-04-21T15:14:14.384Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -98,11 +98,28 @@
 </ul>
 <blockquote>
 <p><em>ANS</em></p>
-</blockquote>
+<p>Formula: </p>
+<script type="math/tex; mode=display">
+P_k^??=\Phi P_{k?1}\Phi^?+Q</script><p><strong>In this formula:</strong></p>
+<ul>
+<li>$\Phi$ is a state transition matrix that describes how the system state changes over time</li>
+<li>$P_{k?1}$ is the posterior covariance matrix of the previous moment, representing the uncertainty of the previous state estimation</li>
+<li>$Q$ is the covariance matrix of process noise, representing the uncertainty introduced by model errors or external disturbances.</li>
+</ul>
+<p><strong>Separate the equation and explain in detail:</strong></p>
+<ul>
+<li>$\Phi P_{k?1}\Phi^?$: The state transition matrix linearly maps the covariance of the previous state to the current state</li>
+<li>$Q$: represents external disturbances that the system model cannot fully predict</li>
+</ul>
+<p><strong>Physical meaning:</strong> Quantify the uncertainty of predicted states</p>
+<ul>
+<li>$P_k^?$ large: Indicating low confidence in the prediction</li>
+<li>Otherwise the current state is more credible</li>
+</ul>
+<hr>
 <ul>
 <li>The error sources in an inertial navigation system (INS) mainly include sensor errors, initial alignment errors, and computational errors. List specific examples of each type of error and propose a compensation method for gyro bias.</li>
 </ul>
-<blockquote>
 <p><em>ANS</em></p>
 </blockquote>
 <ul>
