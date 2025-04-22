@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Short answer questions In the prediction step of the Kalman filter, the calculation of the a priori covariance matrix $P_k^?$ is involved. Explain the formula for $P_k^?$ in detail and interpret its p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-22T12:47:50.439Z">
-<meta property="article:modified_time" content="2025-04-22T12:47:50.439Z">
+<meta property="article:published_time" content="2025-04-22T13:00:27.048Z">
+<meta property="article:modified_time" content="2025-04-22T13:00:27.048Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -229,6 +229,41 @@ F = \begin{bmatrix}
      1 & \Delta t \\
      0 & 1
 \end{bmatrix}</script></blockquote>
+<h2 id="Multiple-choice-questions"><a href="#Multiple-choice-questions" class="headerlink" title="Multiple-choice questions"></a>Multiple-choice questions</h2><ul>
+<li>Which type of error in INS is primarily caused by accelerometer bias over time?</li>
+</ul>
+<p>A. Velocity random walk</p>
+<p>B. Position drift </p>
+<p>C. Attitude oscillation</p>
+<p>D. Gyro drift</p>
+<ul>
+<li>The working principle of a ring laser gyro (RLG) is based on</li>
+</ul>
+<p>A. Coriolis effect </p>
+<p>B. Sagnac effect </p>
+<p>C. Piezoelectric effect </p>
+<p>D. Hall effect</p>
+<ul>
+<li>Which statement about the Extended Kalman Filter (EKF) is correct?</li>
+</ul>
+<p>A. It linearizes nonlinear models using Taylor series expansion.</p>
+<p>B. It is only applicable to linear systems. </p>
+<p>C. It does not require Jacobian matrices. </p>
+<p>D. It has higher accuracy than the Unscented Kalman Filter (UKF).</p>
+<ul>
+<li>The Schuler oscillation period is approximately</li>
+</ul>
+<p>A. 84 seconds</p>
+<p>B. 84 minutes </p>
+<p>C. 24 hours </p>
+<p>D. 1 hour</p>
+<ul>
+<li>Which is NOT a disadvantage of GNSS/INS integration?</li>
+</ul>
+<p>A. Signal blockage in urban areas </p>
+<p>B. High short-term accuracy </p>
+<p>C. Vulnerability to jamming </p>
+<p>D. Dependency on satellite visibility</p>
 
 <div class="article-footer fs14"></div>
 </article>
@@ -298,7 +333,7 @@ F = \begin{bmatrix}
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Short-answer-questions"><span class="toc-text">Short answer questions</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Short-answer-questions"><span class="toc-text">Short answer questions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multiple-choice-questions"><span class="toc-text">Multiple-choice questions</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
