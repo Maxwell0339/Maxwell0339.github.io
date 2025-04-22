@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Short answer questions In the prediction step of the Kalman filter, the calculation of the a priori covariance matrix $P_k^?$ is involved. Explain the formula for $P_k^?$ in detail and interpret its p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-21T16:06:36.602Z">
-<meta property="article:modified_time" content="2025-04-21T16:06:36.602Z">
+<meta property="article:published_time" content="2025-04-22T06:25:01.367Z">
+<meta property="article:modified_time" content="2025-04-22T06:25:01.367Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -100,32 +100,57 @@
 <p><em>ANS</em></p>
 <p>Formula: </p>
 <script type="math/tex; mode=display">
-P_k^??=\Phi P_{k?1}\Phi^?+Q</script><p><strong>In this formula:</strong></p>
+P_k^-=\Phi P_{k-1}\Phi^T+Q</script><p><strong>In this formula:</strong></p>
 <ul>
 <li>$\Phi$ is a state transition matrix that describes how the system state changes over time</li>
-<li>$P_{k?1}$ is the posterior covariance matrix of the previous moment, representing the uncertainty of the previous state estimation</li>
+<li>$P_{k-1}$ is the posterior covariance matrix of the previous moment, representing the uncertainty of the previous state estimation</li>
 <li>$Q$ is the covariance matrix of process noise, representing the uncertainty introduced by model errors or external disturbances.</li>
 </ul>
 <p><strong>Separate the equation and explain in detail:</strong></p>
 <ul>
-<li>$\Phi P_{k?1}\Phi^?$: The state transition matrix linearly maps the covariance of the previous state to the current state</li>
+<li>$\Phi P_{k-1}\Phi^?$: The state transition matrix linearly maps the covariance of the previous state to the current state</li>
 <li>$Q$: represents external disturbances that the system model cannot fully predict</li>
 </ul>
 <p><strong>Physical meaning:</strong> Quantify the uncertainty of predicted states</p>
 <ul>
-<li>$P_k^?$ large: Indicating low confidence in the prediction</li>
+<li>$P_k-$ large: Indicating low confidence in the prediction</li>
 <li>Otherwise the current state is more credible</li>
 </ul>
 </blockquote>
-<hr>
 <ul>
 <li>The error sources in an inertial navigation system (INS) mainly include sensor errors, initial alignment errors, and computational errors. List specific examples of each type of error and propose a compensation method for gyro bias.</li>
 </ul>
 <blockquote>
 <p><em>ANS</em></p>
+<ul>
+<li><p><strong>Sensor errors</strong>: </p>
+<ul>
+<li>Sensor characteristics vary with temperature;</li>
+<li>Random noise</li>
+</ul>
+</li>
+<li><p><strong>Initial alignment errors</strong>:</p>
+<ul>
+<li>Horizontal alignment error: initial pitch angle/roll angle deviation.</li>
+<li>Azimuth alignment error: initial heading angle deviation.</li>
+</ul>
+</li>
+<li><p><strong>Computational errors</strong>:</p>
+<ul>
+<li>Integral algorithm error</li>
+<li>Numerical rounding error</li>
+</ul>
+</li>
+<li><p><strong>Compensation method for gyro bias</strong></p>
+<ul>
+<li>Using Kalman filtering to fuse external information such as GPS and magnetometer, dynamically estimate and compensate for zero bias;</li>
+<li>ZUPT: When the carrier is stationary, force the gyroscope output to zero and update the zero bias estimate</li>
+</ul>
+</li>
+</ul>
 </blockquote>
 <ul>
-<li>Assume the body frame is defined as Forward-Left-Up and the navigation frame as North-East-Down. Given a roll angle $\phi =4^\circ$, pitch angle $\theta=?2^\circ$, and gravitational acceleration $g=9.8m/s^2$, calculate the theoretical output of the vertical accelerometer $f_z^b$.</li>
+<li>Assume the body frame is defined as Forward-Left-Up and the navigation frame as North-East-Down. Given a roll angle $\phi =4^\circ$, pitch angle $\theta=-2^\circ$, and gravitational acceleration $g=9.8m/s^2$, calculate the theoretical output of the vertical accelerometer $f_z^b$.</li>
 </ul>
 <blockquote>
 <p><em>ANS</em></p>
