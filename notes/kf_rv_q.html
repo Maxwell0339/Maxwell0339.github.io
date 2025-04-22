@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Short answer questions In the prediction step of the Kalman filter, the calculation of the a priori covariance matrix $P_k^?$ is involved. Explain the formula for $P_k^?$ in detail and interpret its p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-22T06:25:01.367Z">
-<meta property="article:modified_time" content="2025-04-22T06:25:01.367Z">
+<meta property="article:published_time" content="2025-04-22T06:46:06.373Z">
+<meta property="article:modified_time" content="2025-04-22T06:46:06.373Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -153,13 +153,29 @@ P_k^-=\Phi P_{k-1}\Phi^T+Q</script><p><strong>In this formula:</strong></p>
 <li>Assume the body frame is defined as Forward-Left-Up and the navigation frame as North-East-Down. Given a roll angle $\phi =4^\circ$, pitch angle $\theta=-2^\circ$, and gravitational acceleration $g=9.8m/s^2$, calculate the theoretical output of the vertical accelerometer $f_z^b$.</li>
 </ul>
 <blockquote>
-<p><em>ANS</em></p>
-</blockquote>
+<p><em>ANS</em><br>The gravity vector in the Navigation Coordinate System (NED) is </p>
+<script type="math/tex; mode=display">
+[0, 0, g] = [0, 0, 9.8 \, \mathrm{m/s^2}]</script><p>The DCM of roll angle($\phi$) and pitch angle($\theta$):</p>
+<script type="math/tex; mode=display">
+C_n^b = R_x(\phi) \cdot R_y(\theta)</script><p>Where:</p>
+<script type="math/tex; mode=display">
+R_y(\theta) = \begin{bmatrix}
+     \cos\theta & 0 & \sin\theta \\
+     0 & 1 & 0 \\
+     -\sin\theta & 0 & \cos\theta
+     \end{bmatrix}</script><script type="math/tex; mode=display">
+ R_x(\phi) = \begin{bmatrix}
+     1 & 0 & 0 \\
+     0 & \cos\phi & -\sin\phi \\
+     0 & \sin\phi & \cos\phi
+     \end{bmatrix}</script><p>The component calculation:</p>
+<script type="math/tex; mode=display">
+f_z^b = 9.8 \times \cos(4^\circ) \times \cos(-2^\circ)  \approx 9.77 \, \text{m/s}^2</script></blockquote>
 <ul>
 <li><p>Design a Kalman filter to fuse barometer and INS data:</p>
 <ul>
 <li>Select the proper observation $Z$ and justify your choice.</li>
-<li>Design the measurement matrix $H$ and noise covariance matrix $R$.</li>
+<li>Design the measurement matrix $H$ and noise covariance matrix $R$</li>
 <li>How to determine the state transition matrix $\Phi$?</li>
 </ul>
 </li>
