@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Short answer questions In the prediction step of the Kalman filter, the calculation of the a priori covariance matrix $P_k^-$ is involved. Explain the formula for $P_k^-$ in detail and interpret its p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-22T13:01:32.671Z">
-<meta property="article:modified_time" content="2025-04-22T13:01:32.671Z">
+<meta property="article:published_time" content="2025-04-22T13:22:20.899Z">
+<meta property="article:modified_time" content="2025-04-22T13:22:20.899Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -236,6 +236,13 @@ F = \begin{bmatrix}
 <p>B. Position drift </p>
 <p>C. Attitude oscillation</p>
 <p>D. Gyro drift</p>
+<blockquote>
+<p><strong>ANS</strong></p>
+<p><strong>B</strong> is correct.</p>
+<p>A. Velocity random walk arises from white - noise - like errors in accelerometers not the bias.</p>
+<p>C. Attitude oscillation is related to gyroscope performance and angular motion</p>
+<p>D: Gyro drift pertains to errors in gyroscopes</p>
+</blockquote>
 <ul>
 <li>The working principle of a ring laser gyro (RLG) is based on</li>
 </ul>
@@ -243,6 +250,13 @@ F = \begin{bmatrix}
 <p>B. Sagnac effect </p>
 <p>C. Piezoelectric effect </p>
 <p>D. Hall effect</p>
+<blockquote>
+<p><strong>ANS</strong></p>
+<p><strong>B</strong> is correct.</p>
+<p>A: The Coriolis effect involves the deflection of moving objects in a rotating frame</p>
+<p>C: The piezoelectric effect generates an electric charge in materials under mechanical stress</p>
+<p>D: The Hall effect produces a voltage difference in a conductor under a magnetic field</p>
+</blockquote>
 <ul>
 <li>Which statement about the Extended Kalman Filter (EKF) is correct?</li>
 </ul>
@@ -250,6 +264,13 @@ F = \begin{bmatrix}
 <p>B. It is only applicable to linear systems. </p>
 <p>C. It does not require Jacobian matrices. </p>
 <p>D. It has higher accuracy than the Unscented Kalman Filter (UKF).</p>
+<blockquote>
+<p><strong>ANS</strong></p>
+<p><strong>A</strong> is correct</p>
+<p> B: The EKF is specifically designed for nonlinear systems.</p>
+<p>C: The EKF requires Jacobian matrices to perform the linearization of nonlinear functions.</p>
+<p>D: The Unscented Kalman Filter (UKF) often outperforms the EKF in accuracy for nonlinear systems.</p>
+</blockquote>
 <ul>
 <li>The Schuler oscillation period is approximately</li>
 </ul>
@@ -257,6 +278,10 @@ F = \begin{bmatrix}
 <p>B. 84 minutes </p>
 <p>C. 24 hours </p>
 <p>D. 1 hour</p>
+<blockquote>
+<p><strong>ANS</strong></p>
+<p><strong>B</strong> is correct</p>
+</blockquote>
 <ul>
 <li>Which is NOT a disadvantage of GNSS/INS integration?</li>
 </ul>
@@ -264,6 +289,13 @@ F = \begin{bmatrix}
 <p>B. High short-term accuracy </p>
 <p>C. Vulnerability to jamming </p>
 <p>D. Dependency on satellite visibility</p>
+<blockquote>
+<p><strong>ANS</strong></p>
+<p><strong>B</strong> is correct</p>
+<p>A: Signal blockage in urban areas disrupts GNSS signals, impacting the integration.</p>
+<p>C: GNSS signals can be jammed, compromising the integration.</p>
+<p>D: GNSS requires satellite visibility; lack of it degrades performance.</p>
+</blockquote>
 
 <div class="article-footer fs14"></div>
 </article>
