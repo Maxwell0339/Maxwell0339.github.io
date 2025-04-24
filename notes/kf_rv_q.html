@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Short answer questions In the prediction step of the Kalman filter, the calculation of the a priori covariance matrix $P_k^-$ is involved. Explain the formula for $P_k^-$ in detail and interpret its p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-24T10:52:42.176Z">
-<meta property="article:modified_time" content="2025-04-24T10:52:42.176Z">
+<meta property="article:published_time" content="2025-04-24T10:57:51.225Z">
+<meta property="article:modified_time" content="2025-04-24T10:57:51.225Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -155,18 +155,18 @@ P_k^-=\Phi P_{k-1}\Phi^T+Q</script><p><strong>In this formula:</strong></p>
 <blockquote>
 <p><em>ANS</em><br>The gravity vector in the Navigation Coordinate System (NED) is </p>
 <script type="math/tex; mode=display">
-[0, 0, g] = [0, 0, 9.8 \, \mathrm{m/s^2}]</script><p>The DCM of roll angle($\phi$) and pitch angle($\theta$):</p>
+[0 \quad 0\quad g]^T = [0\quad 0\quad 9.8 \, \mathrm{m/s^2}]^T</script><p>The DCM of roll angle($\phi$) and pitch angle($\theta$):</p>
 <script type="math/tex; mode=display">
 C_n^b = R_x(\phi) \cdot R_y(\theta)</script><p>Where:</p>
 <script type="math/tex; mode=display">
 R_y(\theta) = \begin{bmatrix}
-     \cos\theta & 0 & \sin\theta \\
-     0 & 1 & 0 \\
+     \cos\theta & 0 & \sin\theta \\\\
+     0 & 1 & 0 \\\\
      -\sin\theta & 0 & \cos\theta
      \end{bmatrix}</script><script type="math/tex; mode=display">
  R_x(\phi) = \begin{bmatrix}
-     1 & 0 & 0 \\
-     0 & \cos\phi & -\sin\phi \\
+     1 & 0 & 0 \\\\
+     0 & \cos\phi & -\sin\phi \\\\
      0 & \sin\phi & \cos\phi
      \end{bmatrix}</script><p>The component calculation:</p>
 <script type="math/tex; mode=display">
@@ -191,22 +191,22 @@ Z = [h_{ins} - h_{bar}] = \delta p_h</script><p>and it is a scalar.</p>
 <p>Why do we choose it? </p>
 <p><strong>The shortage of the INS</strong>: INS obtains altitude and velocity by integrating acceleration, but the integration error accumulates over time, leading to long-term drift.</p>
 <p><strong>The shortage of the barometer</strong>: The barometer directly measures altitude and has good long-term stability, but there are high-frequency noise and delays</p>
-<p>We’d like to merge the data of the INS and the barometer to correct the shortage of the INS and the barometer.</p>
+<p>This choice leverages the barometer��s height measurement to correct INS height errors. The difference?$Z$?directly relates to the height error state, making it a natural observation for refining the INS height.</p>
 <ul>
 <li>Measurement $H$ and noise covariance $R$</li>
 </ul>
 <p>The state-space can be set:</p>
 <script type="math/tex; mode=display">
 X = \begin{bmatrix}
-    \psi_E \\
-    \psi_N \\
-    \psi_D \\
-    \delta v_E \\
-    \delta v_N \\
-    \delta v_U \\
-    \delta p_\lambda \\
-    \delta p_L \\
-    \delta p_h \\
+    \psi_E \\\\
+    \psi_N \\\\
+    \psi_D \\\\
+    \delta v_E \\\\
+    \delta v_N \\\\
+    \delta v_U \\\\
+    \delta p_\lambda \\\\
+    \delta p_L \\\\
+    \delta p_h \\\\
 \end{bmatrix}</script><p>According to the $Z = HX + R$</p>
 <script type="math/tex; mode=display">
 H = \begin{bmatrix}
