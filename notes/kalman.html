@@ -30,8 +30,8 @@
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zalnhq.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zauqbp.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/04/12/zj1sky.png">
-<meta property="article:published_time" content="2025-04-23T16:36:46.263Z">
-<meta property="article:modified_time" content="2025-04-23T16:36:46.263Z">
+<meta property="article:published_time" content="2025-04-24T10:26:05.511Z">
+<meta property="article:modified_time" content="2025-04-24T10:26:05.511Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -154,7 +154,7 @@
 <script type="math/tex; mode=display">\dot{x} = Fx + Gu + w</script><blockquote>
 <p><strong>Example</strong>: Consider the second-order differential equation without any random inputs.</p>
 <script type="math/tex; mode=display">\ddot{y} + 2\dot{y} + 3y = 4</script><p>rewrite</p>
-<script type="math/tex; mode=display">\dot{y} = -2\dot{y} - 3y + 4</script><script type="math/tex; mode=display">\begin{bmatrix} \dot{y} \\ \dot{y} \end{bmatrix} = \begin{bmatrix} 0 & 1 \\ -3 & -2 \end{bmatrix} \begin{bmatrix} y \\ \dot{y} \end{bmatrix} + \begin{bmatrix} 0 \\ 4 \end{bmatrix}</script><script type="math/tex; mode=display">x = \begin{bmatrix} y \\ \dot{y} \end{bmatrix}, F = \begin{bmatrix} 0 & 1 \\ -3 & -2 \end{bmatrix}, G = \begin{bmatrix} 0 \\ 1 \end{bmatrix}, u = 4, w = \begin{bmatrix} 0 \\ 0 \end{bmatrix}</script></blockquote>
+<script type="math/tex; mode=display">\dot{y} = -2\dot{y} - 3y + 4</script><script type="math/tex; mode=display">\begin{bmatrix} \dot{y} \\ \ddot{y} \end{bmatrix} = \begin{bmatrix} 0 & 1 \\ -3 & -2 \end{bmatrix} \begin{bmatrix} y \\ \dot{y} \end{bmatrix} + \begin{bmatrix} 0 \\ 4 \end{bmatrix}</script><script type="math/tex; mode=display">x = \begin{bmatrix} y \\ \dot{y} \end{bmatrix}, F = \begin{bmatrix} 0 & 1 \\ -3 & -2 \end{bmatrix}, G = \begin{bmatrix} 0 \\ 1 \end{bmatrix}, u = 4, w = \begin{bmatrix} 0 \\ 0 \end{bmatrix}</script></blockquote>
 <h3 id="Fundamental-matrix"><a href="#Fundamental-matrix" class="headerlink" title="Fundamental matrix"></a>Fundamental matrix</h3><p>If the state-space form is:</p>
 <script type="math/tex; mode=display">\dot{x} = Fx</script><p>where the systems dynamics matrix $F$ is time invariant, then we can say that there is a transition or fundamental matrix  $\Phi$  that can be used to exactly propagate the state forward from any time $t_0$ to time $t$ according to</p>
 <script type="math/tex; mode=display">x(t) = \Phi(t - t_0)x(t_0)</script><p>Two simple ways of finding the fundamental matrix for time-invariant systems are by Laplace transforms and by Taylor-series expansion:</p>
@@ -851,7 +851,151 @@ c_{23}&=-c_{11}c_{32}+c_{31}c_{12}
 <li>$f$——specific force, $\Delta g$——gravity vector error</li>
 <li>$\boldsymbol{\rho}$——rotation vector of $n$ frame with respect to earth frame</li>
 </ul>
-
+<p>Relationship between $\boldsymbol{\Phi}$ and $\boldsymbol{\Psi}$:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\Phi_E = \Psi_E+\delta L\\
+\Phi_N = \Psi_N+\delta\lambda\cos L\\
+\Phi_D = \Psi_D - \delta\lambda\sin L
+\end{cases}</script><p>Differentiate: In static state, the two types error models are equivalent</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\dot{\Phi}_N = \dot{\Psi}_N+\delta\dot{\lambda}\cos L - \delta\lambda\sin L\cdot\dot{L}\\
+\dot{\Phi}_E = \dot{\Psi}_E+\delta\dot{L}
+\end{cases}</script><p>Velocity error is defined as velocity difference between INS and true velocity</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\delta\dot{V}_N = -2\Omega\sin L\delta V_E - \Phi_E g+\nabla_N\\
+\delta\dot{V}_E = 2\Omega\sin L\delta V_N + \Phi_N g+\nabla_E
+\end{cases}</script><p>Position Error model in static base:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\delta\dot{L}=\frac{1}{R}\delta V_N\\
+\delta\dot{\lambda}=\frac{\delta V_E}{R}\sec L
+\end{cases}</script><blockquote>
+<p><strong>Kalman filter design</strong></p>
+<script type="math/tex; mode=display">
+\dot{X} = AX+W</script><script type="math/tex; mode=display">
+\begin{align*}
+\mathbf{X}&= [\delta V_N \ \delta V_E \ \Psi_N \ \Psi_E \ \Psi_D \ \nabla_N \ \nabla_E \ \varepsilon_N \ \varepsilon_E \ \varepsilon_D]\\
+\mathbf{W}&= [W_{\delta V_N} \ W_{\delta V_E} \ W_{\Psi_N} \ W_{\Psi_E} \ W_{\Psi_D} \ 0 \ 0 \ 0 \ 0 \ 0]
+\end{align*}</script><script type="math/tex; mode=display">
+\begin{align*}
+\mathbf{A}&=\begin{bmatrix}
+\mathbf{F} & \mathbf{I}_{5\times5}\\
+\mathbf{0}_{5\times5} & \mathbf{0}_{5\times5}
+\end{bmatrix}\\
+\mathbf{F}&=\begin{bmatrix}
+0 & 2\Omega_D & 0 & g & 0\\
+-2\Omega_D & 0 & -g & 0 & 0\\
+0 & 0 & 0 & \Omega_D & 0\\
+0 & 0 & -\Omega_D & 0 & \Omega_N\\
+0 & 0 & 0 & -\Omega_N & 0
+\end{bmatrix}
+\end{align*}</script><p>Choose horizontal speed error $\delta V_N$ and $\delta V_E$ as observation</p>
+<script type="math/tex; mode=display">
+\mathbf{Z}=\mathbf{H}\mathbf{X}+\boldsymbol{\eta}</script><script type="math/tex; mode=display">
+\begin{bmatrix}
+\delta V_N\\
+\delta V_E
+\end{bmatrix}=
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+\mathbf{X}+
+\begin{bmatrix}
+\eta_N\\
+\eta_E
+\end{bmatrix}</script><ul>
+<li>$\mathbf{Z}=[Z_1, Z_2]=[\delta_{VN}, \delta_{VE}]$</li>
+<li>$\boldsymbol{\eta}=[\eta_N, \eta_E]$——Measurement noise vector, zero - mean Gauss white noise</li>
+</ul>
+</blockquote>
+<h3 id="Integrated-navigation"><a href="#Integrated-navigation" class="headerlink" title="Integrated navigation"></a>Integrated navigation</h3><p>Radio navigation - Satellite Navigation Technology</p>
+<p><strong>Principle</strong>:</p>
+<ul>
+<li>Coordinates of known points</li>
+<li>Time of signal transmission</li>
+<li>Speed of signal transmission</li>
+</ul>
+<p><strong>Working process</strong>:</p>
+<ul>
+<li>Select satellite</li>
+<li>Search, acquire and track signals from selected satellites</li>
+<li>Measure pseudo-ranges and make corrections</li>
+<li>Positioning calculation</li>
+</ul>
+<p><strong>Error characteristics</strong>:</p>
+<ul>
+<li>Clock error</li>
+<li>Ephemeris error</li>
+<li>Atmospheric error</li>
+<li>Ionospheric delay error</li>
+<li>Multipath effect</li>
+</ul>
+<p><strong>GNSS/INS Compare</strong>: </p>
+<p>INS: </p>
+<ul>
+<li>Autonomy</li>
+<li>High accuracy in short time</li>
+<li>Rich navigation information</li>
+<li>High Reliability</li>
+<li>High bandwidth</li>
+<li>Cumulative error</li>
+<li>High cost</li>
+</ul>
+<p>GNSS: </p>
+<ul>
+<li>Low bandwidth</li>
+<li>Weak anti-interference</li>
+<li>Low cost</li>
+<li>High positioning accuracy</li>
+</ul>
+<h3 id="INS-GNSS-integrated-navigation"><a href="#INS-GNSS-integrated-navigation" class="headerlink" title="INS/GNSS integrated navigation"></a>INS/GNSS integrated navigation</h3><p><img src = "https://img.dexbug.com/i/2025/04/24/p2n0fa.png"></p>
+<p><strong>Correction of INS Error</strong>:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>drawbacks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feedback Correction</td>
+<td>Error states grow may cause error model mis-match</td>
+</tr>
+<tr>
+<td>Output Correction</td>
+<td>Errors may occur when estimation haven’t converge</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Loosely-coupled-INS-GNSS-integration"><a href="#Loosely-coupled-INS-GNSS-integration" class="headerlink" title="Loosely coupled INS/GNSS integration"></a>Loosely coupled INS/GNSS integration</h4><p><img src = "https://img.dexbug.com/i/2025/04/24/r14by6.png"></p>
+<h4 id="Tightly-Coupled-INS-GNSS-Integration"><a href="#Tightly-Coupled-INS-GNSS-Integration" class="headerlink" title="Tightly Coupled INS/GNSS Integration"></a>Tightly Coupled INS/GNSS Integration</h4><p><img src = "https://img.dexbug.com/i/2025/04/24/u067mw.png"></p>
+<h4 id="Ultra-Tight-INS-GNSS-Integration"><a href="#Ultra-Tight-INS-GNSS-Integration" class="headerlink" title="Ultra-Tight INS/GNSS Integration"></a>Ultra-Tight INS/GNSS Integration</h4><p><img src = "https://img.dexbug.com/i/2025/04/24/u0bk0w.png"></p>
+<h3 id="Examples-of-Integrated-navigation"><a href="#Examples-of-Integrated-navigation" class="headerlink" title="Examples of Integrated navigation"></a>Examples of Integrated navigation</h3><script type="math/tex; mode=display">
+\boldsymbol{\dot{X}} = \boldsymbol{AX}+\boldsymbol{w}</script><script type="math/tex; mode=display">
+\boldsymbol{Z} = \boldsymbol{HX}+\boldsymbol{v}</script><p>INS output: attitude angles(Euler angles ($\gamma \, \theta \, \alpha$), DCM or quaternion), velocity, position</p>
+<p>The state: </p>
+<script type="math/tex; mode=display">
+X = \begin{bmatrix}
+    \psi_E \\
+    \psi_N \\
+    \psi_D \\
+    \delta v_E \\
+    \delta v_N \\
+    \delta v_U \\
+    \delta p_\lambda \\
+    \delta p_L \\
+    \delta p_h \\
+\end{bmatrix}</script><p><strong>INS/Odometer integration for on land vehicle navigation</strong></p>
+<p><strong>INS/Celestial integration for Aero-Space navigation</strong></p>
+<p><strong>INS/Magnet integration for Pedestrian navigation</strong></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><h3 id="Inertial-navigation-1"><a href="#Inertial-navigation-1" class="headerlink" title="Inertial navigation"></a>Inertial navigation</h3>
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/dc.html">Digital Circuit(EN)</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/fm.html">Fluid Mechanics(EN)</a></div></section></div>
@@ -920,7 +1064,7 @@ c_{23}&=-c_{11}c_{32}+c_{31}c_{12}
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kalman-Filter"><span class="toc-text">Kalman Filter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example1-Measure-the-center-temperature-of-a-rocket-flame"><span class="toc-text">Example1 - Measure the center temperature of a rocket flame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example2-Data-Merging"><span class="toc-text">Example2 - Data Merging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example3-A-simple-0-order-Kalman-filter"><span class="toc-text">Example3 - A simple 0-order Kalman filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Numerical-integration-of-differential-equations"><span class="toc-text">Numerical integration of differential equations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Noise-and-random-variables"><span class="toc-text">Noise and random variables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#State-space-notation"><span class="toc-text">State space notation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamental-matrix"><span class="toc-text">Fundamental matrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Least-squares-method"><span class="toc-text">Least squares method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zero-order-of-one-state-filter"><span class="toc-text">Zero order of one-state filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#First-order-or-two-state-filter"><span class="toc-text">First order or two-state filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-LS-filter"><span class="toc-text">Second order LS filter*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Third-order-LS-filter"><span class="toc-text">Third order LS filter*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Accelerometer-testing-example"><span class="toc-text">Accelerometer testing example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Making-Least-Squares-filter-recursive"><span class="toc-text">Making Least-Squares filter recursive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-properties-of-One-State-filters"><span class="toc-text">Recursive properties of One-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-properties-of-One-State-filters-1"><span class="toc-text">Recursive properties of One-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Filters-properties-of-Two-State-filters"><span class="toc-text">Filters properties of Two-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Properties-of-Second-Order-or-Three-State-filter"><span class="toc-text">Properties of Second-Order or Three-State filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-filter-summary"><span class="toc-text">Recursive filter summary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Polynomial-Kalman-Filters"><span class="toc-text">Polynomial Kalman Filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#General-Equations"><span class="toc-text">General Equations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kalman-Filter-in-Discrete-Form"><span class="toc-text">Kalman Filter in Discrete Form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Derivation-of-Scalar-Riccati-Equations-may-not-in-the-exam"><span class="toc-text">Derivation of Scalar Riccati Equations (may not in the exam)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Polynomial-Kalman-Filter-Zero-Process-Noise"><span class="toc-text">Polynomial Kalman Filter (Zero Process Noise)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparing-Zeroth-Order-Recursive-Least-Squares-and-Kalman-Filters"><span class="toc-text">Comparing Zeroth-Order Recursive Least-Squares and Kalman Filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparing-Recursive-Least-Squares-and-Kalman-Filters"><span class="toc-text">Comparing Recursive Least-Squares and Kalman Filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kalman-Filter-in-a-non-polynomial-world"><span class="toc-text">Kalman Filter in a non-polynomial world</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Inertial-Navigation"><span class="toc-text">Inertial Navigation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-navigation-System"><span class="toc-text">What is navigation System?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-Guidance-System"><span class="toc-text">What is Guidance System?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Relationship-between-navigation-and-guidance"><span class="toc-text">Relationship between navigation and guidance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inertial-navigation"><span class="toc-text">Inertial navigation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-principle-of-inertial-navigation"><span class="toc-text">Basic principle of inertial navigation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strapdown-INS"><span class="toc-text">Strapdown INS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference-Frames"><span class="toc-text">Reference Frames</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-inertial-frame-i-frame"><span class="toc-text">The inertial frame(i-frame)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-earth-frame-e-frame"><span class="toc-text">The earth frame(e-frame)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-body-frame-b-frame"><span class="toc-text">The body frame(b-frame)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Local-Geographic-frame-L-frame"><span class="toc-text">The Local Geographic frame(L-frame)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transform-between-Frames"><span class="toc-text">Transform between Frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Types-of-inertial-navigation"><span class="toc-text">Types of inertial navigation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Gimbaled-inertial-navigation-system"><span class="toc-text">Gimbaled inertial navigation system</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Strap-down-inertial-navigation"><span class="toc-text">Strap-down inertial navigation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-of-gyroscope"><span class="toc-text">Type of gyroscope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error-model-of-gyroscope"><span class="toc-text">Error model of gyroscope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mechanical-model-of-accelerometer"><span class="toc-text">Mechanical model of accelerometer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pendulum-accelerometer"><span class="toc-text">Pendulum accelerometer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Silicon-micro-accelerometer"><span class="toc-text">Silicon micro accelerometer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Relationship-between-DCM-Euler-angle-and-Quaternion"><span class="toc-text">Relationship between DCM,Euler angle,and Quaternion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Differential-equation-for-Quaternion"><span class="toc-text">Differential equation for Quaternion*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Differential-equation-for-DCM"><span class="toc-text">Differential equation for DCM*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-shape-of-the-earth"><span class="toc-text">The shape of the earth</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Earth-parameters"><span class="toc-text">Earth parameters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Universal-Navigational-Equations"><span class="toc-text">Universal Navigational Equations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Navigation-algorithm"><span class="toc-text">Navigation algorithm</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inertial-navigation-system-alignment"><span class="toc-text">Inertial navigation system alignment</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Azimuth-Coarse-Alignment-Northfind-alignment"><span class="toc-text">Azimuth Coarse Alignment (Northfind alignment)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fine-alignment-Using-gyro-compassing-method"><span class="toc-text">Fine alignment - Using gyro compassing method</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fine-Alignment-Using-Kalman-Filter"><span class="toc-text">Fine Alignment - Using Kalman Filter</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ground-alignment-method"><span class="toc-text">Ground alignment method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Initial-Alignment"><span class="toc-text">Initial Alignment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error-models-of-INS"><span class="toc-text">Error models of INS</span></a></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kalman-Filter"><span class="toc-text">Kalman Filter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example1-Measure-the-center-temperature-of-a-rocket-flame"><span class="toc-text">Example1 - Measure the center temperature of a rocket flame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example2-Data-Merging"><span class="toc-text">Example2 - Data Merging</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example3-A-simple-0-order-Kalman-filter"><span class="toc-text">Example3 - A simple 0-order Kalman filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Numerical-integration-of-differential-equations"><span class="toc-text">Numerical integration of differential equations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Noise-and-random-variables"><span class="toc-text">Noise and random variables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#State-space-notation"><span class="toc-text">State space notation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fundamental-matrix"><span class="toc-text">Fundamental matrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Least-squares-method"><span class="toc-text">Least squares method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zero-order-of-one-state-filter"><span class="toc-text">Zero order of one-state filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#First-order-or-two-state-filter"><span class="toc-text">First order or two-state filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Second-order-LS-filter"><span class="toc-text">Second order LS filter*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Third-order-LS-filter"><span class="toc-text">Third order LS filter*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Accelerometer-testing-example"><span class="toc-text">Accelerometer testing example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Making-Least-Squares-filter-recursive"><span class="toc-text">Making Least-Squares filter recursive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-properties-of-One-State-filters"><span class="toc-text">Recursive properties of One-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-properties-of-One-State-filters-1"><span class="toc-text">Recursive properties of One-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Filters-properties-of-Two-State-filters"><span class="toc-text">Filters properties of Two-State filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Properties-of-Second-Order-or-Three-State-filter"><span class="toc-text">Properties of Second-Order or Three-State filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-filter-summary"><span class="toc-text">Recursive filter summary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Polynomial-Kalman-Filters"><span class="toc-text">Polynomial Kalman Filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#General-Equations"><span class="toc-text">General Equations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kalman-Filter-in-Discrete-Form"><span class="toc-text">Kalman Filter in Discrete Form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Derivation-of-Scalar-Riccati-Equations-may-not-in-the-exam"><span class="toc-text">Derivation of Scalar Riccati Equations (may not in the exam)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Polynomial-Kalman-Filter-Zero-Process-Noise"><span class="toc-text">Polynomial Kalman Filter (Zero Process Noise)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparing-Zeroth-Order-Recursive-Least-Squares-and-Kalman-Filters"><span class="toc-text">Comparing Zeroth-Order Recursive Least-Squares and Kalman Filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comparing-Recursive-Least-Squares-and-Kalman-Filters"><span class="toc-text">Comparing Recursive Least-Squares and Kalman Filters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kalman-Filter-in-a-non-polynomial-world"><span class="toc-text">Kalman Filter in a non-polynomial world</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Inertial-Navigation"><span class="toc-text">Inertial Navigation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-navigation-System"><span class="toc-text">What is navigation System?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-Guidance-System"><span class="toc-text">What is Guidance System?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Relationship-between-navigation-and-guidance"><span class="toc-text">Relationship between navigation and guidance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inertial-navigation"><span class="toc-text">Inertial navigation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-principle-of-inertial-navigation"><span class="toc-text">Basic principle of inertial navigation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strapdown-INS"><span class="toc-text">Strapdown INS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference-Frames"><span class="toc-text">Reference Frames</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-inertial-frame-i-frame"><span class="toc-text">The inertial frame(i-frame)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-earth-frame-e-frame"><span class="toc-text">The earth frame(e-frame)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-body-frame-b-frame"><span class="toc-text">The body frame(b-frame)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Local-Geographic-frame-L-frame"><span class="toc-text">The Local Geographic frame(L-frame)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transform-between-Frames"><span class="toc-text">Transform between Frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Types-of-inertial-navigation"><span class="toc-text">Types of inertial navigation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Gimbaled-inertial-navigation-system"><span class="toc-text">Gimbaled inertial navigation system</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Strap-down-inertial-navigation"><span class="toc-text">Strap-down inertial navigation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Type-of-gyroscope"><span class="toc-text">Type of gyroscope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error-model-of-gyroscope"><span class="toc-text">Error model of gyroscope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mechanical-model-of-accelerometer"><span class="toc-text">Mechanical model of accelerometer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Pendulum-accelerometer"><span class="toc-text">Pendulum accelerometer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Silicon-micro-accelerometer"><span class="toc-text">Silicon micro accelerometer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Relationship-between-DCM-Euler-angle-and-Quaternion"><span class="toc-text">Relationship between DCM,Euler angle,and Quaternion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Differential-equation-for-Quaternion"><span class="toc-text">Differential equation for Quaternion*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Differential-equation-for-DCM"><span class="toc-text">Differential equation for DCM*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-shape-of-the-earth"><span class="toc-text">The shape of the earth</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Earth-parameters"><span class="toc-text">Earth parameters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Universal-Navigational-Equations"><span class="toc-text">Universal Navigational Equations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Navigation-algorithm"><span class="toc-text">Navigation algorithm</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inertial-navigation-system-alignment"><span class="toc-text">Inertial navigation system alignment</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Azimuth-Coarse-Alignment-Northfind-alignment"><span class="toc-text">Azimuth Coarse Alignment (Northfind alignment)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fine-alignment-Using-gyro-compassing-method"><span class="toc-text">Fine alignment - Using gyro compassing method</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fine-Alignment-Using-Kalman-Filter"><span class="toc-text">Fine Alignment - Using Kalman Filter</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ground-alignment-method"><span class="toc-text">Ground alignment method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Initial-Alignment"><span class="toc-text">Initial Alignment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error-models-of-INS"><span class="toc-text">Error models of INS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Integrated-navigation"><span class="toc-text">Integrated navigation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#INS-GNSS-integrated-navigation"><span class="toc-text">INS&#x2F;GNSS integrated navigation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Loosely-coupled-INS-GNSS-integration"><span class="toc-text">Loosely coupled INS&#x2F;GNSS integration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tightly-Coupled-INS-GNSS-Integration"><span class="toc-text">Tightly Coupled INS&#x2F;GNSS Integration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ultra-Tight-INS-GNSS-Integration"><span class="toc-text">Ultra-Tight INS&#x2F;GNSS Integration</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-of-Integrated-navigation"><span class="toc-text">Examples of Integrated navigation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-text">Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Inertial-navigation-1"><span class="toc-text">Inertial navigation</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
