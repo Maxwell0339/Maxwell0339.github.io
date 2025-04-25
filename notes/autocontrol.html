@@ -32,8 +32,8 @@
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/26/kflpux.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/26/kflkfi.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/26/10l36wy.png">
-<meta property="article:published_time" content="2025-04-23T06:34:59.983Z">
-<meta property="article:modified_time" content="2025-04-23T06:34:59.983Z">
+<meta property="article:published_time" content="2025-04-25T10:40:30.377Z">
+<meta property="article:modified_time" content="2025-04-25T10:40:30.377Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -644,7 +644,197 @@ K^*&=\prod_{j = 1}^{n}|(s - p_j)|\\
 \omega_n=\sqrt{2.82}=1.68, \zeta = 1.68/2\omega_n = 0.5</script><p>System transition process indicators</p>
 <script type="math/tex; mode=display">
 \sigma_p\%=e^{-\pi\zeta/\sqrt{1 - \zeta^2}}\times100\% = 16.3\%</script><script type="math/tex; mode=display">
-t_s=\frac{3.5}{\zeta\omega_n}=4.17(s)</script>
+t_s=\frac{3.5}{\zeta\omega_n}=4.17(s)</script><h2 id="Chap5-Frequency-Response-Techniques"><a href="#Chap5-Frequency-Response-Techniques" class="headerlink" title="Chap5 Frequency Response Techniques"></a>Chap5 Frequency Response Techniques</h2><p><strong>Frequency response</strong>: the regularity of the amplitude and phase angle of the steady-state sinusoidal response of a linear system as it changes with the input frequency</p>
+<blockquote>
+<p>If the input signal of the system is a sine function, the steady state component of the system output is also a sine function of the same frequency , and its amplitude is amplified by $|G(j\omega)|$ times , Phase shifted by $\phi(\omega) = \angle G(j\omega)$ . The complex number $G(j\omega)$ is called the frequency characteristic of the system.</p>
+</blockquote>
+<ul>
+<li>The amplitude ratio $|G(j\omega)|$ of the output to the input is called the system amplitude-frequency characteristic.</li>
+<li>The phase difference $\phi(\omega)$ between the output and input is called the system phase-frequency characteristic.</li>
+</ul>
+<h3 id="Sec5-1-Geometrical-representation-of-frequency-characteristics"><a href="#Sec5-1-Geometrical-representation-of-frequency-characteristics" class="headerlink" title="Sec5.1 Geometrical representation of frequency characteristics"></a>Sec5.1 Geometrical representation of frequency characteristics</h3><ul>
+<li>amplitude-frequency and phase-frequency characteristic</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/25/ql3ncr.png" ></p>
+<ul>
+<li>amplitude-phase curve (Nyquist diagram)</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/25/qlhxr6.png" width = 70%></p>
+<ul>
+<li>logarithmic frequency characteristic (Bode diagram)</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/25/qlz4rd.png" width = 80%></p>
+<ul>
+<li>logarithmic amplitude-phase curve (Nichols diagram)</li>
+</ul>
+<h3 id="Sec5-2-Frequency-characteristics-of-typical-elements"><a href="#Sec5-2-Frequency-characteristics-of-typical-elements" class="headerlink" title="Sec5.2 Frequency characteristics of typical elements"></a>Sec5.2 Frequency characteristics of typical elements</h3><ul>
+<li>Proportional element</li>
+</ul>
+<blockquote>
+<p>Frequency characteristics:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   |G| = K \\
+   \angle G = 0
+\end{cases}</script><p>logarithmic frequency characteristic</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   L(\omega) = 20\lg K \\
+   \phi (\omega) = 0
+\end{cases}</script></blockquote>
+<ul>
+<li>Differential element</li>
+</ul>
+<blockquote>
+<p>Frequency characteristics:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   |G| = \omega \\
+   \angle G = 90^\circ
+\end{cases}</script><p>logarithmic frequency characteristic</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   L(\omega) = 20\lg \omega \\
+   \phi (\omega) = 90^\circ
+\end{cases}</script></blockquote>
+<ul>
+<li>Integral element</li>
+</ul>
+<blockquote>
+<p>Frequency characteristics:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   |G| = \frac{1}{\omega} \\
+   \angle G = -90^\circ
+\end{cases}</script><p>logarithmic frequency characteristic:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   L(\omega) = -20\lg \omega \\
+   \phi (\omega) = -90^\circ
+\end{cases}</script></blockquote>
+<ul>
+<li>inertial element</li>
+</ul>
+<blockquote>
+<p>Frequency characteristics:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   |G| = \frac{1}{\sqrt{1+\omega^2 T^2}} \\
+   \angle G = -\arctan \omega T
+\end{cases}</script><p>logarithmic frequency characteristic</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   L(\omega) = -20\lg \sqrt{1+\omega^2 T^2} \\
+   \phi (\omega) = -\arctan \omega T
+\end{cases}</script></blockquote>
+<ul>
+<li>First order differential element</li>
+</ul>
+<blockquote>
+<p>Frequency characteristics:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   |G| = \sqrt{1+\omega^2 T^2} \\
+   \angle G = \arctan \omega T
+\end{cases}</script><p>logarithmic frequency characteristic</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   L(\omega) = 20\lg \sqrt{1+\omega^2 T^2} \\
+   \phi (\omega) = \arctan \omega T
+\end{cases}</script></blockquote>
+<ul>
+<li>Oscillation element</li>
+</ul>
+<blockquote>
+<p>Frequency characteristics:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+|G|=\frac{1}{\sqrt{\left(1 - \frac{\omega^2}{\omega_n^2}\right)^2+\left(2\zeta\frac{\omega}{\omega_n}\right)^2}}\\
+\angle G = 0-\arctan\frac{2\zeta\frac{\omega}{\omega_n}}{1 - \frac{\omega^2}{\omega_n^2}}
+\end{cases}</script><p>logarithmic frequency characteristic:</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+   L(\omega)=-20\lg\sqrt{\left(1 - \frac{\omega^2}{\omega_n^2}\right)^2+\left(2\zeta\frac{\omega}{\omega_n}\right)^2} \\
+   \phi (\omega)=\arctan\frac{2\zeta\frac{\omega}{\omega_n}}{1 - \frac{\omega^2}{\omega_n^2}}
+\end{cases}</script></blockquote>
+<p><img src = "https://img.dexbug.com/i/2025/04/25/qy3iq6.png" width = 80%></p>
+<p><strong>Resonance frequency and resonance peak</strong></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\omega_r&=\omega_n\sqrt{1 - 2\zeta^2},(0 < \zeta < 0.707)\\
+M_r&=\frac{1}{2\zeta\sqrt{1 - \zeta^2}}
+\end{align*}</script><p><img src = "https://img.dexbug.com/i/2025/04/25/r0je6w.png" width = 80%></p>
+<h3 id="Sec5-3-Plot-open-loop-frequency-characteristics"><a href="#Sec5-3-Plot-open-loop-frequency-characteristics" class="headerlink" title="Sec5.3 Plot open loop frequency characteristics"></a>Sec5.3 Plot open loop frequency characteristics</h3><h4 id="Sec5-3-1-amplitude-phase-curve-Nyquist-diagram-of-open-loop-system"><a href="#Sec5-3-1-amplitude-phase-curve-Nyquist-diagram-of-open-loop-system" class="headerlink" title="Sec5.3.1 amplitude-phase curve (Nyquist diagram) of open loop system"></a>Sec5.3.1 amplitude-phase curve (Nyquist diagram) of open loop system</h4><p><strong>Steps</strong>:</p>
+<ul>
+<li>The starting point of the open-loop amplitude-phase<br>curve ($\omega =0$)</li>
+<li>The end point of the open-loop amplitude-phase<br>characteristic curve ($\omega = \infty$)</li>
+<li>The changing trend of open-loop frequency<br>characteristics when $\omega$ changes from $0$ to $\infty$</li>
+</ul>
+<blockquote>
+<p><strong>Ex</strong></p>
+<script type="math/tex; mode=display">
+G(s)=\frac{K}{s^{\nu}(T_1s + 1)(T_2s + 1)}=\frac{K/(T_1T_2)}{s^{\nu}(s + 1/T_1)(s + 1/T_2)}</script><p><img src = "https://img.dexbug.com/i/2025/04/25/r3hga1.png"><br><img src = "https://img.dexbug.com/i/2025/04/25/r3vs6x.png" width = 60%></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+G(j0)&=\begin{cases}
+K\angle0^{\circ},&\nu = 0\\
+\infty\angle - 90^{\circ}\nu,&\nu>0
+\end{cases}\\
+G(j\infty)&=0\angle - 90^{\circ}(n - m)
+\end{align*}</script></blockquote>
+<h4 id="Sec5-3-2-logarithmic-frequency-characteristic-Bode-diagram-of-open-loop-system"><a href="#Sec5-3-2-logarithmic-frequency-characteristic-Bode-diagram-of-open-loop-system" class="headerlink" title="Sec5.3.2 logarithmic frequency characteristic (Bode diagram) of open loop system"></a>Sec5.3.2 logarithmic frequency characteristic (Bode diagram) of open loop system</h4><p><img src = "https://img.dexbug.com/i/2025/04/25/r5a038.png"></p>
+<p>According to the decomposition of typical elements, the typical elements that make up the system are divided into three parts:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Typical element type</th>
+<th>Transfer function</th>
+<th>Crossover frequency</th>
+<th>Frequency change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\frac{K}{s^{\nu}}$</td>
+<td>$\frac{K}{s^{\nu}}$</td>
+<td></td>
+<td>-20$\nu$dB/dec</td>
+</tr>
+<tr>
+<td>First - order element</td>
+<td>$\frac{1}{Ts + 1}$</td>
+<td>$\frac{1}{T}$</td>
+<td>-20dB/dec</td>
+</tr>
+<tr>
+<td>First - order element</td>
+<td>$Ts + 1$</td>
+<td>$\frac{1}{T}$</td>
+<td>20dB/dec</td>
+</tr>
+<tr>
+<td>Second - order element</td>
+<td>$\frac{1}{(\frac{s}{\omega_n})^2 + 2\zeta\frac{s}{\omega_n}+1}$</td>
+<td>$\omega_n$</td>
+<td>-40dB/dec</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Steps</strong>:</p>
+<ul>
+<li>The open-loop transfer function is decomposed according to typical elements and arranged into a time constant form. (Integral element, inertial element, first-order differential element, second-order element)</li>
+<li>Determine the first-order and second-order corner frequencies, and mark each corner frequency on a logarithmic graph.</li>
+</ul>
+<blockquote>
+<p><strong>Plot the low frequency curve</strong></p>
+<p>In the low frequency band (corresponding to the leftmost end of the open-loop frequency characteristic curve) the approximate formula of the system open-loop frequency characteristic is $L(\omega) = 20 \log K - 20\nu\log \omega$,  where $\nu$ is the number of integration links. The slope of the leftmost straight line of the approximate logarithmic amplitude-frequency curve is -20 $\nu$ dB/dec.</p>
+<p>At $\omega = 1$, the decibel value of the leftmost straight line (the extension of the leftmost straight line when there is a crossover frequency in the frequency range of $\omega &lt; 1$) is equal to the decibel value of the proportional link $20\lg K$; the leftmost straight line or its extension is the same as 0dB. The intersection frequency of the lines (when $L(\omega)=0$) is numerically equal to $K^{\frac{1}{\nu}}$.</p>
+<p><strong>Plot the characteristic curve of intermediate frequency and high frequency part</strong></p>
+<p>At the handover frequency, the slope changes, and the change pattern depends on the corresponding typical links. If the typical link is an inertia link or an oscillation link, after the handover frequency, the slope must be reduced by 20 dB/dec or 40 dB/dec. If the typical link is a first-order differential link or a second-order differential link, after the handover frequency, the slope must be Add 20dB/dec or 40dB/dec.</p>
+</blockquote>
+
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/robotics.html">Robotics(EN)</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/sensors.html">Sensors and Measurement System(EN)</a></div></section></div>
@@ -713,7 +903,7 @@ t_s=\frac{3.5}{\zeta\omega_n}=4.17(s)</script>
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Introduction"><span class="toc-text">Chap1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Basic-Concepts-of-Control"><span class="toc-text">Sec 1.1 Basic Concepts of Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Feedback-Control-System"><span class="toc-text">Sec 1.2 Feedback Control System</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Control-System-Block-Diagram"><span class="toc-text">Sec 1.3 Control System Block Diagram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-The-Design-Requirements"><span class="toc-text">Sec 1.4 The Design Requirements</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap2-Mathematical-Model-of-Control-System"><span class="toc-text">Chap2 Mathematical Model of Control System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Differential-Equation-of-Linear-System"><span class="toc-text">Sec 2.1 Differential Equation of Linear System</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Laplace-Transform"><span class="toc-text">Sec 2.2 Laplace Transform</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-3-Transfer-Function"><span class="toc-text">Sec 2.3 Transfer Function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-3-1-Basic-properties"><span class="toc-text">Sec 2.3.1 Basic properties</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-3-2-Common-forms"><span class="toc-text">Sec 2.3.2 Common forms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-3-3-Typical-links"><span class="toc-text">Sec 2.3.3 Typical links</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-4-Block-Diagram-of-a-System"><span class="toc-text">Sec 2.4 Block Diagram of a System</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-4-1-Equivalent-transformation-rules"><span class="toc-text">Sec 2.4.1 Equivalent transformation rules</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-4-2-Equivalent-Transformation-Rules"><span class="toc-text">Sec 2.4.2 Equivalent Transformation Rules</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap3-Time-Domain-Analysis"><span class="toc-text">Chap3 Time Domain Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-1-Time-response-performance"><span class="toc-text">Sec3.1 Time response performance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-1-1-Transient-performance-index"><span class="toc-text">Sec3.1.1 Transient performance index</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-1-2-Steady-state-index"><span class="toc-text">Sec3.1.2 Steady-state index</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-2-Time-domain-analysis-of-first-order-system"><span class="toc-text">Sec3.2 Time domain analysis of first order system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-output-response-of-the-first-order-system-to-the-input"><span class="toc-text">The output response of the first order system to the input</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-3-Time-domain-analysis-of-second-order-system"><span class="toc-text">Sec3.3 Time domain analysis of second-order system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-3-1-Characteristic-equation-of-second-order-systems"><span class="toc-text">Sec3.3.1 Characteristic equation of second-order systems</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-3-2-Step-response-of-second-order-systems"><span class="toc-text">Sec3.3.2 Step response of second-order systems</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-3-3-Transient-response-index-of-second-order-system"><span class="toc-text">Sec3.3.3 Transient response index of second-order system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-4-Measures-to-improve-system-performance"><span class="toc-text">Sec3.4 Measures to improve system performance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-1-Proportional-derivative-control-of-second-order-systems"><span class="toc-text">Sec3.4.1 Proportional-derivative control of second-order systems</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-2-Closed-loop-system-with-speed-feedback"><span class="toc-text">Sec3.4.2 Closed loop system with speed feedback</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-3-Comparison-of-proportional-derivative-control-and-tachometer-feedback-control"><span class="toc-text">Sec3.4.3 Comparison of proportional-derivative control and tachometer feedback control</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-4-The-influence-of-the-third-pole-and-zero-point-on-the-response-of-the-second-order-system"><span class="toc-text">Sec3.4.4 The influence of the third pole and zero point on the response of the second order system</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-5-Unit-step-response-of-higher-order-system"><span class="toc-text">Sec3.4.5 Unit step response of higher order system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-5-Stability-analysis"><span class="toc-text">Sec3.5 Stability analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-5-1-Sufficient-and-necessary-conditions-for-system-stability"><span class="toc-text">Sec3.5.1 Sufficient and necessary conditions for system stability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-5-2-Routh-stability-criterion"><span class="toc-text">Sec3.5.2 Routh stability criterion</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-5-3-Steady-state-error-analysis-for-linear-systems"><span class="toc-text">Sec3.5.3 Steady state error analysis for linear systems</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-5-4-Methods-for-reducing-and-eliminating-steady-state-errors"><span class="toc-text">Sec 3.5.4 Methods for reducing and eliminating steady-state errors</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap4-Root-Locus-Techniques"><span class="toc-text">Chap4 Root Locus Techniques</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec4-1-Sketching-the-root-locus"><span class="toc-text">Sec4.1 Sketching the root locus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec4-2-Root-locus-analysis"><span class="toc-text">Sec4.2 Root locus analysis</span></a></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Introduction"><span class="toc-text">Chap1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Basic-Concepts-of-Control"><span class="toc-text">Sec 1.1 Basic Concepts of Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Feedback-Control-System"><span class="toc-text">Sec 1.2 Feedback Control System</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Control-System-Block-Diagram"><span class="toc-text">Sec 1.3 Control System Block Diagram</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-The-Design-Requirements"><span class="toc-text">Sec 1.4 The Design Requirements</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap2-Mathematical-Model-of-Control-System"><span class="toc-text">Chap2 Mathematical Model of Control System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Differential-Equation-of-Linear-System"><span class="toc-text">Sec 2.1 Differential Equation of Linear System</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Laplace-Transform"><span class="toc-text">Sec 2.2 Laplace Transform</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-3-Transfer-Function"><span class="toc-text">Sec 2.3 Transfer Function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-3-1-Basic-properties"><span class="toc-text">Sec 2.3.1 Basic properties</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-3-2-Common-forms"><span class="toc-text">Sec 2.3.2 Common forms</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-3-3-Typical-links"><span class="toc-text">Sec 2.3.3 Typical links</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-4-Block-Diagram-of-a-System"><span class="toc-text">Sec 2.4 Block Diagram of a System</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-4-1-Equivalent-transformation-rules"><span class="toc-text">Sec 2.4.1 Equivalent transformation rules</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-4-2-Equivalent-Transformation-Rules"><span class="toc-text">Sec 2.4.2 Equivalent Transformation Rules</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap3-Time-Domain-Analysis"><span class="toc-text">Chap3 Time Domain Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-1-Time-response-performance"><span class="toc-text">Sec3.1 Time response performance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-1-1-Transient-performance-index"><span class="toc-text">Sec3.1.1 Transient performance index</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-1-2-Steady-state-index"><span class="toc-text">Sec3.1.2 Steady-state index</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-2-Time-domain-analysis-of-first-order-system"><span class="toc-text">Sec3.2 Time domain analysis of first order system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-output-response-of-the-first-order-system-to-the-input"><span class="toc-text">The output response of the first order system to the input</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-3-Time-domain-analysis-of-second-order-system"><span class="toc-text">Sec3.3 Time domain analysis of second-order system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-3-1-Characteristic-equation-of-second-order-systems"><span class="toc-text">Sec3.3.1 Characteristic equation of second-order systems</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-3-2-Step-response-of-second-order-systems"><span class="toc-text">Sec3.3.2 Step response of second-order systems</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-3-3-Transient-response-index-of-second-order-system"><span class="toc-text">Sec3.3.3 Transient response index of second-order system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-4-Measures-to-improve-system-performance"><span class="toc-text">Sec3.4 Measures to improve system performance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-1-Proportional-derivative-control-of-second-order-systems"><span class="toc-text">Sec3.4.1 Proportional-derivative control of second-order systems</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-2-Closed-loop-system-with-speed-feedback"><span class="toc-text">Sec3.4.2 Closed loop system with speed feedback</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-3-Comparison-of-proportional-derivative-control-and-tachometer-feedback-control"><span class="toc-text">Sec3.4.3 Comparison of proportional-derivative control and tachometer feedback control</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-4-The-influence-of-the-third-pole-and-zero-point-on-the-response-of-the-second-order-system"><span class="toc-text">Sec3.4.4 The influence of the third pole and zero point on the response of the second order system</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-4-5-Unit-step-response-of-higher-order-system"><span class="toc-text">Sec3.4.5 Unit step response of higher order system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec3-5-Stability-analysis"><span class="toc-text">Sec3.5 Stability analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-5-1-Sufficient-and-necessary-conditions-for-system-stability"><span class="toc-text">Sec3.5.1 Sufficient and necessary conditions for system stability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-5-2-Routh-stability-criterion"><span class="toc-text">Sec3.5.2 Routh stability criterion</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec3-5-3-Steady-state-error-analysis-for-linear-systems"><span class="toc-text">Sec3.5.3 Steady state error analysis for linear systems</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-5-4-Methods-for-reducing-and-eliminating-steady-state-errors"><span class="toc-text">Sec 3.5.4 Methods for reducing and eliminating steady-state errors</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap4-Root-Locus-Techniques"><span class="toc-text">Chap4 Root Locus Techniques</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec4-1-Sketching-the-root-locus"><span class="toc-text">Sec4.1 Sketching the root locus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec4-2-Root-locus-analysis"><span class="toc-text">Sec4.2 Root locus analysis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap5-Frequency-Response-Techniques"><span class="toc-text">Chap5 Frequency Response Techniques</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec5-1-Geometrical-representation-of-frequency-characteristics"><span class="toc-text">Sec5.1 Geometrical representation of frequency characteristics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec5-2-Frequency-characteristics-of-typical-elements"><span class="toc-text">Sec5.2 Frequency characteristics of typical elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec5-3-Plot-open-loop-frequency-characteristics"><span class="toc-text">Sec5.3 Plot open loop frequency characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec5-3-1-amplitude-phase-curve-Nyquist-diagram-of-open-loop-system"><span class="toc-text">Sec5.3.1 amplitude-phase curve (Nyquist diagram) of open loop system</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec5-3-2-logarithmic-frequency-characteristic-Bode-diagram-of-open-loop-system"><span class="toc-text">Sec5.3.2 logarithmic frequency characteristic (Bode diagram) of open loop system</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
