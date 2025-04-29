@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Chap.1 The EssentialsFluid: A fluid is defined as a substance that continually deforms (flows) under an applied shear stress regardless of the magnitude of the applied stress. Applications of fluid me">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-28T16:25:02.948Z">
-<meta property="article:modified_time" content="2025-04-28T16:25:02.948Z">
+<meta property="article:published_time" content="2025-04-29T06:10:53.052Z">
+<meta property="article:modified_time" content="2025-04-29T06:10:53.052Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -712,7 +712,128 @@ F_{\text{max}} = C_d \frac{2}{\rho}U_{\text{max}}^2Ld = 0.91\times (\frac{1.2}{2
 <p>With no free surface: model and prototype <strong>Reynolds numbers</strong> are equal.</p>
 <p>With a free surface: model and prototype <strong>Reynolds number</strong>, <strong>Froude number</strong>, and (if necessary) <strong>Weber number</strong> and <strong>cavitation number</strong> are correspondingly equal.</p>
 </blockquote>
-<h2 id="Chap7-Internal-Flows"><a href="#Chap7-Internal-Flows" class="headerlink" title="Chap7. Internal Flows"></a>Chap7. Internal Flows</h2>
+<h2 id="Chap7-Internal-Flows"><a href="#Chap7-Internal-Flows" class="headerlink" title="Chap7. Internal Flows"></a>Chap7. Internal Flows</h2><p><strong>Internal flows</strong>:</p>
+<ul>
+<li>Flows completely bounded by solid surface</li>
+<li>The flow regime is primarily a function of $\mathrm{Re}$</li>
+</ul>
+<h3 id="Reynolds-number"><a href="#Reynolds-number" class="headerlink" title="Reynolds number"></a>Reynolds number</h3><p>The transition from laminar to turbulent flow depends on:</p>
+<blockquote>
+<ul>
+<li>geometry</li>
+<li>surface roughness</li>
+<li>flow velocity</li>
+<li>surface temperature</li>
+<li>type of fluid</li>
+</ul>
+</blockquote>
+<script type="math/tex; mode=display">
+\mathrm{Re} = \frac{\text{inertial force}}{\text{viscous force}} = \frac{\rho v_{\text{avg}D}}{\mu}</script><ul>
+<li>$v_{\text{avg}}$: average velocity</li>
+<li>$D$: characteristic length of the geometry</li>
+</ul>
+<p><strong>Critical Reynolds number</strong> $\mathrm{Re}_{\text{cr}}$</p>
+<ul>
+<li>flow becomes turbulent</li>
+<li>internal flow in a circular pipe: $\mathrm{Re}_{\text{cr}} = 2300$</li>
+</ul>
+<p><strong>Hydraulic diameter</strong> $D_h$</p>
+<script type="math/tex; mode=display">
+D_h = \frac{4A_c}{p}</script><ul>
+<li>$A_c$ is the cross-sectional area of the pipe</li>
+<li>$p$ is wetted perimeter</li>
+</ul>
+<p><strong>For flow in circular pipes:</strong></p>
+<ul>
+<li>Laminar flow: $\mathrm{Re}\leq2300$</li>
+<li>Transitional flow: $2300\leq\mathrm{Re}\leq4000$</li>
+<li>Turbulent flow: $\mathrm{Re}\geq4000$</li>
+</ul>
+<h3 id="The-entrance-region"><a href="#The-entrance-region" class="headerlink" title="The entrance region"></a>The entrance region</h3><p>The region of the flow where the viscous shearing forces (friction) affect the flow is called boundary layer.</p>
+<p>Boundary surface divides the flow in a pipe into two regions:</p>
+<ul>
+<li>Boundary layer region: viscous effect and the velocity changes</li>
+<li>Irrotational flow region: frictional effects are negligible and velocity remains constant in the radial direction</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/29/lvcv61.png"></p>
+<ul>
+<li><p><strong>Hydrodynamic entrance region</strong>: From the pipe inlet to the point where the boundary layer merges at<br>the centerline</p>
+</li>
+<li><p><strong>Hydrodynamic entry length</strong> $L_e$: The length of the region</p>
+</li>
+<li><p><strong>Hydrodynamically developing flow</strong>: Flow at the entrance region</p>
+</li>
+<li><strong>hydrodynamically fully developed region</strong>: Beyond the entrance region</li>
+</ul>
+<p>In the developed region, velocity profile is fully developed and remains unchanged. (parabolic in laminar flow)</p>
+<h3 id="Laminar-flow-in-pipes"><a href="#Laminar-flow-in-pipes" class="headerlink" title="Laminar flow in pipes"></a>Laminar flow in pipes</h3><p><img src = "https://img.dexbug.com/i/2025/04/29/lx2cit.png" width = 70%></p>
+<script type="math/tex; mode=display">
+\tau=-\frac{r}{2}\frac{dP}{dl}</script><ul>
+<li>Distribution of shear stress<ul>
+<li>If $r = 0\rightarrow\tau=0$</li>
+<li>If $r$ increases, $\tau$ linearly increases ($\tau\propto r$)</li>
+<li>If $r = R\rightarrow\tau_{max}=\frac{\Delta PD}{4L}$</li>
+</ul>
+</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/29/lzfv8x.png" width = 40%></p>
+<p>Integral both sides, we can get the velocity:</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+u(r)&=-\frac{1}{4\mu}\frac{dP}{dl}(R^{2}-r^{2})\\
+\text{if }r = 0\quad u_{max}&=-\frac{R^{2}}{4\mu}\frac{dP}{dl}
+\end{align*}</script><script type="math/tex; mode=display">
+\frac{u}{u_{max}} = 1-\left(\frac{r}{R}\right)^{2}</script><p>Poiseuille’s flow:</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/29/m07c4s.png" width = 40%></p>
+<p>We consider the flowrate Q from the cross section of the pipe:</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/29/m1q09s.png" width = 40%></p>
+<script type="math/tex; mode=display">
+Q=\frac{\pi R^{4}}{8\mu}\frac{dP}{dl}</script><ul>
+<li>For whole length, $\frac{dP}{dl}\Rightarrow\frac{\Delta P}{L}$<script type="math/tex; mode=display">
+Q=\frac{\Delta P\pi D^{4}}{128\mu L}</script></li>
+</ul>
+<h3 id="Flow-velocity-in-a-pipe"><a href="#Flow-velocity-in-a-pipe" class="headerlink" title="Flow velocity in a pipe"></a>Flow velocity in a pipe</h3><p><img src = "https://img.dexbug.com/i/2025/04/29/m2z55j.png" width = 50%></p>
+<p><strong>Not uniform</strong></p>
+<ul>
+<li>Zero at the surface (no-slip condition)</li>
+<li>Maximum at center</li>
+</ul>
+<p>$v_{avg}$ is defined as the average speed through a cross section</p>
+<p>From the $Q = Av_{avg}$</p>
+<script type="math/tex; mode=display">
+v_{avg} = \frac{1}{2}u_{max}</script><h3 id="Inclined-pipes"><a href="#Inclined-pipes" class="headerlink" title="Inclined pipes"></a>Inclined pipes</h3><p><img src = "https://img.dexbug.com/i/2025/04/29/m4o2dd.png" width = 50%></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+u(r)&=\frac{1}{4\mu}\left(\frac{dP}{dl}-\rho g\sin\theta\right)(R^{2}-r^{2})\\
+u(r)&=\frac{1}{4\mu}\left(\frac{\Delta P}{L}-\rho g\sin\theta\right)(R^{2}-r^{2})
+\end{align*}</script><script type="math/tex; mode=display">
+\begin{align*}
+u_{max}&=\frac{R^{2}}{4\mu}\left(\frac{\Delta P}{L}-\rho g\sin\theta\right)=\frac{D^{2}}{16\mu}\left(\frac{\Delta P}{L}-\rho g\sin\theta\right)\\
+u_{avg}&=\frac{u_{max}}{2}=\frac{D^{2}}{32\mu}\left(\frac{\Delta P}{L}-\rho g\sin\theta\right)
+\end{align*}</script><script type="math/tex; mode=display">
+Q = \frac{\pi D^{4}}{128\mu L}(\Delta P - \rho gL\sin\theta)</script><h3 id="Pressure-drop-in-a-pipe-flow"><a href="#Pressure-drop-in-a-pipe-flow" class="headerlink" title="Pressure drop in a pipe flow"></a>Pressure drop in a pipe flow</h3><p>The main driving force of internal flow is pressure difference (Pressure drop), $\Delta P$</p>
+<script type="math/tex; mode=display">
+\Delta P = \frac{32\mu Lv_{avg}}{D^2}</script><p>Now, we consider an inclined pipe</p>
+<ul>
+<li>Considering friction,<script type="math/tex; mode=display">
+\left(\frac{P}{\gamma}+\frac{v^{2}}{2g}+z\right)_1=\left(\frac{P}{\gamma}+\frac{v^{2}}{2g}+z\right)_2 + H_f</script></li>
+<li><p>Since the flow is fully developed, $v_1 = v_2$</p>
+<script type="math/tex; mode=display">
+H_f=(z_1 - z_2)+\left(\frac{P_1}{\gamma}-\frac{P_2}{\gamma}\right)=\Delta z+\frac{\Delta P}{\gamma}</script></li>
+<li><p>By force balancing,</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\Sigma F_l=\Delta P\pi R^{2}-\rho g(\pi R^{2})L\sin\theta-\tau_w(2\pi R\cdot L)=0\\
+\frac{\Delta P}{\rho g}-L\sin\theta=\frac{2\tau_w}{\rho g}\frac{L}{R}=\frac{4\tau_w}{\rho g}\frac{L}{D}=H_f
+\end{align*}</script></li>
+</ul>
+<script type="math/tex; mode=display">
+H_f = \frac{4\tau _w}{\rho g} \frac{L}{D}</script><p>From experiment, the head loss for all types of fully developed internal flows was found as:</p>
+<script type="math/tex; mode=display">
+H_f = f \frac{L}{D} \frac{v_{avg}^2}{2g}</script><p>$f$: Darcy friction factor</p>
+<script type="math/tex; mode=display">
+f = \frac{64}{\mathrm{Re}}</script><h3 id="Turbulent-flow-in-pipes"><a href="#Turbulent-flow-in-pipes" class="headerlink" title="Turbulent flow in pipes"></a>Turbulent flow in pipes</h3><p>Most flows in reality are turbulent</p>
+
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/kalman.html">Fundamentals of Kalman Filter and Inertia Navigation(EN)</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/kf_rv_q.html">KF and INS Review Questions(EN)</a></div></section></div>
@@ -781,7 +902,7 @@ F_{\text{max}} = C_d \frac{2}{\rho}U_{\text{max}}^2Ld = 0.91\times (\frac{1.2}{2
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-1-The-Essentials"><span class="toc-text">Chap.1 The Essentials</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Applications-of-fluid-mechanics"><span class="toc-text">Applications of fluid mechanics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classification-of-fluid-flows"><span class="toc-text">Classification of fluid flows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Properties-of-fluids"><span class="toc-text">Properties of fluids</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Viscosity-coefficient-of-dynamic-viscosity"><span class="toc-text">Viscosity (coefficient of dynamic viscosity)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Surface-tension"><span class="toc-text">Surface tension</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Capillarity"><span class="toc-text">Capillarity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Fluid-Statics"><span class="toc-text">Chap.2 Fluid Statics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hydrostatics"><span class="toc-text">Hydrostatics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pressure"><span class="toc-text">Pressure</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Variation-of-pressure"><span class="toc-text">Variation of pressure</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Manometer"><span class="toc-text">Manometer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forces-on-plane-and-curved-surfaces"><span class="toc-text">Forces on plane and curved surfaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resultant-force-on-a-curved-surface"><span class="toc-text">Resultant force on a curved surface</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Buoyancy"><span class="toc-text">Buoyancy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Stability-of-immersed-and-floating-body"><span class="toc-text">Stability of immersed and floating body</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Stability-of-submerged-body"><span class="toc-text">Stability of submerged body</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Stability-of-floating-body"><span class="toc-text">Stability of floating body</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-linearly-accelerating-container-horizontal"><span class="toc-text">A linearly accelerating container (horizontal)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Fluid-in-Motion"><span class="toc-text">Chap.3 Fluid in Motion</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Eulerian-description"><span class="toc-text">Eulerian description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Description-of-fluid-flow"><span class="toc-text">Description of fluid flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dimension-of-a-flow"><span class="toc-text">Dimension of a flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Acceleration-field"><span class="toc-text">Acceleration field</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Laminar-and-turbulent-flow"><span class="toc-text">Laminar and turbulent flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Continuity-equation"><span class="toc-text">Continuity equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Euler%E2%80%99s-equation-of-motion"><span class="toc-text">Euler’s equation of motion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bernoulli%E2%80%99s-Equation"><span class="toc-text">Bernoulli’s Equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Venturi-tube"><span class="toc-text">Venturi tube</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Orifice"><span class="toc-text">Orifice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-The-Integral-Equations"><span class="toc-text">Chap.4 The Integral Equations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Bernoulli-Interpreted-as-an-Energy-Relation"><span class="toc-text">Bernoulli Interpreted as an Energy Relation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Energy-Equation"><span class="toc-text">Energy Equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Energy-efficiency"><span class="toc-text">Energy efficiency</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Momentum-in-fluid"><span class="toc-text">Momentum in fluid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Single-fixed-vane"><span class="toc-text">Single fixed vane</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fixed-flat-plate"><span class="toc-text">Fixed flat plate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Moving-flat-plate"><span class="toc-text">Moving flat plate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Driving-force-by-nozzle"><span class="toc-text">Driving force by nozzle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rocket"><span class="toc-text">Rocket</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap5-The-Differential-Equation"><span class="toc-text">Chap5. The Differential Equation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis-of-fluid-motion"><span class="toc-text">Analysis of fluid motion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Differential-equation-of-linear-momentum"><span class="toc-text">Differential equation of linear momentum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Navier-Stokes-equation"><span class="toc-text">Navier-Stokes equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frictionless-flow"><span class="toc-text">Frictionless flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Couette-flow"><span class="toc-text">Couette flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Streamline"><span class="toc-text">Streamline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stream-function"><span class="toc-text">Stream function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Velocity-potential-function"><span class="toc-text">Velocity potential function</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap6-Dimensional-Analysis"><span class="toc-text">Chap6. Dimensional Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Buckingham-Pi-theorem"><span class="toc-text">Buckingham $\Pi$ theorem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Application-of-Dimensional-Analysis"><span class="toc-text">Application of Dimensional Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Similarity"><span class="toc-text">Similarity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap7-Internal-Flows"><span class="toc-text">Chap7. Internal Flows</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-1-The-Essentials"><span class="toc-text">Chap.1 The Essentials</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Applications-of-fluid-mechanics"><span class="toc-text">Applications of fluid mechanics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classification-of-fluid-flows"><span class="toc-text">Classification of fluid flows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Properties-of-fluids"><span class="toc-text">Properties of fluids</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Viscosity-coefficient-of-dynamic-viscosity"><span class="toc-text">Viscosity (coefficient of dynamic viscosity)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Surface-tension"><span class="toc-text">Surface tension</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Capillarity"><span class="toc-text">Capillarity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Fluid-Statics"><span class="toc-text">Chap.2 Fluid Statics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hydrostatics"><span class="toc-text">Hydrostatics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pressure"><span class="toc-text">Pressure</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Variation-of-pressure"><span class="toc-text">Variation of pressure</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Manometer"><span class="toc-text">Manometer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forces-on-plane-and-curved-surfaces"><span class="toc-text">Forces on plane and curved surfaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resultant-force-on-a-curved-surface"><span class="toc-text">Resultant force on a curved surface</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Buoyancy"><span class="toc-text">Buoyancy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Stability-of-immersed-and-floating-body"><span class="toc-text">Stability of immersed and floating body</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Stability-of-submerged-body"><span class="toc-text">Stability of submerged body</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Stability-of-floating-body"><span class="toc-text">Stability of floating body</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-linearly-accelerating-container-horizontal"><span class="toc-text">A linearly accelerating container (horizontal)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Fluid-in-Motion"><span class="toc-text">Chap.3 Fluid in Motion</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Eulerian-description"><span class="toc-text">Eulerian description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Description-of-fluid-flow"><span class="toc-text">Description of fluid flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dimension-of-a-flow"><span class="toc-text">Dimension of a flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Acceleration-field"><span class="toc-text">Acceleration field</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Laminar-and-turbulent-flow"><span class="toc-text">Laminar and turbulent flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Continuity-equation"><span class="toc-text">Continuity equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Euler%E2%80%99s-equation-of-motion"><span class="toc-text">Euler’s equation of motion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bernoulli%E2%80%99s-Equation"><span class="toc-text">Bernoulli’s Equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Venturi-tube"><span class="toc-text">Venturi tube</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Orifice"><span class="toc-text">Orifice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-The-Integral-Equations"><span class="toc-text">Chap.4 The Integral Equations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Bernoulli-Interpreted-as-an-Energy-Relation"><span class="toc-text">Bernoulli Interpreted as an Energy Relation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Energy-Equation"><span class="toc-text">Energy Equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Energy-efficiency"><span class="toc-text">Energy efficiency</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Momentum-in-fluid"><span class="toc-text">Momentum in fluid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Single-fixed-vane"><span class="toc-text">Single fixed vane</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fixed-flat-plate"><span class="toc-text">Fixed flat plate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Moving-flat-plate"><span class="toc-text">Moving flat plate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Driving-force-by-nozzle"><span class="toc-text">Driving force by nozzle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rocket"><span class="toc-text">Rocket</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap5-The-Differential-Equation"><span class="toc-text">Chap5. The Differential Equation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Analysis-of-fluid-motion"><span class="toc-text">Analysis of fluid motion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Differential-equation-of-linear-momentum"><span class="toc-text">Differential equation of linear momentum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Navier-Stokes-equation"><span class="toc-text">Navier-Stokes equation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frictionless-flow"><span class="toc-text">Frictionless flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Couette-flow"><span class="toc-text">Couette flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Streamline"><span class="toc-text">Streamline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stream-function"><span class="toc-text">Stream function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Velocity-potential-function"><span class="toc-text">Velocity potential function</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap6-Dimensional-Analysis"><span class="toc-text">Chap6. Dimensional Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Buckingham-Pi-theorem"><span class="toc-text">Buckingham $\Pi$ theorem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Application-of-Dimensional-Analysis"><span class="toc-text">Application of Dimensional Analysis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Similarity"><span class="toc-text">Similarity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap7-Internal-Flows"><span class="toc-text">Chap7. Internal Flows</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Reynolds-number"><span class="toc-text">Reynolds number</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-entrance-region"><span class="toc-text">The entrance region</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Laminar-flow-in-pipes"><span class="toc-text">Laminar flow in pipes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flow-velocity-in-a-pipe"><span class="toc-text">Flow velocity in a pipe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inclined-pipes"><span class="toc-text">Inclined pipes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pressure-drop-in-a-pipe-flow"><span class="toc-text">Pressure drop in a pipe flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Turbulent-flow-in-pipes"><span class="toc-text">Turbulent flow in pipes</span></a></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
