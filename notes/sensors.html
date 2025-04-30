@@ -20,15 +20,15 @@
   <title>notes：Sensors and Measurement System(EN) - Maxwell's Blog</title>
 
   
-    <meta name="description" content="Chap1 IntroductiomSec 1.1 Definition of measurement systemThe measurement is the process by which one can convert physical parameters to meaningful numbers.   A measurement system is an information sy">
+    <meta name="description" content="Chap 1 IntroductionSec 1.1 Definition of measurement systemThe measurement is the process by which one can convert physical parameters to meaningful numbers.   A measurement system is an information s">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sensors and Measurement System(EN)">
 <meta property="og:url" content="https://maxwell0339.github.io/notes/sensors.html">
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
-<meta property="og:description" content="Chap1 IntroductiomSec 1.1 Definition of measurement systemThe measurement is the process by which one can convert physical parameters to meaningful numbers.   A measurement system is an information sy">
+<meta property="og:description" content="Chap 1 IntroductionSec 1.1 Definition of measurement systemThe measurement is the process by which one can convert physical parameters to meaningful numbers.   A measurement system is an information s">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-30T06:49:46.466Z">
-<meta property="article:modified_time" content="2025-04-30T06:49:46.466Z">
+<meta property="article:published_time" content="2025-04-30T16:20:07.399Z">
+<meta property="article:modified_time" content="2025-04-30T16:20:07.399Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -93,7 +93,7 @@
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="Chap1-Introductiom"><a href="#Chap1-Introductiom" class="headerlink" title="Chap1 Introductiom"></a>Chap1 Introductiom</h2><h3 id="Sec-1-1-Definition-of-measurement-system"><a href="#Sec-1-1-Definition-of-measurement-system" class="headerlink" title="Sec 1.1 Definition of measurement system"></a>Sec 1.1 Definition of measurement system</h3><p>The measurement is the process by which one can convert physical parameters to meaningful numbers.</p>
+  </div><article class="md-text content"><h2 id="Chap-1-Introduction"><a href="#Chap-1-Introduction" class="headerlink" title="Chap 1 Introduction"></a>Chap 1 Introduction</h2><h3 id="Sec-1-1-Definition-of-measurement-system"><a href="#Sec-1-1-Definition-of-measurement-system" class="headerlink" title="Sec 1.1 Definition of measurement system"></a>Sec 1.1 Definition of measurement system</h3><p>The measurement is the process by which one can convert physical parameters to meaningful numbers.</p>
 <p><img src = "https://img.dexbug.com/i/2025/04/07/qyq253.png"></p>
 <p> A measurement system is an information system which presents an observer with a numerical value corresponding to the variable being measured.</p>
 <p><img src = "https://img.dexbug.com/i/2025/04/07/qz9olq.png"></p>
@@ -222,7 +222,7 @@ O = KI + a+N(I)+K_MI_M + K_II</script><h3 id="Sec-2-2-Statistical-characteristic
 <ul>
 <li><strong>Tolerance</strong></li>
 </ul>
-<p>This effect is found in any batch of ��identical�� sensors or other elements. Significant variations are found in batches of thermocouples and thermistors, for example.</p>
+<p>This effect is found in any batch of “identical” sensors or other elements. Significant variations are found in batches of thermocouples and thermistors, for example.</p>
 <h3 id="Sec-2-3-Calibration"><a href="#Sec-2-3-Calibration" class="headerlink" title="Sec 2.3 Calibration"></a>Sec 2.3 Calibration</h3><p>Calibration is a type of experiment to find static characteristics of a sensor or a measurement system by measuring corresponding values of the input $I$, the output $O$ and the environment inputs $I_M$ and $I_I$,when I is constant value or changing slowly.</p>
 <p><img src = "https://img.dexbug.com/i/2025/04/30/nb009r.png"></p>
 <p><strong>STANDARD</strong>:</p>
@@ -260,7 +260,7 @@ O = KI + a+N(I)+K_MI_M + K_II</script><h3 id="Sec-2-2-Statistical-characteristic
 <p><strong>Why the input $I$ is held constant at $I = I_{\mathrm{MIN}}$?</strong></p>
 <blockquote>
 <p><em>The answer comes from AI</em></p>
-<p>Holding $I$ at $I_{\min}$ <strong>sets the element exactly at its zero - bias operating point</strong>, so that any subsequent change in $O$ when you vary an environmental input must be due to interference��not simply the normal response to your main signal.</p>
+<p>Holding $I$ at $I_{\min}$ <strong>sets the element exactly at its zero - bias operating point</strong>, so that any subsequent change in $O$ when you vary an environmental input must be due to interference - not simply the normal response to your main signal.</p>
 </blockquote>
 <ul>
 <li>Identify $K_M$</li>
@@ -276,14 +276,396 @@ K_M&=\frac{2}{I_{MIN}+I_{MAX}}\left[\frac{\Delta O}{\Delta I_{I,M}}-K_I\right]
 \end{align*}</script><p><strong>Why the input $I$ is held constant at the </strong>mid - range value<strong> $1/2(I_{MIN}+I_{MAX})$ ?</strong></p>
 <blockquote>
 <p><em>The answer comes from AI</em></p>
-<p>Mid-range gives you the biggest, cleanest ��window�� through which to observe how temperature, humidity, bias voltage, etc., are warping your transducer��s gain��without confusion from endpoint non-linearities or offset shifts.</p>
+<p>Mid-range gives you the biggest, cleanest “window” through which to observe how temperature, humidity, bias voltage, etc., are warping your transducer’s gain - without confusion from endpoint non-linearities or offset shifts.</p>
 </blockquote>
 <ol>
 <li>Repeatability test</li>
 </ol>
 <p>This test should be carried out in the normal working environment of the element.</p>
 <p>The signal input $I$ should <strong>be held constant at mid - range value</strong> and the output $O$ measured over <strong>an extended period</strong>, ideally many days, yielding a set of values $O_k, k = 1,2,\dots,N$.</p>
-<h2 id="Chap-3-Dynamic-Characteristics"><a href="#Chap-3-Dynamic-Characteristics" class="headerlink" title="Chap 3 Dynamic Characteristics"></a>Chap 3 Dynamic Characteristics</h2>
+<h2 id="Chap-3-Dynamic-Characteristics"><a href="#Chap-3-Dynamic-Characteristics" class="headerlink" title="Chap 3 Dynamic Characteristics"></a>Chap 3 Dynamic Characteristics</h2><p><strong>Dynamic characteristics</strong>:</p>
+<p>Dynamic characteristics are most conveniently summarised using a transfer function $G(s)$.</p>
+<h3 id="Sec-3-1-Transfer-function-G-s-for-typical-system-elements"><a href="#Sec-3-1-Transfer-function-G-s-for-typical-system-elements" class="headerlink" title="Sec 3.1 Transfer function $G(s)$ for typical system elements"></a>Sec 3.1 Transfer function $G(s)$ for typical system elements</h3><h4 id="3-1-1-First-order-element"><a href="#3-1-1-First-order-element" class="headerlink" title="3.1.1 First-order element"></a>3.1.1 First-order element</h4><p><strong>Temperature sensor</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/vxwy9f.png"></p>
+<script type="math/tex; mode=display">
+\frac{MC}{UA}\frac{\mathrm{d}\Delta T}{\mathrm{d}t}+\Delta T=\Delta T_F</script><ul>
+<li>$M$: the sensor mass (kg)</li>
+<li>$C$: Specific of heat of sensor material (J/(kg·°C))</li>
+<li>$U$: Overall transfer coefficient between fluid and sensor (W/ (m²·°C))</li>
+<li>$A$: the effective heat transfer area (m²)</li>
+</ul>
+<p>Linear first order differential equation</p>
+<script type="math/tex; mode=display">
+\tau\frac{\mathrm{d}\Delta T}{\mathrm{d}t}+\Delta T=\Delta T_F</script><p>Transfer function</p>
+<script type="math/tex; mode=display">
+G(s)=\frac{\Delta\bar{T}(s)}{\Delta\bar{T}_F(s)}=\frac{1}{1 + \tau s}</script><script type="math/tex; mode=display">
+\tau_{Th}=\frac{MC}{UA}=R_{Th}C_{Th}; R_{Th}=\frac{1}{UA}; C_{Th}=MC</script><p>The above transfer function only relates changes in sensor temperature to changes in fluid temperature. The overall relationship between changes in sensor output signal $O$ and fluid temperature is:</p>
+<script type="math/tex; mode=display">
+\frac{\Delta\bar{O}(s)}{\Delta\bar{T}_F(s)}=\frac{\Delta O}{\Delta T}\frac{\Delta\bar{T}(s)}{\Delta\bar{T}_F(s)}</script><blockquote>
+<p>For an ideal element $\Delta O/ \Delta T$ will be equal to the slope $K$ of the ideal straight line.</p>
+<p>For non-linear elements, subject to small temperature fluctuations, we can take $\Delta O/ \Delta T= dO/dT$</p>
+</blockquote>
+<p><strong>RC circuit</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/w4fzdy.png" width = 60%></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+V_{\mathrm{IN}} - V&=iR\\
+\text{Charge }q&=CV, \text{ current }i = \frac{\mathrm{d}q}{\mathrm{d}t}=\frac{C\mathrm{d}V}{\mathrm{d}t}\\
+RC\frac{\mathrm{d}V}{\mathrm{d}t}+V&=V_{\mathrm{IN}}\\
+\tau_E\frac{\mathrm{d}V}{\mathrm{d}t}+V&=V_{\mathrm{IN}}, \tau_E = RC
+\end{align*}</script><script type="math/tex; mode=display">
+\tau_E = RC = R_EC_E, R_E = R, C_E = C</script><p><strong>Fluidic</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/w5iufy.png"></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\text{Volume flow rate }Q&=\frac{1}{R_F}(P_{\mathrm{IN}} - P)\\
+\text{Pressures }P_{\mathrm{IN}}&=h_{\mathrm{IN}}\rho g, P = h\rho g\\
+A_F\frac{\mathrm{d}h}{\mathrm{d}t}&=Q=\frac{\rho g}{R_F}(h_{\mathrm{IN}} - h)\\
+\frac{A_FR_F}{\rho g}\frac{\mathrm{d}h}{\mathrm{d}t}+h&=h_{\mathrm{IN}}\\
+\tau_F\frac{\mathrm{d}h}{\mathrm{d}t}+h&=h_{\mathrm{IN}}, \tau_F=\frac{A_FR_F}{\rho g}
+\end{align*}</script><script type="math/tex; mode=display">
+\tau_F=\frac{A_FR_F}{\rho g}=R_FC_F, R_F = R_F, C_F=\frac{A_F}{\rho g}</script><p><strong>Mechanical</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/w6mwhk.png" width = 60%></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+F_{\mathrm{IN}}-F&=\lambda\frac{\mathrm{d}x}{\mathrm{d}t}, \lambda\text{ N s m}^{-1}=\text{damping constant}\\
+\text{Displacement }x&=\frac{F}{k}, k\text{ N m}^{-1}=\text{spring stiffness}\\
+\frac{\lambda}{k}\frac{\mathrm{d}F}{\mathrm{d}t}+F&=F_{\mathrm{IN}}\\
+\tau_M\frac{\mathrm{d}F}{\mathrm{d}t}+F&=F_{\mathrm{IN}}, \tau_M = \frac{\lambda}{k}
+\end{align*}</script><script type="math/tex; mode=display">
+\tau_M=\frac{\lambda}{k}=R_MC_M, R_M = \lambda, C_M=\frac{1}{k}</script><h4 id="3-1-2-Second-order-elements"><a href="#3-1-2-Second-order-elements" class="headerlink" title="3.1.2 Second-order elements"></a>3.1.2 Second-order elements</h4><p><strong>Mass-spring-damper model</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/waiv5i.png"></p>
+<script type="math/tex; mode=display">
+F - kx - \lambda\dot{x}=m\ddot{x}</script><ul>
+<li>$F$: Force input (N)</li>
+<li>$\lambda$: a damper of constant (Ns/m)</li>
+<li>$k$: spring of stiffness (N/m)</li>
+<li>$m$: mass (kg)</li>
+</ul>
+<p>Linear second order differential equation</p>
+<script type="math/tex; mode=display">
+\frac{1}{\omega_n^2}\frac{\mathrm{d}^2\Delta x}{\mathrm{d}t^2}+\frac{2\xi}{\omega_n}\frac{\mathrm{d}\Delta x}{\mathrm{d}t}+\Delta x=\frac{1}{k}\Delta F</script><ul>
+<li>$\omega_n=\sqrt{\frac{k}{m}}\text{ rad/s}$ —- undamped natural frequency;</li>
+<li>$\xi = \frac{\lambda}{2\sqrt{km}}$ —- damping ratio</li>
+</ul>
+<p>Transfer function for a second-order element</p>
+<script type="math/tex; mode=display">
+G(s)=\frac{1}{\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1}</script><p><strong>Second-order L-C-R circuit</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/wckkcd.png" width = 50%></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& V=iR+\frac{q}{C}+L\frac{\mathrm{d}i}{\mathrm{d}t}\\
+& \text{where }i=\frac{\mathrm{d}q}{\mathrm{d}t}(q = \text{charge on the capacitance})\\
+& \text{thus }L\frac{\mathrm{d}^2q}{\mathrm{d}t^2}+R\frac{\mathrm{d}q}{\mathrm{d}t}+\frac{1}{C}q=V
+\end{align*}</script><script type="math/tex; mode=display">
+\omega_n = 1/\sqrt{LC}\text{ and }\xi=(R/2)\sqrt{C/L}</script><h3 id="Sec-3-2-Identification-of-the-dynamics-of-an-element"><a href="#Sec-3-2-Identification-of-the-dynamics-of-an-element" class="headerlink" title="Sec 3.2 Identification of the dynamics of an element"></a>Sec 3.2 Identification of the dynamics of an element</h3><p>The two most commonly used standard signals: step and sine wave to identification of the dynamics of an element</p>
+<h4 id="3-2-1-Step-response"><a href="#3-2-1-Step-response" class="headerlink" title="3.2.1 Step response"></a>3.2.1 Step response</h4><p><strong>Step response of first order elements</strong></p>
+<script type="math/tex; mode=display">
+\bar{f}_o(s)=G(s)\bar{f}_i(s)=\frac{1}{(1 + \tau s)s}</script><script type="math/tex; mode=display">
+f_o(t)=1-\exp\left(-\frac{t}{\tau}\right)</script><p><strong>Example:</strong></p>
+<p>Initially the temperature of the sensor is equal to that of the fluid, i.e. $T(0 - ) = T_F(0 - )=25^\circ\text{C}$, say. If $T_F$ is suddenly raised to $100^\circ\text{C}$, then this represents a step change $\Delta T_F$ of height $75^\circ\text{C}$. The corresponding change in sensor temperature is given by $\Delta T = 75(1 - \mathrm{e}^{-t/\tau})$ and the actual temperature $T$ of the sensor at time $t$ is given by:</p>
+<script type="math/tex; mode=display">
+T(t)=25 + 75(1 - \mathrm{e}^{-t/\tau})</script><p>Thus at time $t = \tau$, $T = 25+(75\times0.63)=72.3^\circ\text{C}$. By measuring the time taken for $T$ to rise to $72.3^\circ\text{C}$ we can find the time constant $\tau$ of the element.</p>
+<p><strong>Step response of second order elements</strong></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+G(s)&=\frac{1}{\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1}\quad\longrightarrow\quad\bar{f}_o(s)=\frac{1}{\left(\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1\right)s}\\
+\bar{f}_o(s)&=\frac{1}{s}-\frac{(s + \xi\omega_n)}{(s + \xi\omega_n)^2+\omega_n^2(1 - \xi^2)}-\frac{\xi\omega_n}{(s + \xi\omega_n)^2+\omega_n^2(1 - \xi^2)}
+\end{align*}</script><p>There are three cases to consider, depending on whether $\zeta$ is greater than 1, equal to 1, or less than 1.</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/xa3ito.png"></p>
+<h4 id="3-2-2-Sinusoidal-response-of-first-and-second-order-elements"><a href="#3-2-2-Sinusoidal-response-of-first-and-second-order-elements" class="headerlink" title="3.2.2 Sinusoidal response of first- and second-order elements"></a>3.2.2 Sinusoidal response of first- and second-order elements</h4><p><strong>Frequency response of an element with linear dynamics</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/xbz6qo.png"></p>
+<p>The general principles:</p>
+<blockquote>
+<p>(a) $O$ is also a sine wave.</p>
+<p>(b) The frequency of $O$ is also $\omega$.</p>
+<p>(c) The amplitude of $O$ is $\hat{O}=K|G(\mathrm{j}\omega)|\hat{I}$. </p>
+<p>(d) The phase difference between $O$ and $I$ is $\varphi=\arg G(\mathrm{j}\omega)$. </p>
+</blockquote>
+<p><strong>Sinusoidal response to first-order elements</strong></p>
+<script type="math/tex; mode=display">
+f_o(t)=\underbrace{\frac{\omega\tau\hat{I}}{1 + \tau^2\omega^2}\mathrm{e}^{-t/\tau}}_{\text{Transient term}}+\underbrace{\frac{\hat{I}}{\sqrt{1 + \tau^2\omega^2}}\sin(\omega t+\phi)}_{\text{Sinusoidal term}}</script><p>In a sine wave test experiment, we wait until the transient term has decayed to zero and measure the sinusoidal signal:</p>
+<script type="math/tex; mode=display">
+f_o(t)=\frac{\hat{I}}{\sqrt{1 + \tau^2\omega^2}}\sin(\omega t+\phi)</script><p><strong>Sinusoidal response to second-order elements</strong></p>
+<p>Frequency response characteristics of second-order element:</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\text{Amplitude ratio}&=|G(\mathrm{j}\omega)|=\frac{1}{\sqrt{\left(1 - \frac{\omega^2}{\omega_n^2}\right)^2+4\xi^2\frac{\omega^2}{\omega_n^2}}}\\
+\text{Phase difference}&=\arg G(\mathrm{j}\omega)=-\tan^{-1}\left[\frac{2\xi\omega/\omega_n}{1 - \omega^2/\omega_n^2}\right]
+\end{align*}</script><p>When $\xi &lt; 0.7$, $|G(\mathrm{j}\omega)|$ has a maximum value which is greater than 1.</p>
+<p>The maximum value is given by:</p>
+<script type="math/tex; mode=display">
+|G(\mathrm{j}\omega)|_{\text{MAX}}=\frac{1}{2\xi\sqrt{1 - \xi^2}}</script><p>The maximum of $|G(\mathrm{j}\omega)|$ occurs at the resonant frequency $\omega_R$, where:</p>
+<script type="math/tex; mode=display">
+\omega_R=\omega_n\sqrt{1 - 2\xi^2}, \quad \xi < 1/\sqrt{2}</script><h3 id="Sec-3-3-Dynamic-errors-in-measurement-systems"><a href="#Sec-3-3-Dynamic-errors-in-measurement-systems" class="headerlink" title="Sec 3.3 Dynamic errors in measurement systems"></a>Sec 3.3 Dynamic errors in measurement systems</h3><p><img src = "https://img.dexbug.com/i/2025/04/30/xeynw8.png"></p>
+<script type="math/tex; mode=display">
+\frac{\Delta\hat{O}(s)}{\Delta\hat{I}(s)}=G(s)=G_1(s)G_2(s)\cdots G_i(s)\cdots G_n(s)</script><p>Dynamic error of a measurement system</p>
+<ul>
+<li>$E(t)=\Delta O(t)-\Delta I(t)$</li>
+<li>$E(t)=\mathcal{L}^{-1}[G(s)\Delta\bar{I}(s)]-\Delta I(t)$ </li>
+</ul>
+<p>Example: The simple temperature measurement system</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/xmj7l8.png"></p>
+<p>For a step input of $+20^\circ\text{C}$, i.e. $\Delta T_T(t) = 20u(t)$ and $\Delta\bar{T}_T(s)=20(1/s)$.</p>
+<p>The Laplace transform of the output signal is:</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\Delta\bar{T}_M(s)&=20\frac{1}{s}\frac{1}{(1 + 10s)}\frac{1}{(1 + 10^{-4}s)}\frac{1}{(1 + 1/200s)^2}\\
+&=20\left\{\frac{1}{s}-\frac{A}{(s + 0.1)}-\frac{B}{(s + 10^4)}-\frac{Cs + D}{(s + 200)^2}\right\}
+\end{align*}</script><script type="math/tex; mode=display">
+\Delta T_M(t)=20\left\{u(t)-A\mathrm{e}^{-0.1t}-B\mathrm{e}^{-10^4t}-E\mathrm{e}^{-200t}(1 + 200t)\right\}</script><p>The dynamic error:</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+E(t)&=\Delta T_M(t)-\Delta T_T(t)\\
+&=- 20\left\{A\mathrm{e}^{-0.1t}+B\mathrm{e}^{-10^4t}-E\mathrm{e}^{-200t}(1 + 200t)\right\}
+\end{align*}</script><p>When the signal sine wave:</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\Delta O(t)&=|G(\mathrm{j}\omega)|\hat{I}\sin(\omega t+\phi)\quad\longrightarrow\quad\phi=\arg G(\mathrm{j}\omega)\\
+E(t)&=\hat{I}\{|G(\mathrm{j}\omega)|\sin(\omega t+\phi)-\sin\omega t\}
+\end{align*}</script><p>Suppose that the system is measuring a sinusoidal temperature variation of amplitude $\Delta T_T = 20^\circ\text{C}$ and period $T = 6\text{s}$, then angular frequency $\omega=2\pi/T\approx1.0\text{rad/s}$.</p>
+<script type="math/tex; mode=display">
+G(\mathrm{j}\omega)=\frac{1}{(1 + 10\mathrm{j}\omega)(1 + 10^{-4}\mathrm{j}\omega)[1 + 10^{-2}\mathrm{j}\omega+2.5\times10^{-5}(\mathrm{j}\omega)^2]}</script><script type="math/tex; mode=display">
+\begin{align*}
+    |G(\mathrm{j}\omega)|_{\omega = 1}&=\frac{1}{\sqrt{(1 + 100)(1 + 10^{-8})[(1 - 2.5\times10^{-5})^2+10^{-4}]}}\\&\approx0.10
+\end{align*}</script><script type="math/tex; mode=display">
+\begin{align*}
+    \arg G(\mathrm{j}\omega)_{\omega = 1}&\approx0-\tan^{-1}(10)-\tan^{-1}(10^{-4})-\tan^{-1}(10^{-2})\\&\approx - 85^{\circ}
+\end{align*}</script><script type="math/tex; mode=display">
+E(t)=20\{0.1\sin(t - 85^{\circ})-\sin t\}</script><p>In practice the input signal to a measurement system is more likely to be periodic rather than a simple sine wave.</p>
+<p>Any periodic signal $f(t)$ with period $T$ can be expressed as a series of sine and cosine waves; these have frequencies which are harmonics of the fundamental frequency $\omega_1 = 2\pi/T\text{ rad/s}$.</p>
+<script type="math/tex; mode=display">
+f(t)=a_0+\sum_{n = 1}^{n=\infty}a_n\cos n\omega_1t+\sum_{n = 1}^{n=\infty}b_n\sin n\omega_1t</script><h3 id="Sec-3-4-Undistorted-measurement-conditions"><a href="#Sec-3-4-Undistorted-measurement-conditions" class="headerlink" title="Sec 3.4 Undistorted measurement conditions"></a>Sec 3.4 Undistorted measurement conditions</h3><p>In order to make the signal of arbitrary waveform pass through the test device without waveform distortion:</p>
+<ul>
+<li>The amplitude frequency characteristic of the frequency response function of the test device is a constant (horizontal line).</li>
+<li>The phase frequency characteristic is linear (oblique line). </li>
+</ul>
+<h2 id="Chap-4-Typical-sensing-elements-Part-1"><a href="#Chap-4-Typical-sensing-elements-Part-1" class="headerlink" title="Chap 4 Typical sensing elements (Part 1)"></a>Chap 4 Typical sensing elements (Part 1)</h2><h3 id="Sec-4-1-Typical-sensing-elements"><a href="#Sec-4-1-Typical-sensing-elements" class="headerlink" title="Sec 4.1 Typical sensing elements"></a>Sec 4.1 Typical sensing elements</h3><h4 id="4-1-1-Potentiometers-for-linear-and-angular-displacement-measurement"><a href="#4-1-1-Potentiometers-for-linear-and-angular-displacement-measurement" class="headerlink" title="4.1.1 Potentiometers for linear and angular displacement measurement"></a>4.1.1 Potentiometers for linear and angular displacement measurement</h4><p><img src = "https://img.dexbug.com/i/2025/04/30/yqb4qi.png" width = 70%></p>
+<p>The ratio of open circuit voltage $E_{TH}$ to supply voltage $V_S$ is given by:</p>
+<script type="math/tex; mode=display">
+\frac{E_{Th}}{V_S}=\frac{\text{voltage across AB}}{\text{voltage across CB}}=\frac{\text{resistance across AB}}{\text{resistance across CB}}</script><p>where</p>
+<ul>
+<li>resistance of $CB$ = total resistance of potentiometer = $R_P$</li>
+<li>resistance of $AB$ = fractional resistance = $R_Pd/d_T = R_Px$</li>
+<li>$x$ = fractional displacement = $d/d_T$ </li>
+</ul>
+<p>From figure (a)</p>
+<script type="math/tex; mode=display">
+E_{Th}=V_Sx = V_Sd/d_T</script><p>From Figure (b)</p>
+<script type="math/tex; mode=display">
+E_{Th}=V_S\theta/\theta_T = V_Sx</script><p>The choice of a potentiometer for a given application involves four main parameters:</p>
+<p><strong>(a) Maximum travel $d_T, \theta_T$</strong></p>
+<p>Depends on range of displacement to be measured, e.g. 0 to 5 cm, 0 to $300^\circ$.</p>
+<p><strong>(b) Supply voltage $V_S$</strong></p>
+<p>Set by required output range, e.g. for a range of 0 to 5 V d.c., we need $V_S = 5$ V d.c.</p>
+<p><strong>(c) Resistance $R_P$</strong></p>
+<p>For a given load $R_L$, choose $R_P$ to be sufficiently small compared with $R_L$ so that maximum non - linearity is acceptable.</p>
+<p><strong>(d) Power rating $W_{max}$</strong></p>
+<p>$W_{max}$ should be greater than actual power $V_S^2/R_P$ produced in $R_P$. </p>
+<h4 id="4-1-2-Resistive-metal-and-semiconductor-sensors-for-temperature-measurement"><a href="#4-1-2-Resistive-metal-and-semiconductor-sensors-for-temperature-measurement" class="headerlink" title="4.1.2 Resistive metal and semiconductor sensors for temperature measurement"></a>4.1.2 Resistive metal and semiconductor sensors for temperature measurement</h4><p><strong>Metals</strong></p>
+<p>The resistance of most metals increases reasonably linearly with temperature in the range -100 to +800 ${}^{\circ}C$. The general relationship between the resistance $R_T\ (\Omega)$ of a metal element and temperature $T\ (^\circ\text{C})$ is a power series of the form:</p>
+<script type="math/tex; mode=display">
+R_T = R_0(1+\alpha T+\beta T^2+\gamma T^3+\cdots)</script><p>where:</p>
+<ul>
+<li>$R_0\ (\Omega)$ is the resistance at 0 ${}^{\circ}C$.</li>
+<li>$\alpha$, $\beta$, $\gamma$ are temperature coefficients of resistance.</li>
+</ul>
+<p><strong>The magnitude of the non - linear terms is usually small.</strong></p>
+<p><strong>Platinum</strong> is usually chosen for industrial resistance thermometers. Because it is <strong>chemically inert</strong>, has linear and repeatable resistance/temperature characteristics, and can be used over a wide temperature range (?200 to +800 ${}^{\circ}C$) and in many types of environments.</p>
+<p><strong>Semiconductor</strong></p>
+<p>The resistance of resistive temperature elements made from semiconductor decreases with temperature, i.e. there is a negative temperature coefficient (NTC) - in a highly non-linear way.</p>
+<p>The type of the thermistor:</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/yv3sl8.png" width = 40%></p>
+<script type="math/tex; mode=display">
+R_{\theta}=K\exp\left(\frac{\beta}{\theta}\right)</script><ul>
+<li><p>$R_{\theta}$ is the resistance at temperature $\theta$ (in kelvin)</p>
+</li>
+<li><p>$K$ and $\beta$ are constants for the thermistor. </p>
+</li>
+</ul>
+<p>A commonly used alternative equation is:</p>
+<script type="math/tex; mode=display">
+R_{\theta}=R_{\theta_1}\exp\beta\left[\frac{1}{\theta}-\frac{1}{\theta_1}\right]</script><p>where $R_{\theta_1}\ (\Omega)$ is the resistance at reference temperature $\theta_1\ (\text{K})$, usually $\theta_1 = 25^\circ\text{C} = 298\ \text{K}$. </p>
+<p><strong>Thick-film polymers</strong></p>
+<h4 id="4-1-3-Metal-and-semiconductor-resistive-strain-gauges"><a href="#4-1-3-Metal-and-semiconductor-resistive-strain-gauges" class="headerlink" title="4.1.3 Metal and semiconductor resistive strain gauges"></a>4.1.3 Metal and semiconductor resistive strain gauges</h4><p><strong>The concepts of stress</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/yynicf.png"></p>
+<script type="math/tex; mode=display">
+\text{Elastic modulus}=\frac{\text{stress}}{\text{strain}}</script><p>For linear tensile or compressive stress the elastic modulus is called Young’s modulus $E$; for shear stress the relevant elastic modulus is shear modulus $S$. </p>
+<p>The relation between longitudinal strain $e_L$ and accompanying transverse strain $e_T$ is:</p>
+<script type="math/tex; mode=display">
+e_T = -\nu e_L</script><p>where $\nu$ is Poisson’s ratio, which has a value between 0.25 and 0.4 for most materials. </p>
+<p><strong>A strain gauge</strong></p>
+<p>A strain gauge is a metal or semiconductor element whose resistance changes when under strain.</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/z1paa4.png" ></p>
+<p>The resistance of an element of length $l$, cross - sectional area $A$ and resistivity $\rho$ is given by:</p>
+<script type="math/tex; mode=display">
+R = \frac{\rho l}{A}</script><p>In general with strain gauges $\rho$, $l$ and $A$ can change if the element is strained, so that the change in resistance $\Delta R$ is given by:</p>
+<script type="math/tex; mode=display">
+\Delta R=\left(\frac{\partial R}{\partial l}\right)\Delta l+\left(\frac{\partial R}{\partial A}\right)\Delta A+\left(\frac{\partial R}{\partial \rho}\right)\Delta \rho</script><script type="math/tex; mode=display">
+\Delta R=\frac{\rho}{A}\Delta l - \frac{\rho l}{A^2}\Delta A+\frac{l}{A}\Delta \rho</script><script type="math/tex; mode=display">
+\frac{\Delta R}{R}=\frac{\Delta l}{l}-\frac{\Delta A}{A}+\frac{\Delta \rho}{\rho}</script><p>The ratio $\Delta l/l$ is the longitudinal strain $e_L$ in the element. Since cross - sectional area $A = wt$</p>
+<script type="math/tex; mode=display">
+\frac{\Delta A}{A}=\frac{\Delta w}{w}+\frac{\Delta t}{t}=2e_T</script><p>where $e_T$ is the transverse strain in the element.</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\frac{\Delta R}{R}&=e_L - 2(-\nu e_L)+\frac{\Delta \rho}{\rho}\\
+&=(1 + 2\nu)e_L+\frac{\Delta \rho}{\rho}
+\end{align*}</script><p>We now define the gauge factor $G$ of a strain gauge by the ratio (fractional change in resistance)/(strain), i.e.</p>
+<script type="math/tex; mode=display">
+G = \frac{\Delta R/R_0}{e}</script><p>Resistance/strain relationship for a strain gauge</p>
+<script type="math/tex; mode=display">
+\frac{\Delta R}{R_0}=Ge</script><p>where $R_0$ is the unstrained resistance of the gauge.</p>
+<p>Gauge factor of a strain gauge</p>
+<script type="math/tex; mode=display">
+G = 1 + 2\nu+\frac{1}{e}\frac{\Delta \rho}{\rho}</script><h4 id="4-1-4-Semiconductor-resistive-gas-sensors"><a href="#4-1-4-Semiconductor-resistive-gas-sensors" class="headerlink" title="4.1.4 Semiconductor resistive gas sensors"></a>4.1.4 Semiconductor resistive gas sensors</h4><p>Metal oxide sensors have semiconducting properties which are affected by the presence of gases.</p>
+<blockquote>
+<p>Semiconductor material titanium dioxide ( $\text{TiO}_2$ ) is very sensitive to oxygen. When the concentration of oxygen is high, <strong>the oxygen atoms enter the lattice of $\text{TiO}_2$</strong>, which changes the resistivity of the semiconductor and <strong>increases its resistance</strong>.</p>
+</blockquote>
+<h3 id="Sec-4-2-Capacitive-sensing-elements"><a href="#Sec-4-2-Capacitive-sensing-elements" class="headerlink" title="Sec 4.2 Capacitive sensing elements"></a>Sec 4.2 Capacitive sensing elements</h3><p>The simplest capacitor consists of two parallel metal plates separated by a dielectric or insulating material.The capacitance of this parallel plate capacitor is given by:</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/z5e9nl.png" ></p>
+<script type="math/tex; mode=display">
+C=\frac{\varepsilon_0\varepsilon A}{d}</script><p>where $\varepsilon_0$ is the permittivity of vacuum of magnitude $8.85\ \text{pF}\ \text{m}^{-1}$, $\varepsilon$ is the relative permittivity or dielectric constant of the insulating material, $A\ (m^2)$ is the area of overlap of the plates, and $d\ \text{m}$ is their separation. </p>
+<p>Three types:</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/z60njc.png"></p>
+<p><strong>Variable separation displacement sensor:</strong></p>
+<script type="math/tex; mode=display">
+C=\frac{\varepsilon_0\varepsilon A}{d + x}</script><p><strong>Variable area displacement sensor:</strong></p>
+<script type="math/tex; mode=display">
+C=\frac{\varepsilon_0\varepsilon}{d}(A - wx)</script><p><strong>Variable dielectric displacement sensor:</strong></p>
+<script type="math/tex; mode=display">
+C=\frac{\varepsilon_0\varepsilon_1A_1}{d}+\frac{\varepsilon_0\varepsilon_2A_2}{d}, \quad A_1 = wx, A_2 = w(l - x)</script><script type="math/tex; mode=display">
+C=\frac{\varepsilon_0w}{d}[\varepsilon_2l-(\varepsilon_2 - \varepsilon_1)x]</script><p><strong>Capacitive pressure sensor</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/zczfvr.png"></p>
+<p>The deflection $y$ at any radius $r$ is given by:</p>
+<script type="math/tex; mode=display">
+y=\frac{3}{16}\frac{(1 - \nu^2)}{Et^3}(a^2 - r^2)^2P</script><p>where </p>
+<ul>
+<li>$a$ = radius of diaphragm;</li>
+<li>$t$ = thickness of diaphragm;</li>
+<li>$E$ = Young’s modulus;</li>
+<li>$\nu$ = Poisson’s ratio. </li>
+</ul>
+<p>The resulting increase in capacitance $\Delta C$ is given by</p>
+<script type="math/tex; mode=display">
+\frac{\Delta C}{C}=\frac{(1 - \nu^2)a^4}{16Edt^3}P</script><p>where </p>
+<ul>
+<li>$d$ is the initial separation of the plates;</li>
+<li>$C = \varepsilon_0\pi a^2/d$ the capacitance at zero pressure. </li>
+</ul>
+<p><strong>Limitation:</strong></p>
+<blockquote>
+<p>Because the dielectric constant $\varepsilon$ for air is only 1, changes in capacitance $\Delta C$ caused by the applied pressure $P$ will be very small.</p>
+<p>To increase $\Delta C$ the thickness $t$ of the flexible plate/diaphragm can be reduced; this gives greater deformation $y$ for a given pressure $P$ but reduces mechanical strength. Also many metals have limited resistance to corrosion. </p>
+</blockquote>
+<p>The variable separation displacement sensor has the <strong>disadvantage of being nonlinear</strong>. This problem is overcame by using the <strong>three-plate differential or push-pull displacement sensor</strong></p>
+<p><strong>Differential or push-pull displacement sensor</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/zevzx9.png"></p>
+<script type="math/tex; mode=display">
+C_1=\frac{\varepsilon\varepsilon_0A}{d + x}, \quad C_2=\frac{\varepsilon\varepsilon_0A}{d - x}</script><p>The relations between $C_1$, $C_2$ and $x$ are still non - linear, but when $C_1$ and $C_2$ are incorporated into the <strong>a.c. reflection bridge</strong>, the overall relationship between bridge output voltage and $x$ is <strong>linear</strong>. </p>
+<p><strong>Capacitive level sensor</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/zg6f0f.png" width = 50%></p>
+<script type="math/tex; mode=display">
+C_h=\frac{2\pi\varepsilon_0}{\log_{\mathrm{e}}\left(\frac{b}{a}\right)}[l+(\varepsilon - 1)h]</script><p><strong>Thin-film capacitive humidity sensor</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/zim6k0.png"></p>
+<p>The dielectric is a polymer which has the ability to absorb water molecules; the resulting change in dielectric constant and therefore capacitance is proportional to the percentage relative humidity of the surrounding atmosphere.</p>
+<script type="math/tex; mode=display">
+C = 375+1.7\ \text{RH}\ \text{pF}</script><ul>
+<li>$\text{RH}$: Relative Humidity</li>
+</ul>
+<p><strong>Liquid-filled ceramic membrane sensors</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/11a4osy.png" width = 70%></p>
+<ul>
+<li><strong>The capacitance change is significant</strong></li>
+</ul>
+<blockquote>
+<p>Dielectric liquids such as silicon oil have a much higher $\varepsilon$ than air, so that significant capacitance changes ?C can be obtained with small membrane displacements of the order of 10 um.</p>
+</blockquote>
+<ul>
+<li><strong>High mechanical strength and easy to maintain</strong></li>
+</ul>
+<blockquote>
+<p>These small displacements, together with lower Young’s modulus for ceramics than metals, mean that ceramic membranes can be made much thicker than metal diaphragms between 0.25 and 1.5 mm is typical. This gives greater mechanical strength and ease of maintenance</p>
+</blockquote>
+<ul>
+<li><strong>Good corrosion resistance</strong></li>
+</ul>
+<p><strong>Quick Summary</strong></p>
+<p>Capacitive sensors are not pure capacitances but have an associated resistance $R$ in parallel.</p>
+<p><strong>The quality of a dielectric</strong> </p>
+<p>The ‘loss tangent’ $\tan\delta$: </p>
+<script type="math/tex; mode=display">
+\tan\delta=\frac{1}{\omega CR}</script><p>The ‘quality factor’ $Q$: </p>
+<script type="math/tex; mode=display">
+Q = R\sqrt{\frac{C}{L}}=\omega_nCR</script><h3 id="Sec-4-3-Inductive-sensing-elements"><a href="#Sec-4-3-Inductive-sensing-elements" class="headerlink" title="Sec 4.3 Inductive sensing elements"></a>Sec 4.3 Inductive sensing elements</h3><h4 id="4-3-1-Variable-inductance-variable-reluctance-displacement-sensors"><a href="#4-3-1-Variable-inductance-variable-reluctance-displacement-sensors" class="headerlink" title="4.3.1 Variable inductance (variable reluctance) displacement sensors"></a>4.3.1 Variable inductance (variable reluctance) displacement sensors</h4><p><img src = "https://img.dexbug.com/i/2025/04/30/1250cpk.png" width = 50%></p>
+<p>A magnetic circuit consists of a loop or core of ferromagnetic material on which is wound a coil of $n$ turns carrying a current $i$</p>
+<p>The coil is a source of magnetomotive force (m.m.f.) which drives a flux $\phi$ through the magnetic circuit.</p>
+<p>The equation for a magnetic circuit is:</p>
+<script type="math/tex; mode=display">
+\text{m.m.f.} = \text{flux} \times \text{reluctance}=\phi\times\mathcal{R}</script><p>The m.m.f. = $ni$, so that the flux $\phi$ in the magnetic circuit is:</p>
+<script type="math/tex; mode=display">
+\phi=\frac{ni}{\mathcal{R}}\ \text{weber}</script><p>This is the flux linked by a single turn of the coil; the total flux $N$ linked by the entire coil of $n$ turns is</p>
+<script type="math/tex; mode=display">
+N = n\phi=\frac{n^2i}{\mathcal{R}}</script><p>The self - inductance $L$ of the coil is the total flux per unit current, i.e.</p>
+<script type="math/tex; mode=display">
+L=\frac{N}{i}=\frac{n^2}{\mathcal{R}}</script><p>The reluctance $\mathcal{R}$ of a magnetic circuit is given by:</p>
+<script type="math/tex; mode=display">
+\mathcal{R}=\frac{l}{\mu\mu_0A}</script><p>where:</p>
+<ul>
+<li>$l$: the total length of the flux path</li>
+<li>$\mu$: the relative permeability of the circuit material</li>
+<li>$\mu_0$: the permeability of free space = $4\pi\times10^{-7}\ \text{Hm}^{-1}$</li>
+<li>$A$: the cross - sectional area of the flux path </li>
+</ul>
+<p><strong>Quick Summary</strong></p>
+<p><img src = https://img.dexbug.com/i/2025/04/30/12cde0i.png width = 60%></p>
+<ul>
+<li>The Influence of Air Gap on Magnetic Circuit Parameters:</li>
+</ul>
+<blockquote>
+<p>The relative permeability of air is close to 1, while that of the core material reaches several thousand. <strong>The presence of an air gap will significantly increase the magnetic reluctance of the magnetic circuit</strong>, and at the same time <strong>cause a corresponding decrease in magnetic flux and inductance.</strong></p>
+</blockquote>
+<h4 id="4-3-2-Reluctance-calculation-for-typical-element"><a href="#4-3-2-Reluctance-calculation-for-typical-element" class="headerlink" title="4.3.2 Reluctance calculation for typical element"></a>4.3.2 Reluctance calculation for typical element</h4><p><img src = "https://img.dexbug.com/i/2025/04/30/12gw87c.png"></p>
+<p>The total reluctance of the magnetic circuit is the sum of the individual reluctance, i.e.</p>
+<script type="math/tex; mode=display">
+\mathcal{R}_{\text{TOTAL}}=\mathcal{R}_{\text{CORE}}+\mathcal{R}_{\text{GAP}}+\mathcal{R}_{\text{ARMATURE}}</script><script type="math/tex; mode=display">
+\mathcal{R}_{\text{CORE}}=\frac{\pi R}{\mu_0\mu_C\pi r^2}=\frac{R}{\mu_0\mu_Cr^2}</script><script type="math/tex; mode=display">
+\mathcal{R}_{\text{GAP}}=\frac{2d}{\mu_0\pi r^2}</script><script type="math/tex; mode=display">
+\mathcal{R}_{\text{ARMATURE}}=\frac{2R}{\mu_0\mu_A2rt}=\frac{R}{\mu_0\mu_Art}</script><script type="math/tex; mode=display">
+\mathcal{R}_{\text{TOTAL}}=\frac{R}{\mu_0\mu_Cr^2}+\frac{2d}{\mu_0\pi r^2}+\frac{R}{\mu_0\mu_Art}</script><script type="math/tex; mode=display">
+\mathcal{R}_{\text{TOTAL}}=\mathcal{R}_0 + kd</script><p>where</p>
+<script type="math/tex; mode=display">
+\mathcal{R}_0=\frac{R}{\mu_0r}\left[\frac{1}{\mu_Cr}+\frac{1}{\mu_At}\right]=\text{reluctance at zero air gap}</script><script type="math/tex; mode=display">
+k = \frac{2}{\mu_0\pi r^2}</script><script type="math/tex; mode=display">
+L=\frac{n^2}{\mathcal{R}_0 + kd}=\frac{L_0}{1+\alpha d}</script><p>where $L_0 = n^2/\mathcal{R}_0=\text{inductance at zero gap}$ and $\alpha = k/\mathcal{R}_0$ </p>
+<h4 id="4-3-3-Differential-or-push-pull-reluctance-displacement-sensor"><a href="#4-3-3-Differential-or-push-pull-reluctance-displacement-sensor" class="headerlink" title="4.3.3 Differential or push/pull reluctance displacement sensor"></a>4.3.3 Differential or push/pull reluctance displacement sensor</h4><p><img src = "https://img.dexbug.com/i/2025/04/30/12kkseu.png" width = 60%></p>
+<p>This consists of an armature moving between two identical cores, separated by a fixed distance $2a$.</p>
+<script type="math/tex; mode=display">
+L_1=\frac{L_0}{1+\alpha(a - x)}, \quad L_2=\frac{L_0}{1+\alpha(a + x)}</script><h4 id="4-3-4-Linear-Variable-Differential-Transformer-LVDT-displacement-sensor"><a href="#4-3-4-Linear-Variable-Differential-Transformer-LVDT-displacement-sensor" class="headerlink" title="4.3.4 Linear Variable Differential Transformer (LVDT) displacement sensor"></a>4.3.4 Linear Variable Differential Transformer (LVDT) displacement sensor</h4><p><img src = "https://img.dexbug.com/i/2025/04/30/12lqbrw.png"></p>
+<p>The waveforms at A:</p>
+<blockquote>
+<p>$V_{1}-V_{2}$ is 180° out of phase with the primary voltage $V_{P}$</p>
+</blockquote>
+<p>The waveforms at C: </p>
+<blockquote>
+<p>$V_{1}-V_{2}$ has therefore minimum amplitude (ideally zero) and C is termed <strong>the null point</strong>.</p>
+</blockquote>
+<p>The waveforms at B: </p>
+<blockquote>
+<p>$V_{1}-V_{2}$ is in phase with the primary voltage.</p>
+<p>Therefore $V_{1}-V_{2}$ has the same amplitude at positions A and B but there is a phase difference of 180°.</p>
+</blockquote>
+<p>A.C. and D.C. characteristics of LVDT:</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/65xgd.png"></p>
+<p>The a.c. voltage $V_{1}-V_{2}$ is converted to d.c. in a way which distinguishes between positions such as A and B either side of the null point C.</p>
+<h3 id="Sec-4-4-Electromagnetic-sensing-elements"><a href="#Sec-4-4-Electromagnetic-sensing-elements" class="headerlink" title="Sec 4.4 Electromagnetic sensing elements"></a>Sec 4.4 Electromagnetic sensing elements</h3><p>These elements are used for the measurement of <strong>linear and angular velocity</strong>. </p>
+<script type="math/tex; mode=display">
+E=-\frac{d N}{ d t}</script><h4 id="4-4-1-Variable-reluctance-tachogenerator"><a href="#4-4-1-Variable-reluctance-tachogenerator" class="headerlink" title="4.4.1 Variable reluctance tachogenerator"></a>4.4.1 Variable reluctance tachogenerator</h4><p><img src = "https://img.dexbug.com/i/2025/05/01/7z6zl.png" width = 80%></p>
+<p>The flux in the circuit is given by $\phi= m.m.f. \mathscr{R}$, and the total flux N linked by a coil of n turns is:</p>
+<script type="math/tex; mode=display">
+N = n\phi=\frac{n\times\text{m.m.f.}}{\mathscr{R}}</script><p>Output signal for variable reluctance tachogenerator: </p>
+<script type="math/tex; mode=display">
+E=b m \omega_{r} \sin m \omega_{r} t</script><p>where $a$ is the mean flux, $b$ is the amplitude of the flux variation, $\omega_r$ is the angular velocity of the wheel and $m$ is the number of teeth.</p>
+
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/autocontrol.html">ME Control(EN)</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/dc.html">Digital Circuit(EN)</a></div></section></div>
@@ -352,7 +734,7 @@ K_M&=\frac{2}{I_{MIN}+I_{MAX}}\left[\frac{\Delta O}{\Delta I_{I,M}}-K_I\right]
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Introductiom"><span class="toc-text">Chap1 Introductiom</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Definition-of-measurement-system"><span class="toc-text">Sec 1.1 Definition of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Structure-of-measurement-system"><span class="toc-text">Sec 1.2 Structure of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Applications"><span class="toc-text">Sec 1.3 Applications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Methods-of-measurement"><span class="toc-text">Sec 1.4 Methods of measurement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-Definition-of-sensors"><span class="toc-text">Sec 1.5 Definition of sensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-6-Sensor-classification"><span class="toc-text">Sec 1.6 Sensor classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-Passive-and-active"><span class="toc-text">1.6.1 Passive and active</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-Absolute-and-relative"><span class="toc-text">1.6.2 Absolute and relative</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-7-Important-variables-and-their-units"><span class="toc-text">Sec 1.7 Important variables and their units</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Static-characteristics"><span class="toc-text">Chap 2 Static characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Meaning-of-static-characteristic-of-a-measurement-system"><span class="toc-text">Sec 2.1 Meaning of static characteristic of a measurement system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Systematic-characteristics"><span class="toc-text">2.1.1 Systematic characteristics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-Generalised-model-of-a-measurement-system"><span class="toc-text">2.2.2 Generalised model of a measurement system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Statistical-characteristics"><span class="toc-text">Sec 2.2 Statistical characteristics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-3-Calibration"><span class="toc-text">Sec 2.3 Calibration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-4-Experimental-measurements-and-evaluation-of-results"><span class="toc-text">Sec 2.4 Experimental measurements and evaluation of results</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Dynamic-Characteristics"><span class="toc-text">Chap 3 Dynamic Characteristics</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-1-Introduction"><span class="toc-text">Chap 1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Definition-of-measurement-system"><span class="toc-text">Sec 1.1 Definition of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Structure-of-measurement-system"><span class="toc-text">Sec 1.2 Structure of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Applications"><span class="toc-text">Sec 1.3 Applications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Methods-of-measurement"><span class="toc-text">Sec 1.4 Methods of measurement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-Definition-of-sensors"><span class="toc-text">Sec 1.5 Definition of sensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-6-Sensor-classification"><span class="toc-text">Sec 1.6 Sensor classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-Passive-and-active"><span class="toc-text">1.6.1 Passive and active</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-Absolute-and-relative"><span class="toc-text">1.6.2 Absolute and relative</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-7-Important-variables-and-their-units"><span class="toc-text">Sec 1.7 Important variables and their units</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Static-characteristics"><span class="toc-text">Chap 2 Static characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Meaning-of-static-characteristic-of-a-measurement-system"><span class="toc-text">Sec 2.1 Meaning of static characteristic of a measurement system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Systematic-characteristics"><span class="toc-text">2.1.1 Systematic characteristics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-Generalised-model-of-a-measurement-system"><span class="toc-text">2.2.2 Generalised model of a measurement system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Statistical-characteristics"><span class="toc-text">Sec 2.2 Statistical characteristics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-3-Calibration"><span class="toc-text">Sec 2.3 Calibration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-4-Experimental-measurements-and-evaluation-of-results"><span class="toc-text">Sec 2.4 Experimental measurements and evaluation of results</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Dynamic-Characteristics"><span class="toc-text">Chap 3 Dynamic Characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Transfer-function-G-s-for-typical-system-elements"><span class="toc-text">Sec 3.1 Transfer function $G(s)$ for typical system elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-First-order-element"><span class="toc-text">3.1.1 First-order element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-Second-order-elements"><span class="toc-text">3.1.2 Second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-2-Identification-of-the-dynamics-of-an-element"><span class="toc-text">Sec 3.2 Identification of the dynamics of an element</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-Step-response"><span class="toc-text">3.2.1 Step response</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-Sinusoidal-response-of-first-and-second-order-elements"><span class="toc-text">3.2.2 Sinusoidal response of first- and second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-3-Dynamic-errors-in-measurement-systems"><span class="toc-text">Sec 3.3 Dynamic errors in measurement systems</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-4-Undistorted-measurement-conditions"><span class="toc-text">Sec 3.4 Undistorted measurement conditions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-Typical-sensing-elements-Part-1"><span class="toc-text">Chap 4 Typical sensing elements (Part 1)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-1-Typical-sensing-elements"><span class="toc-text">Sec 4.1 Typical sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-Potentiometers-for-linear-and-angular-displacement-measurement"><span class="toc-text">4.1.1 Potentiometers for linear and angular displacement measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-Resistive-metal-and-semiconductor-sensors-for-temperature-measurement"><span class="toc-text">4.1.2 Resistive metal and semiconductor sensors for temperature measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-Metal-and-semiconductor-resistive-strain-gauges"><span class="toc-text">4.1.3 Metal and semiconductor resistive strain gauges</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-Semiconductor-resistive-gas-sensors"><span class="toc-text">4.1.4 Semiconductor resistive gas sensors</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-2-Capacitive-sensing-elements"><span class="toc-text">Sec 4.2 Capacitive sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-3-Inductive-sensing-elements"><span class="toc-text">Sec 4.3 Inductive sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-Variable-inductance-variable-reluctance-displacement-sensors"><span class="toc-text">4.3.1 Variable inductance (variable reluctance) displacement sensors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-Reluctance-calculation-for-typical-element"><span class="toc-text">4.3.2 Reluctance calculation for typical element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-Differential-or-push-pull-reluctance-displacement-sensor"><span class="toc-text">4.3.3 Differential or push&#x2F;pull reluctance displacement sensor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-Linear-Variable-Differential-Transformer-LVDT-displacement-sensor"><span class="toc-text">4.3.4 Linear Variable Differential Transformer (LVDT) displacement sensor</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-4-Electromagnetic-sensing-elements"><span class="toc-text">Sec 4.4 Electromagnetic sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-Variable-reluctance-tachogenerator"><span class="toc-text">4.4.1 Variable reluctance tachogenerator</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
