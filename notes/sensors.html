@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Chap1 IntroductiomSec 1.1 Definition of measurement systemThe measurement is the process by which one can convert physical parameters to meaningful numbers.   A measurement system is an information sy">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-12T08:57:59.071Z">
-<meta property="article:modified_time" content="2025-04-12T08:57:59.071Z">
+<meta property="article:published_time" content="2025-04-30T06:49:46.466Z">
+<meta property="article:modified_time" content="2025-04-30T06:49:46.466Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -127,7 +127,8 @@
 <li><strong>Absolute sensor</strong>: it detects a stimulus in reference to an absolute physical scale that is independent of the measurement conditions.</li>
 <li><strong>Relative sensor</strong>: it produces a signal that relates to some special case.</li>
 </ol>
-<h2 id="Chap-2-Measurement-system-Characteristic-and-Principles"><a href="#Chap-2-Measurement-system-Characteristic-and-Principles" class="headerlink" title="Chap 2 Measurement system Characteristic and Principles"></a>Chap 2 Measurement system Characteristic and Principles</h2><h3 id="Sec-2-1-Static-characteristics"><a href="#Sec-2-1-Static-characteristics" class="headerlink" title="Sec 2.1 Static characteristics"></a>Sec 2.1 Static characteristics</h3><p><img src = "https://img.dexbug.com/i/2025/04/07/r5no5w.png"></p>
+<h3 id="Sec-1-7-Important-variables-and-their-units"><a href="#Sec-1-7-Important-variables-and-their-units" class="headerlink" title="Sec 1.7 Important variables and their units"></a>Sec 1.7 Important variables and their units</h3><p><img src = "https://img.dexbug.com/i/2025/04/30/mha9ww.png"></p>
+<h2 id="Chap-2-Static-characteristics"><a href="#Chap-2-Static-characteristics" class="headerlink" title="Chap 2 Static characteristics"></a>Chap 2 Static characteristics</h2><h3 id="Sec-2-1-Meaning-of-static-characteristic-of-a-measurement-system"><a href="#Sec-2-1-Meaning-of-static-characteristic-of-a-measurement-system" class="headerlink" title="Sec 2.1 Meaning of static characteristic of a measurement system"></a>Sec 2.1 Meaning of static characteristic of a measurement system</h3><p><img src = "https://img.dexbug.com/i/2025/04/07/r5no5w.png"></p>
 <ul>
 <li>Static or steady-state characteristics;</li>
 <li>The relationships which may occur between the output $O$ and input $I$ of an element when $I$ is either at a constant value or changing slowly.</li>
@@ -167,7 +168,7 @@
 <li><strong>Sensitivity</strong></li>
 </ul>
 <p>This is the change $\Delta O$ output $O$ for unit change $\Delta I$ input $I$.</p>
-<p>If the $\Delta I$ tends to zero, we can find that the sensitivity $ \Delta O \setminus \Delta I $ is the derivative $ \text{d} O \setminus \text{d} I $.</p>
+<p>If the $\Delta I$ tends to zero, we can find that the sensitivity $\Delta O \setminus \Delta I$ is the derivative $\text{d} O \setminus \text{d} I$.</p>
 <ul>
 <li><strong>Hysteresis</strong></li>
 </ul>
@@ -209,7 +210,80 @@ O = KI + a + N(I) + K_MI_MI+K_II_I</script><p>Where:</p>
 
 <p>Interfering Inputs - Quantities to which instrument is unintentionally sensitive.</p>
 <p>Modifying Inputs - Quantities which cause changes in Input-Output relations of desired and interfering inputs.</p>
-
+<h4 id="2-2-2-Generalised-model-of-a-measurement-system"><a href="#2-2-2-Generalised-model-of-a-measurement-system" class="headerlink" title="2.2.2 Generalised model of a measurement system"></a>2.2.2 Generalised model of a measurement system</h4><p><img src = "https://img.dexbug.com/i/2025/04/30/n5v3om.png"></p>
+<script type="math/tex; mode=display">
+O = KI + a+N(I)+K_MI_M + K_II</script><h3 id="Sec-2-2-Statistical-characteristics"><a href="#Sec-2-2-Statistical-characteristics" class="headerlink" title="Sec 2.2 Statistical characteristics"></a>Sec 2.2 Statistical characteristics</h3><ul>
+<li><strong>Repeatability</strong></li>
+</ul>
+<blockquote>
+<p>This is the ability of an measurement system to give the same output for the same input.</p>
+</blockquote>
+<p>Lacking of repeatability is due to random effects in the system and its environment. The most common cause is random fluctuations with time in the environment inputs $I_I$ and $I_M$.</p>
+<ul>
+<li><strong>Tolerance</strong></li>
+</ul>
+<p>This effect is found in any batch of ��identical�� sensors or other elements. Significant variations are found in batches of thermocouples and thermistors, for example.</p>
+<h3 id="Sec-2-3-Calibration"><a href="#Sec-2-3-Calibration" class="headerlink" title="Sec 2.3 Calibration"></a>Sec 2.3 Calibration</h3><p>Calibration is a type of experiment to find static characteristics of a sensor or a measurement system by measuring corresponding values of the input $I$, the output $O$ and the environment inputs $I_M$ and $I_I$,when I is constant value or changing slowly.</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/nb009r.png"></p>
+<p><strong>STANDARD</strong>:</p>
+<ul>
+<li><p>NPL (National Physical Laboratory)</p>
+<blockquote>
+<p>Support the manufacture to obtain primary measurement standards for key physical variables such as time, length, mass, current, and temperature</p>
+</blockquote>
+</li>
+<li><p>NEL (National Engineering Laboratory)</p>
+<blockquote>
+<p>Obtain other important industrial variables such as the density and flow rate of gases and liquids</p>
+</blockquote>
+</li>
+<li><p>UKAS (United Kingdom Accreditation Service)</p>
+<blockquote>
+<p>There is a network of laboratories and centers throughout the country which maintain transfer or intermediate standards.</p>
+</blockquote>
+</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/ndepkx.png" width = 70%></p>
+<h3 id="Sec-2-4-Experimental-measurements-and-evaluation-of-results"><a href="#Sec-2-4-Experimental-measurements-and-evaluation-of-results" class="headerlink" title="Sec 2.4 Experimental measurements and evaluation of results"></a>Sec 2.4 Experimental measurements and evaluation of results</h3><ol>
+<li>$O$ versus $I$ with $I_M = I_I = 0$</li>
+</ol>
+<p>The nonlinearity and hysteresis can be found.</p>
+<p><img src = "https://img.dexbug.com/i/2025/04/30/njhul7.png" ></p>
+<ol>
+<li>$O$ versus $I_M$ ,$I_I$ with constant $I$</li>
+</ol>
+<ul>
+<li>Identify $K_I$</li>
+</ul>
+<p>The input $I$ is held constant at $I = I_{\mathrm{MIN}}$, and one environmental input is changed by <strong>a known amount</strong>, the rest being kept at <strong>standard values</strong>. If there is a resulting change $\Delta O$ in $O$, then the input $I_I$ is <strong>interfering</strong> and the value of the corresponding coefficient $K_I$ is given by $K_I=\Delta O/\Delta I_I$.</p>
+<p>If there is <strong>no change</strong> in $O$, then the input <strong>is not interfering</strong>; the process is repeated until all interfering inputs are identified and the corresponding $K_I$ values found.</p>
+<p><strong>Why the input $I$ is held constant at $I = I_{\mathrm{MIN}}$?</strong></p>
+<blockquote>
+<p><em>The answer comes from AI</em></p>
+<p>Holding $I$ at $I_{\min}$ <strong>sets the element exactly at its zero - bias operating point</strong>, so that any subsequent change in $O$ when you vary an environmental input must be due to interference��not simply the normal response to your main signal.</p>
+</blockquote>
+<ul>
+<li>Identify $K_M$</li>
+</ul>
+<p>The input $I$ is held constant at the <strong>mid - range value</strong> $1/2(I_{MIN}+I_{MAX})$ and each environmental input is varied in <strong>turn</strong> by a known amount.</p>
+<p>If a change in input produces <strong>a change $\Delta O$ in $O$</strong> and is not an interfering input, then it must be a <strong>modifying input</strong> $I_M$ and the value of the corresponding coefficient $K_M$ is given by:</p>
+<script type="math/tex; mode=display">
+K_M=\frac{1}{I}\frac{\Delta O}{\Delta I_M}=\frac{2}{I_{MIN}+I_{MAX}}\frac{\Delta O}{\Delta I_M}</script><p>Suppose a change is identified <strong>as an interfering input</strong> with a known value of $K_I$. Then we must calculate <strong>a non - zero value of $K_M$</strong> before we can be sure that the input is also modifying.</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\Delta O&=K_I\Delta I_{I,M}+K_M\Delta I_{I,M}\frac{I_{MIN}+I_{MAX}}{2}\\
+K_M&=\frac{2}{I_{MIN}+I_{MAX}}\left[\frac{\Delta O}{\Delta I_{I,M}}-K_I\right]
+\end{align*}</script><p><strong>Why the input $I$ is held constant at the </strong>mid - range value<strong> $1/2(I_{MIN}+I_{MAX})$ ?</strong></p>
+<blockquote>
+<p><em>The answer comes from AI</em></p>
+<p>Mid-range gives you the biggest, cleanest ��window�� through which to observe how temperature, humidity, bias voltage, etc., are warping your transducer��s gain��without confusion from endpoint non-linearities or offset shifts.</p>
+</blockquote>
+<ol>
+<li>Repeatability test</li>
+</ol>
+<p>This test should be carried out in the normal working environment of the element.</p>
+<p>The signal input $I$ should <strong>be held constant at mid - range value</strong> and the output $O$ measured over <strong>an extended period</strong>, ideally many days, yielding a set of values $O_k, k = 1,2,\dots,N$.</p>
+<h2 id="Chap-3-Dynamic-Characteristics"><a href="#Chap-3-Dynamic-Characteristics" class="headerlink" title="Chap 3 Dynamic Characteristics"></a>Chap 3 Dynamic Characteristics</h2>
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/autocontrol.html">ME Control(EN)</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/dc.html">Digital Circuit(EN)</a></div></section></div>
@@ -278,7 +352,7 @@ O = KI + a + N(I) + K_MI_MI+K_II_I</script><p>Where:</p>
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Introductiom"><span class="toc-text">Chap1 Introductiom</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Definition-of-measurement-system"><span class="toc-text">Sec 1.1 Definition of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Structure-of-measurement-system"><span class="toc-text">Sec 1.2 Structure of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Applications"><span class="toc-text">Sec 1.3 Applications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Methods-of-measurement"><span class="toc-text">Sec 1.4 Methods of measurement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-Definition-of-sensors"><span class="toc-text">Sec 1.5 Definition of sensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-6-Sensor-classification"><span class="toc-text">Sec 1.6 Sensor classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-Passive-and-active"><span class="toc-text">1.6.1 Passive and active</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-Absolute-and-relative"><span class="toc-text">1.6.2 Absolute and relative</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Measurement-system-Characteristic-and-Principles"><span class="toc-text">Chap 2 Measurement system Characteristic and Principles</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Static-characteristics"><span class="toc-text">Sec 2.1 Static characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Systematic-characteristics"><span class="toc-text">2.1.1 Systematic characteristics</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Introductiom"><span class="toc-text">Chap1 Introductiom</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Definition-of-measurement-system"><span class="toc-text">Sec 1.1 Definition of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Structure-of-measurement-system"><span class="toc-text">Sec 1.2 Structure of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Applications"><span class="toc-text">Sec 1.3 Applications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Methods-of-measurement"><span class="toc-text">Sec 1.4 Methods of measurement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-Definition-of-sensors"><span class="toc-text">Sec 1.5 Definition of sensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-6-Sensor-classification"><span class="toc-text">Sec 1.6 Sensor classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-Passive-and-active"><span class="toc-text">1.6.1 Passive and active</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-Absolute-and-relative"><span class="toc-text">1.6.2 Absolute and relative</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-7-Important-variables-and-their-units"><span class="toc-text">Sec 1.7 Important variables and their units</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Static-characteristics"><span class="toc-text">Chap 2 Static characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Meaning-of-static-characteristic-of-a-measurement-system"><span class="toc-text">Sec 2.1 Meaning of static characteristic of a measurement system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Systematic-characteristics"><span class="toc-text">2.1.1 Systematic characteristics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-Generalised-model-of-a-measurement-system"><span class="toc-text">2.2.2 Generalised model of a measurement system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Statistical-characteristics"><span class="toc-text">Sec 2.2 Statistical characteristics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-3-Calibration"><span class="toc-text">Sec 2.3 Calibration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-4-Experimental-measurements-and-evaluation-of-results"><span class="toc-text">Sec 2.4 Experimental measurements and evaluation of results</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Dynamic-Characteristics"><span class="toc-text">Chap 3 Dynamic Characteristics</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
