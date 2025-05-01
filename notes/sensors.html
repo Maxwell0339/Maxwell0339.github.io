@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Chap 1 IntroductionSec 1.1 Definition of measurement systemThe measurement is the process by which one can convert physical parameters to meaningful numbers.   A measurement system is an information s">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-30T16:20:07.399Z">
-<meta property="article:modified_time" content="2025-04-30T16:20:07.399Z">
+<meta property="article:published_time" content="2025-05-01T07:59:54.051Z">
+<meta property="article:modified_time" content="2025-05-01T07:59:54.051Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -665,7 +665,205 @@ E=-\frac{d N}{ d t}</script><h4 id="4-4-1-Variable-reluctance-tachogenerator"><a
 N = n\phi=\frac{n\times\text{m.m.f.}}{\mathscr{R}}</script><p>Output signal for variable reluctance tachogenerator: </p>
 <script type="math/tex; mode=display">
 E=b m \omega_{r} \sin m \omega_{r} t</script><p>where $a$ is the mean flux, $b$ is the amplitude of the flux variation, $\omega_r$ is the angular velocity of the wheel and $m$ is the number of teeth.</p>
+<h2 id="Chap-5-Typical-sensing-elements-Part-2"><a href="#Chap-5-Typical-sensing-elements-Part-2" class="headerlink" title="Chap 5 Typical sensing elements (Part 2)"></a>Chap 5 Typical sensing elements (Part 2)</h2><h3 id="Sec-5-1-Thermoelectric-sensing-elements"><a href="#Sec-5-1-Thermoelectric-sensing-elements" class="headerlink" title="Sec 5.1 Thermoelectric sensing elements"></a>Sec 5.1 Thermoelectric sensing elements</h3><p>If two different metals A and B are joined together, there is a difference in electrical potential across the junction called the <strong>junction potential</strong>.</p>
+<p>The junction potential depends on the metals A and B and the temperature $T^{\circ} C$ of the junction, and is given by a power series of the form: </p>
+<script type="math/tex; mode=display">
+E_{T}^{A B}=a_{1} T+a_{2} T^{2}+a_{3} T^{3}+a_{4} T^{4}+...</script><p>Thermocouple is a closed circuit consisting of two junctions at different temperatures $T_{1}$ and $T_{2}^{\circ} C$. If a high -impedance voltmeter is introduced into the circuit, so that current flow is negligible, then the measured e.m.f. is, to a close approximation, the difference of the junction potentials, i.e. </p>
+<script type="math/tex; mode=display">
+\begin{aligned} E_{T_{1}, T_{2}}^{A B} & =E_{T_{1}}^{A B}-E_{T_{2}}^{A B} \\ & =a_{1}\left(T_{1}-T_{2}\right)+a_{2}\left(T_{1}^{2}-T_{2}^{2}\right)+a_{3}\left(T_{1}^{3}-T_{2}^{3}\right)+... \end{aligned}</script><p><img src = "https://img.dexbug.com/i/2025/05/01/m2jldz.png"></p>
+<p><strong>Five laws:</strong></p>
+<ul>
+<li><strong>Law 1</strong>: the e.m.f. of a given thermocouple depends only on the temperatures of the junctions and is independent of the temperatures of the wires connecting the junctions.</li>
+<li><strong>Law 2</strong>: if a third metal C is introduced into A (or B) then, provided the two new junctions are at the same temperature $(T_{3})$, the e.m.f. is unchanged</li>
+<li><strong>Law 3</strong>: if a third metal C is inserted between A and B at either junction, then provided the two new junctions AC and CB are both at the same temperature $(T_{1}$ or $T_{2})$ then the e.m.f. is unchanged</li>
+<li><strong>Law 4</strong> (law of intermediate metals) can be used, for example, to deduce the e.m.f. of a copper–iron (AB) thermocouple, given the e.m.f. values for copper–constantan (AC) and constantan–iron (CB) thermocouples.</li>
+<li>The Law 5 (law of intermediate temperatures) is used in interpreting e.m.f. measurements. For a given pair of metals we have: </li>
+</ul>
+<script type="math/tex; mode=display">
+E_{T_{1}, T_{2}}=E_{T_{1}, T_{3}}+E_{T_{3}, T_{2}}</script><p>where $T_{3}$ is the intermediate temperature. If $T_{2}=0^{\circ} C$ then </p>
+<script type="math/tex; mode=display">
+E_{T_{1}, 0}=E_{T_{1}, T_{3}}+E_{T_{3}, 0}</script><p><img src = "https://img.dexbug.com/i/2025/05/01/m57t7p.png"></p>
+<p>For example, there are four installation methods of thermocouples:</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/mcdanr.png" width = 80%></p>
+<ul>
+<li><strong>Installation a:</strong> completely useless</li>
+</ul>
+<p>The reference junction temperature $T_2$ can vary widely from sub - zero temperatures in cold weather to possibly +50 ${}^{\circ}C$ if a steam leak occurs; the measured e.m.f. is therefore meaningless.</p>
+<ul>
+<li><strong>Installation b:</strong> equally useless</li>
+</ul>
+<p>The reference junction is still located outside the pipe.</p>
+<ul>
+<li><strong>Installation c:</strong> an improvement. However, this is still not satisfactory for most applications,</li>
+</ul>
+<p>The reference junction is now in the control room where the variation in ambient temperature is smaller, possibly 10 ${}^{\circ}C$ at most.</p>
+<ul>
+<li><strong>Installation d:</strong> an alternative solution</li>
+</ul>
+<p>The thermocouple e.m.f. is $E_{T_1,T_2}$ for a measured junction temperature of $T_1$ °C and a reference junction temperature of $T_2$ °C ($T_2$ around 20 °C). If we introduce a second source of e.m.f. of magnitude $E_{T_2,0}$ into the circuit in series with $E_{T_1,T_2}$, then the voltmeter measures $E_{T_1,T_2}+E_{T_2,0}$ which is equal to $E_{T_1,0}$.</p>
+<p>The e.m.f. source producing (E_{T 2,0}) is known as an automatic reference junction compensation circuit (ARJCC). </p>
+<script type="math/tex; mode=display">
+E_{T_{2}, 0}=a_{1} T_{2}+a_{2} T^{2}+a_{3} T_{2}^{3}+...</script><p>but since (T_{2}) is small, $E_{T 2,0} ≈a_{1} T_{2}$</p>
+<p>Using the defection bridge circuit:</p>
+<p>The output voltage of the bridge must be equal to $E_{T 2,0}$ , so that we require: </p>
+<script type="math/tex; mode=display">
+E_{T_{2}, 0}=a_{1} T_{2}=V_{S} \frac{R_{2}}{R_{3}} \alpha T_{2} \Rightarrow V_{S} \frac{R_{2}}{R_{3}}=\frac{a_{1}}{\alpha}</script><p>In order to find an accurate estimate of $T_{1}$ from $E_{T 1,0}$ an inverse equation of the form </p>
+<script type="math/tex; mode=display">
+T_{1}=a_{1}' E_{T_{1}, 0}+a_{2}' E_{T_{1}, 0}^{2}+a_{3}' E_{T_{1}, 0}^{3}+a_{4}' E_{T_{1}, 0}^{4}+...</script><p>In order to give mechanical and chemical protection, the thermocouple is often enclosed in a thermowell or sheath. An alternative is the mineral insulated thermocouple.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/n9g2ut.png" width = 50%></p>
+<p>This is a complete package, where the space between the thermocouple wires and metal case is filled with material which is both a good heat conductor and an electrical insulator.</p>
+<h3 id="Sec-5-2-Elastic-sensing-elements"><a href="#Sec-5-2-Elastic-sensing-elements" class="headerlink" title="Sec 5.2 Elastic sensing elements"></a>Sec 5.2 Elastic sensing elements</h3><p>If a force is applied to a spring, then the amount of extension or compression of the spring is approximately proportional to the applied force. Elastic elements are also commonly used for measuring torque, pressure and acceleration, which are related to force by the equations: </p>
+<script type="math/tex; mode=display">
+\begin{align*}
+    & torque = force \times distance \\
 
+    &  pressure =\frac{ force }{ area } \\
+
+    & acceleration =\frac{ force }{ mass } \\
+\end{align*}</script><h4 id="5-2-1-Dynamic-models-of-elastic-elements-for-measuring-linear-acceleration"><a href="#5-2-1-Dynamic-models-of-elastic-elements-for-measuring-linear-acceleration" class="headerlink" title="5.2.1 Dynamic models of elastic elements for measuring linear acceleration"></a>5.2.1 Dynamic models of elastic elements for measuring linear acceleration</h4><p><img src = "https://img.dexbug.com/i/2025/05/01/nc3o6k.png" width = 60%></p>
+<script type="math/tex; mode=display">
+m\ddot{x}+\lambda\dot{x}+kx = ma</script><script type="math/tex; mode=display">
+\frac{\Delta\ddot{x}}{\Delta\ddot{a}}(s)=\frac{\frac{1}{\omega_n^2}}{\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1}</script><script type="math/tex; mode=display">
+\omega_n=\sqrt{\frac{k}{m}}, \xi=\frac{\lambda}{2\sqrt{km}}, K=\frac{1}{\omega_n^2}</script><h4 id="5-2-2-Dynamic-models-of-elastic-elements-for-measuring-torque"><a href="#5-2-2-Dynamic-models-of-elastic-elements-for-measuring-torque" class="headerlink" title="5.2.2 Dynamic models of elastic elements for measuring torque"></a>5.2.2 Dynamic models of elastic elements for measuring torque</h4><p><img src = "https://img.dexbug.com/i/2025/05/01/ncz8tw.png" width = 60%></p>
+<script type="math/tex; mode=display">
+m\ddot{x}+\lambda\dot{x}+kx = AP</script><script type="math/tex; mode=display">
+\frac{\Delta\ddot{x}}{\Delta\bar{P}}(s)=\frac{\frac{A}{k}}{\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1}</script><script type="math/tex; mode=display">
+\omega_n=\sqrt{\frac{k}{m}}, \xi=\frac{\lambda}{2\sqrt{km}}, K=\frac{A}{k}</script><p><strong>Dynamic models of elastic elements for measuring pressure</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/ndx7nk.png" width = 40%></p>
+<script type="math/tex; mode=display">
+I\ddot{\theta}+b\dot{\theta}+c\theta = I\phi</script><script type="math/tex; mode=display">
+\frac{\Delta\ddot{\theta}}{\Delta\bar{\phi}}(s)=\frac{\frac{1}{\omega_n^2}}{\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1}</script><script type="math/tex; mode=display">
+\omega_n=\sqrt{\frac{c}{I}}, \xi=\frac{b}{2\sqrt{cI}}, K=\frac{1}{\omega_n^2}</script><p><strong>Dynamic models of elastic elements for measuring angular acceleration</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/nelnyr.png" width = 40%></p>
+<script type="math/tex; mode=display">
+I\ddot{\theta}+b\dot{\theta}+c\theta = T</script><script type="math/tex; mode=display">
+\frac{\Delta\ddot{\theta}}{\Delta\bar{T}}(s)=\frac{\frac{1}{c}}{\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1}</script><script type="math/tex; mode=display">
+\omega_n=\sqrt{\frac{c}{I}}, \xi=\frac{b}{2\sqrt{cI}}, K=\frac{I}{c}</script><h4 id="5-2-3-Practical-elastic-sensing-elements"><a href="#5-2-3-Practical-elastic-sensing-elements" class="headerlink" title="5.2.3 Practical elastic sensing elements"></a>5.2.3 Practical elastic sensing elements</h4><p><img src = "https://img.dexbug.com/i/2025/05/01/nfxdih.png" width = 50%></p>
+<script type="math/tex; mode=display">
+e=\frac{6(l-x)}{w t^{2} E} F</script><p>where $E$ is Young’s modulus.</p>
+<p>Strain gauges 1 and 3 sense a tensile strain +$e$ so that their resistance increases by $\Delta R$. Gauges 2 and 4 sense a compressive strain -$e$ so that their resistance decreases by an equal amount.</p>
+<script type="math/tex; mode=display">
+\Delta R = GR_0e</script><p>where $G$ is the gauge factor and $R_0$ the unstrained resistance of the gauges. This gives:</p>
+<script type="math/tex; mode=display">
+R_1 = R_3 = R_0+\Delta R = R_0(1 + Ge)</script><script type="math/tex; mode=display">
+R_2 = R_4 = R_0-\Delta R = R_0(1 - Ge)</script><p><img src = "https://img.dexbug.com/i/2025/05/01/nl92nm.png" width = 50%></p>
+<script type="math/tex; mode=display">
+e_L=-\frac{F}{AE}</script><script type="math/tex; mode=display">
+e_T = -ve_L=\frac{+vF}{AE}</script><p>where $E$ and $v$ are respectively Young’s modulus and Poisson’s ratio for the pillar material. Strain gauges are bonded onto the pillar so that gauges 1 and 3 sense $e_T$ and gauges 2 and 4 sense $e_L$; thus:</p>
+<script type="math/tex; mode=display">
+R_1 = R_3 = R_0+R_0Ge_T=R_0\left(1+\frac{GvF}{AE}\right)</script><script type="math/tex; mode=display">
+R_2 = R_4 = R_0+R_0Ge_L=R_0\left(1 - \frac{GF}{AE}\right)</script><p><img src = "https://img.dexbug.com/i/2025/05/01/nmd70c.png" width = 50%></p>
+<p>This maximum strain is given by: </p>
+<script type="math/tex; mode=display">
+e=\frac{T}{\pi S a^{3}}</script><p>where S is the shear modulus of the shaft material and a is the radius of the shaft.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/nphljd.png" width = 50%></p>
+<script type="math/tex; mode=display">
+x=\frac{m}{k}a=\frac{1}{\omega_n^2}a</script><p>where $k$ is the effective stiffness of the strain gauges.</p>
+<script type="math/tex; mode=display">
+e=\frac{x}{L}=\frac{a}{\omega_n^2L}</script><p>Different types:</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/nr3n10.png" width = 50%></p>
+<p>For a flat circular diaphragm:</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/nsc7wd.png"></p>
+<p>The relation between applied pressure P and centre deflection $y_{c}$ is in general nonlinear, but this nonlinearity can be minimized by keeping the ratio $y_{c} /t$ small. Thus if the non-linearity is to be limited to 1% maximum we require: </p>
+<script type="math/tex; mode=display">
+0.5\left(\frac{y_{c}}{t}\right)^{2} \leq \frac{1}{100} \quad or \quad y_{c} \leq 0.14 t</script><h3 id="Sec-5-3-Piezoelectric-sensing-elements"><a href="#Sec-5-3-Piezoelectric-sensing-elements" class="headerlink" title="Sec 5.3 Piezoelectric sensing elements"></a>Sec 5.3 Piezoelectric sensing elements</h3><p>In a piezoelectric crystal, this deformation of the crystal lattice results in the crystal acquiring a net charge $q$, proportional to $x$, i.e.</p>
+<script type="math/tex; mode=display">
+q = Kx</script><script type="math/tex; mode=display">
+q=\frac{K}{k}F = dF \quad \text{Direct piezoelectric effect}</script><p>where $d = K/k\ \text{CN}^{-1}$ is the charge sensitivity to force.</p>
+<p>There is also an inverse effect where a voltage $V$ applied to the crystal causes a mechanical displacement $x$, i.e.</p>
+<script type="math/tex; mode=display">
+x = dV \quad \text{Inverse piezoelectric effect}</script><p>In order to measure the charge $q$, The capacitance of a parallel plate capacitor formed from a rectangular block of crystal of thickness $t$ is given by:</p>
+<script type="math/tex; mode=display">
+C_N=\frac{\varepsilon_0\varepsilon A}{t}</script><p>If the piezoelectric sensor is connected directly to a recorder (assumed to be a pure resistive load $R_{L}$) by a cable (assumed to be a pure capacitance $(C_{C}$) the complete equivalent circuit, i.e. the piezoelectric force measurement system.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/o2dl35.png" ></p>
+<script type="math/tex; mode=display">
+\begin{aligned} 
+    \frac{\Delta \overline{V}_{L}(s)}{\Delta \overline{i}_{N}(s)} & =\frac{R_{L}}{1+R_{L}\left(C_{N}+C_{C}\right) s} \\ & =\frac{10^{6}}{1+2.2 × 10^{-3} s} 
+\end{aligned}</script><script type="math/tex; mode=display">
+\frac{\Delta\tilde{V}_L(s)}{\Delta\tilde{i}_N(s)}=\frac{R_L}{1 + R_L(C_N + C_C)s} \quad \longrightarrow \quad \frac{\Delta\tilde{V}_L}{\Delta\tilde{F}}(s)=\frac{\Delta\tilde{V}_L}{\Delta\tilde{i}_N}\frac{\Delta\tilde{i}_N}{\Delta\tilde{x}}\frac{\Delta\tilde{x}}{\Delta\tilde{F}}</script><script type="math/tex; mode=display">
+\begin{align*}
+    \frac{\Delta\tilde{V}_L}{\Delta\tilde{F}}(s)&=\frac{R_L}{1 + R_L(C_N + C_C)s}K s\frac{1/k}{\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1}\\&=\frac{K}{k}\frac{1}{(C_N + C_C)}\frac{R_L(C_N + C_C)s}{1 + R_L(C_N + C_C)s}\frac{1}{\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1}
+\end{align*}</script><script type="math/tex; mode=display">
+\frac{\Delta\tilde{V}_L}{\Delta\tilde{F}}(s)=\frac{d}{(C_N + C_C)}\frac{\tau s}{(1 + \tau s)}\frac{1}{\left(\frac{1}{\omega_n^2}s^2+\frac{2\xi}{\omega_n}s + 1\right)}</script><p>where $\tau = R_L(C_N + C_C)$. </p>
+<p>The dynamic part of the system transfer function is:</p>
+<script type="math/tex; mode=display">
+G(s)=\frac{\tau_{S}}{(\tau s+1)} \frac{1}{\left(\frac{1}{\omega_{n}^{2}} s^{2}+\frac{2 \xi}{\omega_{n}} s+1\right)}</script><p>The second term is characteristic of all elastic elements and cannot be avoided; however, it causes no problems if the highest signal frequency $\omega_{MAX}$ is well below $\omega_n$.</p>
+<p>The first term $\tau s/(\tau s + 1)$ means that the system cannot be used for measuring d.c. and slowly varying forces. </p>
+<p><strong>Equivalent circuit for a piezoelectric measurement system</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/ow23th.png"></p>
+<p>Transfer characteristics of ideal charge amplifier </p>
+<script type="math/tex; mode=display">
+\frac{d V_{OUT }}{d t}=-\frac{1}{C_{F}} \frac{d q}{ d t} \quad \text{i.e.} \quad V_{OUT }=-\frac{q}{C_{F}}</script><p>The overall transfer function for the force measurement system with a charge amplifier is: </p>
+<script type="math/tex; mode=display">
+\frac{\Delta \overline{V}_{OUT }}{\Delta \overline{F}}(s)=\frac{d}{C_{F}} \frac{1}{\left(\frac{1}{\omega_{n}^{2}} s^{2}+\frac{2 \xi}{\omega_{n}} s+1\right)}</script><p>The steady-state sensitivity is now $d / C_{F}$, it depends only on the capacitance $C_F$. So the the $\tau s/(1 + \tau s)$ term is not present. However, <strong>the $R_{F}$ must be used to provide a path for d.c. current.</strong> The characteristic of low frequency domain is determined by $\frac{C_{F} R_{F} s}{(1+C_{F} R_{F} s)}$</p>
+<p><strong>Piezoelectric elements used for the measurement of acceleration and vibration</strong></p>
+<p>If the accelerometer casing is given an acceleration $a$, then there is a resulting inertia force $F = ma$ acting on the seismic mass and the piezoelectric crystal. This results in the crystal acquiring a charge $q = dF$, where <strong>$d\ CN^{-1}$ is the crystal charge sensitivity to force</strong>. The resulting <strong>steady - state charge sensitivity</strong> of the piezoelectric accelerometer is:</p>
+<script type="math/tex; mode=display">
+\frac{\Delta q}{\Delta a}=dm\quad \text{C}\ \text{m}^{-1}\ \text{s}^2</script><script type="math/tex; mode=display">
+\frac{\Delta q}{\Delta a}=9.81dm\quad \text{C}\ g^{-1}</script><p>If the accelerometer is used with a charge amplifier with feedback capacitance $C_F$, the corresponding <strong>steady - state system voltage sensitivity</strong> is:</p>
+<script type="math/tex; mode=display">
+\frac{\Delta V}{\Delta a}=\frac{9.81dm}{C_F}\quad \text{V}\ g^{-1}</script><p><img src = "https://img.dexbug.com/i/2025/05/01/p4osbb.png"></p>
+<blockquote>
+<ul>
+<li>(a) Compression mode</li>
+<li>(b) Shear mode</li>
+</ul>
+</blockquote>
+<p><strong>Question:</strong></p>
+<blockquote>
+<p>Piezoelectric sensors are more suitable to measure machines’ vibration than displacement sensors. Why? </p>
+<p><strong>ANS</strong></p>
+<p>Piezoelectric sensors have <strong>higher sensitivity and faster response characteristics</strong> than displacement sensors. They can effectively detect the dynamic force or pressure changes generated by machine vibrations and convert them into electrical signals for measurement and analysis.</p>
+</blockquote>
+<h3 id="Sec-5-4-Piezoresistive-sensing-elements"><a href="#Sec-5-4-Piezoresistive-sensing-elements" class="headerlink" title="Sec 5.4 Piezoresistive sensing elements"></a>Sec 5.4 Piezoresistive sensing elements</h3><p><img src = "https://img.dexbug.com/i/2025/05/01/p8sf5k.png" width = 70%></p>
+<p>Figure (a) shows a piezoresistive pressure sensor where p-type doping material is introduced into an n-type silicon diaphragm using <strong>ion implantation technology</strong>.</p>
+<p>Figure (b) shows how the element may be used to <strong>measure absolute, differential and gauge pressures</strong>.</p>
+<h3 id="Sec-5-5-Electrochemical-sensing-elements"><a href="#Sec-5-5-Electrochemical-sensing-elements" class="headerlink" title="Sec 5.5 Electrochemical sensing elements"></a>Sec 5.5 Electrochemical sensing elements</h3><h4 id="5-5-1-Ion-selective-electrodes"><a href="#5-5-1-Ion-selective-electrodes" class="headerlink" title="5.5.1 Ion selective electrodes"></a>5.5.1 Ion selective electrodes</h4><p>Ion selective electrodes (ISEs) are sensors which directly measure the activity or concentration of ions in solution.</p>
+<p>The Thévenin or open circuit e.m.f. of ISEs for monovalent ions is given by the modified Nernst equation:</p>
+<script type="math/tex; mode=display">
+E_{Th}=E_0+\frac{R\theta}{F}\log_e(a_X + K_{X/Y}a_Y)</script><ul>
+<li>$E_0$ = constant depending on electrode composition; $R$ = universal gas constant (8.314 J K⁻¹) </li>
+<li>$\theta$ = absolute temperature (K); $F$ = Faraday number (96 493 C)</li>
+<li>$a_X$ = activity of ion X in solution, e.g. K⁺; </li>
+<li>$a_Y$ = activity of ion Y in solution, e.g. Na⁺</li>
+<li>$K_{X/Y}$ = selectivity coefficient of X electrode to Y ($0 &lt; K &lt; 1$) </li>
+</ul>
+<p>An ion-selective electrode must be used with a suitable standard reference electrode, immersed in the same test solution.</p>
+<p>An important industrial application of ISEs is the measurement of the activity of hydrogen ions in solution.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/pfxs22.png" width = 40%></p>
+<p>Here the ISE is a membrane of a specially formulated glass. The glass electrode is highly selective to H⁺. The corresponding Thévenin e.m.f. for the sensor is:</p>
+<script type="math/tex; mode=display">
+E_{Th}=E_0+\frac{R\theta}{F}\log_e a_{H^+}</script><p>at $\theta = 298\ \text{K}$ (25 °C)</p>
+<script type="math/tex; mode=display">
+E_{Th}=E_0-\frac{8.314\times298\times2.303}{96493}\text{pH}</script><script type="math/tex; mode=display">
+E_{Th}=E_0 - 0.0592\ \text{pH}\ \text{V}</script><h4 id="5-5-2-Electrochemical-gas-sensors"><a href="#5-5-2-Electrochemical-gas-sensors" class="headerlink" title="5.5.2 Electrochemical gas sensors"></a>5.5.2 Electrochemical gas sensors</h4><p>Zirconia ($\text{ZrO}_2$), which is sensitive to oxygen.</p>
+<p>If the sensor is heated to around 600 to 700 °C, the following reversible electrochemical reaction takes place between oxygen molecules and electrons: </p>
+<script type="math/tex; mode=display">
+O_{2}+4 e^{-} \rightleftharpoons 2 O^{2-}</script><p>Thévenin e.m.f. for zirconia oxygen sensor:</p>
+<script type="math/tex; mode=display">
+E_{Th}=E_0+\frac{R\theta}{nF}\log_e\left(\frac{P_{\text{O}_2}^{\text{REF}}}{P_{\text{O}_2}^{\text{SAM}}}\right)</script><h4 id="5-5-3-Chemically-sensitive-field-effect-transistors-CHEMFET"><a href="#5-5-3-Chemically-sensitive-field-effect-transistors-CHEMFET" class="headerlink" title="5.5.3 Chemically sensitive field effect transistors (CHEMFET)"></a>5.5.3 Chemically sensitive field effect transistors (CHEMFET)</h4><p><img src = "https://img.dexbug.com/i/2025/05/01/piac08.png" width = 70%></p>
+<p>Initially $i_D$ increases linearly with $V_{DS}$, but increased $i_D$ causes the voltage in the drain area to rise. This means that as $V_{DS}$ increases further, the increase in $i_D$ gets smaller until it reaches a saturation value which is independent of $V_{DS}$. </p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/pizseb.png" width = 50%></p>
+<p>Figure below shows how the saturation current $i_D$ increases with $V_{GS}$ for a fixed value of $V_{DS}=5\ \text{V}$, for $V_{GS}&gt;V_T$; the relationship is non - linear. </p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/pjvmhe.png" width = 50%></p>
+<p><strong>ISFETs:</strong></p>
+<p>the FET is used directly <strong>as a sensor for ion concentration</strong>. There is now <strong>no metal gate but a reference electrode separate from the transistor</strong>. <strong>The solution to be analyzed is introduced into the space between the reference electrode and the gate area</strong>.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/pl3dhh.png" width = 60%></p>
+<h3 id="Sec-5-6-Hall-effect-sensors"><a href="#Sec-5-6-Hall-effect-sensors" class="headerlink" title="Sec 5.6 Hall effect sensors"></a>Sec 5.6 Hall effect sensors</h3><p><img src = "https://img.dexbug.com/i/2025/05/01/podir8.png" width = 60%></p>
+<ul>
+<li>$E$ = Hall electric field = $V/w\ \text{V/m}$</li>
+<li>$V$ = Hall voltage $\text{V}$</li>
+<li>$w$ = width of slab $\text{m}$</li>
+<li>$J$ = current density = $I/wt\ \text{Am}^{-2}$</li>
+<li>$t$ = slab thickness $\text{m}$</li>
+<li>$B$ = magnetic flux density $\text{T}$ (tesla)</li>
+<li>$R_H$ = Hall coefficient = $1/ne$</li>
+<li>$n$ = density of electrons or holes $\text{m}^{-3}$</li>
+<li>$e$ = charge on the electron $\text{C}$.</li>
+</ul>
+<p>The Hall voltage: </p>
+<script type="math/tex; mode=display">
+V=+\left(R_{H} / t\right) I B</script><h2 id="Chap-6-Signal-Conditioning-Elements"><a href="#Chap-6-Signal-Conditioning-Elements" class="headerlink" title="Chap 6 Signal Conditioning Elements"></a>Chap 6 Signal Conditioning Elements</h2>
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/autocontrol.html">ME Control(EN)</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/dc.html">Digital Circuit(EN)</a></div></section></div>
@@ -734,7 +932,7 @@ E=b m \omega_{r} \sin m \omega_{r} t</script><p>where $a$ is the mean flux, $b$ 
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-1-Introduction"><span class="toc-text">Chap 1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Definition-of-measurement-system"><span class="toc-text">Sec 1.1 Definition of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Structure-of-measurement-system"><span class="toc-text">Sec 1.2 Structure of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Applications"><span class="toc-text">Sec 1.3 Applications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Methods-of-measurement"><span class="toc-text">Sec 1.4 Methods of measurement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-Definition-of-sensors"><span class="toc-text">Sec 1.5 Definition of sensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-6-Sensor-classification"><span class="toc-text">Sec 1.6 Sensor classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-Passive-and-active"><span class="toc-text">1.6.1 Passive and active</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-Absolute-and-relative"><span class="toc-text">1.6.2 Absolute and relative</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-7-Important-variables-and-their-units"><span class="toc-text">Sec 1.7 Important variables and their units</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Static-characteristics"><span class="toc-text">Chap 2 Static characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Meaning-of-static-characteristic-of-a-measurement-system"><span class="toc-text">Sec 2.1 Meaning of static characteristic of a measurement system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Systematic-characteristics"><span class="toc-text">2.1.1 Systematic characteristics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-Generalised-model-of-a-measurement-system"><span class="toc-text">2.2.2 Generalised model of a measurement system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Statistical-characteristics"><span class="toc-text">Sec 2.2 Statistical characteristics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-3-Calibration"><span class="toc-text">Sec 2.3 Calibration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-4-Experimental-measurements-and-evaluation-of-results"><span class="toc-text">Sec 2.4 Experimental measurements and evaluation of results</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Dynamic-Characteristics"><span class="toc-text">Chap 3 Dynamic Characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Transfer-function-G-s-for-typical-system-elements"><span class="toc-text">Sec 3.1 Transfer function $G(s)$ for typical system elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-First-order-element"><span class="toc-text">3.1.1 First-order element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-Second-order-elements"><span class="toc-text">3.1.2 Second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-2-Identification-of-the-dynamics-of-an-element"><span class="toc-text">Sec 3.2 Identification of the dynamics of an element</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-Step-response"><span class="toc-text">3.2.1 Step response</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-Sinusoidal-response-of-first-and-second-order-elements"><span class="toc-text">3.2.2 Sinusoidal response of first- and second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-3-Dynamic-errors-in-measurement-systems"><span class="toc-text">Sec 3.3 Dynamic errors in measurement systems</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-4-Undistorted-measurement-conditions"><span class="toc-text">Sec 3.4 Undistorted measurement conditions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-Typical-sensing-elements-Part-1"><span class="toc-text">Chap 4 Typical sensing elements (Part 1)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-1-Typical-sensing-elements"><span class="toc-text">Sec 4.1 Typical sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-Potentiometers-for-linear-and-angular-displacement-measurement"><span class="toc-text">4.1.1 Potentiometers for linear and angular displacement measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-Resistive-metal-and-semiconductor-sensors-for-temperature-measurement"><span class="toc-text">4.1.2 Resistive metal and semiconductor sensors for temperature measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-Metal-and-semiconductor-resistive-strain-gauges"><span class="toc-text">4.1.3 Metal and semiconductor resistive strain gauges</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-Semiconductor-resistive-gas-sensors"><span class="toc-text">4.1.4 Semiconductor resistive gas sensors</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-2-Capacitive-sensing-elements"><span class="toc-text">Sec 4.2 Capacitive sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-3-Inductive-sensing-elements"><span class="toc-text">Sec 4.3 Inductive sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-Variable-inductance-variable-reluctance-displacement-sensors"><span class="toc-text">4.3.1 Variable inductance (variable reluctance) displacement sensors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-Reluctance-calculation-for-typical-element"><span class="toc-text">4.3.2 Reluctance calculation for typical element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-Differential-or-push-pull-reluctance-displacement-sensor"><span class="toc-text">4.3.3 Differential or push&#x2F;pull reluctance displacement sensor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-Linear-Variable-Differential-Transformer-LVDT-displacement-sensor"><span class="toc-text">4.3.4 Linear Variable Differential Transformer (LVDT) displacement sensor</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-4-Electromagnetic-sensing-elements"><span class="toc-text">Sec 4.4 Electromagnetic sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-Variable-reluctance-tachogenerator"><span class="toc-text">4.4.1 Variable reluctance tachogenerator</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-1-Introduction"><span class="toc-text">Chap 1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Definition-of-measurement-system"><span class="toc-text">Sec 1.1 Definition of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Structure-of-measurement-system"><span class="toc-text">Sec 1.2 Structure of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Applications"><span class="toc-text">Sec 1.3 Applications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Methods-of-measurement"><span class="toc-text">Sec 1.4 Methods of measurement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-Definition-of-sensors"><span class="toc-text">Sec 1.5 Definition of sensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-6-Sensor-classification"><span class="toc-text">Sec 1.6 Sensor classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-Passive-and-active"><span class="toc-text">1.6.1 Passive and active</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-Absolute-and-relative"><span class="toc-text">1.6.2 Absolute and relative</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-7-Important-variables-and-their-units"><span class="toc-text">Sec 1.7 Important variables and their units</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Static-characteristics"><span class="toc-text">Chap 2 Static characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Meaning-of-static-characteristic-of-a-measurement-system"><span class="toc-text">Sec 2.1 Meaning of static characteristic of a measurement system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Systematic-characteristics"><span class="toc-text">2.1.1 Systematic characteristics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-Generalised-model-of-a-measurement-system"><span class="toc-text">2.2.2 Generalised model of a measurement system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Statistical-characteristics"><span class="toc-text">Sec 2.2 Statistical characteristics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-3-Calibration"><span class="toc-text">Sec 2.3 Calibration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-4-Experimental-measurements-and-evaluation-of-results"><span class="toc-text">Sec 2.4 Experimental measurements and evaluation of results</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Dynamic-Characteristics"><span class="toc-text">Chap 3 Dynamic Characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Transfer-function-G-s-for-typical-system-elements"><span class="toc-text">Sec 3.1 Transfer function $G(s)$ for typical system elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-First-order-element"><span class="toc-text">3.1.1 First-order element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-Second-order-elements"><span class="toc-text">3.1.2 Second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-2-Identification-of-the-dynamics-of-an-element"><span class="toc-text">Sec 3.2 Identification of the dynamics of an element</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-Step-response"><span class="toc-text">3.2.1 Step response</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-Sinusoidal-response-of-first-and-second-order-elements"><span class="toc-text">3.2.2 Sinusoidal response of first- and second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-3-Dynamic-errors-in-measurement-systems"><span class="toc-text">Sec 3.3 Dynamic errors in measurement systems</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-4-Undistorted-measurement-conditions"><span class="toc-text">Sec 3.4 Undistorted measurement conditions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-Typical-sensing-elements-Part-1"><span class="toc-text">Chap 4 Typical sensing elements (Part 1)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-1-Typical-sensing-elements"><span class="toc-text">Sec 4.1 Typical sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-Potentiometers-for-linear-and-angular-displacement-measurement"><span class="toc-text">4.1.1 Potentiometers for linear and angular displacement measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-Resistive-metal-and-semiconductor-sensors-for-temperature-measurement"><span class="toc-text">4.1.2 Resistive metal and semiconductor sensors for temperature measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-Metal-and-semiconductor-resistive-strain-gauges"><span class="toc-text">4.1.3 Metal and semiconductor resistive strain gauges</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-Semiconductor-resistive-gas-sensors"><span class="toc-text">4.1.4 Semiconductor resistive gas sensors</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-2-Capacitive-sensing-elements"><span class="toc-text">Sec 4.2 Capacitive sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-3-Inductive-sensing-elements"><span class="toc-text">Sec 4.3 Inductive sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-Variable-inductance-variable-reluctance-displacement-sensors"><span class="toc-text">4.3.1 Variable inductance (variable reluctance) displacement sensors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-Reluctance-calculation-for-typical-element"><span class="toc-text">4.3.2 Reluctance calculation for typical element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-Differential-or-push-pull-reluctance-displacement-sensor"><span class="toc-text">4.3.3 Differential or push&#x2F;pull reluctance displacement sensor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-Linear-Variable-Differential-Transformer-LVDT-displacement-sensor"><span class="toc-text">4.3.4 Linear Variable Differential Transformer (LVDT) displacement sensor</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-4-Electromagnetic-sensing-elements"><span class="toc-text">Sec 4.4 Electromagnetic sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-Variable-reluctance-tachogenerator"><span class="toc-text">4.4.1 Variable reluctance tachogenerator</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-5-Typical-sensing-elements-Part-2"><span class="toc-text">Chap 5 Typical sensing elements (Part 2)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-1-Thermoelectric-sensing-elements"><span class="toc-text">Sec 5.1 Thermoelectric sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-2-Elastic-sensing-elements"><span class="toc-text">Sec 5.2 Elastic sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-1-Dynamic-models-of-elastic-elements-for-measuring-linear-acceleration"><span class="toc-text">5.2.1 Dynamic models of elastic elements for measuring linear acceleration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-2-Dynamic-models-of-elastic-elements-for-measuring-torque"><span class="toc-text">5.2.2 Dynamic models of elastic elements for measuring torque</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-3-Practical-elastic-sensing-elements"><span class="toc-text">5.2.3 Practical elastic sensing elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-3-Piezoelectric-sensing-elements"><span class="toc-text">Sec 5.3 Piezoelectric sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-4-Piezoresistive-sensing-elements"><span class="toc-text">Sec 5.4 Piezoresistive sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-5-Electrochemical-sensing-elements"><span class="toc-text">Sec 5.5 Electrochemical sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-1-Ion-selective-electrodes"><span class="toc-text">5.5.1 Ion selective electrodes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-2-Electrochemical-gas-sensors"><span class="toc-text">5.5.2 Electrochemical gas sensors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-3-Chemically-sensitive-field-effect-transistors-CHEMFET"><span class="toc-text">5.5.3 Chemically sensitive field effect transistors (CHEMFET)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-6-Hall-effect-sensors"><span class="toc-text">Sec 5.6 Hall effect sensors</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-6-Signal-Conditioning-Elements"><span class="toc-text">Chap 6 Signal Conditioning Elements</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
