@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="Chap 1 IntroductionSec 1.1 Definition of measurement systemThe measurement is the process by which one can convert physical parameters to meaningful numbers.   A measurement system is an information s">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-01T07:59:54.051Z">
-<meta property="article:modified_time" content="2025-05-01T07:59:54.051Z">
+<meta property="article:published_time" content="2025-05-01T14:41:08.131Z">
+<meta property="article:modified_time" content="2025-05-01T14:41:08.131Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -863,7 +863,290 @@ E_{Th}=E_0+\frac{R\theta}{nF}\log_e\left(\frac{P_{\text{O}_2}^{\text{REF}}}{P_{\
 </ul>
 <p>The Hall voltage: </p>
 <script type="math/tex; mode=display">
-V=+\left(R_{H} / t\right) I B</script><h2 id="Chap-6-Signal-Conditioning-Elements"><a href="#Chap-6-Signal-Conditioning-Elements" class="headerlink" title="Chap 6 Signal Conditioning Elements"></a>Chap 6 Signal Conditioning Elements</h2>
+V=+\left(R_{H} / t\right) I B</script><h2 id="Chap-6-Signal-Conditioning-Elements"><a href="#Chap-6-Signal-Conditioning-Elements" class="headerlink" title="Chap 6 Signal Conditioning Elements"></a>Chap 6 Signal Conditioning Elements</h2><h3 id="Sec-6-1-Deflection-bridges"><a href="#Sec-6-1-Deflection-bridges" class="headerlink" title="Sec 6.1 Deflection bridges"></a>Sec 6.1 Deflection bridges</h3><p><strong>Deflection bridges</strong> are used to convert the output of resistive, capacitive and inductive sensors into a voltage signal.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/sd6qa1.png" width = 100%></p>
+<p>Assuming $Q$ is at earth potential, then:</p>
+<p>Potential at $P$ and $A = V_S$</p>
+<p>Potential at $B = V_S - i_1Z_2$</p>
+<p>Potential at $D = V_S - i_2Z_1$</p>
+<p>$E_{Th}$ is equal to the potential difference between $B$ and $D$, i.e.</p>
+<script type="math/tex; mode=display">
+E_{Th}=(V_S - i_1Z_2)-(V_S - i_2Z_1)=i_2Z_1 - i_1Z_2</script><p>$Z_{T h}$ is the impedance, i.e.</p>
+<script type="math/tex; mode=display">
+Z_{T h}=\frac{Z_{2} Z_{3}}{Z_{2}+Z_{3}}+\frac{Z_{1} Z_{4}}{Z_{1}+Z_{4}}</script><h4 id="6-1-1-Design-of-resistive-deflection-bridges"><a href="#6-1-1-Design-of-resistive-deflection-bridges" class="headerlink" title="6.1.1 Design of resistive deflection bridges"></a>6.1.1 Design of resistive deflection bridges</h4><p>In a resistive or Wheatstone bridge all four impedances $Z_{1}$ to $Z_{4}$ are pure resistances $R_{1}$ to $R_{4}$</p>
+<script type="math/tex; mode=display">
+E_{T h}=V_{S}\left(\frac{R_{1}}{R_{1}+R_{4}}-\frac{R_{2}}{R_{2}+R_{3}}\right)</script><p>When considering <strong>one single</strong> input sensing resistance $R_1 = R_I$</p>
+<script type="math/tex; mode=display">
+E_{Th}=V_S\left(\frac{1}{1 + R_4/R_I}-\frac{1}{1 + R_3/R_2}\right)</script><script type="math/tex; mode=display">
+V_{\text{MIN}}=V_S\left(\frac{1}{1 + R_4/R_{I_{\text{MIN}}}}-\frac{1}{1 + R_3/R_2}\right)</script><script type="math/tex; mode=display">
+V_{\text{MAX}}=V_S\left(\frac{1}{1 + R_4/R_{I_{\text{MAX}}}}-\frac{1}{1 + R_3/R_2}\right)</script><p><strong>Requirements:</strong></p>
+<ul>
+<li>Require $V_{M I N}=0$ , i.e. the bridge to be balanced when $I=I_{M I N}$</li>
+</ul>
+<script type="math/tex; mode=display">
+\frac{R_{4}}{R_{I_{MIN}}}=\frac{R_{3}}{R_{2}}</script><blockquote>
+<p>Substituting for $R_4$</p>
+<script type="math/tex; mode=display">
+\frac{E_{Th}}{V_S}=\frac{1}{1+(R_3/R_2)(R_{I_{\text{MIN}}}/R_1)}-\frac{1}{1 + R_3/R_2}</script><p>Or</p>
+<script type="math/tex; mode=display">
+v=\frac{1}{1 + r/x}-\frac{1}{1 + r}=\frac{x}{x + r}-\frac{1}{1 + r}</script><p>where</p>
+<script type="math/tex; mode=display">
+v=\frac{E_{Th}}{V_S},\ r=\frac{R_3}{R_2},\ x=\frac{R_1}{R_{I_{\text{MIN}}}}</script></blockquote>
+<ul>
+<li>$\widehat{w}$ watts is the maximum power dissipation </li>
+</ul>
+<script type="math/tex; mode=display">
+V_{S}^{2} \frac{R_{l}}{\left(R_{l}+R_{4}\right)^{2}} \leq \hat{w}</script><ul>
+<li>Keep the non-linearity of the overall relationship between $E_{Th}$ and I within specified limits. Suppose we require the non-linearity as a percentage of full scale to be less than $\widehat{N}$ percent over the measurement range </li>
+</ul>
+<script type="math/tex; mode=display">
+V_{IDEAL }=\left(\frac{V_{MAX}}{I_{MAX}-I_{MIN}}\right) I-\left(\frac{V_{MAX}}{I_{MAX}-I_{MIN}}\right) I_{MIN}</script><script type="math/tex; mode=display">
+\frac{E_{T h}-V_{IDEAL }}{V_{MAX }} × 100 \leq \hat{N}</script><p><strong>Strain gauge in a deflection bridge</strong></p>
+<p>For a bridge with a single strain gauge, we require $R_2$, $R_3$ and $R_4$ to all equal the unstrained gauge resistance $R_0$.</p>
+<blockquote>
+<p><strong>Why?</strong></p>
+<p>For a strain gauge the change in resistance $\Delta R = R_0Ge$ is very small; we require the sensitivity of the bridge to be as high as possible,</p>
+<p>i.e. $(\partial v/\partial x)_{x\approx1}$ to be maximum, this occurs when $r = R_3/R_2 = 1$ this means that $R_4 = R_{IMIN} = R_0$.</p>
+</blockquote>
+<script type="math/tex; mode=display">
+v(x)=\frac{x - 1}{2(x + 1)}\approx\frac{1}{4}(x - 1)</script><script type="math/tex; mode=display">
+\frac{E_{Th}}{V_S}=\frac{1}{4}\left(\frac{R_1}{R_{I_{\text{MIN}}}}-1\right)=\frac{1}{4}\left(\frac{R_1 - R_{I_{\text{MIN}}}}{R_{I_{\text{MIN}}}}\right)=\frac{1}{4}\frac{\Delta R}{R_0}=\frac{1}{4}Ge</script><script type="math/tex; mode=display">
+E_{Th}=\frac{V_S}{4}Ge</script><p><strong>Thermistor in deflection bridge</strong></p>
+<p>When considering <strong>a thermistor</strong> of resistance given by</p>
+<script type="math/tex; mode=display">
+R_{\theta} = K \text{exp}(\frac{\beta}{\theta})</script><p>the deflection bridge can be designed by solving the equations to meet the non-linearity of the system</p>
+<script type="math/tex; mode=display">
+0.0 = V_S\left(\frac{1}{1 + R_4/R_{298}}-\frac{1}{1 + R_3/R_2}\right)\quad (\text{point }O)</script><script type="math/tex; mode=display">
+0.5 = V_S\left(\frac{1}{1 + R_4/R_{323}}-\frac{1}{1 + R_3/R_2}\right)\quad (\text{point }Q)</script><script type="math/tex; mode=display">
+1.0 = V_S\left(\frac{1}{1 + R_4/R_{348}}-\frac{1}{1 + R_3/R_2}\right)\quad (\text{point }P)</script><p><img src = "https://img.dexbug.com/i/2025/05/01/sum137.png" width = 70%></p>
+<p><strong>Two metal resistance sensor elements</strong></p>
+<p>The bridge can be designed to give an output voltage approximately proportional to temperature differences $T_1 - T_2$</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/svtun3.png" width = 50%></p>
+<p>In order to balance the bridge when $T_1 − T_2 = 0$, we require $R_4 = R_3$</p>
+<p>Let the $\frac{R_3}{R_0} \gg 1$</p>
+<script type="math/tex; mode=display">
+E_{Th}\approx V_S\left(\frac{1+\alpha T_1}{R_3/R_0}-\frac{1+\alpha T_2}{R_3/R_0}\right)</script><script type="math/tex; mode=display">
+E_{Th}=V_S\frac{R_0}{R_3}\alpha(T_1 - T_2)</script><p><strong>Four-element strain gauge bridge</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/tyf74y.png" width = 60%></p>
+<p><strong>For the cantilever beam:</strong></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+E_{Th}&=V_S\left\{\frac{R_0(1 + Ge)}{R_0(1 + Ge)+R_0(1 - Ge)}-\frac{R_0(1 - Ge)}{R_0(1 - Ge)+R_0(1 + Ge)}\right\}\\
+&=V_S\left(\frac{1 + Ge}{2}-\frac{1 - Ge}{2}\right)\\&=V_SGe
+\end{align*}</script><p><strong>For the pillar load cell:</strong></p>
+<script type="math/tex; mode=display">
+R_1 = R_3 = R_0\left(1+\frac{GvF}{AE}\right)\quad\text{and}\quad R_2 = R_4 = R_0\left(1-\frac{GF}{AE}\right)</script><p>Assuming $\frac{GF}{AE} \ll 1$</p>
+<script type="math/tex; mode=display">
+E_{Th}\approx\frac{V_S}{2}(1 + v)\frac{GF}{AE}</script><p><strong>For the unbonded strain gauge accelerometer:</strong></p>
+<script type="math/tex; mode=display">
+R_1 = R_3 = R_0[1 + G(e_0 + e)]\quad\text{and}\quad R_2 = R_4 = R_0[1 + G(e_0 - e)]</script><p>where $e_0$ = strain due to prestressing which is present at zero acceleration and $e$ is the acceleration - induced strain = $a/\omega_n^2L$. The output voltage of the bridge is given by:</p>
+<script type="math/tex; mode=display">
+E_{Th}=\frac{V_sGe}{1 + Ge_0}</script><h4 id="6-1-2-Design-of-reactive-deflection-bridges"><a href="#6-1-2-Design-of-reactive-deflection-bridges" class="headerlink" title="6.1.2 Design of reactive deflection bridges"></a>6.1.2 Design of reactive deflection bridges</h4><p>A reactive bridge has an a.c. supply voltage; two arms are usually reactive impedances and two arms resistive impedances. </p>
+<p><strong>Bridge for capacitive level sensor</strong>:</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/u7yeoa.png" width = 40%></p>
+<script type="math/tex; mode=display">
+C_h=\frac{2\pi\varepsilon_0}{\log_e(b/a)}[l+(\varepsilon - 1)h]</script><p>Also $Z_1 = 1/(j\omega C_0)$, $Z_2 = R_2$, $Z_3 = R_3$ and $Z_4 = 1/(j\omega C_h)$.</p>
+<script type="math/tex; mode=display">
+E_{Th}=V_S\left(\frac{1}{1 + C_0/C_h}-\frac{1}{1 + R_3/R_2}\right)</script><p>Similarly, we should set $E_{th_{MIN}} = 0$ at level $h_{MIN}$, so $C_0 = C_{h_{\text{MIN}}}(R_3/R_2)$</p>
+<script type="math/tex; mode=display">
+E_{Th}=V_S\left(\frac{1}{1+\frac{C_{h_{\text{MIN}}}}{C_h}\frac{R_3}{R_2}}-\frac{1}{1+\frac{R_3}{R_2}}\right)</script><p>Again if $R_3/R_2$ is made large compared with 1, this approximates to the linear form:</p>
+<script type="math/tex; mode=display">
+E_{Th}\approx V_S\frac{R_2}{R_3}\left(\frac{C_h}{C_{h_{\text{MIN}}}}-1\right)</script><h4 id="6-1-3-Differential-or-push-pull-reluctance-displacement-sensor"><a href="#6-1-3-Differential-or-push-pull-reluctance-displacement-sensor" class="headerlink" title="6.1.3 Differential or push/pull reluctance displacement sensor"></a>6.1.3 Differential or push/pull reluctance displacement sensor</h4><p>The most common two-element reactive bridges incorporate either capacitive or inductive push-pull displacement sensors.</p>
+<p>For the former one, the capacitive sensor has $C_1=\varepsilon\varepsilon_0A/(d + x)$ and $C_2=\varepsilon\varepsilon_0A/(d - x)$; if this is connected into an a.c. bridge so that $Z_1 = 1/(j\omega C_1)$, $Z_2 = Z_3 = R$, $Z_4 = 1/(j\omega C_2)$ we have:</p>
+<script type="math/tex; mode=display">
+E_{Th}=V_S\left(\frac{C_2}{C_1 + C_2}-\frac{1}{2}\right)</script><script type="math/tex; mode=display">
+E_{Th}=\frac{V_S}{2d}x</script><p>Bridge for inductive push-pull displacement sensor.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/ubni0s.png" width = 30%></p>
+<p>A similar result is obtained with the variable reluctance push - pull displacement sensor.</p>
+<script type="math/tex; mode=display">
+L_1=\frac{L_0}{1+\alpha(a - x)},\ L_2=\frac{L_0}{1+\alpha(a + x)}</script><script type="math/tex; mode=display">
+Z_1 = j\omega L_1, Z_2 = Z_3 = R, Z_4 = j\omega L_2</script><script type="math/tex; mode=display">
+E_{Th}=V_S\left(\frac{L_1}{L_1 + L_2}-\frac{1}{2}\right)\quad E_{Th}=\frac{V_S\alpha x}{2(1+\alpha a)}</script><h3 id="Sec-6-2-Amplifiers"><a href="#Sec-6-2-Amplifiers" class="headerlink" title="Sec 6.2 Amplifiers"></a>Sec 6.2 Amplifiers</h3><h4 id="6-2-1-The-ideal-operational-amplifier-and-its-applications"><a href="#6-2-1-The-ideal-operational-amplifier-and-its-applications" class="headerlink" title="6.2.1 The ideal operational amplifier and its applications"></a>6.2.1 The ideal operational amplifier and its applications</h4><p>The operational amplifier is a high gain, integrated circuit amplifier designed to amplify signals from d.c. up to many kHz.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/umsriv.png"></p>
+<p>The transfer characteristics are derived using the following two ideal conditions:</p>
+<script type="math/tex; mode=display">
+i_- = i_+ = 0</script><script type="math/tex; mode=display">
+V_- = V_+</script><p><strong>Inverting amplifier</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/uo0xef.png" width = 60%></p>
+<script type="math/tex; mode=display">
+V_+=V_- = 0\quad\boldsymbol{\Longrightarrow}\quad i_{\text{IN}}=\frac{V_{\text{IN}}}{R_{\text{IN}}},\ i_F=\frac{V_{\text{OUT}}}{R_F}</script><script type="math/tex; mode=display">
+i_{\text{IN}}+i_F = i_- = 0\quad\boldsymbol{\Longrightarrow}\quad\frac{V_{\text{IN}}}{R_{\text{IN}}}+\frac{V_{\text{OUT}}}{R_F}=0</script><script type="math/tex; mode=display">
+V_{\text{OUT}}=\frac{-R_FV_{\text{IN}}}{R_{\text{IN}}}</script><p><strong>Non-inverting amplifier</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/up0m5w.png" width = 60%></p>
+<script type="math/tex; mode=display">
+i_+= 0, V_+=V_{\text{IN}}\quad\boldsymbol{\Longrightarrow}\quad V_-=V_{\text{OUT}}\left(\frac{R_1}{R_1 + R_F}\right)</script><script type="math/tex; mode=display">
+V_+=V_-\quad\boldsymbol{\Longrightarrow}\quad V_{\text{OUT}}\left(\frac{R_1}{R_1 + R_F}\right)=V_{\text{IN}}</script><script type="math/tex; mode=display">
+V_{\text{OUT}}=\left(1+\frac{R_F}{R_1}\right)V_{\text{IN}}</script><p><strong>Voltage follower</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/upmzjv.png" width =60%></p>
+<script type="math/tex; mode=display">
+V_- = V_{\text{OUT}},\ i_+=0\quad\boldsymbol{\Longrightarrow}\quad V_+=V_{\text{IN}}</script><script type="math/tex; mode=display">
+V_- = V_+\quad\boldsymbol{\Longrightarrow}\quad V_{\text{OUT}}=V_{\text{IN}}</script><p><strong>Differential amplifier</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/uqv5rh.png" width = 60%></p>
+<script type="math/tex; mode=display">
+V_+=V_2\left(\frac{R_F}{R_F + R_{\text{IN}}}\right)</script><script type="math/tex; mode=display">
+i_{\text{IN}}+i_F = i_- = 0\quad i_{\text{IN}}=\frac{(V_1 - V_-)}{R_{\text{IN}}},\ i_F=\frac{(V_{\text{OUT}} - V_-)}{R_F}</script><script type="math/tex; mode=display">
+\frac{(V_1 - V_-)}{R_{\text{IN}}}+\frac{(V_{\text{OUT}} - V_-)}{R_F}=0\quad V_-=\frac{R_{\text{IN}}\cdot V_{\text{OUT}}}{(R_F + R_{\text{IN}})}+\frac{R_FV_1}{(R_F + R_{\text{IN}})}</script><script type="math/tex; mode=display">
+\frac{R_{\text{IN}}V_{\text{OUT}}}{(R_F + R_{\text{IN}})}+\frac{R_FV_1}{(R_F + R_{\text{IN}})}=\frac{R_FV_2}{(R_F + R_{\text{IN}})}</script><script type="math/tex; mode=display">
+V_{\text{OUT}}=\frac{R_F}{R_{\text{IN}}}(V_2 - V_1)</script><p><strong>Strain gauge bridge connected to differential amplifier</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/vfdi4b.png" width = 70%></p>
+<p>$R_{IN }$ is the Thévenin resistance of the potential divider</p>
+<p>Since the strain $e$ is much less than 1, we have:</p>
+<script type="math/tex; mode=display">
+R_{\text{IN}}\approx R_0/2</script><script type="math/tex; mode=display">
+V_2 = V_S\left(\frac{R_3}{R_3 + R_2}\right)=\frac{V_S}{2}(1 + Ge)</script><script type="math/tex; mode=display">
+V_1 = V_S\left(\frac{R_4}{R_4 + R_1}\right)=\frac{V_S}{2}(1 - Ge)</script><script type="math/tex; mode=display">
+V_{\text{OUT}}=\frac{R_F}{R_{\text{IN}}}(V_2 - V_1)</script><script type="math/tex; mode=display">
+V_{\text{OUT}}=2\frac{R_F}{R_0}V_SGe</script><p><strong>A.C. amplifier</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/vh5sbz.png" width = 50%></p>
+<script type="math/tex; mode=display">
+V_{\text{OUT}}=-\frac{Z_F}{Z_{\text{IN}}}V_{\text{IN}}</script><script type="math/tex; mode=display">
+Z_{\text{IN}}=R_{\text{IN}}+(1/C_{\text{IN}}s)\quad Z_F=\frac{R_F}{R_FC_Fs + 1}</script><script type="math/tex; mode=display">
+\frac{\bar{V}_{\text{OUT}}}{\bar{V}_{\text{IN}}}=-\frac{R_F}{R_{\text{IN}}}\left(\frac{1}{R_FC_Fs + 1}\right)\left(\frac{R_{\text{IN}}C_{\text{IN}}s}{R_{\text{IN}}C_{\text{IN}}s + 1}\right)</script><p><strong>Ideal frequency response characteristics of a.c. amplifier</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/vi9i3k.png" width = 70%></p>
+<p><strong>Voltage adder</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/viiw91.png" width = 70%></p>
+<script type="math/tex; mode=display">
+V_{\text{OUT}}=-R_F\left(\frac{V_1}{R_1}+\frac{V_2}{R_2}+\frac{V_3}{R_3}+\ldots+\frac{V_n}{R_n}\right)</script><h4 id="6-2-2-Limitations-of-practical-operational-amplifiers"><a href="#6-2-2-Limitations-of-practical-operational-amplifiers" class="headerlink" title="6.2.2 Limitations of practical operational amplifiers"></a>6.2.2 Limitations of practical operational amplifiers</h4><p><img src = "https://img.dexbug.com/i/2025/05/01/vz4pok.png"></p>
+<p>The input offset voltage $V_{OS}$</p>
+<p>For an inverting amplifier we have:</p>
+<script type="math/tex; mode=display">
+V_{\text{OUT}}=-\frac{R_F}{R_{\text{IN}}}V_{\text{IN}}+\left(1+\frac{R_F}{R_{\text{IN}}}\right)V_{\text{OS}}</script><p>With a thermocouple temperature sensor, $V_{\text{IN}}\approx40T\ \mu\text{V}$. The above variation in $V_{OS}$ with environmental temperature therefore causes the output of the inverting amplifier to drift significantly. </p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/w0qdry.png" width = 50%></p>
+<p>Ideally the output voltage should depend only on the differential voltage ($V_+ - V_-$) and should be independent of the common mode voltage $V_{CM}=(V_+ + V_-)/2$, for a practical operational amplifier,</p>
+<script type="math/tex; mode=display">
+V_{\text{OUT}} = A_{\text{OL}}(V_+ - V_-) + A_{\text{CM}}V_{\text{CM}}</script><p>where $A_{CM}$ is the common mode gain. A more commonly used term is Common Mode Rejection Ratio (CMRR), where:</p>
+<script type="math/tex; mode=display">
+\text{CMMR}=\frac{A_{\text{OL}}}{A_{\text{CM}}}\quad\text{or in decibels}\quad(\text{CMMR})_{\text{dB}} = 20\log_{10}\left(\frac{A_{\text{OL}}}{A_{\text{CM}}}\right)</script><script type="math/tex; mode=display">
+V_{\text{OUT}} = A_{\text{OL}}\left[(V_+ - V_-)+\frac{V_{\text{CM}}}{\text{CMRR}}\right]</script><p>For a closed - loop differential amplifier, we have:</p>
+<script type="math/tex; mode=display">
+V_{\text{OUT}}\approx\frac{R_F}{R_{\text{IN}}}(V_2 - V_1)+\left(1+\frac{R_F}{R_{\text{IN}}}\right)\frac{V_{\text{CM}}}{\text{CMRR}}</script><p>The lower the gain of the closed-loop amplifier the greater the bandwidth.</p>
+<h4 id="6-2-3-Instrumentation-amplifiers"><a href="#6-2-3-Instrumentation-amplifiers" class="headerlink" title="6.2.3 Instrumentation amplifiers"></a>6.2.3 Instrumentation amplifiers</h4><p>An ideal instrumentation amplifier gives an output voltage which depends only on the difference of two input voltages $V_1$ and $V_2$, i.e </p>
+<script type="math/tex; mode=display">
+V_{OUT }=K\left(V_{2}-V_{1}\right)</script><p>A practical instrumentation amplifier should have a gain which can be set by <strong>a single external resistor</strong> and should combine the following:</p>
+<ul>
+<li>High input impedance</li>
+<li>High common mode rejection ratio</li>
+<li>Low input offset voltage</li>
+<li>Low temperature coefficient of offset voltage.</li>
+</ul>
+<p><strong>Typical instrumentation amplifier</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/xz4v5n.png"></p>
+<script type="math/tex; mode=display">
+V_{out}=\frac{2R_1 + R_G}{R_G}\cdot V_{id}</script><h3 id="Sec-6-3-A-C-carrier-systems"><a href="#Sec-6-3-A-C-carrier-systems" class="headerlink" title="Sec 6.3 A.C. carrier systems"></a>Sec 6.3 A.C. carrier systems</h3><p><strong>Two of the most difficult problems</strong> in conditioning low-level d.c. signals from sensors are <strong>external interference in the signal circuit and amplifier drift</strong>.</p>
+<p><strong>How to solve?</strong></p>
+<blockquote>
+<p>The signal is converted into a.c. form, amplified and then reconverted into d.c.</p>
+</blockquote>
+<p>Basic steps:</p>
+<ul>
+<li>Amplitude modulation (AM)</li>
+<li>AC amplification</li>
+<li>Phase-sensitive demodulator (PSD)</li>
+</ul>
+<h4 id="6-3-1-Amplitude-modulation"><a href="#6-3-1-Amplitude-modulation" class="headerlink" title="6.3.1 Amplitude modulation"></a>6.3.1 Amplitude modulation</h4><p>In an a.c. carrier system the supply voltage is a.c., i.e. $V_{S}=\widehat{V}_{S} \sin 2\pi f_s t$, with a frequency $f_{s}$ of typically a few kHz. The measured variable is also a function of time. In the general case $e(t)$ is a complicated function of time which can be expressed as a sum of many sine waves: </p>
+<script type="math/tex; mode=display">
+e(t)=\sum_{i=1}^{i} \hat{e}_{i} \sin 2 \pi f_{i} t</script><p>The bridge output voltage is thus given by:</p>
+<script type="math/tex; mode=display">
+E_{Th}=\sum_{i = 1}^{m}\hat{V}_i\sin2\pi f_it\sin2\pi f_st\quad\text{where}\quad\hat{V}_i = G\hat{V}_s\hat{e}_i</script><p>consider only the $i$th component:</p>
+<script type="math/tex; mode=display">
+V_i=\hat{V}_i\sin2\pi f_it\sin2\pi f_st</script><p>then we have a sine wave of frequency $f_s$ and amplitude $\hat{V}_i\sin2\pi f_it$. </p>
+<p>Here the amplitude of the carrier signal frequency $f_s$ is <strong>being altered according to the instantaneous value of the modulating signal</strong> frequency $f_i$.</p>
+<p>The AM signal can be expressed in the form:</p>
+<script type="math/tex; mode=display">
+V_i=\frac{\hat{V}_i}{2}\cos2\pi(f_s - f_i)t-\frac{\hat{V}_i}{2}\cos2\pi(f_s + f_i)t</script><p>Thus the AM signal is the sum of two cosinusoidal signals with frequencies $f_{S}-f_{i}$ and $f_{S}+f_{i}$; the corresponding frequency spectrum contains two lines.</p>
+<p>This amplitude modulation is called <strong>balanced amplitude modulation</strong>, because when $\hat{e}_{i}=0$, $\widehat{A}_{i}=0$, i.e. <strong>the bridge is balanced</strong>.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/z41ojg.png" width = 70%></p>
+<p>This means also that the frequency spectrum <strong>does not contain</strong> the carrier frequency $f_{S}$; there are only two lines at the sideband frequencies $f_{S} \pm f_{i}$. Hence the alternative name is <strong>double sideband carrier suppressed amplitude modulation.</strong></p>
+<h4 id="6-3-2-Phase-sensitive-demodulator"><a href="#6-3-2-Phase-sensitive-demodulator" class="headerlink" title="6.3.2 Phase-sensitive demodulator"></a>6.3.2 Phase-sensitive demodulator</h4><script type="math/tex; mode=display">
+\begin{align*}
+V_{i}&=\hat{V}_{i} \sin 2 \pi f_{S} t \sin 2 \pi f_{i} t\\
+V_D&=V_i\sin2\pi f_st\\
+&=\frac{1}{2}\hat{V}_i\sin2\pi f_it+\frac{1}{2}\hat{V}_i\sin2\pi f_it\sin2\pi(2f_s)t\\
+&\quad\quad\quad\quad\quad\quad\quad\quad \quad  \underbrace{\quad\quad\quad\quad\quad\quad\quad\quad \quad }_{\text{suppressed by LP filter}}
+\end{align*}</script><p>The corresponding bridge output voltages are:</p>
+<script type="math/tex; mode=display">
+E_{T h}=+G e_{1} \hat{V}_{S} \sin 2 \pi f_{S} t \quad \text{at} \, t_{1}</script><script type="math/tex; mode=display">
+E_{T h}=-G e_{1} \hat{V}_{S} \sin 2 \pi f_{S} t=G e_{1} \hat{V}_{S} \sin \left(2 \pi f_{S} t+180\right) \quad \text{at} \, t_{2}</script><p>Thus in order to distinguish between the situations at $t_1$ and $t_2$, we need a demodulator which detects this phase difference and gives a positive output voltage when $e$ is positive and a negative voltage when $e$ is negative. Such a demodulator is called a phase - sensitive demodulator (PSD). The simplest form of PSD is an amplifier with a gain of $\pm1$ according to the sign of the supply voltage; that is,</p>
+<script type="math/tex; mode=display">
+\left.
+\begin{array}{l}
+V_{\text{PSD}} = E_{Th}\quad\text{when}\quad V_S>0\\
+V_{\text{PSD}}=-E_{Th}\quad\text{when}\quad V_S < 0
+\end{array}
+\right\}</script><p><img src = "https://img.dexbug.com/i/2025/05/01/zck0fv.png" width = 70%></p>
+<h4 id="6-3-3-Pulse-amplitude-modulation-PAM"><a href="#6-3-3-Pulse-amplitude-modulation-PAM" class="headerlink" title="6.3.3 Pulse amplitude modulation (PAM)"></a>6.3.3 Pulse amplitude modulation (PAM)</h4><p><strong>How to convert a low - level DC voltage signal (such as the electromotive force of a thermocouple) into an AC form?</strong> </p>
+<p>The usual solution is to <strong>use a transistor switch or “chopper” driven by an oscillator to sample the signal at a high speed of approximately 1000 times per second</strong>. The resulting “chopped” signal is a series of pulses whose amplitude corresponds to the instantaneous value of the DC voltage. This is Pulse - Amplitude Modulation (PAM).</p>
+<p>The PAM signal can be processed by an a.c. amplifier and phase-sensitive demodulator so that the chopper simply replaces the multiplier in Figure. The resulting chopper stabilised amplifier has excellent drift characteristics.</p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/zdn5vq.png" width = 70%></p>
+<h3 id="Sec-6-4-Current-transmitters"><a href="#Sec-6-4-Current-transmitters" class="headerlink" title="Sec 6.4 Current transmitters"></a>Sec 6.4 Current transmitters</h3><p>Current transmitters is used in the process industries to give an output d.c. current signal <strong>in the standard range 4 to 20 mA proportional to the input measured variable</strong>. </p>
+<p><strong>The output has a live zero of 4 mA.</strong></p>
+<blockquote>
+<p>It represents the output when the input variable is 0% (not 0mA), <strong>avoiding confusion between signal transmission interruption (such as wire breakage) and true zero input</strong>, and improving system reliability.</p>
+</blockquote>
+<h4 id="6-4-1-Closed-loop-transmitters"><a href="#6-4-1-Closed-loop-transmitters" class="headerlink" title="6.4.1 Closed-loop transmitters"></a>6.4.1 Closed-loop transmitters</h4><p><img src = "https://img.dexbug.com/i/2025/05/01/zocdg9.png" width = 70%></p>
+<script type="math/tex; mode=display">
+i=\frac{K_DK_BK_A/k}{1 + K_DK_BK_AbK_M/k}[aA_D(P_1 - P_2)+bF_0]</script><p>If the gain $K_A$ of the amplifier system is high so that $\frac{K_DK_BK_AbK_M}{k}$ is very much greater than 1, then eqn reduces to:</p>
+<script type="math/tex; mode=display">
+i=\frac{a}{b}\frac{A_D}{K_M}(P_1 - P_2)+\frac{F_0}{K_M}</script><p>transmitter sensitivity $=(a/b)(A_D/K_M)$</p>
+<p>zero bias $F_0/K_M$ </p>
+<h4 id="6-4-2-Open-loop-transmitters"><a href="#6-4-2-Open-loop-transmitters" class="headerlink" title="6.4.2 Open-loop transmitters"></a>6.4.2 Open-loop transmitters</h4><p><strong>Open-loop differential pressure transmitters</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/10e373d.png" width = 90%></p>
+<p>The input differential pressure ($P_{1}-P_{2}$) acting over the area $A_{D}$ of the sensing diaphragm produces a deflecting force $A_{D}(P_{1}-P_{2})$ which is opposed by the elastic spring force $k x$ .The resulting diaphragm deformation x is small $(≈1 0^{-5} ~m)$ and approximately proportional to $P_{1}-P_{2}$.</p>
+<p>This type of transmitter is widely used in the process industries for measuring pressure, flow rate and liquid level.</p>
+<p><strong>Open-loop temperature transmitters</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/10j86cn.png" width = 90%></p>
+<p>The input is a thermocouple e.m.f. $E_{T_1, T_2}$. The automatic reference junction circuit provides an e.m.f. equal to $E_{T_2, 0}$; this is added to $E_{T_1, T_2}$ to give a compensated e.m.f. $E_{T_1, 0}$ which is relative to a fixed reference junction temperature of 0${}^{\circ}C$.This e.m.f. is then ‘chopped’ to give the a.c. voltage necessary for the carrier system.</p>
+<h4 id="6-4-3-Intelligent-or-smart-transmitters"><a href="#6-4-3-Intelligent-or-smart-transmitters" class="headerlink" title="6.4.3 Intelligent or smart transmitters"></a>6.4.3 Intelligent or smart transmitters</h4><p>An intelligent or smart transmitter can perform the following functions.</p>
+<ul>
+<li>Computer calculation of measured value.</li>
+<li>Remote diagnosis of faults.</li>
+<li>Local indication of measured value</li>
+<li>Remote identification.</li>
+<li>Digital communications.</li>
+<li>Remote re-ranging. </li>
+</ul>
+<h3 id="Sec-6-5-Oscillators-and-resonators"><a href="#Sec-6-5-Oscillators-and-resonators" class="headerlink" title="Sec 6.5 Oscillators and resonators"></a>Sec 6.5 Oscillators and resonators</h3><p>The frequency modulation (FM) is the process where the frequency<br>of a sinusoidal voltage depends on the magnitude of the measured variable. FM systems also reject interference and have the following advantages over AM systems:</p>
+<ul>
+<li>The external interference affects signal amplitude more than it affects signal frequency; FM is therefore inherently <strong>more resistant to interference</strong> than AM.</li>
+<li>By counting pulses over a fixed time interval, a frequency signal <strong>can easily be converted to digital form</strong>.</li>
+</ul>
+<p>Oscillators and resonators are <strong>feedback systems</strong> which rely on the dynamic property of a closed-loop system, consisting of elements with dynamic characteristics, <strong>to sustain continuous oscillations</strong>, if certain conditions are satisfied.</p>
+<h4 id="6-5-1-Oscillators"><a href="#6-5-1-Oscillators" class="headerlink" title="6.5.1 Oscillators"></a>6.5.1 Oscillators</h4><p><img src = "https://img.dexbug.com/i/2025/05/01/10rmcnm.png"></p>
+<p>Oscillators: (a) Inductive sensor (b) Capacitive sensor.</p>
+<p><strong>Frequency pressure measurement system</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/10sarxj.png" width = 80%></p>
+<p><strong>The capacitive pressure sensor:</strong></p>
+<p>For small changes, the increase in capacitance $\Delta C$ is proportional to the applied pressure $P$. The sensor is incorporated in the oscillator circuit; the change $\Delta \omega_{n}$ in circuit natural frequency is approximately proportional to ΔC. The frequency of the oscillator output signal <strong>varies sinusoidally with time</strong>, giving rise to the <strong>frequency modulated signal</strong> shown.</p>
+<h4 id="6-5-2-Resonators"><a href="#6-5-2-Resonators" class="headerlink" title="6.5.2 Resonators"></a>6.5.2 Resonators</h4><p><img src = "https://img.dexbug.com/i/2025/05/01/10uj1pe.png"></p>
+<p>The feedback element $H(s)$ consists of: </p>
+<ul>
+<li><p>A drive element to convert voltage to force; </p>
+</li>
+<li><p>An elastic force sensor to convert force to displacement; </p>
+</li>
+<li><p>A displacement sensor to convert displacement into voltage. </p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+H(s)=\frac{K_{S} K_{D}}{k} \frac{1}{\frac{1}{\omega_{n}^{2}} s^{2}+\frac{2 \xi}{\omega_{n}} s+1}</script><p>In order to sustain oscillations at $\omega=\omega_n$, the gain and phase of the maintaining amplifier must satisfy the conditions:</p>
+<script type="math/tex; mode=display">
+|G(j\omega_n)|=\frac{1}{|H(j\omega_n)|}=\frac{2\xi k}{K_SK_D}=\frac{\lambda}{K_SK_D}\sqrt{\frac{k}{m}}</script><script type="math/tex; mode=display">
+\arg G(j\omega_n)= - 180^{\circ}-\arg H(j\omega_n)= - 90^{\circ}</script><p><strong>Vibrating plate element</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/10wx2jj.png" width = 70%></p>
+<p>The sensor uses a vibrating flat circular plate. If the plate is clamped around the circumference and subject to a radial tensile force $F$, then the fundamental frequency $\omega_n$ of transverse vibration is given by:</p>
+<script type="math/tex; mode=display">
+\omega_n = 2\pi f_n=K\sqrt{\frac{F}{\sigma}}</script><p>where $\sigma$ is the mass per unit area of the disc and $K$ is a constant. Therefore if $F$ is changed, $f_n$ changes. </p>
+<p><strong>The inner capacitance $C_D$ provides the drive element.</strong> If a voltage V is applied across the plates then the plates acquire equal and opposite charges, <strong>causing an attractive force between the plates</strong>. The drive force per unit voltage $K_{D}$ is given by:</p>
+<script type="math/tex; mode=display">
+K_{D}=\frac{\varepsilon_{0} A V}{d^{2}}</script><p>where $\varepsilon_{0}$ is the permittivity of free space, $A$ the area of the plates and $d$ their separation.</p>
+<p>The overall inverse equation for pressure is: </p>
+<script type="math/tex; mode=display">
+P=\sum_{i=0}^{3} \sum_{j=0}^{3} K_{i j} f_{n}^{i} V^{j}</script><p><strong>Vibrating tube element</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/01/10zf2gg.png" width = 60%></p>
+<p>The inverse equation for density is:</p>
+<script type="math/tex; mode=display">
+\rho=\frac{A}{f_{n}^{2}}+\frac{B}{f_{n}}+C</script><p>where $A$, $B$ and $C$ are constants, fundamental frequency $f_n =(1 / 2 \pi) \sqrt{k / m}$. This tube arrangement is particularly useful for <strong>liquids and liquid–solid mixtures.</strong></p>
+<h2 id="Chap-7-Signal-Processing-Elements-and-Software"><a href="#Chap-7-Signal-Processing-Elements-and-Software" class="headerlink" title="Chap 7 Signal Processing Elements and Software"></a>Chap 7 Signal Processing Elements and Software</h2>
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/autocontrol.html">ME Control(EN)</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/dc.html">Digital Circuit(EN)</a></div></section></div>
@@ -932,7 +1215,7 @@ V=+\left(R_{H} / t\right) I B</script><h2 id="Chap-6-Signal-Conditioning-Element
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-1-Introduction"><span class="toc-text">Chap 1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Definition-of-measurement-system"><span class="toc-text">Sec 1.1 Definition of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Structure-of-measurement-system"><span class="toc-text">Sec 1.2 Structure of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Applications"><span class="toc-text">Sec 1.3 Applications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Methods-of-measurement"><span class="toc-text">Sec 1.4 Methods of measurement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-Definition-of-sensors"><span class="toc-text">Sec 1.5 Definition of sensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-6-Sensor-classification"><span class="toc-text">Sec 1.6 Sensor classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-Passive-and-active"><span class="toc-text">1.6.1 Passive and active</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-Absolute-and-relative"><span class="toc-text">1.6.2 Absolute and relative</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-7-Important-variables-and-their-units"><span class="toc-text">Sec 1.7 Important variables and their units</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Static-characteristics"><span class="toc-text">Chap 2 Static characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Meaning-of-static-characteristic-of-a-measurement-system"><span class="toc-text">Sec 2.1 Meaning of static characteristic of a measurement system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Systematic-characteristics"><span class="toc-text">2.1.1 Systematic characteristics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-Generalised-model-of-a-measurement-system"><span class="toc-text">2.2.2 Generalised model of a measurement system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Statistical-characteristics"><span class="toc-text">Sec 2.2 Statistical characteristics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-3-Calibration"><span class="toc-text">Sec 2.3 Calibration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-4-Experimental-measurements-and-evaluation-of-results"><span class="toc-text">Sec 2.4 Experimental measurements and evaluation of results</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Dynamic-Characteristics"><span class="toc-text">Chap 3 Dynamic Characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Transfer-function-G-s-for-typical-system-elements"><span class="toc-text">Sec 3.1 Transfer function $G(s)$ for typical system elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-First-order-element"><span class="toc-text">3.1.1 First-order element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-Second-order-elements"><span class="toc-text">3.1.2 Second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-2-Identification-of-the-dynamics-of-an-element"><span class="toc-text">Sec 3.2 Identification of the dynamics of an element</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-Step-response"><span class="toc-text">3.2.1 Step response</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-Sinusoidal-response-of-first-and-second-order-elements"><span class="toc-text">3.2.2 Sinusoidal response of first- and second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-3-Dynamic-errors-in-measurement-systems"><span class="toc-text">Sec 3.3 Dynamic errors in measurement systems</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-4-Undistorted-measurement-conditions"><span class="toc-text">Sec 3.4 Undistorted measurement conditions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-Typical-sensing-elements-Part-1"><span class="toc-text">Chap 4 Typical sensing elements (Part 1)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-1-Typical-sensing-elements"><span class="toc-text">Sec 4.1 Typical sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-Potentiometers-for-linear-and-angular-displacement-measurement"><span class="toc-text">4.1.1 Potentiometers for linear and angular displacement measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-Resistive-metal-and-semiconductor-sensors-for-temperature-measurement"><span class="toc-text">4.1.2 Resistive metal and semiconductor sensors for temperature measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-Metal-and-semiconductor-resistive-strain-gauges"><span class="toc-text">4.1.3 Metal and semiconductor resistive strain gauges</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-Semiconductor-resistive-gas-sensors"><span class="toc-text">4.1.4 Semiconductor resistive gas sensors</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-2-Capacitive-sensing-elements"><span class="toc-text">Sec 4.2 Capacitive sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-3-Inductive-sensing-elements"><span class="toc-text">Sec 4.3 Inductive sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-Variable-inductance-variable-reluctance-displacement-sensors"><span class="toc-text">4.3.1 Variable inductance (variable reluctance) displacement sensors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-Reluctance-calculation-for-typical-element"><span class="toc-text">4.3.2 Reluctance calculation for typical element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-Differential-or-push-pull-reluctance-displacement-sensor"><span class="toc-text">4.3.3 Differential or push&#x2F;pull reluctance displacement sensor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-Linear-Variable-Differential-Transformer-LVDT-displacement-sensor"><span class="toc-text">4.3.4 Linear Variable Differential Transformer (LVDT) displacement sensor</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-4-Electromagnetic-sensing-elements"><span class="toc-text">Sec 4.4 Electromagnetic sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-Variable-reluctance-tachogenerator"><span class="toc-text">4.4.1 Variable reluctance tachogenerator</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-5-Typical-sensing-elements-Part-2"><span class="toc-text">Chap 5 Typical sensing elements (Part 2)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-1-Thermoelectric-sensing-elements"><span class="toc-text">Sec 5.1 Thermoelectric sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-2-Elastic-sensing-elements"><span class="toc-text">Sec 5.2 Elastic sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-1-Dynamic-models-of-elastic-elements-for-measuring-linear-acceleration"><span class="toc-text">5.2.1 Dynamic models of elastic elements for measuring linear acceleration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-2-Dynamic-models-of-elastic-elements-for-measuring-torque"><span class="toc-text">5.2.2 Dynamic models of elastic elements for measuring torque</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-3-Practical-elastic-sensing-elements"><span class="toc-text">5.2.3 Practical elastic sensing elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-3-Piezoelectric-sensing-elements"><span class="toc-text">Sec 5.3 Piezoelectric sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-4-Piezoresistive-sensing-elements"><span class="toc-text">Sec 5.4 Piezoresistive sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-5-Electrochemical-sensing-elements"><span class="toc-text">Sec 5.5 Electrochemical sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-1-Ion-selective-electrodes"><span class="toc-text">5.5.1 Ion selective electrodes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-2-Electrochemical-gas-sensors"><span class="toc-text">5.5.2 Electrochemical gas sensors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-3-Chemically-sensitive-field-effect-transistors-CHEMFET"><span class="toc-text">5.5.3 Chemically sensitive field effect transistors (CHEMFET)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-6-Hall-effect-sensors"><span class="toc-text">Sec 5.6 Hall effect sensors</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-6-Signal-Conditioning-Elements"><span class="toc-text">Chap 6 Signal Conditioning Elements</span></a></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-1-Introduction"><span class="toc-text">Chap 1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Definition-of-measurement-system"><span class="toc-text">Sec 1.1 Definition of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Structure-of-measurement-system"><span class="toc-text">Sec 1.2 Structure of measurement system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Applications"><span class="toc-text">Sec 1.3 Applications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Methods-of-measurement"><span class="toc-text">Sec 1.4 Methods of measurement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-Definition-of-sensors"><span class="toc-text">Sec 1.5 Definition of sensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-6-Sensor-classification"><span class="toc-text">Sec 1.6 Sensor classification</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-Passive-and-active"><span class="toc-text">1.6.1 Passive and active</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-Absolute-and-relative"><span class="toc-text">1.6.2 Absolute and relative</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-7-Important-variables-and-their-units"><span class="toc-text">Sec 1.7 Important variables and their units</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Static-characteristics"><span class="toc-text">Chap 2 Static characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Meaning-of-static-characteristic-of-a-measurement-system"><span class="toc-text">Sec 2.1 Meaning of static characteristic of a measurement system</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-Systematic-characteristics"><span class="toc-text">2.1.1 Systematic characteristics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-Generalised-model-of-a-measurement-system"><span class="toc-text">2.2.2 Generalised model of a measurement system</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Statistical-characteristics"><span class="toc-text">Sec 2.2 Statistical characteristics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-3-Calibration"><span class="toc-text">Sec 2.3 Calibration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-4-Experimental-measurements-and-evaluation-of-results"><span class="toc-text">Sec 2.4 Experimental measurements and evaluation of results</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Dynamic-Characteristics"><span class="toc-text">Chap 3 Dynamic Characteristics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Transfer-function-G-s-for-typical-system-elements"><span class="toc-text">Sec 3.1 Transfer function $G(s)$ for typical system elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-First-order-element"><span class="toc-text">3.1.1 First-order element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-Second-order-elements"><span class="toc-text">3.1.2 Second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-2-Identification-of-the-dynamics-of-an-element"><span class="toc-text">Sec 3.2 Identification of the dynamics of an element</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-Step-response"><span class="toc-text">3.2.1 Step response</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-Sinusoidal-response-of-first-and-second-order-elements"><span class="toc-text">3.2.2 Sinusoidal response of first- and second-order elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-3-Dynamic-errors-in-measurement-systems"><span class="toc-text">Sec 3.3 Dynamic errors in measurement systems</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-4-Undistorted-measurement-conditions"><span class="toc-text">Sec 3.4 Undistorted measurement conditions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-Typical-sensing-elements-Part-1"><span class="toc-text">Chap 4 Typical sensing elements (Part 1)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-1-Typical-sensing-elements"><span class="toc-text">Sec 4.1 Typical sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-Potentiometers-for-linear-and-angular-displacement-measurement"><span class="toc-text">4.1.1 Potentiometers for linear and angular displacement measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-Resistive-metal-and-semiconductor-sensors-for-temperature-measurement"><span class="toc-text">4.1.2 Resistive metal and semiconductor sensors for temperature measurement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-Metal-and-semiconductor-resistive-strain-gauges"><span class="toc-text">4.1.3 Metal and semiconductor resistive strain gauges</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-4-Semiconductor-resistive-gas-sensors"><span class="toc-text">4.1.4 Semiconductor resistive gas sensors</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-2-Capacitive-sensing-elements"><span class="toc-text">Sec 4.2 Capacitive sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-3-Inductive-sensing-elements"><span class="toc-text">Sec 4.3 Inductive sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-Variable-inductance-variable-reluctance-displacement-sensors"><span class="toc-text">4.3.1 Variable inductance (variable reluctance) displacement sensors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-Reluctance-calculation-for-typical-element"><span class="toc-text">4.3.2 Reluctance calculation for typical element</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-Differential-or-push-pull-reluctance-displacement-sensor"><span class="toc-text">4.3.3 Differential or push&#x2F;pull reluctance displacement sensor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-Linear-Variable-Differential-Transformer-LVDT-displacement-sensor"><span class="toc-text">4.3.4 Linear Variable Differential Transformer (LVDT) displacement sensor</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-4-Electromagnetic-sensing-elements"><span class="toc-text">Sec 4.4 Electromagnetic sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-1-Variable-reluctance-tachogenerator"><span class="toc-text">4.4.1 Variable reluctance tachogenerator</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-5-Typical-sensing-elements-Part-2"><span class="toc-text">Chap 5 Typical sensing elements (Part 2)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-1-Thermoelectric-sensing-elements"><span class="toc-text">Sec 5.1 Thermoelectric sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-2-Elastic-sensing-elements"><span class="toc-text">Sec 5.2 Elastic sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-1-Dynamic-models-of-elastic-elements-for-measuring-linear-acceleration"><span class="toc-text">5.2.1 Dynamic models of elastic elements for measuring linear acceleration</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-2-Dynamic-models-of-elastic-elements-for-measuring-torque"><span class="toc-text">5.2.2 Dynamic models of elastic elements for measuring torque</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-3-Practical-elastic-sensing-elements"><span class="toc-text">5.2.3 Practical elastic sensing elements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-3-Piezoelectric-sensing-elements"><span class="toc-text">Sec 5.3 Piezoelectric sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-4-Piezoresistive-sensing-elements"><span class="toc-text">Sec 5.4 Piezoresistive sensing elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-5-Electrochemical-sensing-elements"><span class="toc-text">Sec 5.5 Electrochemical sensing elements</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-1-Ion-selective-electrodes"><span class="toc-text">5.5.1 Ion selective electrodes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-2-Electrochemical-gas-sensors"><span class="toc-text">5.5.2 Electrochemical gas sensors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-3-Chemically-sensitive-field-effect-transistors-CHEMFET"><span class="toc-text">5.5.3 Chemically sensitive field effect transistors (CHEMFET)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-6-Hall-effect-sensors"><span class="toc-text">Sec 5.6 Hall effect sensors</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-6-Signal-Conditioning-Elements"><span class="toc-text">Chap 6 Signal Conditioning Elements</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-6-1-Deflection-bridges"><span class="toc-text">Sec 6.1 Deflection bridges</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-1-Design-of-resistive-deflection-bridges"><span class="toc-text">6.1.1 Design of resistive deflection bridges</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-2-Design-of-reactive-deflection-bridges"><span class="toc-text">6.1.2 Design of reactive deflection bridges</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-3-Differential-or-push-pull-reluctance-displacement-sensor"><span class="toc-text">6.1.3 Differential or push&#x2F;pull reluctance displacement sensor</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-6-2-Amplifiers"><span class="toc-text">Sec 6.2 Amplifiers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-1-The-ideal-operational-amplifier-and-its-applications"><span class="toc-text">6.2.1 The ideal operational amplifier and its applications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-2-Limitations-of-practical-operational-amplifiers"><span class="toc-text">6.2.2 Limitations of practical operational amplifiers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-3-Instrumentation-amplifiers"><span class="toc-text">6.2.3 Instrumentation amplifiers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-6-3-A-C-carrier-systems"><span class="toc-text">Sec 6.3 A.C. carrier systems</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-1-Amplitude-modulation"><span class="toc-text">6.3.1 Amplitude modulation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-2-Phase-sensitive-demodulator"><span class="toc-text">6.3.2 Phase-sensitive demodulator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-3-Pulse-amplitude-modulation-PAM"><span class="toc-text">6.3.3 Pulse amplitude modulation (PAM)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-6-4-Current-transmitters"><span class="toc-text">Sec 6.4 Current transmitters</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-1-Closed-loop-transmitters"><span class="toc-text">6.4.1 Closed-loop transmitters</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-2-Open-loop-transmitters"><span class="toc-text">6.4.2 Open-loop transmitters</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-3-Intelligent-or-smart-transmitters"><span class="toc-text">6.4.3 Intelligent or smart transmitters</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-6-5-Oscillators-and-resonators"><span class="toc-text">Sec 6.5 Oscillators and resonators</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-1-Oscillators"><span class="toc-text">6.5.1 Oscillators</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-2-Resonators"><span class="toc-text">6.5.2 Resonators</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-7-Signal-Processing-Elements-and-Software"><span class="toc-text">Chap 7 Signal Processing Elements and Software</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
