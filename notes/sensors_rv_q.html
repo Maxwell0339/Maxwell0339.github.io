@@ -17,16 +17,18 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Maxwell's Blog</title>
+  <title>notes：Sensors and Measurement System Revision Questions - Maxwell's Blog</title>
 
   
-    <meta name="description" content="This is a blog about my undergraduate life, including my study, my life, and my thoughts.">
+    <meta name="description" content="Environment effectExample problem:  ANS.  Data at 20 °C and 30 °C    Zero output: $O_0^{20}&#x3D;4.0$ mA, $O_0^{30}&#x3D;4.2$ mA   Full‐scale output: $O_{FS}^{20}&#x3D;20.0$ mA, $O_{FS}^{30}&#x3D;20.8$ mA   $\Delta T &#x3D; 3">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Maxwell&#39;s Blog">
-<meta property="og:url" content="https://maxwell0339.github.io/topic/index.html">
+<meta property="og:title" content="Sensors and Measurement System Revision Questions">
+<meta property="og:url" content="https://maxwell0339.github.io/notes/sensors_rv_q.html">
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
-<meta property="og:description" content="This is a blog about my undergraduate life, including my study, my life, and my thoughts.">
+<meta property="og:description" content="Environment effectExample problem:  ANS.  Data at 20 °C and 30 °C    Zero output: $O_0^{20}&#x3D;4.0$ mA, $O_0^{30}&#x3D;4.2$ mA   Full‐scale output: $O_{FS}^{20}&#x3D;20.0$ mA, $O_{FS}^{30}&#x3D;20.8$ mA   $\Delta T &#x3D; 3">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-02T14:19:52.601Z">
+<meta property="article:modified_time" content="2025-05-02T14:19:52.601Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -50,37 +52,169 @@
 </head>
 <body>
 
-<div class="l_body s:aa index tech" id="start" layout="index_topic" ><aside class="l_left"><div class="leftbar-container">
 
 
-<header class="header"><div class="logo-wrap"><a class="avatar" href="/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://img.dexbug.com/i/2025/03/24/112d8hl.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Maxwell's Blog</div><div class="sub normal cap">宝剑锋从磨砺出</div><div class="sub hover cap" style="opacity:0"> 梅花香自苦寒来</div></a></div></header>
+<div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://img.dexbug.com/i/2025/03/24/112d8hl.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Maxwell's Blog</div><div class="sub normal cap">Never Stop Learning</div><div class="sub hover cap" style="opacity:0"> Designed by Maxwell</div></a></div></header>
 
 <div class="nav-area">
-<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="在 notes 中搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
 
-<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="笔记" href="/notes/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a></nav>
+<nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item active" title="笔记" href="/notes/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a></nav>
 </div>
 <div class="widgets">
-<widget class="widget-wrapper markdown"><div class="widget-header dis-select"><span class="name">🎉 欢迎 </span></div><div class="widget-body fs14"><p>本站托管于 Github, 可能会出现加载缓慢或丢失问题, 请重新加载或者耐心等待。<br><br> <hr><br>今日诗词:  <span id="jinrishici-sentence"> </span></p>
-<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"> </script>
-</div></widget>
+
+<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/notes/index.html#start"><span class="toc-text">Forehead</span></a><a class="link" href="/notes/robotics.html"><span class="toc-text">Robotics(EN)</span></a><a class="link" href="/notes/autocontrol.html"><span class="toc-text">ME Control(EN)</span></a><a class="link" href="/notes/sensors.html"><span class="toc-text">Sensors and Measurement System(EN)</span></a><a class="link" href="/notes/dc.html"><span class="toc-text">Digital Circuit(EN)</span></a><a class="link" href="/notes/kalman.html"><span class="toc-text">Fundamentals of Kalman Filter and Inertia Navigation(EN)</span></a><a class="link" href="/notes/fm.html"><span class="toc-text">Fluid Mechanics(EN)</span></a><a class="link" href="/notes/kf_rv_q.html"><span class="toc-text">KF and INS Review Questions(EN)</span></a><a class="link" href="/notes/auto_q.html"><span class="toc-text">ME Control Revision Questions(EN)</span></a><a class="link active" href="/notes/sensors_rv_q.html"><span class="toc-text">Sensors and Measurement System Revision Questions</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a><a class="link" href="/notes/fm_rv_q.html"><span class="toc-text">Fluid Mechanics Revision Questions</span></a></div></widget>
+
+
 
 <widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/04/07/20250407/"><span class="title">如何从0搭建你的Python环境</span></a><a class="item title" href="/2025/03/25/20250325/"><span class="title">如何使用LaTex写文章？</span></a><a class="item title" href="/2025/03/23/20250324/"><span class="title">为什么我想建立自己的博客网站</span></a></div></widget>
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Maxwell0339" target="_blank" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-github fa-brands fa-bounce"></i></a></div></footer>
 </div></aside><div class="l_main" id="main">
 
-<header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://img.dexbug.com/i/2025/03/24/112d8hl.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Maxwell's Blog</div><div class="sub normal cap">宝剑锋从磨砺出</div><div class="sub hover cap" style="opacity:0"> 梅花香自苦寒来</div></a></div></header>
 
 
 
 
-<div class="navbar top"><nav class="post"><a href="/">近期发布</a><a href="/categories">分类</a><a href="/tags">标签</a><a class="active" href="/topic">专栏</a><a href="/archives">归档</a></nav></div><div class="post-list wiki topic"><a class="post-card wiki topic" href="/2025/03/25/20250325/">
-<article class="md-text"><div class="preview"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/10433048.png"/></div><div class="excerpt"><h2 class="post-title">Latex - 教你如何从入门到精通</h2><p>Latex学习专区。</p></div></article>
-</a></div><div class="post-list wiki topic"><a class="post-card wiki topic" href="/2025/03/23/20250324/">
-<article class="md-text"><div class="preview"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/10433048.png"/></div><div class="excerpt"><h2 class="post-title">Chat - 谈天说地</h2><p>杂谈 - 关于生活、工作、学习等方方面面的话题。</p></div></article>
-</a></div>
+<div class="article banner top">
+  <div class="content">
+    <div class="top"></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>Sensors and Measurement System Revision Questions</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h2 id="Environment-effect"><a href="#Environment-effect" class="headerlink" title="Environment effect"></a>Environment effect</h2><p><strong>Example problem:</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/02/tsynkp.png"></p>
+<p><strong>ANS.</strong></p>
+<ol>
+<li><p><strong>Data at 20 °C and 30 °C</strong>  </p>
+<ul>
+<li>Zero output: $O_0^{20}=4.0$ mA, $O_0^{30}=4.2$ mA  </li>
+<li>Full‐scale output: $O_{FS}^{20}=20.0$ mA, $O_{FS}^{30}=20.8$ mA  </li>
+<li>$\Delta T = 30 - 20 = 10$ °C</li>
+</ul>
+</li>
+<li><p><strong>Zero‐drift coefficient $K_i$</strong>  </p>
+<script type="math/tex; mode=display">
+  K_i = \frac{O_0^{30} - O_0^{20}}{\Delta T}
+      = \frac{4.2 - 4.0}{10}
+      = 0.02\;\text{mA/°C}</script></li>
+<li><p><strong>Slopes at each temperature</strong>  </p>
+<script type="math/tex; mode=display">
+  K_{20} = \frac{20.0 - 4.0}{10^4} = 1.60\times10^{-3}\;\text{mA/Pa},\quad
+  K_{30} = \frac{20.8 - 4.2}{10^4} = 1.66\times10^{-3}\;\text{mA/Pa}</script></li>
+<li><p><strong>Sensitivity‐drift coefficient $K_m$(Method A)</strong>  </p>
+<script type="math/tex; mode=display">
+  \Delta K = K_{30} - K_{20} = 6.0\times10^{-5}\;\text{mA/Pa}</script><script type="math/tex; mode=display">
+  K_m = \frac{\Delta K}{\Delta T}
+      = \frac{6.0\times10^{-5}}{10}
+      = 6.0\times10^{-6}\;\mathrm{mA/(Pa \cdot °C)}</script></li>
+</ol>
+<p><strong>Final Answers:</strong>  </p>
+<ul>
+<li>$K_i = 0.02$ mA/°C  </li>
+<li>$K_m = 6.0\times10^{-6}$ mA/(Pa·°C)  </li>
+</ul>
+<p><strong>Problems</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/02/z3mxf3.png"></p>
+<p><strong>ANS.</strong></p>
+<ol>
+<li><p><strong>Ideal slope $K$</strong>  </p>
+<script type="math/tex; mode=display">
+  K = \frac{V_{\rm full} - V_{0}}{x_{\rm max} - x_{\rm min}}
+    = \frac{58.0\,\text{mV} - 0}{3.0\,\text{cm} - 0}
+    = 19.33\;\text{mV/cm}</script></li>
+<li><p><strong>Maximum nonlinearity (% f.s.d.)</strong>  </p>
+<ul>
+<li>Compute ideal output $V_{\rm ideal}(x)=Kx$.  </li>
+<li>Find max deviation $\max|V_{\rm meas}-V_{\rm ideal}|$= 15.0 mV at $x=1.5$ cm.  </li>
+<li>% f.s.d. = $\frac{15.0}{58.0}\times100\%=25.9\%$.</li>
+</ul>
+</li>
+<li><p><strong>Zero‐drift coefficient $K_i$</strong>  </p>
+<script type="math/tex; mode=display">
+  K_i = \frac{\Delta O_0}{\Delta V_S}
+      = \frac{0 - 0}{0.6\,\text{V} - 0.5\,\text{V}}
+      = 0\;\text{mV/V}</script></li>
+<li><p><strong>Sensitivity‐drift coefficient $K_m$(Method A)</strong>  </p>
+<ul>
+<li>Slope at 0.5 V: $K_{0.5} = 19.33$ mV/cm  </li>
+<li>Slope at 0.6 V: $K_{0.6} = \frac{74.0}{3.0} = 24.67$ mV/cm  <script type="math/tex; mode=display">
+K_m = \frac{K_{0.6} - K_{0.5}}{0.6 - 0.5}
+    = \frac{24.67 - 19.33}{0.1}
+    = 53.4\;\mathrm{mV/(cm\cdot V)}</script></li>
+</ul>
+</li>
+</ol>
+<p><strong>Final Answers:</strong>  </p>
+<ul>
+<li>$K = 19.33$ mV/cm  </li>
+<li>Maximum nonlinearity ≈ 25.9 % f.s.d.  </li>
+<li>$K_i = 0$ mV/V  </li>
+<li>$K_m = 53.4$ mV/(cm·V)  </li>
+</ul>
+<h2 id="Dynamic-error"><a href="#Dynamic-error" class="headerlink" title="Dynamic error"></a>Dynamic error</h2><p><strong>Example problem</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/02/10f98k6.png"></p>
+<p><strong>ANS.</strong></p>
+<ol>
+<li><p><strong>Calculate the time constant</strong>  </p>
+<ul>
+<li>For water ($h = 1.0 \, \text{W/m}^2\text{°C}$):  <script type="math/tex; mode=display">
+\tau_1 = \frac{mc}{hA} = \frac{5 \times 10^{-2} \times 0.2}{1.0 \times 10^{-3}} = 10 \, \text{s}</script></li>
+<li>For air ($h = 0.2 \, \text{W/m}^2\text{°C}$):  <script type="math/tex; mode=display">
+\tau_2 = \frac{mc}{hA} = \frac{5 \times 10^{-2} \times 0.2}{0.2 \times 10^{-3}} = 50 \, \text{s}</script></li>
+</ul>
+</li>
+<li><p><strong>Response in water ($0 \leq t \leq 60 \, \text{s}$)</strong><br>The temperature expression is $T(t) = 100 - 80e^{-t/10} $, and the dynamic error $E(t) = T(t) - 100$.  </p>
+<ul>
+<li>$t = 10 \, \text{s}$:  <script type="math/tex; mode=display">
+T(10) = 100 - 80e^{-1} \approx 70.57 \, \text{°C}</script><script type="math/tex; mode=display">
+E(10) = 70.57 - 100 = -29.43 \, \text{°C}</script></li>
+<li>$t = 20 \, \text{s}$:  <script type="math/tex; mode=display">
+T(20) = 100 - 80e^{-2} \approx 89.18 \, \text{°C}</script><script type="math/tex; mode=display">
+E(20) = 89.18 - 100 = -10.82 \, \text{°C}</script></li>
+</ul>
+</li>
+<li><p><strong>Response in air ($t &gt; 60 \, \text{s}$)</strong><br>First, calculate at $t = 60 \, \text{s}$:  </p>
+<script type="math/tex; mode=display">
+T(60) = 100 - 80e^{-6} \approx 99.8 \, \text{°C}</script><p>The new temperature expression is $T(t) = 20 + (99.8 - 20)e^{-(t - 60)/50}$, and the dynamic error $E(t) = T(t) - 20$.  </p>
+<ul>
+<li>$t = 120 \, \text{s}$ ($t - 60 = 60 \, \text{s}$):  <script type="math/tex; mode=display">
+T(120) = 20 + 79.8e^{-1.2} \approx 44.03 \, \text{°C}</script><script type="math/tex; mode=display">
+E(120) = 44.03 - 20 = +24.03 \, \text{°C}</script></li>
+<li>$t = 300 \, \text{s}$ ($t - 60 = 240 \, \text{s}$):  <script type="math/tex; mode=display">
+T(300) = 20 + 79.8e^{-4.8} \approx 20.66 \, \text{°C}</script><script type="math/tex; mode=display">
+E(300) = 20.66 - 20 = +0.66 \, \text{°C}</script></li>
+</ul>
+</li>
+</ol>
+<p><strong>Final Dynamic Errors</strong></p>
+<ul>
+<li>$t = 10 \, \text{s}$: $-29.43 \, \text{°C}$</li>
+<li>$t = 20 \, \text{s}$: $-10.82 \, \text{°C}$</li>
+<li>$t = 120 \, \text{s}$: $+24.03 \, \text{°C}$</li>
+<li>$t = 300 \, \text{s}$: $+0.66 \, \text{°C}$</li>
+</ul>
+<p><strong>Problems</strong></p>
+<p><img src = "https://img.dexbug.com/i/2025/05/02/10o391x.png"></p>
+
+<div class="article-footer fs14"></div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/auto_q.html">ME Control Revision Questions(EN)</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/fm_rv_q.html">Fluid Mechanics Revision Questions</a></div></section></div>
+
+
+
+
 <footer class="page-footer footnote"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs15">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags">标签</a><a href="/archives">归档</a></div><div class="sitemap-group"><span class="fs15">项目</span><a href="/wiki/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">学习笔记</a></div><div class="sitemap-group"><span class="fs15">更多</span><a target="_blank" rel="noopener" href="https://github.com/">GitHub</a></div></div><div class="text"><center>
 <span>
 © 2024
@@ -138,7 +272,14 @@
 </center>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel blur'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Environment-effect"><span class="toc-text">Environment effect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dynamic-error"><span class="toc-text">Dynamic error</span></a></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
