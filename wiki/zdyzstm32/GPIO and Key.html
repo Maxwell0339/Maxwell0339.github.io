@@ -17,18 +17,18 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
   
-  <title>Kalman：Kalman Filter Simulation Practice - Maxwell's Blog</title>
+  <title>STM32F103开发板学习：GPIO和按键输入 - Maxwell's Blog</title>
 
   
-    <meta name="description" content="Project I1. Project DescriptionThe object is initially 40,000$m$ above the radar and throwing at initial vertical downward velocity 300$m&#x2F;s$ and horizontal velocity 400$m&#x2F;s$ . In this example we are n">
+    <meta name="description" content="GPIOGPIO（通用输入输出）是STM32微控制器中用于控制外部设备的接口。它可以配置为输入或输出模式，允许用户与外部硬件进行交互。  GPIO的几种输入输出模式 浮空输入：  上拉&#x2F;下拉电阻为断开状态，施密特触发器打开，输出被禁止。输入浮空模式下，IO口的电平完全是由外部电路决定。如果IO引脚没有连接其他的设备，那么检测其输入电平是不确定的。该模式可以用于按键检测等情景。  上拉输入：  上拉">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Kalman Filter Simulation Practice">
-<meta property="og:url" content="https://maxwell0339.github.io/wiki/kalmanprj/Kalman%20simulation.html">
+<meta property="og:title" content="GPIO和按键输入">
+<meta property="og:url" content="https://maxwell0339.github.io/wiki/zdyzstm32/GPIO%20and%20Key.html">
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
-<meta property="og:description" content="Project I1. Project DescriptionThe object is initially 40,000$m$ above the radar and throwing at initial vertical downward velocity 300$m&#x2F;s$ and horizontal velocity 400$m&#x2F;s$ . In this example we are n">
+<meta property="og:description" content="GPIOGPIO（通用输入输出）是STM32微控制器中用于控制外部设备的接口。它可以配置为输入或输出模式，允许用户与外部硬件进行交互。  GPIO的几种输入输出模式 浮空输入：  上拉&#x2F;下拉电阻为断开状态，施密特触发器打开，输出被禁止。输入浮空模式下，IO口的电平完全是由外部电路决定。如果IO引脚没有连接其他的设备，那么检测其输入电平是不确定的。该模式可以用于按键检测等情景。  上拉输入：  上拉">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-12T09:10:11.456Z">
-<meta property="article:modified_time" content="2025-04-12T09:10:11.456Z">
+<meta property="article:published_time" content="2025-06-03T05:30:35.587Z">
+<meta property="article:modified_time" content="2025-06-03T05:30:35.587Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -57,19 +57,19 @@
 <div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
 
 
-<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://img.dexbug.com/i/2025/04/07/slnyzv.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/kalmanprj/Kalman%20Intro.html"><div class="main" ff="title">Kalman</div><div class="sub normal cap">Kalman滤波器仿真实践 (EN)</div><div class="sub hover cap" style="opacity:0"> Designed by Maxwell</div></a></div></header>
+<header class="header"><div class="logo-wrap"><div class="icon"><img no-lazy class="icon" src="https://img.dexbug.com/i/2025/04/07/slnyzv.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></div><a class="title" href="/wiki/zdyzstm32/Intro.html"><div class="main" ff="title">STM32F103开发板学习</div><div class="sub normal cap">STM32F103开发板学习</div><div class="sub hover cap" style="opacity:0"> Designed by Maxwell</div></a></div></header>
 
 <div class="nav-area">
-<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/kalmanprj/" placeholder="在 kalman 中搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" data-filter="/wiki/zdyzstm32/" placeholder="在 文档 中搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
 
 <nav class="menu dis-select"><a class="nav-item" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg></a><a class="nav-item active" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg></a><a class="nav-item" title="笔记" href="/notes/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg></a></nav>
 </div>
 <div class="widgets">
 
-<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/wiki/kalmanprj/Kalman%20Intro.html#start"><span class="toc-text">Kalman Filter Introduction</span></a><a class="link active" href="/wiki/kalmanprj/Kalman%20simulation.html"><span class="toc-text">Kalman Filter Simulation Practice</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
+<widget class="widget-wrapper post-list"><div class="widget-body fs14"><a class="link" href="/wiki/zdyzstm32/Intro.html#start"><span class="toc-text">FOREHEAD</span></a><a class="link active" href="/wiki/zdyzstm32/GPIO%20and%20Key.html"><span class="toc-text">GPIO和按键输入</span><svg class="active-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M21 11.098v4.993c0 3.096 0 4.645-.734 5.321c-.35.323-.792.526-1.263.58c-.987.113-2.14-.907-4.445-2.946c-1.02-.901-1.529-1.352-2.118-1.47a2.225 2.225 0 0 0-.88 0c-.59.118-1.099.569-2.118 1.47c-2.305 2.039-3.458 3.059-4.445 2.945a2.238 2.238 0 0 1-1.263-.579C3 20.736 3 19.188 3 16.091v-4.994C3 6.81 3 4.666 4.318 3.333C5.636 2 7.758 2 12 2c4.243 0 6.364 0 7.682 1.332C21 4.665 21 6.81 21 11.098" opacity=".5"/><path fill="currentColor" d="M9 5.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5z"/></svg></a></div></widget>
 
-<widget class="widget-wrapper post-card"><div class="widget-header dis-select"><span class="name">更多：学习笔记</span></div><div class="widget-body"><a class="item wiki" href="/wiki/lanqiao/LED.html"><span class="title">蓝桥杯嵌入式组备赛</span><span class="excerpt">蓝桥杯备赛笔记</span></a><a class="item wiki" href="/wiki/zdyzstm32/Intro.html"><span class="title">STM32F103开发板学习(正点原子)</span><span class="excerpt">本文档基于正点原子STM32F103Mini板</span></a></div></widget>
+<widget class="widget-wrapper post-card"><div class="widget-header dis-select"><span class="name">更多：学习笔记</span></div><div class="widget-body"><a class="item wiki" href="/wiki/kalmanprj/Kalman%20Intro.html"><span class="title">Kalman滤波器 (EN)</span><span class="excerpt">Kalman滤波器仿真实践(Full English)</span></a><a class="item wiki" href="/wiki/lanqiao/LED.html"><span class="title">蓝桥杯嵌入式组备赛</span><span class="excerpt">蓝桥杯备赛笔记</span></a></div></widget>
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" title="GitHub" href="https://github.com/Maxwell0339" target="_blank" rel="external nofollow noopener noreferrer"><i class="fa-solid fa-github fa-brands fa-bounce"></i></a></div></footer>
 </div></aside><div class="l_main" id="main">
@@ -81,242 +81,103 @@
 <div class="article banner top">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
-<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/kalmanprj/Kalman%20Intro.html">Kalman</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-04-12T09:10:11.456Z">2025-04-12</time></span></div></div></div>
+<span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/zdyzstm32/Intro.html">STM32F103开发板学习</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-06-03T05:30:35.587Z">2025-06-03</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>Kalman Filter Simulation Practice</span></h1>
+        <h1 class="text title"><span>GPIO和按键输入</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><h2 id="Project-I"><a href="#Project-I" class="headerlink" title="Project I"></a>Project <strong>I</strong></h2><h3 id="1-Project-Description"><a href="#1-Project-Description" class="headerlink" title="1. Project Description"></a>1. Project Description</h3><p>The object is initially 40,000$m$ above the radar and throwing at initial vertical downward velocity 300$m/s$ and horizontal velocity 400$m/s$ . In this example we are neglecting drag or air resistance so that only gravity g ( $g$=9.8$m/s^2$) acts on the object.Assuming that the radar measures the range from the radar to the target with a 100$m$ standard deviation measurement accuracy. The radar takes measurement 10 times a second for 30 s. We would like to build a filter to estimate the position and velocity of the object without any a priori information.</p>
-<p><img src ="https://img.dexbug.com/i/2025/04/12/qyo8wp.png"  width="50%"></p>
-<h3 id="2-Modelling"><a href="#2-Modelling" class="headerlink" title="2. Modelling"></a>2. Modelling</h3><ul>
-<li><strong>State Space</strong>: We set the k-th state $\boldsymbol{x}_k = [P_x\quad P_y \quad V_x\quad V_y]^T_k$, so the (k+1)-th state is <script type="math/tex; mode=display">
-      \boldsymbol{x}_{k+1} = [P_x\quad P_y \quad V_x\quad V_y]^T_{k+1}\quad \text{Expanded,}</script><script type="math/tex; mode=display">
-      \begin{bmatrix}
-          P_x^{k+1} \\
-          P_y^{k+1}\\
-          V_x^{k+1}\\
-          V_y^{k+1}
-      \end{bmatrix} = 
-      \begin{bmatrix}
-           P_x^k +V_x^kdt + \frac{1}{2}a_x(dt)^2\\
-           P_y^k +V_y^kdt + \frac{1}{2}a_y(dt)^2\\
-           V_x^k + a_xdt\\
-          V_y^k + a_ydt
-      \end{bmatrix}</script></li>
-</ul>
-<p>The control input is $\boldsymbol{u}_k = [a_x\quad a_y]^T$.</p>
+  </div><article class="md-text content"><h2 id="GPIO"><a href="#GPIO" class="headerlink" title="GPIO"></a>GPIO</h2><p>GPIO（通用输入输出）是STM32微控制器中用于控制外部设备的接口。它可以配置为输入或输出模式，允许用户与外部硬件进行交互。</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/03/c61il.png" alt="GPIO引脚图" width="100%"></p>
+<h3 id="GPIO的几种输入输出模式"><a href="#GPIO的几种输入输出模式" class="headerlink" title="GPIO的几种输入输出模式"></a>GPIO的几种输入输出模式</h3><ol>
+<li><strong>浮空输入</strong>：</li>
+</ol>
+<p>上拉/下拉电阻为断开状态，施密特触发器打开，输出被禁止。输入浮空模式下，IO口的电平完全是由外部电路决定。如果IO引脚没有连接其他的设备，那么检测其输入电平是不确定的。该模式可以用于按键检测等情景。</p>
+<ol>
+<li><strong>上拉输入</strong>：</li>
+</ol>
+<p>上拉电阻导通，施密特触发器打开，输出被禁止。 在需要外部上拉电阻<br>的时候，可以使用内部上拉电阻，这样可以节省一个外部电阻，但是内部上拉电阻的阻值较大，所以只是“弱上拉”，不适合做电流型驱动。</p>
+<ol>
+<li><strong>下拉输入</strong>：</li>
+</ol>
+<p>下拉电阻导通，施密特触发器打开，输出被禁止。 在需要外部下拉电阻<br>的时候，可以使用内部下拉电阻，这样可以节省一个外部电阻，但是内部下拉电阻的阻值较大，所以不适合做电流型驱动。</p>
+<ol>
+<li><strong>模拟输入</strong>：</li>
+</ol>
+<p>上下拉电阻断开，施密特触发器关闭，双 MOS 管也关闭。 其他外设可以通过模拟通道输入输出。 该模式下需要用到芯片内部的模拟电路单元单元，用于 ADC、DAC、MCO 这类操作模拟信号的外设。</p>
+<ol>
+<li><strong>推挽输出</strong>：</li>
+</ol>
+<p>推挽输出的结构是由两个三极管或者MOS管受到互补信号的控制，两个管子始终保持一个处于截止，另一个处于导通的状态。电路工作时，两只对称的开关管每次只有一个导通，所以导通损耗小、效率高、既提高电路的负载能力，又提高开关速度。推挽输出的最大特点是可以真正能真正的输出高电平和低电平，在两种电平下都具有驱动能力。</p>
+<ol>
+<li><strong>开漏输出</strong>：</li>
+</ol>
+<p>常说的与推挽输出相对的就是开漏输出，对于开漏输出和推挽输出的区别最普遍的说法就是开漏输出无法真正输出高电平，即高电平时没有驱动能力，需要借助外部上拉电阻完成对外驱动。</p>
+<blockquote>
 <ul>
-<li><strong>State Transition Matrix</strong>: According to the equation $\boldsymbol{x}_{k+1} = \mathbf{A}\boldsymbol{x}_k + \mathbf{B}\boldsymbol{u}_k + \boldsymbol{w}_k$, we can write:</li>
+<li>开漏输出的这一特性一个明显的优势就是可以很方便的调节输出的电平，因为输出电平完全由上拉电阻连接的电源电平决定。所以在需要进行电平转换的地方，非常适合使用开漏输出。</li>
+<li>开漏输出的这一特性另一个好处在于可以实现”线与”功能，所谓的”线与”指的是多个信号线直接连接在一起，只有当所有信号全部为高电平时，合在一起的总线为高电平；只要有任意一个或者多个信号为低电平，则总线为低电平。而推挽输出就不行，如果高电平和低电平连在一起，会出现电流倒灌，损坏器件。</li>
 </ul>
-<script type="math/tex; mode=display">
-        \begin{bmatrix}
-            P_x^{k+1} \\
-            P_y^{k+1}\\
-            V_x^{k+1}\\
-            V_y^{k+1}
-        \end{bmatrix} = A \cdot \begin{bmatrix}
-             P_x^k \\
-             P_y^k\\
-             V_x^k\\
-            V_y^k
-        \end{bmatrix} + B \cdot \begin{bmatrix}
-            a_x\\
-            a_y
-        \end{bmatrix}</script><p>So the state transition matrix $\mathbf{A}$ is:</p>
-<script type="math/tex; mode=display">
-        \mathbf{A} =
-        \begin{bmatrix}
-            1 & 0 & dt & 0\\
-            0 & 1 & 0 & dt\\
-            0 & 0 & 1 & 0\\
-            0 & 0 & 0 & 1
-        \end{bmatrix}</script><p> The control input matrix $\mathbf{B}$ is:</p>
-<script type="math/tex; mode=display">
-        \mathbf{B} =
-        \begin{bmatrix}
-            \frac{1}{2}(dt)^2 & 0\\
-            0 & \frac{1}{2}(dt)^2\\
-            dt & 0\\
-            0 & dt
-        \end{bmatrix}</script><ul>
-<li><p><strong>Measurement Model:</strong> The measurement model is given by:$\mathbf{z}_k = \mathbf{H}\boldsymbol{x}_k + \mathbf{v}_k$.</p>
-<p>where $\mathbf{H}$ is the measurement matrix. In this case, we only measure the range from the radar to the target, so: $\boldsymbol{z}_k=\boldsymbol{x}_k = \begin{bmatrix}<br>P_x^k\\<br>P_y^k\\<br>V_x^k\\<br>V_y^k<br>\end{bmatrix}$.</p>
-<p>eventually we have: $\mathbf{H} =<br>\begin{bmatrix}<br>  1 &amp; 0 &amp; 0 &amp; 0\\<br>  0 &amp; 1 &amp; 0 &amp; 0\\<br>  0 &amp; 0 &amp; 1 &amp; 0\\<br>  0 &amp; 0 &amp; 0 &amp; 1<br>\end{bmatrix}$.</p>
-</li>
-<li><p><strong>Process Noise</strong>: The process noise $\mathbf{w}_k$ is assumed to be Gaussian with zero mean and covariance $\mathbf{Q}$. We can set $\mathbf{Q}$ as:</p>
-</li>
-</ul>
-<script type="math/tex; mode=display">
-        \mathbf{Q} =
-        \begin{bmatrix}
-            q_{P_x} & 0 & 0 & 0\\
-            0 & q_{P_y} & 0 & 0\\
-            0 & 0 & q_{V_x} & 0\\
-            0 & 0 & 0 & q_{V_y}
-        \end{bmatrix}</script><p>where $q_{P_x}$, $q_{P_y}$, $q_{V_x}$, and $q_{V_y}$ are the process noise variances for position and velocity in the x and y directions, respectively. We can set them as:</p>
-<script type="math/tex; mode=display">
-        q_{P_x} = 0.1, \quad q_{P_y} = 0.1, \quad q_{V_x} = 0.1, \quad q_{V_y} = 0.1</script><ul>
-<li><strong>Measurement Noise:</strong> The measurement noise $\mathbf{v}_k$ is also assumed to be Gaussian with zero mean and covariance $\mathbf{R}$. We can set $\mathbf{R}$ as:</li>
-</ul>
-<script type="math/tex; mode=display">
-    \mathbf{R} =
-    \begin{bmatrix}
-            r_{P_x} & 0 & 0 & 0\\
-            0 & r_{P_y} & 0 & 0\\
-            0 & 0 & r_{V_x} & 0\\
-            0 & 0 & 0 & r_{V_y}
-    \end{bmatrix}</script><p>where $r_{P_x}$, $r_{P_y}$, $r_{V_x}$, and $r_{V_y}$ are the measurement noise variances for position and velocity in the x and y directions, respectively. We can set them as:</p>
-<script type="math/tex; mode=display">
-    r_{P_x} = 100, \quad r_{P_y} = 100, \quad r_{V_x} = 100, \quad r_{V_y} = 100</script><ul>
-<li><strong>Initial State:</strong> The initial state $\boldsymbol{x}_0$ is given by the initial position and velocity of the object. We can set it as:<script type="math/tex; mode=display">
-  \boldsymbol{x}_0 =
-      \begin{bmatrix}
-          P_x\\
-          P_y\\
-          V_x\\
-          V_y
-      \end{bmatrix} =
-      \begin{bmatrix}
-          0\\
-          40000\\
-          400\\
-          -300
-      \end{bmatrix}</script>where $P_x$ is the initial position in the x direction, $P_y$ is the initial position in the y direction, $V_x$ is the initial velocity in the x direction, and $V_y$ is the initial velocity in the y direction.</li>
-</ul>
-<p>And the control input $\boldsymbol{u}_0$ is given by the initial acceleration of the object. We can set it as:</p>
-<script type="math/tex; mode=display">
-        \boldsymbol{u}_0 =
-        \begin{bmatrix}
-            a_x\\
-            a_y
-        \end{bmatrix} =
-        \begin{bmatrix}
-            0\\
-            -9.8
-        \end{bmatrix}</script><p>where $a_x$ is the acceleration in the x direction and $a_y$ is the acceleration in the y direction.</p>
+</blockquote>
+<ol>
+<li><strong>开漏式复用功能和推挽式复用功能</strong>：</li>
+</ol>
+<p>一个 IO 口可以是通用的 IO 口功能，还可以是其它外设的特殊功能引<br>脚，这就是 IO 口的复用功能。</p>
+<h3 id="GPIO的寄存器简介"><a href="#GPIO的寄存器简介" class="headerlink" title="GPIO的寄存器简介"></a>GPIO的寄存器简介</h3><p>STM32F1 每组（这里是 A~D）通用 GPIO 口有 7 个 32 位寄存器控制，包括：</p>
 <ul>
-<li><strong>Initial Covariance:</strong> The initial covariance $\mathbf{P}_0$ is given by the initial uncertainty of the state. We can set it as:</li>
+<li>2 个 32 位端口配置寄存器（CRL 和 CRH）</li>
+<li>2 个 32 位端口数据寄存器（IDR 和 ODR）</li>
+<li>1 个 32 位端口置位/复位寄存器 (BSRR)</li>
+<li>1 个 16 位端口复位寄存器（BRR）</li>
+<li>1 个 32 位端口锁定寄存器 (LCKR)</li>
 </ul>
-<script type="math/tex; mode=display">
-        \mathbf{P}_0 =
-        \begin{bmatrix}
-            p_{P_x} & 0 & 0 & 0\\
-            0 & p_{P_y} & 0 & 0\\
-            0 & 0 & p_{V_x} & 0\\
-            0 & 0 & 0 & p_{V_y}
-        \end{bmatrix}</script><p>where $p_{P_x}$, $p_{P_y}$, $p_{V_x}$, and $p_{V_y}$ are the initial covariance values for position and velocity in the x and y directions, respectively. We can set them as:</p>
-<script type="math/tex; mode=display">
-        p_{P_x} = 0.1, \quad p_{P_y} = 0.1, \quad p_{V_x} = 0.1, \quad p_{V_y} = 0.1</script><h3 id="3-Results"><a href="#3-Results" class="headerlink" title="3. Results:"></a>3. Results:</h3><p>Position estimation:</p>
-<p><img src = "https://img.dexbug.com/i/2025/04/12/r6b03r.png"></p>
-<p>Velocity estimation:</p>
-<p><img src = "https://img.dexbug.com/i/2025/04/12/r6vpgn.png"></p>
-<h2 id="Project-II"><a href="#Project-II" class="headerlink" title="Project II"></a>Project <strong>II</strong></h2><h3 id="1-Project-Description-1"><a href="#1-Project-Description-1" class="headerlink" title="1. Project Description"></a>1. Project Description</h3><p>Suppose that the actual measurement is a pure cosine wave of unity amplitude corrupted by noise or where $\omega$ is the frequency of the cosinusoidal signal and the noise is zero-mean Gaussian with a standard deviation of unity. We would like to build a Kalman filter that will be able to track the cosinusoidal and estimate its states based on the noisy cosinusoidal measurement.</p>
-<script type="math/tex; mode=display">
-    \boldsymbol{x}^{*} = \cos (\omega t) + \textbf{noise}</script><h3 id="2-Modelling-1"><a href="#2-Modelling-1" class="headerlink" title="2. Modelling"></a>2. Modelling</h3><ul>
-<li><strong>State Space</strong></li>
-</ul>
-<p>We set the k-th state $\boldsymbol{x}_k = [x_1\quad x_2]^T_k$. The components of the state vector are:</p>
-<script type="math/tex; mode=display">
-        \begin{bmatrix}
-            x_1\\
-            x_2
-        \end{bmatrix} =
-        \begin{bmatrix}
-            \cos(\omega t)\\
-            \sin(\omega t)
-        \end{bmatrix}</script><p>The components meet the relationship:</p>
-<script type="math/tex; mode=display">
-        \left\{\begin{matrix}
-        \dot{x_1} (t) = -\omega x_2(t)\\
-        \dot{x_2} (t) = -\omega x_1(t)  
-        \end{matrix}\right.</script><p>The (k+1)-th state is $\boldsymbol{x}_{k+1}$ is given by:</p>
-<script type="math/tex; mode=display">
-        \boldsymbol{x}_{k+1} = \begin{bmatrix}
-            \cos\omega (t + dt)\\
-            \sin\omega (t + dt)
-        \end{bmatrix} = \begin{bmatrix}
-            \cos \omega t \sin \omega dt -  \sin\omega t \sin \omega dt\\
-            \sin \omega t \cos \omega dt +  \cos\omega t \sin \omega dt
-        \end{bmatrix}</script><ul>
-<li><strong>State Transition Matrix</strong>:</li>
-</ul>
-<p>According to the equation $\boldsymbol{x}_{k+1} = \mathbf{A}\boldsymbol{x}_k + \mathbf{B}\boldsymbol{u}_k + \boldsymbol{w}_k$, since the control input is zero, we can write:</p>
-<script type="math/tex; mode=display">
-    \begin{bmatrix}
-            \cos \omega t \sin \omega dt -  \sin\omega t \sin \omega dt\\
-            \sin \omega t \cos \omega dt +  \cos\omega t \sin \omega dt
-    \end{bmatrix} = \mathbf{A} \cdot \begin{bmatrix}
-            \cos(\omega t)\\
-            \sin(\omega t)
-        \end{bmatrix}</script><p>So the state transition matrix $\mathbf{A}$ is:</p>
-<script type="math/tex; mode=display">
-        \mathbf{A} =
-        \begin{bmatrix}
-            \cos\omega dt & -\sin\omega dt\\
-            \sin\omega dt & \cos\omega dt
-        \end{bmatrix}</script><ul>
-<li><strong>Measurement Model</strong>:</li>
-</ul>
-<p>The measurement model is given by:$\mathbf{z}_k = \mathbf{H}\boldsymbol{x}_k + \mathbf{v}_k$.</p>
-<p>where $\mathbf{H}$ is the measurement matrix. In this case, we only measure the range from the radar to the target, so:<br>        $<br>        \boldsymbol{z}_k=\boldsymbol{x}_k =  \begin{bmatrix}<br>            x_1\\<br>            x_2<br>        \end{bmatrix}$.<br>        eventually we have: $\mathbf{H} =<br>        \begin{bmatrix}<br>            1 &amp; 0<br>        \end{bmatrix}$.</p>
+<p>这里不再详解每个寄存器该如何去配置以实现相应的功能，具体可以参考STM32F103参考手册。</p>
+<h2 id="按键"><a href="#按键" class="headerlink" title="按键"></a>按键</h2><p>按键是常用的输入设备，用于用户与系统进行交互。STM32F103 Mini开发板上有多个按键，通常用于触发中断或读取状态。</p>
+<p>但是按键在断开和闭合的时候会产生抖动现象，这会导致按键状态的读取不稳定。为了处理按键抖动问题，通常需要在软件中进行去抖动处理。</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/03/qgogc.png
+" width = 60%></p>
+<h3 id="按键的去抖动处理"><a href="#按键的去抖动处理" class="headerlink" title="按键的去抖动处理"></a>按键的去抖动处理</h3><p>一般来说，按键的去抖动可以通过进行延时来实现。具体方法是，在检测到按键状态变化时，先进行短暂的延时，然后再读取按键状态。如果状态仍然保持不变，则认为按键状态稳定，可以进行后续处理。这也是原本《STM32F103 MINI开发指南V1.3》中所采用的方式。</p>
+<p>但是，直接在程序中使用延时函数会导致程序在延时期间无法响应其他事件，这在某些情况下可能会影响系统的实时性，浪费CPU资源。<br>因此，通常会采用定时器中断的方式来处理按键去抖动问题。</p>
+<h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><p>在本实验中，我们将使用STM32F103 Mini开发板的GPIO和按键功能，完成以下任务：</p>
+<blockquote>
+<p>通过开发板上的三个独立按键控制 LED 灯：<code>KEY0</code> 控制 <code>LED0</code> 和 <code>LED1</code> 翻转，<code>KEY1</code> 控制 <code>LED1</code> 翻转，<code>KEY_UP</code> 控制 <code>LED0</code> 翻转。</p>
+</blockquote>
+<p>相关硬件原理图可以在配备的硬件手册中找到：</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/03/t6ke1.png" width = 60%></p>
+<p><strong>LED灯</strong><br>LED0 - PA8<br>LED1 - PD2</p>
+<p><strong>独立按键</strong><br>KEY0 - PC5<br>KEY1 - PA15<br>WK_UP - PA0</p>
+<p><strong>这里需要注意的是：</strong></p>
+<blockquote>
+<p>KEY0 和 KEY1 是低电平有效的，而 KEY_UP 是高电平有效的，并且外部都没有上下拉电阻，所以需要在 STM32F103 内部设置上下拉，来确定设置空闲电平状态。</p>
+</blockquote>
+<h3 id="CubeMX配置"><a href="#CubeMX配置" class="headerlink" title="CubeMX配置"></a>CubeMX配置</h3><p>我们使用HAL库完成实验。在CubeMX中进行以下配置：</p>
+<p>GPIO配置：</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/03/v8yr0.png"></p>
+<p>时钟树：</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/03/w9upq.png"></p>
+<p>TIM配置：</p>
+<p>配置10ms的定时器中断，用于按键去抖动处理。<br><img src = "https://img.dexbug.com/i/2025/06/03/wwo0q.png"></p>
+<h3 id="实验代码"><a href="#实验代码" class="headerlink" title="实验代码"></a>实验代码</h3><h4 id="定时器实现按键消抖"><a href="#定时器实现按键消抖" class="headerlink" title="定时器实现按键消抖"></a>定时器实现按键消抖</h4><p>按键状态机：</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/03/1raieu.png"></p>
+<p>代码实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">HAL_TIM_PeriodElapsedCallback</span><span class="params">(TIM_HandleTypeDef *htim)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (htim-&gt;Instance == TIM4) &#123;</span><br><span class="line">    key[<span class="number">0</span>].key_state = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);</span><br><span class="line">    key[<span class="number">1</span>].key_state = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_5);</span><br><span class="line">    key[<span class="number">2</span>].key_state = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_15);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint8_t</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">switch</span> (key[i].judge_state) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>: <span class="comment">// Idle</span></span><br><span class="line">          <span class="keyword">if</span> (key[i].key_state == GPIO_PIN_RESET) &#123;</span><br><span class="line">            key[i].judge_state = <span class="number">1</span>; <span class="comment">// Pressed</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>: <span class="comment">// Pressed</span></span><br><span class="line">          <span class="keyword">if</span> (key[i].key_state == GPIO_PIN_SET) &#123;</span><br><span class="line">            key[i].judge_state = <span class="number">0</span>; <span class="comment">// Released</span></span><br><span class="line">            key[i].key_ispressed = <span class="number">1</span>; <span class="comment">// Key was pressed</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="LED处理函数"><a href="#LED处理函数" class="headerlink" title="LED处理函数"></a>LED处理函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">LED_Proc</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (key[<span class="number">0</span>].key_ispressed) &#123;</span><br><span class="line">    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);</span><br><span class="line">    key[<span class="number">0</span>].key_ispressed = <span class="number">0</span>; <span class="comment">// Reset the pressed state</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (key[<span class="number">1</span>].key_ispressed) &#123;</span><br><span class="line">    key[<span class="number">1</span>].key_ispressed = <span class="number">0</span>; <span class="comment">// Reset the pressed state</span></span><br><span class="line">    HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_2);<span class="comment">// Toggle LED on PD2</span></span><br><span class="line">    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (key[<span class="number">2</span>].key_ispressed) &#123;</span><br><span class="line">    HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_2);</span><br><span class="line">    key[<span class="number">2</span>].key_ispressed = <span class="number">0</span>; <span class="comment">// Reset the pressed state</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在主函数循环中调用LED处理函数即可</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本章中有一些需要注意的关键点：</p>
 <ul>
-<li><strong>Process Noise</strong>:</li>
+<li>在硬件电路图中，按键并未配置上拉或下拉电阻，需要在CubeMX中进行内部上拉或下拉配置。</li>
+<li>计时器中断实现按键消抖是一个非常重要的技巧，可以提高按键响应的稳定性和可靠性。</li>
 </ul>
-<p>The process noise $\mathbf{w}_k$ is assumed to be Gaussian with zero mean and covariance $\mathbf{Q}$. We can set $\mathbf{Q}$ as:</p>
-<script type="math/tex; mode=display">
-        \mathbf{Q} =
-        \begin{bmatrix}
-            q_{x_1} & 0\\
-            0 & q_{x_2}
-        \end{bmatrix}</script><p>where $q_{x_1}$ and $q_{x_2}$ are the process noise variances in the two component states, respectively. We can set them as:</p>
-<script type="math/tex; mode=display">
-        q_{x_1} = 10^{-3}, \quad q_{x_2} = 10^{-3}</script><ul>
-<li><strong>Measurement Noise</strong>:</li>
-</ul>
-<p>The measurement noise $\mathbf{v}_k$ is also assumed to be Gaussian with zero mean and covariance $\mathbf{R}$. We can set $\mathbf{R}$ as:</p>
-<script type="math/tex; mode=display">
-        \mathbf{R} =
-        \begin{bmatrix}
-            r_{x}
-        \end{bmatrix}</script><p>where $r_{x}$ are the measurement noise variances in the measure state. We can set:</p>
-<script type="math/tex; mode=display">
-        r_{x} = 1</script><ul>
-<li><strong>Initial State</strong>:</li>
-</ul>
-<p>The initial state $\boldsymbol{x}_0$ is given by the initial state. We can set it as:</p>
-<script type="math/tex; mode=display">
-        \boldsymbol{x}_0 =
-        \begin{bmatrix}
-            x_1\\
-            x_2
-        \end{bmatrix} =
-        \begin{bmatrix}
-            1\\
-            0
-        \end{bmatrix}</script><p>where $x_1$ is the initial state in the first component and $x_2$ is the initial state in the second component.(The initial state is the cosine wave at $t=0$)</p>
-<ul>
-<li><strong>Initial Covariance</strong>:</li>
-</ul>
-<p>The initial covariance $\mathbf{P}_0$ is given by the initial uncertainty of the state. We can set it as:</p>
-<script type="math/tex; mode=display">
-        \mathbf{P}_0 =
-        \begin{bmatrix}
-            p_{x_1} & 0\\
-            0 & p_{x_2}
-        \end{bmatrix}</script><p>where $p_{x_1}$ and $p_{x_2}$ are the initial covariance values for the two component states, respectively. We can set them as: </p>
-<script type="math/tex; mode=display">
-        p_{x_1} = 1, \quad p_{x_2} = 1</script><h3 id="3-Results-1"><a href="#3-Results-1" class="headerlink" title="3. Results"></a>3. Results</h3><p><img src = "https://img.dexbug.com/i/2025/04/12/rcvzti.png"></p>
 
 <div class="article-footer fs14"></div>
 </article>
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/kalmanprj/Kalman%20Intro.html">Kalman Filter Introduction</a></div><div class="item" id="next"></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/zdyzstm32/Intro.html">FOREHEAD</a></div><div class="item" id="next"></div></section></div>
 
 
 
@@ -382,7 +243,7 @@
 <widget class="widget-wrapper ghrepo"><div class="widget-body"><div class="items ds-ghinfo" api="https://api.github.com/repos/Maxwell0339/Maxwell0339.github.io.git"><a class="repo" href="https://github.com/Maxwell0339/Maxwell0339.github.io.git" target="_blank" rel="external nofollow noopener noreferrer"><div class="repo-name flex-row"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>Maxwell0339/Maxwell0339.github.io.git</div><div class="repo-desc"><span type="text" id="description">&nbsp;</span></div><div class="grid"><div class="flex-row"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path></svg><span type="text" id="stargazers_count"></span></div><div class="flex-row"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path></svg><span type="text" id="forks_count"></span></div><div class="flex-row ds-ghinfo" index="0" api="https://api.github.com/repos/Maxwell0339/Maxwell0339.github.io.git/tags"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg><span type="text" id="latest-tag-name">0</span></div></div></a></div></div></widget>
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Project-I"><span class="toc-text">Project I</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Project-Description"><span class="toc-text">1. Project Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Modelling"><span class="toc-text">2. Modelling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Results"><span class="toc-text">3. Results:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project-II"><span class="toc-text">Project II</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Project-Description-1"><span class="toc-text">1. Project Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Modelling-1"><span class="toc-text">2. Modelling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Results-1"><span class="toc-text">3. Results</span></a></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GPIO"><span class="toc-text">GPIO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GPIO%E7%9A%84%E5%87%A0%E7%A7%8D%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A8%A1%E5%BC%8F"><span class="toc-text">GPIO的几种输入输出模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GPIO%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8%E7%AE%80%E4%BB%8B"><span class="toc-text">GPIO的寄存器简介</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%94%AE"><span class="toc-text">按键</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%94%AE%E7%9A%84%E5%8E%BB%E6%8A%96%E5%8A%A8%E5%A4%84%E7%90%86"><span class="toc-text">按键的去抖动处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-text">实验内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CubeMX%E9%85%8D%E7%BD%AE"><span class="toc-text">CubeMX配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">实验代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E6%8C%89%E9%94%AE%E6%B6%88%E6%8A%96"><span class="toc-text">定时器实现按键消抖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LED%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-text">LED处理函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
