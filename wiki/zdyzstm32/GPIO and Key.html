@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Maxwell&#39;s Blog">
 <meta property="og:description" content="GPIOGPIO（通用输入输出）是STM32微控制器中用于控制外部设备的接口。它可以配置为输入或输出模式，允许用户与外部硬件进行交互。  GPIO的几种输入输出模式 浮空输入：  上拉&#x2F;下拉电阻为断开状态，施密特触发器打开，输出被禁止。输入浮空模式下，IO口的电平完全是由外部电路决定。如果IO引脚没有连接其他的设备，那么检测其输入电平是不确定的。该模式可以用于按键检测等情景。  上拉输入：  上拉">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-06-03T05:30:35.587Z">
-<meta property="article:modified_time" content="2025-06-03T05:30:35.587Z">
+<meta property="article:published_time" content="2025-06-09T14:35:47.538Z">
+<meta property="article:modified_time" content="2025-06-09T14:35:47.538Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -82,7 +82,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki">文档</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/zdyzstm32/Intro.html">STM32F103开发板学习</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-06-03T05:30:35.587Z">2025-06-03</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">更新于：<time datetime="2025-06-09T14:35:47.538Z">2025-06-09</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -95,29 +95,29 @@
   </div>
   </div><article class="md-text content"><h2 id="GPIO"><a href="#GPIO" class="headerlink" title="GPIO"></a>GPIO</h2><p>GPIO（通用输入输出）是STM32微控制器中用于控制外部设备的接口。它可以配置为输入或输出模式，允许用户与外部硬件进行交互。</p>
 <p><img src = "https://img.dexbug.com/i/2025/06/03/c61il.png" alt="GPIO引脚图" width="100%"></p>
-<h3 id="GPIO的几种输入输出模式"><a href="#GPIO的几种输入输出模式" class="headerlink" title="GPIO的几种输入输出模式"></a>GPIO的几种输入输出模式</h3><ol>
+<h3 id="GPIO的几种输入输出模式"><a href="#GPIO的几种输入输出模式" class="headerlink" title="GPIO的几种输入输出模式"></a>GPIO的几种输入输出模式</h3><ul>
 <li><strong>浮空输入</strong>：</li>
-</ol>
+</ul>
 <p>上拉/下拉电阻为断开状态，施密特触发器打开，输出被禁止。输入浮空模式下，IO口的电平完全是由外部电路决定。如果IO引脚没有连接其他的设备，那么检测其输入电平是不确定的。该模式可以用于按键检测等情景。</p>
-<ol>
+<ul>
 <li><strong>上拉输入</strong>：</li>
-</ol>
+</ul>
 <p>上拉电阻导通，施密特触发器打开，输出被禁止。 在需要外部上拉电阻<br>的时候，可以使用内部上拉电阻，这样可以节省一个外部电阻，但是内部上拉电阻的阻值较大，所以只是“弱上拉”，不适合做电流型驱动。</p>
-<ol>
+<ul>
 <li><strong>下拉输入</strong>：</li>
-</ol>
+</ul>
 <p>下拉电阻导通，施密特触发器打开，输出被禁止。 在需要外部下拉电阻<br>的时候，可以使用内部下拉电阻，这样可以节省一个外部电阻，但是内部下拉电阻的阻值较大，所以不适合做电流型驱动。</p>
-<ol>
+<ul>
 <li><strong>模拟输入</strong>：</li>
-</ol>
+</ul>
 <p>上下拉电阻断开，施密特触发器关闭，双 MOS 管也关闭。 其他外设可以通过模拟通道输入输出。 该模式下需要用到芯片内部的模拟电路单元单元，用于 ADC、DAC、MCO 这类操作模拟信号的外设。</p>
-<ol>
+<ul>
 <li><strong>推挽输出</strong>：</li>
-</ol>
+</ul>
 <p>推挽输出的结构是由两个三极管或者MOS管受到互补信号的控制，两个管子始终保持一个处于截止，另一个处于导通的状态。电路工作时，两只对称的开关管每次只有一个导通，所以导通损耗小、效率高、既提高电路的负载能力，又提高开关速度。推挽输出的最大特点是可以真正能真正的输出高电平和低电平，在两种电平下都具有驱动能力。</p>
-<ol>
+<ul>
 <li><strong>开漏输出</strong>：</li>
-</ol>
+</ul>
 <p>常说的与推挽输出相对的就是开漏输出，对于开漏输出和推挽输出的区别最普遍的说法就是开漏输出无法真正输出高电平，即高电平时没有驱动能力，需要借助外部上拉电阻完成对外驱动。</p>
 <blockquote>
 <ul>
@@ -125,9 +125,9 @@
 <li>开漏输出的这一特性另一个好处在于可以实现”线与”功能，所谓的”线与”指的是多个信号线直接连接在一起，只有当所有信号全部为高电平时，合在一起的总线为高电平；只要有任意一个或者多个信号为低电平，则总线为低电平。而推挽输出就不行，如果高电平和低电平连在一起，会出现电流倒灌，损坏器件。</li>
 </ul>
 </blockquote>
-<ol>
+<ul>
 <li><strong>开漏式复用功能和推挽式复用功能</strong>：</li>
-</ol>
+</ul>
 <p>一个 IO 口可以是通用的 IO 口功能，还可以是其它外设的特殊功能引<br>脚，这就是 IO 口的复用功能。</p>
 <h3 id="GPIO的寄存器简介"><a href="#GPIO的寄存器简介" class="headerlink" title="GPIO的寄存器简介"></a>GPIO的寄存器简介</h3><p>STM32F1 每组（这里是 A~D）通用 GPIO 口有 7 个 32 位寄存器控制，包括：</p>
 <ul>
