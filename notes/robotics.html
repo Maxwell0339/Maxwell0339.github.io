@@ -29,8 +29,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/rcbtv2.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/re1z8g.png">
-<meta property="article:published_time" content="2025-06-09T14:25:15.180Z">
-<meta property="article:modified_time" content="2025-06-09T14:25:15.180Z">
+<meta property="article:published_time" content="2025-06-09T15:36:45.876Z">
+<meta property="article:modified_time" content="2025-06-09T15:36:45.876Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -250,7 +250,191 @@ D_Q = \begin{bmatrix} 1 & 0 & 0 & q_x \\ 0 & 1 & 0 & q_y \\ 0 & 0 & 1 & q_z \\ 0
 <p>In the case of a revolute joint,$\theta_i$ is the joint variable, and the other three quantities are fixed link parameters.</p>
 </blockquote>
 <p>The definition of mechanisms by means of these quantities is a convention usually called the <strong>Denavit-Hartenberg notation</strong>.</p>
-<h3 id="Sec-2-2-Manipulator-Kinematics"><a href="#Sec-2-2-Manipulator-Kinematics" class="headerlink" title="Sec 2.2 Manipulator Kinematics"></a>Sec 2.2 Manipulator Kinematics</h3>
+<h3 id="Sec-2-2-Manipulator-Kinematics"><a href="#Sec-2-2-Manipulator-Kinematics" class="headerlink" title="Sec 2.2 Manipulator Kinematics"></a>Sec 2.2 Manipulator Kinematics</h3><h4 id="Sec-2-2-1-Convention-for-Affixing-Frames-to-Links"><a href="#Sec-2-2-1-Convention-for-Affixing-Frames-to-Links" class="headerlink" title="Sec 2.2.1 Convention for Affixing Frames to Links"></a>Sec 2.2.1 Convention for Affixing Frames to Links</h4><p><img src = "https://img.dexbug.com/i/2025/06/09/10yr6yr.png"></p>
+<p>The frame attached to link $i$ is named $\{i\}$.</p>
+<p>Location of frames on <strong>intermediate links</strong> (link 1 to link n-1):</p>
+<ul>
+<li>The origin of $\{i\}$is located at the intersection of link$i$and joint axis $i$;</li>
+<li>$\hat{\boldsymbol{Z}}_i$is coincident with joint axis $i$;</li>
+<li>$\hat{\boldsymbol{X}}_i$points along$a_i$in the direction from joint$i$to joint $i+1$;</li>
+<li>$\hat{\boldsymbol{Y}}_i$ is formed by the right-hand rule.</li>
+</ul>
+<p><strong>Procedures of assigning link-attached frames:</strong></p>
+<p>(1) Identify the joint axes and mark the extension of these axes;</p>
+<p>(2) Identify the common perpendicular between joint axis $i$ and joint axis $i + 1$, or identify the intersection of them; At the intersection, or at the point where the common perpendicular meets the $i$-th axis, assign the link-frame origin;</p>
+<p>(3) Assign the $\hat{\boldsymbol{Z}}_i$axis pointing along the$i$th joint axis;</p>
+<p>(4) Assign the $\hat{\boldsymbol{X}}_i$axis pointing along the common perpendicular, or, if joint axis$i$and joint axis$i + 1$intersect, assign$\hat{\boldsymbol{X}}_i$to be normal to the plane containing the two axes;</p>
+<p>(5) Assign the$\hat{\boldsymbol{Y}}_i$ axis to complete a right-hand coordinate system;</p>
+<p>(6) Assign $\{0\}$to match$\{1\}$when the first joint variable is zero. For$\{N\}$, choose an origin location and $\boldsymbol{\hat{X}_N}$ direction freely, but generally so as to cause as many linkage parameters as possible to become zero.</p>
+<p><strong>Implications of link parameters in terms of attached frames:</strong></p>
+<ul>
+<li>$a_i$: the distance from $\hat{\boldsymbol{Z}}_i$to$\hat{\boldsymbol{Z}}_{i + 1}$measured along$\hat{\boldsymbol{X}}_i$;</li>
+<li>$\alpha_i$: the angle from $\hat{\boldsymbol{Z}}_i$to$\hat{\boldsymbol{Z}}_{i + 1}$measured about$\hat{\boldsymbol{X}}_i$;</li>
+<li>$d_i$: the distance from $\hat{\boldsymbol{X}}_{i - 1}$to$\hat{\boldsymbol{X}}_i$measured along$\hat{\boldsymbol{Z}}_i$;</li>
+<li>$\theta_i$: the angle from $\hat{\boldsymbol{X}}_{i - 1}$to$\hat{\boldsymbol{X}}_i$measured about$\hat{\boldsymbol{Z}}_i$.</li>
+</ul>
+<p>The assignment of frames to links is not unique. There are many choices.</p>
+<ul>
+<li>The choice of direction of $\boldsymbol{Z}_i$;</li>
+<li>In the case of intersecting joint axes, there are two choices for the direction of $\boldsymbol{X}_i$;</li>
+<li>When axes $i+1$are parallel, the choice of origin location of$\{i\}$ is arbitrary.</li>
+</ul>
+<h4 id="Sec-2-2-2-Manipulator-Kinematics"><a href="#Sec-2-2-2-Manipulator-Kinematics" class="headerlink" title="Sec 2.2.2 Manipulator Kinematics"></a>Sec 2.2.2 Manipulator Kinematics</h4><p><strong>Objective:</strong></p>
+<p>Find the descriptions of position and/or orientation of the end-effector in terms of the reference frame (or the frame attached on base), given joint variables and parameters.</p>
+<p><strong>Basic idea:</strong>‘=</p>
+<ul>
+<li>Construct the transform that defines frame <code>&#123;i&#125;</code> relative to frame <code>&#123;i - 1&#125;</code>;</li>
+<li>Obtain the single transformation that relates frame <code>&#123;N&#125;</code> and frame <code>&#123;0&#125;</code>:</li>
+</ul>
+<script type="math/tex; mode=display">{}_{N}^{0}T = {}_{1}^{0}T {}_{2}^{1}T {}_{3}^{2}T \cdots {}_{N}^{N - 1}T</script><p><strong>New objective:</strong><br>Find${}_{i}^{i - 1}T$</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/09/119hj1z.png"></p>
+<p><strong>Conclusion:</strong></p>
+<ul>
+<li><p>The transformation from $\{i\}$to$\{i - 1\}$is a function of one variable and three parameters, which can be obtained by:</p>
+<script type="math/tex; mode=display">{}^{i - 1}_{i}T = {}^{i - 1}_{L}T{}^{M}_{M}T{}^{R}_{R}T{}^{}_{i}T</script></li>
+<li><p>The transformation from$\{N\}$to$\{0\}$is a function of$n$joint variables, which can be obtained by:</p>
+<script type="math/tex; mode=display">{}^{0}_{N}T = {}^{1}_{0}T{}^{2}_{1}T{}^{3}_{2}T \cdots {}^{N}_{N - 1}T</script></li>
+</ul>
+<h2 id="Chap-3-Inverse-Manipulator-Kinematics"><a href="#Chap-3-Inverse-Manipulator-Kinematics" class="headerlink" title="Chap 3. Inverse Manipulator Kinematics"></a>Chap 3. Inverse Manipulator Kinematics</h2><p><strong>Manipulator Kinematics:</strong></p>
+<blockquote>
+<p>Find the position and orientation of the end-effector in the reference frame, given joint variables and parameters.</p>
+</blockquote>
+<p><strong>Inverse Manipulator Kinematics:</strong></p>
+<blockquote>
+<p>Find joint variables, given the position and orientation of the end-effector in the reference frame.</p>
+</blockquote>
+<h3 id="Sec-3-1-Solvability-Algebraic-Solution-and-Geometric-Solution"><a href="#Sec-3-1-Solvability-Algebraic-Solution-and-Geometric-Solution" class="headerlink" title="Sec 3.1: Solvability, Algebraic Solution and Geometric Solution"></a>Sec 3.1: Solvability, Algebraic Solution and Geometric Solution</h3><h4 id="Sec-3-1-1-Solvability"><a href="#Sec-3-1-1-Solvability" class="headerlink" title="Sec 3.1.1 Solvability"></a>Sec 3.1.1 Solvability</h4><h5 id="3-1-1-1-Existence-of-solutions"><a href="#3-1-1-1-Existence-of-solutions" class="headerlink" title="3.1.1.1 Existence of solutions"></a>3.1.1.1 Existence of solutions</h5><p><strong>Workspace:</strong></p>
+<blockquote>
+<p>Volume of space that the end-effector of the manipulator can reach.</p>
+</blockquote>
+<ul>
+<li>Whether any solution exists depends on the manipulator’s workspace.</li>
+<li>For a solution to exist, the specified goal point must lie within the workspace.</li>
+<li>Workspace is determined by DoFs and parameters of a manipulator.</li>
+</ul>
+<h5 id="3-1-1-2-Multiple-solutions"><a href="#3-1-1-2-Multiple-solutions" class="headerlink" title="3.1.1.2 Multiple solutions"></a>3.1.1.2 Multiple solutions</h5><p>Multiple possible configurations of a manipulator may achieve the same position and orientation of the end effector.</p>
+<p><strong>Selection criteria of solutions:</strong></p>
+<ul>
+<li>shortest distance rule</li>
+<li>minimum energy consumption</li>
+<li>maximum stability</li>
+</ul>
+<h5 id="3-1-1-3-Method-of-solution"><a href="#3-1-1-3-Method-of-solution" class="headerlink" title="3.1.1.3 Method of solution"></a>3.1.1.3 Method of solution</h5><p>Closed-form solutions:</p>
+<ul>
+<li>Algebraic solution</li>
+<li>Geometric solution</li>
+</ul>
+<p>Numerical solutions (slower)</p>
+<h4 id="Sec-3-1-2-Algebraic-solution"><a href="#Sec-3-1-2-Algebraic-solution" class="headerlink" title="Sec 3.1.2 Algebraic solution"></a>Sec 3.1.2 Algebraic solution</h4><p>Example: In the three-link planar manipulator, the angle between $\widehat{X}_{3}$ and $\widehat{X}_{0}$is$\varphi$, the position of joint 3 is $\begin{bmatrix} x &amp; y &amp; 0 \end{bmatrix}^T$, and the lengths of link 1 and link 2 are $L_{1}$ and $L_{2}$, respectively. Find $\theta_{1}$, $\theta_{2}$ and $\theta_{3}$.</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/09/12c4epk.png" width = 50%></p>
+<p>The transformation matrix represented by position and orientation of the end-effector:</p>
+<script type="math/tex; mode=display">\mathbf{^{0}_{3}T} = 
+\begin{bmatrix}
+c_{\varphi} & -s_{\varphi} & 0 & x \\
+s_{\varphi} & c_{\varphi} & 0 & y \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}</script><p>The D-H parameters:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$i$</th>
+<th>$\alpha_{i - 1}$</th>
+<th>$a_{i - 1}$</th>
+<th>$d_i$</th>
+<th>$\theta_i$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>$\theta_1$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>$L_1$</td>
+<td>0</td>
+<td>$\theta_2$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>$L_2$</td>
+<td>0</td>
+<td>$\theta_3$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The transformation matrix represented by joint variables:</p>
+<script type="math/tex; mode=display">
+{}_{3}^{0}T = \begin{bmatrix}
+c_{123} & -s_{123} & 0 & L_1c_1 + L_2c_{12} \\
+s_{123} & c_{123} & 0 & L_1s_1 + L_2s_{12} \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}</script><p>where $c_{123} = \cos(\theta_1 + \theta_2 + \theta_3)$ and $s_{123} = \sin(\theta_1 + \theta_2 + \theta_3)$</p>
+<p>Comparing the two matrices, we can obtain:</p>
+<script type="math/tex; mode=display">
+c_{\varphi} = c_{123} \tag{1}</script><script type="math/tex; mode=display">
+s_{\varphi} = s_{123} \tag{2}</script><script type="math/tex; mode=display">
+x = L_1 c_1 + L_2 c_{12} \tag{3}</script><script type="math/tex; mode=display">
+y = L_1 s_1 + L_2 s_{12} \tag{4}</script><p>By calculating $(3)^2+(4)^2$, we can obtain:</p>
+<script type="math/tex; mode=display">
+x^2 + y^2 = L_1^2 + L_2^2 + 2L_1 L_2 c_2</script><p>Therefore,</p>
+<script type="math/tex; mode=display">c_2 = \frac{(x^2 + y^2 - L_1^2 - L_1^2)}{(2L_1L_2)}$$If$\left| \frac{x^2 + y^2 - L_1^2 - L_1^2}{2L_1L_2} \right| > 1$, there is no solution;
+
+If $\left| \frac{x^2 + y^2 - L_1^2 - L_1^2}{2L_1L_2} \right| < 1$,
+
+$$c_2 = \frac{(x^2 + y^2 - L_1^2 - L_1^2)}{(2L_1L_2)}</script><script type="math/tex; mode=display">\theta_2 = \pm \arccos \left[ \frac{x^2 + y^2 - L_1^2 - L_1^2}{2L_1L_2} \right]</script><p>(3) and (4) can be written as:</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+x &= L_1c_1 + L_2(c_1c_2 - s_1s_2)\\
+y &= L_1s_1 + L_2(c_1s_2 + s_1c_2)
+\end{align*}</script><p>thus,</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+x &= (L_1 + L_2c_2)c_1 - (L_2s_2)s_1\\
+y &= (L_1 + L_2c_2)s_1 + (L_2s_2)c_1
+\end{align*}</script><p>$x$ and $y$ can be written as:</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+x &= k_1c_1 - k_2s_1 \tag{5}\\
+y &= k_1s_1 + k_2c_1 \tag{6}
+\end{align*}</script><p>where</p>
+<script type="math/tex; mode=display">\begin{align*}
+k_1 &= L_1 + L_2c_2\\
+k_2 &= L_2s_2
+\end{align*}</script><p>Let $r = \sqrt{k_1^2 + k_2^2}$ and $\gamma = \arctan\left(\frac{k_2}{k_1}\right)$</p>
+<p>thus,</p>
+<script type="math/tex; mode=display">k_1 = r \cos \gamma \tag{7}</script><script type="math/tex; mode=display">k_2 = r \sin \gamma \tag{8}</script><p>Substituting (7) and (8) into (5) and (6), we can obtain:</p>
+<script type="math/tex; mode=display">\gamma + \theta_1 = \arctan\left(\frac{y}{x}\right)$$thus,$$\theta_1 = \arctan\left(\frac{y}{x}\right) - \arctan\left(\frac{k_2}{k_1}\right)</script><p>As $\theta_1+\theta_2+\theta_3=\arctan\left(\frac{s_{\varphi}}{c_{\varphi}}\right)=\varphi$</p>
+<p>$\theta_3 = \varphi-\theta_1-\theta_2$</p>
+<h4 id="Sec-3-1-3-Geometric-solution"><a href="#Sec-3-1-3-Geometric-solution" class="headerlink" title="Sec 3.1.3 Geometric solution"></a>Sec 3.1.3 Geometric solution</h4><p>Example: In the three-link planar manipulator, the angle between $\hat{X}_3$ and $\hat{X}_0$ is $\varphi$, the position of joint 3 is $\begin{bmatrix}x&amp;y&amp;0\end{bmatrix}^T$, and the lengths of link 1 and link 2 are $L_1$ and $L_2$, respectively. Find $\theta_1$, $\theta_2$ and $\theta_3$.</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/09/12i7jpd.png" width = 50%></p>
+<p>Red variables: variables to be found</p>
+<p>Blue variables or parameters: known variables/parameters</p>
+<p>Purple variables: intermediate variables</p>
+<p>(1) Find $\theta_{2}$ by law of cosines:</p>
+<script type="math/tex; mode=display">x^{2}+y^{2}=L_{1}^{2}+L_{2}^{2}-2L_{1}L_{2}\cos(-180 - \theta_{2})</script><p>Since $\cos(-\alpha)=\cos\alpha$, we have:</p>
+<script type="math/tex; mode=display">x^{2}+y^{2}=L_{1}^{2}+L_{2}^{2}+2L_{1}L_{2}\cos\theta_{2}</script><p>Then, by the formula for $\cos\theta_{2}$:</p>
+<script type="math/tex; mode=display">\cos\theta_{2}=\frac{x^{2}+y^{2}-L_{1}^{2}-L_{2}^{2}}{2L_{1}L_{2}}</script><p>If $\left|\frac{x^{2}+y^{2}-L_{1}^{2}-L_{2}^{2}}{2L_{1}L_{2}}\right| &gt; 1$, there is no solution;</p>
+<p>If $\left|\frac{x^{2}+y^{2}-L_{1}^{2}-L_{2}^{2}}{2L_{1}L_{2}}\right| &lt; 1$, $\theta_{2}=\pm\arccos\left[\frac{x^{2}+y^{2}-L_{1}^{2}-L_{2}^{2}}{2L_{1}L_{2}}\right]$</p>
+<p>(2) Find $\theta_1$:</p>
+<p>$\beta=\arctan\left(\frac{y}{x}\right)$</p>
+<p>Applying the law of cosines, we can obtain: $\cos\psi=\frac{x^{2}+y^{2}+L_{1}^{2}-L_{2}^{2}}{2L_{1}\sqrt{x^{2}+y^{2}}}$</p>
+<p>$\psi = \arccos\frac{x^{2}+y^{2}+L_{1}^{2}-L_{2}^{2}}{2L_{1}\sqrt{x^{2}+y^{2}}}$</p>
+<p>If $\theta_2 &lt; 0$, $\theta_1 = \beta + \psi = \arctan\left(\frac{y}{x}\right) + \arccos\frac{x^2 + y^2 + L_1^2 - L_2^2}{2L_1\sqrt{x^2 + y^2}}$</p>
+<p>If$\theta_2 &gt; 0$, $\theta_1 = \beta - \psi = \arctan\left(\frac{y}{x}\right) - \arccos\frac{x^2 + y^2 + L_1^2 - L_2^2}{2L_1\sqrt{x^2 + y^2}}$</p>
+<p>(3) Find $\theta_{3}$:</p>
+<p>$\theta_{1}+\theta_{2}+\theta_{3}=\varphi$ </p>
+<p>thus, $\theta_{3}=\varphi - \theta_{1}-\theta_{2}$</p>
+
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/index.html">Forehead</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/autocontrol.html">ME Control(EN)</a></div></section></div>
@@ -319,7 +503,7 @@ D_Q = \begin{bmatrix} 1 & 0 & 0 & q_x \\ 0 & 1 & 0 & q_y \\ 0 & 0 & 1 & q_z \\ 0
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Spatial-Descriptions-and-Transformations"><span class="toc-text">Chap1. Spatial Descriptions and Transformations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Descriptions-Positions-Orientations-and-Frames"><span class="toc-text">Sec 1.1 Descriptions: Positions, Orientations and Frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Mappings"><span class="toc-text">Sec 1.2 Mappings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Operators"><span class="toc-text">Sec 1.3 Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Transformation-Arithmetic"><span class="toc-text">Sec 1.4 Transformation Arithmetic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-More-on-Representation-of-Orientation"><span class="toc-text">Sec 1.5 More on Representation of Orientation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Manipulator-Kinematics"><span class="toc-text">Chap 2. Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Link-Description"><span class="toc-text">Sec 2.1 Link Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2 Manipulator Kinematics</span></a></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Spatial-Descriptions-and-Transformations"><span class="toc-text">Chap1. Spatial Descriptions and Transformations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Descriptions-Positions-Orientations-and-Frames"><span class="toc-text">Sec 1.1 Descriptions: Positions, Orientations and Frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Mappings"><span class="toc-text">Sec 1.2 Mappings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Operators"><span class="toc-text">Sec 1.3 Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Transformation-Arithmetic"><span class="toc-text">Sec 1.4 Transformation Arithmetic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-More-on-Representation-of-Orientation"><span class="toc-text">Sec 1.5 More on Representation of Orientation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Manipulator-Kinematics"><span class="toc-text">Chap 2. Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Link-Description"><span class="toc-text">Sec 2.1 Link Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2 Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-1-Convention-for-Affixing-Frames-to-Links"><span class="toc-text">Sec 2.2.1 Convention for Affixing Frames to Links</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2.2 Manipulator Kinematics</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Inverse-Manipulator-Kinematics"><span class="toc-text">Chap 3. Inverse Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Solvability-Algebraic-Solution-and-Geometric-Solution"><span class="toc-text">Sec 3.1: Solvability, Algebraic Solution and Geometric Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-1-Solvability"><span class="toc-text">Sec 3.1.1 Solvability</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-1-Existence-of-solutions"><span class="toc-text">3.1.1.1 Existence of solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-2-Multiple-solutions"><span class="toc-text">3.1.1.2 Multiple solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-3-Method-of-solution"><span class="toc-text">3.1.1.3 Method of solution</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-2-Algebraic-solution"><span class="toc-text">Sec 3.1.2 Algebraic solution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-3-Geometric-solution"><span class="toc-text">Sec 3.1.3 Geometric solution</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
