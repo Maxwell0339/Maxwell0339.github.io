@@ -29,8 +29,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/rcbtv2.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/re1z8g.png">
-<meta property="article:published_time" content="2025-06-09T15:36:45.876Z">
-<meta property="article:modified_time" content="2025-06-09T15:36:45.876Z">
+<meta property="article:published_time" content="2025-06-11T09:04:36.469Z">
+<meta property="article:modified_time" content="2025-06-11T09:04:36.469Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -137,8 +137,9 @@
 <ol>
 <li><p><strong>Mappings involving translated frames</strong><br> If $\{A\}$ and $\{B\}$ have the same orientation but differ by translation ${}^AP_{BORG}$:  </p>
 <script type="math/tex; mode=display">
-^AP = ^BP + ^AP_{BORG}</script><p>$$</p>
-</li>
+^AP = ^BP + ^AP_{BORG}</script></li>
+</ol>
+<ol>
 <li><p><strong>Mappings involving rotated frames</strong><br> If $\{A\}$ and $\{B\}$ share the same origin but differ by rotation ${}^A_BR$:  </p>
 <script type="math/tex; mode=display">
 {}^AP = {}^A_BR \, {}^BP</script></li>
@@ -387,11 +388,10 @@ x = L_1 c_1 + L_2 c_{12} \tag{3}</script><script type="math/tex; mode=display">
 y = L_1 s_1 + L_2 s_{12} \tag{4}</script><p>By calculating $(3)^2+(4)^2$, we can obtain:</p>
 <script type="math/tex; mode=display">
 x^2 + y^2 = L_1^2 + L_2^2 + 2L_1 L_2 c_2</script><p>Therefore,</p>
-<script type="math/tex; mode=display">c_2 = \frac{(x^2 + y^2 - L_1^2 - L_1^2)}{(2L_1L_2)}$$If$\left| \frac{x^2 + y^2 - L_1^2 - L_1^2}{2L_1L_2} \right| > 1$, there is no solution;
-
-If $\left| \frac{x^2 + y^2 - L_1^2 - L_1^2}{2L_1L_2} \right| < 1$,
-
-$$c_2 = \frac{(x^2 + y^2 - L_1^2 - L_1^2)}{(2L_1L_2)}</script><script type="math/tex; mode=display">\theta_2 = \pm \arccos \left[ \frac{x^2 + y^2 - L_1^2 - L_1^2}{2L_1L_2} \right]</script><p>(3) and (4) can be written as:</p>
+<script type="math/tex; mode=display">
+c_2 = \frac{(x^2 + y^2 - L_1^2 - L_1^2)}{(2L_1L_2)}</script><p>If $\left| \frac{x^2 + y^2 - L_1^2 - L_1^2}{2L_1L_2} \right| &gt; 1$, there is no solution;</p>
+<p>If $\left| \frac{x^2 + y^2 - L_1^2 - L_1^2}{2L_1L_2} \right| &lt; 1$,</p>
+<script type="math/tex; mode=display">c_2 = \frac{(x^2 + y^2 - L_1^2 - L_1^2)}{(2L_1L_2)}</script><script type="math/tex; mode=display">\theta_2 = \pm \arccos \left[ \frac{x^2 + y^2 - L_1^2 - L_1^2}{2L_1L_2} \right]</script><p>(3) and (4) can be written as:</p>
 <script type="math/tex; mode=display">
 \begin{align*}
 x &= L_1c_1 + L_2(c_1c_2 - s_1s_2)\\
@@ -412,8 +412,13 @@ k_1 &= L_1 + L_2c_2\\
 k_2 &= L_2s_2
 \end{align*}</script><p>Let $r = \sqrt{k_1^2 + k_2^2}$ and $\gamma = \arctan\left(\frac{k_2}{k_1}\right)$</p>
 <p>thus,</p>
-<script type="math/tex; mode=display">k_1 = r \cos \gamma \tag{7}</script><script type="math/tex; mode=display">k_2 = r \sin \gamma \tag{8}</script><p>Substituting (7) and (8) into (5) and (6), we can obtain:</p>
-<script type="math/tex; mode=display">\gamma + \theta_1 = \arctan\left(\frac{y}{x}\right)$$thus,$$\theta_1 = \arctan\left(\frac{y}{x}\right) - \arctan\left(\frac{k_2}{k_1}\right)</script><p>As $\theta_1+\theta_2+\theta_3=\arctan\left(\frac{s_{\varphi}}{c_{\varphi}}\right)=\varphi$</p>
+<script type="math/tex; mode=display">
+k_1 = r \cos \gamma \tag{7}</script><script type="math/tex; mode=display">
+k_2 = r \sin \gamma \tag{8}</script><p>Substituting (7) and (8) into (5) and (6), we can obtain:</p>
+<script type="math/tex; mode=display">
+\gamma + \theta_1 = \arctan\left(\frac{y}{x}\right)</script><p>thus,</p>
+<script type="math/tex; mode=display">
+\theta_1 = \arctan\left(\frac{y}{x}\right) - \arctan\left(\frac{k_2}{k_1}\right)</script><p>As $\theta_1+\theta_2+\theta_3=\arctan\left(\frac{s_{\varphi}}{c_{\varphi}}\right)=\varphi$</p>
 <p>$\theta_3 = \varphi-\theta_1-\theta_2$</p>
 <h4 id="Sec-3-1-3-Geometric-solution"><a href="#Sec-3-1-3-Geometric-solution" class="headerlink" title="Sec 3.1.3 Geometric solution"></a>Sec 3.1.3 Geometric solution</h4><p>Example: In the three-link planar manipulator, the angle between $\hat{X}_3$ and $\hat{X}_0$ is $\varphi$, the position of joint 3 is $\begin{bmatrix}x&amp;y&amp;0\end{bmatrix}^T$, and the lengths of link 1 and link 2 are $L_1$ and $L_2$, respectively. Find $\theta_1$, $\theta_2$ and $\theta_3$.</p>
 <p><img src = "https://img.dexbug.com/i/2025/06/09/12i7jpd.png" width = 50%></p>
@@ -434,7 +439,278 @@ k_2 &= L_2s_2
 <p>(3) Find $\theta_{3}$:</p>
 <p>$\theta_{1}+\theta_{2}+\theta_{3}=\varphi$ </p>
 <p>thus, $\theta_{3}=\varphi - \theta_{1}-\theta_{2}$</p>
-
+<h3 id="Sec-3-2-Pieper’s-Solution-When-Three-Axes-Intersect"><a href="#Sec-3-2-Pieper’s-Solution-When-Three-Axes-Intersect" class="headerlink" title="Sec 3.2 Pieper’s Solution When Three Axes Intersect"></a>Sec 3.2 Pieper’s Solution When Three Axes Intersect</h3><p><strong>Problem description:</strong><br>A manipulator has six revolute joints, <strong>with the last three axes intersecting</strong>. (Including the last three axes paralleling) The position and orientation of the end-effector are described by $^0\boldsymbol{P}_{4ORG}$ and $^6\boldsymbol{R}$, respectively. $^0\boldsymbol{P}_{4ORG} = \begin{bmatrix} x \\ y \\ z \end{bmatrix}$. Given $x$, $y$, $z$ and $^6\boldsymbol{R}$, find the six joint angles.</p>
+<p>Solution:</p>
+<p>(1) Derive the equation of $^{0}\boldsymbol{P}_{4ORG}$, $\theta_{1}$, $\theta_{2}$ and $\theta_{3}$:</p>
+<p>According to D-H notation rule,</p>
+<script type="math/tex; mode=display">
+^{i - 1}_{i}T=^{i - 1}_{L}T^{L}_{M}T^{M}_{R}T^{R}_{i}T</script><p>where</p>
+<script type="math/tex; mode=display">
+^{i - 1}_{L}T=\left[\begin{array}{cc}R(x,\alpha_{i - 1})&\boldsymbol{0}\\\boldsymbol{0}&1\end{array}\right],R(x,\alpha_{i - 1})=\left[\begin{array}{ccc}1&0&0\\0&\cos\alpha_{i - 1}&-\sin\alpha_{i - 1}\\0&\sin\alpha_{i - 1}&\cos\alpha_{i - 1}\end{array}\right]</script><script type="math/tex; mode=display">
+^{L}_{M}T=\left[\begin{array}{cc}I_{3}&D(x,\alpha_{i - 1})\\\boldsymbol{0}&1\end{array}\right],D(x,\alpha_{i - 1})=\left[\begin{array}{c}a_{i - 1}\\0\\0\end{array}\right]^{T}</script><script type="math/tex; mode=display">
+\mathbf{^M_RT} = \begin{bmatrix}
+\mathbf{R}(z, \theta_i) & \mathbf{0} \\
+\mathbf{0} & 1
+\end{bmatrix},
+\mathbf{R}(z, \theta_i) = \begin{bmatrix}
+\cos\theta_i & -\sin\theta_i & 0 \\
+\sin\theta_i & \cos\theta_i & 0 \\
+0 & 0 & 1
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\mathbf{^R_iT} = \begin{bmatrix}
+\mathbf{I}_3 & \mathbf{D}(z, d_i) \\
+\mathbf{0} & 1
+\end{bmatrix},
+\mathbf{D}(z, d_i) = \begin{bmatrix}
+0 & 0 & d_i
+\end{bmatrix}^T</script><p>thus,</p>
+<script type="math/tex; mode=display">
+\mathbf{^{i - 1}_iT} = \begin{bmatrix}
+c\theta_i & -s\theta_i & 0 & a_{i - 1} \\
+s\theta_i c\alpha_{i - 1} & c\theta_i c\alpha_{i - 1} & -s\alpha_{i - 1} & -s\alpha_{i - 1} d_i \\
+s\theta_i s\alpha_{i - 1} & c\theta_i s\alpha_{i - 1} & c\alpha_{i - 1} & c\alpha_{i - 1} d_i \\
+0 & 0 & 0 & 1
+\end{bmatrix} \tag{1}</script><p>where $c$ represents $\cos$, $s$ represents $\sin$, and $\alpha$ represents other angles in the Denavit-Hartenberg convention.</p>
+<p>As the last three axes intersect, the origins of link frames $\{4\}$, $\{5\}$ and $\{6\}$ are all located at the point of intersection, which can be given by:</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\boldsymbol{^0P_{4ORG}} \\
+1
+\end{bmatrix}
+= \boldsymbol{^0T_1^1T_2^2T_3}
+\begin{bmatrix}
+\boldsymbol{^3P_{4ORG}} \\
+1
+\end{bmatrix}
+= \begin{bmatrix}
+x & y & z & 1
+\end{bmatrix}^T</script><p>using the fourth column of (1) for $i = 4$,</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\boldsymbol{^0P_{4ORG}} \\
+1
+\end{bmatrix}
+= \boldsymbol{^0T_1^1T_2^2T_3}
+\begin{bmatrix}
+a_3 \\
+-s\alpha_3d_4 \\
+c\alpha_3d_4 \\
+1
+\end{bmatrix}
+\tag{2}</script><p>Equation (2) can be written as:</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+\boldsymbol{^0P_{4ORG}} \\
+1
+\end{bmatrix} = \boldsymbol{^0T_1 ^1T_2}
+\begin{bmatrix}
+f_1(\theta_3) \\
+f_2(\theta_3) \\
+f_3(\theta_3) \\
+1
+\end{bmatrix}
+\tag{3}</script><p>where,</p>
+<script type="math/tex; mode=display">\begin{bmatrix}
+f_1 \\
+f_2 \\
+f_3 \\
+1
+\end{bmatrix} = \boldsymbol{^2T_3}
+\begin{bmatrix}
+a_3 \\
+-s\alpha_3d_4 \\
+c\alpha_3d_4 \\
+1
+\end{bmatrix} = 
+\begin{bmatrix}
+a_3c_3 + d_4s\alpha_3s_3 + a_2 \\
+a_3c\alpha_2s_3 - d_4s\alpha_3c\alpha_2c_3 - d_4s\alpha_2c\alpha_3 - d_3s\alpha_2 \\
+a_3s\alpha_2s_3 - d_4s\alpha_3s\alpha_2c_3 + d_4c\alpha_2c\alpha_3 + d_3c\alpha_2 \\
+1
+\end{bmatrix}</script><p>Using Equation (1) for ${}_1^0T$ and ${}_2^1T$ in Equation (3), we obtain:</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+{}^0\boldsymbol{P}_{4ORG} \\
+1
+\end{bmatrix} =
+\begin{bmatrix}
+c_1g_1 - s_1g_2 \\
+s_1g_1 + c_1g_2 \\
+g_3 \\
+1
+\end{bmatrix}
+\tag{4}</script><p>where,</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+g_1 &= c_2f_1 - s_2f_2 + a_1 \\
+g_2 &= s_2c\alpha_1f_1 + c_2c\alpha_1f_2 - s\alpha_1f_3 - d_2s\alpha_1 \\
+g_3 &= s_2s\alpha_1f_1 + c_2s\alpha_1f_2 + c\alpha_1f_3 + d_2c\alpha_1
+\end{align*}</script><p>$r$ is defined as the squared magnitude of ${}^0\boldsymbol{P}_{4ORG}$, thus</p>
+<script type="math/tex; mode=display">
+r = x^2 + y^2 + z^2 \tag{5}</script><p>We write the equation of $r$ obtained by substituting (4) into (5), and along with the z-component equation from (4):</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+r &= (k_1c_2 + k_2s_2)2a_1 + k_3 \\
+z &= (k_1s_2 - k_2c_2)s\alpha_1 + k_4
+\end{align*} \tag{6}</script><p>where,</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+k_1 &= f_1 \\
+k_2 &= -f_2 \\
+k_3 &= f_1^2 + f_2^2 + f_3^2 + a_1^2 + d_2^2 + 2d_2f_3 \\
+k_4 &= f_3c\alpha_1 + d_2c\alpha_1
+\end{align*}</script><p>(2) Find the solution of Equation (6) for $\theta_3$:</p>
+<p>If $a_1 = 0$,</p>
+<script type="math/tex; mode=display">
+r = k_3 \tag{7}</script><p>If$s\alpha_1 = 0$,</p>
+<script type="math/tex; mode=display">
+z = k_4 \tag{8}</script><p>Otherwise,</p>
+<script type="math/tex; mode=display">
+\frac{(r - k_3)^2}{4a_1^2} + \frac{(z - k_4)^2}{s^2\alpha_1} = k_1^2 + k_2^2 \tag{9}</script><p>Equations (7), (8) and (9) can be solved by the universal equation of circular functions.</p>
+<p>(3) Find $\theta_1$ and $\theta_2$:</p>
+<p>Given $\theta_3$, we can solve Equation (6) for $\theta_2$ and solve Equation (4) for $\theta_1$.</p>
+<p>(4) Find $\theta_4$, $\theta_5$ and $\theta_6$:</p>
+<p>As $\theta_1$, $\theta_2$ and $\theta_3$ are known, the rotation matrix from $\{3\}$ to $\{0\}$ $^0R$ is known. $^3R$ is the function of $\theta_4$, $\theta_5$ and $\theta_6$.</p>
+<p>Since $^0R^3R = ^6R$, we can obtain</p>
+<script type="math/tex; mode=display">
+{}^3R = {}^0R^{-1} {}^6R \tag{10}</script><p>$\theta_4$, $\theta_5$and$\theta_6$ can be solved by Equation (10).</p>
+<h2 id="Chap-4-Velocities-and-Static-Forces"><a href="#Chap-4-Velocities-and-Static-Forces" class="headerlink" title="Chap 4. Velocities and Static Forces"></a>Chap 4. Velocities and Static Forces</h2><h3 id="Sec-4-1-Velocity-of-rigid-body-and-velocity-propagation-from-link-to"><a href="#Sec-4-1-Velocity-of-rigid-body-and-velocity-propagation-from-link-to" class="headerlink" title="Sec 4.1 Velocity of rigid body and velocity propagation from link to"></a>Sec 4.1 Velocity of rigid body and velocity propagation from link to</h3><h4 id="Sec-4-1-1-Differentiation-of-position-vectors"><a href="#Sec-4-1-1-Differentiation-of-position-vectors" class="headerlink" title="Sec 4.1.1 Differentiation of position vectors"></a>Sec 4.1.1 Differentiation of position vectors</h4><p>The derivative of vector $\boldsymbol{Q}$ relative to frame $\{B\}$ is denoted as:</p>
+<script type="math/tex; mode=display">
+^{B}\boldsymbol{V}_{Q} = \frac{d}{dt} ^{B}\boldsymbol{Q} = \lim_{\Delta t \to 0} \frac{^{B}\boldsymbol{Q}(t + \Delta t) - ^{B}\boldsymbol{Q}(t)}{\Delta t}</script><p>The velocity vector described in frame $\{A\}$ is denoted as ${}^{A}({}^{B}\boldsymbol{V}_{Q})$.</p>
+<blockquote>
+<p>${}^{B}({}^{B}\boldsymbol{V}_{Q})$ can be written as ${}^{B}\boldsymbol{V}_{Q}$.</p>
+<p>${}^{A}({}^{B}\boldsymbol{V}_{Q})$: the velocity of $Q$ relative to $\{B\}$ represented in $\{A\}$</p>
+<p>${}^{A}\boldsymbol{v}_{C}$: the velocity of origin of $\{C\}$ (relative to certain frame) described in $\{A\}$</p>
+</blockquote>
+<p>The change of reference frame can be achieved by rotation matrix:</p>
+<script type="math/tex; mode=display">
+{}^{A}(^{B}\boldsymbol{V}_{Q}) = {}_{B}^{A}\boldsymbol{R}\,{}^{B}\boldsymbol{V}_{Q}</script><h4 id="Sec-4-1-2-Angular-velocity-vector"><a href="#Sec-4-1-2-Angular-velocity-vector" class="headerlink" title="Sec 4.1.2 Angular velocity vector"></a>Sec 4.1.2 Angular velocity vector</h4><p>The angular velocity of rotation of $\{B\}$ relative to $\{A\}$ is notated as $^{A}\boldsymbol{\Omega}_{B}$. The direction of $^{A}\boldsymbol{\Omega}_{B}$ indicates the instantaneous axis of rotation of $\{B\}$ relative to $\{A\}$; the magnitude of $^{A}\boldsymbol{\Omega}_{B}$ indicates the speed of rotation.</p>
+<p>The angular velocity of $\{B\}$relative to$\{A\}$described in$\{C\}$is notated as$^{C}(^{A}\boldsymbol{\Omega}_{B})$.</p>
+<p>A simplified notation: $^{C}\boldsymbol{\omega}_{B} = ^{C}(^{A}\boldsymbol{\Omega}_{B})$</p>
+<blockquote>
+<p>$^{C}(^{A}\boldsymbol{\Omega}_{B})$: the rotation velocity of $\{B\}$relative to$\{A\}$described in$\{C\}$</p>
+<p>$^{C}\boldsymbol{\omega}_{B}$: the rotation velocity of $\{B\}$(relative to$\{A\}$) described in $\{C\}$</p>
+</blockquote>
+<h4 id="Sec-4-1-3-Linear-velocity"><a href="#Sec-4-1-3-Linear-velocity" class="headerlink" title="Sec 4.1.3 Linear velocity"></a>Sec 4.1.3 Linear velocity</h4><p>If the relative orientation of $\{B\}$ and $\{A\}$ remains constant and the velocity of origin of $\{B\}$relative to$\{A\}$ is ${}^A\boldsymbol{V}_{BORG}$, given motion of point $Q$ relative to $\{B\}$ (described in $\{B\}$), motion of  $Q$ relative to $\{A\}$(described in $\{A\}$) can be obtained by:</p>
+<script type="math/tex; mode=display">
+{}^A\boldsymbol{V}_{Q} = {}^A\boldsymbol{V}_{BORG} + {}^A({}^B\boldsymbol{V}_{Q})</script><script type="math/tex; mode=display">
+{}^A\boldsymbol{V}_{Q} = {}^A\boldsymbol{V}_{BORG} + {}_B^A\boldsymbol{R} {}^B\boldsymbol{V}_{Q}</script><ul>
+<li>${}^A\boldsymbol{V}_{Q}$: <strong>velocity of $Q$ relative to $\{A\}$</strong></li>
+<li>${}^A\boldsymbol{V}_{BORG}$: <strong>velocity of $\{B\}$ relative to $\{A\}$</strong></li>
+<li>${}_B^A\boldsymbol{R} {}^B\boldsymbol{V}_{Q}$: <strong>velocity of $Q$ relative to$\{B\}$</strong></li>
+</ul>
+<h4 id="Sec-4-1-4-Rotational-velocity"><a href="#Sec-4-1-4-Rotational-velocity" class="headerlink" title="Sec 4.1.4 Rotational velocity"></a>Sec 4.1.4 Rotational velocity</h4><p>If $\{B\}$and$\{A\}$ have coincident origins and zero linear relative velocity and the angular velocity of $\{B\}$ relative to $\{A\}$ is ${}^A\boldsymbol{\Omega}_B$, given ${}^B\boldsymbol{V}_Q$, the velocity of $\boldsymbol{Q}$ described in $\{A\}$ can be obtained by:</p>
+<script type="math/tex; mode=display">
+{}^A\boldsymbol{V}_Q = {}^A({}^B\boldsymbol{V}_Q) + {}^A\boldsymbol{\Omega}_B \times {}^A\boldsymbol{Q}</script><script type="math/tex; mode=display">
+{}^A\boldsymbol{V}_Q = {}_{B}^A\boldsymbol{R} {}^B\boldsymbol{V}_Q + {}^A\boldsymbol{\Omega}_B \times {}_{B}^A\boldsymbol{R} {}^B\boldsymbol{Q}</script><p>where:</p>
+<ul>
+<li>${}^A\boldsymbol{V}_Q$: <strong>velocity of $\boldsymbol{Q}$ relative to $\{A\}$</strong></li>
+<li>${}^B\boldsymbol{V}_Q$: <strong>velocity of $\boldsymbol{Q}$ relative to $\{B\}$</strong></li>
+<li>${}^A\boldsymbol{\Omega}_B \times {}_{B}^A\boldsymbol{R} {}^B\boldsymbol{Q}$: <strong>velocity of $\{B\}$ relative to $\{A\}$</strong></li>
+</ul>
+<h4 id="Sec-4-1-5-Simultaneous-linear-and-rotational-velocity"><a href="#Sec-4-1-5-Simultaneous-linear-and-rotational-velocity" class="headerlink" title="Sec 4.1.5 Simultaneous linear and rotational velocity"></a>Sec 4.1.5 Simultaneous linear and rotational velocity</h4><p>The velocity of origin of $\{B\}$ relative to $\{A\}$ is ${}^A\boldsymbol{V}_{BORG}$. The angular velocity of $\{B\}$ relative to $\{A\}$ is ${}^A\boldsymbol{\Omega}_B$. Given ${}^B\boldsymbol{V}_Q$, the velocity of $\boldsymbol{Q}$ described in $\{A\}$ can be obtained by:</p>
+<script type="math/tex; mode=display">
+{}^A\boldsymbol{V}_Q = {}^A\boldsymbol{V}_{BORG} + {}_{B}^{A}\boldsymbol{R}\,{}^B\boldsymbol{V}_Q + {}^A\boldsymbol{\Omega}_B \times {}_{B}^{A}\boldsymbol{R}\,{}^B\boldsymbol{Q}</script><ul>
+<li>${}^A\boldsymbol{V}_Q$: velocity of $\boldsymbol{Q}$ relative to $\{A\}$</li>
+<li>${}^A\boldsymbol{V}_{BORG}$: linear velocity of $\{B\}$ relative to $\{A\}$</li>
+<li>${}^B\boldsymbol{V}_Q$: velocity of $\boldsymbol{Q}$ relative to $\{B\}$</li>
+<li>${}^A\boldsymbol{\Omega}_B$: angular velocity of $\{B\}$ relative to $\{A\}$</li>
+</ul>
+<h4 id="Sec-4-1-6-Velocity-propagation-from-link-to-link"><a href="#Sec-4-1-6-Velocity-propagation-from-link-to-link" class="headerlink" title="Sec 4.1.6 Velocity propagation from link to link"></a>Sec 4.1.6 Velocity propagation from link to link</h4><p>$v_i$ denotes the linear velocity of the origin of the attached frame $\{i\}$.</p>
+<p>$\omega_i$ denotes the angular velocity of the attached frame $\{i\}$.</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/11/qz58k1.png" width = 70%></p>
+<p>If joint $i + 1$ is a revolute joint:</p>
+<p>The angular velocity of link $i + 1$ is the same as that of link $i$ plus a new component caused by rotational velocity at joint $i + 1$.</p>
+<script type="math/tex; mode=display">
+^i\omega_{i + 1} = {}^i\omega_i + {}_{i + 1}^iR\dot{\theta}_{i + 1}{}^{i + 1}\widehat{Z}_{i + 1}\tag{1}</script><p>By premultiplying both sides of (1) by ${}_{i + 1}^iR$, we can obtain:</p>
+<script type="math/tex; mode=display">
+^{i + 1}\omega_{i + 1} = {}_{i + 1}^iR\ {}^i\omega_i + \dot{\theta}_{i + 1}{}^{i + 1}\widehat{Z}_{i + 1}\tag{2}</script><p>The linear velocity of the origin of frame $\{i+1\}$ is the same as that of the origin of frame $\{i\}$ plus a new component caused by rotational velocity of link $i$.</p>
+<script type="math/tex; mode=display">
+^{i}\boldsymbol{v}_{i+1} = ^{i}\boldsymbol{v}_{i} + ^{i}\boldsymbol{\omega}_{i} \times ^{i}\boldsymbol{P}_{i+1} \tag{3}</script><p>Thus,</p>
+<script type="math/tex; mode=display">
+^{i+1}\boldsymbol{v}_{i+1} = ^{i+1}_{i}R(^{i}\boldsymbol{v}_{i} + ^{i}\boldsymbol{\omega}_{i} \times ^{i}\boldsymbol{P}_{i+1}) \tag{4}</script><p>If joint $i+1$ is a prismatic joint:</p>
+<p>Equations (2) and (4) are changed to the following equations:</p>
+<script type="math/tex; mode=display">
+^{i+1}\boldsymbol{\omega}_{i+1} = {}^{i+1}_{i}R \ ^{i}\boldsymbol{\omega}_{i} \tag{5}</script><script type="math/tex; mode=display">
+^{i+1}\boldsymbol{v}_{i+1} = {}^{i+1}_{i}R \left( \ ^{i}\boldsymbol{v}_{i} + \ ^{i}\boldsymbol{\omega}_{i} \times \ ^{i}\boldsymbol{P}_{i+1} \right) + \dot{d}_{i+1} \ ^{i+1}\boldsymbol{\hat{Z}}_{i+1} \tag{6}</script><h3 id="Sec-4-2-Jacobians-and-static-forces-in-manipulators"><a href="#Sec-4-2-Jacobians-and-static-forces-in-manipulators" class="headerlink" title="Sec 4.2 Jacobians and static forces in manipulators"></a>Sec 4.2 Jacobians and static forces in manipulators</h3><h4 id="Sec-4-2-1-Jacobian"><a href="#Sec-4-2-1-Jacobian" class="headerlink" title="Sec 4.2.1 Jacobian"></a>Sec 4.2.1 Jacobian</h4><p>Jacobians can be used to relate joint velocities to Cartesian velocities of the end-effector:</p>
+<script type="math/tex; mode=display">
+^0\boldsymbol{u} = ^0J(\boldsymbol{\theta})\dot{\boldsymbol{\theta}}</script><p>$\boldsymbol{\theta}$: the vector of joint angles of the manipulator</p>
+<p>$\boldsymbol{u}$: a vector of Cartesian velocities</p>
+<p>For a robotic manipulator with 6 degrees of freedom, the Jacobian is $6 \times 6$, $\dot{\boldsymbol{\theta}}$ is $6 \times 1$, and $^0\boldsymbol{u}$ is $6 \times 1$.</p>
+<p>The Cartesian velocity vector $^0\boldsymbol{u}$ consists of a $3 \times 1$ linear velocity vector and a $3 \times 1$ rotational velocity vector:</p>
+<script type="math/tex; mode=display">
+^0\boldsymbol{u} = \begin{bmatrix} ^0\boldsymbol{v} \\ ^0\boldsymbol{\omega} \end{bmatrix}</script><p>$6\times1$ Cartesian velocity vector given in $\{B\}$ can be described relative in $\{A\}$ by the transformation:</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+^A\boldsymbol{v}\\
+^A\boldsymbol{\omega}
+\end{bmatrix} =
+\begin{bmatrix}
+^A{}_B^R & 0\\
+0 & {}_B^R
+\end{bmatrix}
+\begin{bmatrix}
+^B\boldsymbol{v}\\
+^B\boldsymbol{\omega}
+\end{bmatrix}</script><p>The Jacobian relates joint velocities to Cartesian velocities in $\{B\}$ and in $\{A\}$:</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+^B\boldsymbol{v} \\
+^B\boldsymbol{\omega}
+\end{bmatrix} = {}^B\boldsymbol{u} = {}^BJ(\boldsymbol{\Theta})\dot{\boldsymbol{\Theta}}
+\quad
+\begin{bmatrix}
+^A\boldsymbol{v} \\
+^A\boldsymbol{\omega}
+\end{bmatrix} = {}^A\boldsymbol{u} = {}^AJ(\boldsymbol{\Theta})\dot{\boldsymbol{\Theta}}</script><p>Change the reference frame of a Jacobian:</p>
+<script type="math/tex; mode=display">
+{}^AJ(\boldsymbol{\Theta})\dot{\boldsymbol{\Theta}} = 
+\begin{bmatrix}
+^A\boldsymbol{v} \\
+^A\boldsymbol{\omega}
+\end{bmatrix} =
+\begin{bmatrix}
+{}_{B}^{A}R & 0 \\
+0 & {}_{B}^{A}R
+\end{bmatrix}
+\begin{bmatrix}
+^B\boldsymbol{v} \\
+^B\boldsymbol{\omega}
+\end{bmatrix} =
+\begin{bmatrix}
+{}_{B}^{A}R & 0 \\
+0 & {}_{B}^{A}R
+\end{bmatrix}
+{}^BJ(\boldsymbol{\Theta})\dot{\boldsymbol{\Theta}}</script><script type="math/tex; mode=display">
+{}^AJ(\boldsymbol{\Theta}) = 
+\begin{bmatrix}
+{}_{B}^{A}R & 0 \\
+0 & {}_{B}^{A}R
+\end{bmatrix}
+{}^BJ(\boldsymbol{\Theta})</script><h4 id="Sec-4-2-2-Static-forces-in-manipulators"><a href="#Sec-4-2-2-Static-forces-in-manipulators" class="headerlink" title="Sec 4.2.2 Static forces in manipulators"></a>Sec 4.2.2 Static forces in manipulators</h4><p><strong>Problem description</strong></p>
+<p>A manipulator is pushing on something in the environment with the end-effector or is supporting a load at the end-effector. Solve for the joint torques that must be acting to keep the system in static equilibrium.</p>
+<p>The forces on the links due to gravity are not considered.</p>
+<ul>
+<li><p>$^i\boldsymbol{f}_i$: force exerted on link $i$ by link $i - 1$</p>
+</li>
+<li><p>$^i\boldsymbol{n}_i$: torque exerted on link $i$ by link $i - 1$</p>
+</li>
+</ul>
+<p><img src = "https://img.dexbug.com/i/2025/06/11/r8owb6.png" width = 70%></p>
+<p>As the manipulator is in static equilibrium, we have</p>
+<p>Calculation of the force and moment applied by each link (from end-effector to base):</p>
+<script type="math/tex; mode=display">
+\boldsymbol{^i f_i} = \boldsymbol{^i f_{i+1}} \tag{1}</script><script type="math/tex; mode=display">
+\boldsymbol{^i n_i} = \boldsymbol{^i n_{i+1}} + \boldsymbol{^i P_{i+1}} \times \boldsymbol{^i f_{i+1}} \tag{2}</script><p>Equations in terms of only forces and moments defined within their own link frames (static force “propagation” from link to link):</p>
+<script type="math/tex; mode=display">
+\boldsymbol{^i f_i} = {_{i+1}^i R} \boldsymbol{^{i+1} f_{i+1}} \tag{3}</script><script type="math/tex; mode=display">
+\boldsymbol{^i n_i} = {_{i+1}^i R} \boldsymbol{^{i+1} n_{i+1}} + \boldsymbol{^i P_{i+1}} \times \boldsymbol{^i f_i} \tag{4}</script><p>All components of the force and moment vectors are resisted by the structure of the mechanism itself, except for the torque about the joint axis.</p>
+<p>Therefore, the joint torque/force required to maintain the static equilibrium:</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\tau_i &= {^i\boldsymbol{n}_i}^T \ {^i\widehat{\boldsymbol{Z}}}_i \\
+\tau_i &= {^i\boldsymbol{f}_i}^T \ {^i\widehat{\boldsymbol{Z}}}_i
+\end{align*}</script>
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/index.html">Forehead</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/autocontrol.html">ME Control(EN)</a></div></section></div>
@@ -503,7 +779,7 @@ k_2 &= L_2s_2
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Spatial-Descriptions-and-Transformations"><span class="toc-text">Chap1. Spatial Descriptions and Transformations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Descriptions-Positions-Orientations-and-Frames"><span class="toc-text">Sec 1.1 Descriptions: Positions, Orientations and Frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Mappings"><span class="toc-text">Sec 1.2 Mappings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Operators"><span class="toc-text">Sec 1.3 Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Transformation-Arithmetic"><span class="toc-text">Sec 1.4 Transformation Arithmetic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-More-on-Representation-of-Orientation"><span class="toc-text">Sec 1.5 More on Representation of Orientation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Manipulator-Kinematics"><span class="toc-text">Chap 2. Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Link-Description"><span class="toc-text">Sec 2.1 Link Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2 Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-1-Convention-for-Affixing-Frames-to-Links"><span class="toc-text">Sec 2.2.1 Convention for Affixing Frames to Links</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2.2 Manipulator Kinematics</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Inverse-Manipulator-Kinematics"><span class="toc-text">Chap 3. Inverse Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Solvability-Algebraic-Solution-and-Geometric-Solution"><span class="toc-text">Sec 3.1: Solvability, Algebraic Solution and Geometric Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-1-Solvability"><span class="toc-text">Sec 3.1.1 Solvability</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-1-Existence-of-solutions"><span class="toc-text">3.1.1.1 Existence of solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-2-Multiple-solutions"><span class="toc-text">3.1.1.2 Multiple solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-3-Method-of-solution"><span class="toc-text">3.1.1.3 Method of solution</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-2-Algebraic-solution"><span class="toc-text">Sec 3.1.2 Algebraic solution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-3-Geometric-solution"><span class="toc-text">Sec 3.1.3 Geometric solution</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Spatial-Descriptions-and-Transformations"><span class="toc-text">Chap1. Spatial Descriptions and Transformations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Descriptions-Positions-Orientations-and-Frames"><span class="toc-text">Sec 1.1 Descriptions: Positions, Orientations and Frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Mappings"><span class="toc-text">Sec 1.2 Mappings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Operators"><span class="toc-text">Sec 1.3 Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Transformation-Arithmetic"><span class="toc-text">Sec 1.4 Transformation Arithmetic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-More-on-Representation-of-Orientation"><span class="toc-text">Sec 1.5 More on Representation of Orientation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Manipulator-Kinematics"><span class="toc-text">Chap 2. Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Link-Description"><span class="toc-text">Sec 2.1 Link Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2 Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-1-Convention-for-Affixing-Frames-to-Links"><span class="toc-text">Sec 2.2.1 Convention for Affixing Frames to Links</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2.2 Manipulator Kinematics</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Inverse-Manipulator-Kinematics"><span class="toc-text">Chap 3. Inverse Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Solvability-Algebraic-Solution-and-Geometric-Solution"><span class="toc-text">Sec 3.1: Solvability, Algebraic Solution and Geometric Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-1-Solvability"><span class="toc-text">Sec 3.1.1 Solvability</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-1-Existence-of-solutions"><span class="toc-text">3.1.1.1 Existence of solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-2-Multiple-solutions"><span class="toc-text">3.1.1.2 Multiple solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-3-Method-of-solution"><span class="toc-text">3.1.1.3 Method of solution</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-2-Algebraic-solution"><span class="toc-text">Sec 3.1.2 Algebraic solution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-3-Geometric-solution"><span class="toc-text">Sec 3.1.3 Geometric solution</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-2-Pieper%E2%80%99s-Solution-When-Three-Axes-Intersect"><span class="toc-text">Sec 3.2 Pieper’s Solution When Three Axes Intersect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-Velocities-and-Static-Forces"><span class="toc-text">Chap 4. Velocities and Static Forces</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-1-Velocity-of-rigid-body-and-velocity-propagation-from-link-to"><span class="toc-text">Sec 4.1 Velocity of rigid body and velocity propagation from link to</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-1-Differentiation-of-position-vectors"><span class="toc-text">Sec 4.1.1 Differentiation of position vectors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-2-Angular-velocity-vector"><span class="toc-text">Sec 4.1.2 Angular velocity vector</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-3-Linear-velocity"><span class="toc-text">Sec 4.1.3 Linear velocity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-4-Rotational-velocity"><span class="toc-text">Sec 4.1.4 Rotational velocity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-5-Simultaneous-linear-and-rotational-velocity"><span class="toc-text">Sec 4.1.5 Simultaneous linear and rotational velocity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-6-Velocity-propagation-from-link-to-link"><span class="toc-text">Sec 4.1.6 Velocity propagation from link to link</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-2-Jacobians-and-static-forces-in-manipulators"><span class="toc-text">Sec 4.2 Jacobians and static forces in manipulators</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-2-1-Jacobian"><span class="toc-text">Sec 4.2.1 Jacobian</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-2-2-Static-forces-in-manipulators"><span class="toc-text">Sec 4.2.2 Static forces in manipulators</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
