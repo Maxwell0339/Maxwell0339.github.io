@@ -29,8 +29,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/rcbtv2.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/re1z8g.png">
-<meta property="article:published_time" content="2025-06-13T09:53:01.010Z">
-<meta property="article:modified_time" content="2025-06-13T09:53:01.010Z">
+<meta property="article:published_time" content="2025-06-13T11:47:02.368Z">
+<meta property="article:modified_time" content="2025-06-13T11:47:02.368Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -805,7 +805,9 @@ S_{23} & C_{23} & 0 & L_2S_2 \\
 ^{1}F_{1}=\begin{bmatrix}C_{2}(C_{3}F_{X}-S_{3}F_{Y})-S_{2}(S_{3}F_{X}+C_{3}F_{Y})\\-F_{Z}\\S_{2}(C_{3}F_{X}-S_{3}F_{Y})+C_{2}(S_{3}F_{X}+C_{3}F_{Y})\end{bmatrix}</script><script type="math/tex; mode=display">
 ^{1}N_{1}={_{2}^{1}R}{^{2}N_{2}}+{^{1}P_{2}}\times{^{1}F_{1}}</script><script type="math/tex; mode=display">
 ^{1}N_{1}=\begin{bmatrix}C_{2}&-S_{2}&0\\0&0&-1\\S_{2}&C_{2}&0\end{bmatrix}\begin{bmatrix}L_{3}S_{3}F_{Z}\\-L_{2}F_{Z}-L_{3}C_{3}F_{Z}\\L_{2}(S_{3}F_{X}+C_{3}F_{Y})+L_{3}F_{Y}\end{bmatrix}+\begin{bmatrix}L_{1}\\0\\0\end{bmatrix}\times{^{1}F_{1}}</script><script type="math/tex; mode=display">
-^{1}N_{1}=\begin{bmatrix}C_{2}L_{3}S_{3}F_{Z}+S_{2}L_{2}F_{Z}+S_{2}L_{3}C_{3}F_{Z}\\-L_{2}(S_{3}F_{X}+C_{3}F_{Y})-L_{3}F_{Y}\\L_{3}S_{2}S_{3}F_{Z}-L_{2}C_{2}F_{Z}-L_{3}C_{2}C_{3}F_{Z}\end{bmatrix}+\begin{bmatrix}0\\-L_{1}S_{2}(C_{3}F_{X}-S_{3}F_{Y})-L_{1}C_{2}(S_{3}F_{X}+C_{3}F_{Y})\\-L_{1}F_{Z}\end{bmatrix}</script><p>Joint torque</p>
+\begin{align*}
+   ^{1}N_{1}&=\begin{bmatrix}C_{2}L_{3}S_{3}F_{Z}+S_{2}L_{2}F_{Z}+S_{2}L_{3}C_{3}F_{Z}\\-L_{2}(S_{3}F_{X}+C_{3}F_{Y})-L_{3}F_{Y}\\L_{3}S_{2}S_{3}F_{Z}-L_{2}C_{2}F_{Z}-L_{3}C_{2}C_{3}F_{Z}\end{bmatrix}\\&+\begin{bmatrix}0\\-L_{1}S_{2}(C_{3}F_{X}-S_{3}F_{Y})-L_{1}C_{2}(S_{3}F_{X}+C_{3}F_{Y})\\-L_{1}F_{Z}\end{bmatrix}
+\end{align*}</script><p>Joint torque</p>
 <script type="math/tex; mode=display">
 \tau_{1}=[-L_{1}-L_{2}C_{2}+L_{3}(S_{2}S_{3}-C_{2}C_{3})]F_{Z}</script><script type="math/tex; mode=display">
 \tau_{2}=L_{2}S_{3}F_{X}+(L_{2}C_{3}+L_{3})F_{Y}</script><script type="math/tex; mode=display">
