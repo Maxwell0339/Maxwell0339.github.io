@@ -29,8 +29,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/rcbtv2.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/re1z8g.png">
-<meta property="article:published_time" content="2025-06-12T12:30:25.464Z">
-<meta property="article:modified_time" content="2025-06-12T12:30:25.464Z">
+<meta property="article:published_time" content="2025-06-13T09:53:01.010Z">
+<meta property="article:modified_time" content="2025-06-13T09:53:01.010Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -710,7 +710,130 @@ z = k_4 \tag{8}</script><p>Otherwise,</p>
 \begin{align*}
 \tau_i &= {^i\boldsymbol{n}_i}^T \ {^i\widehat{\boldsymbol{Z}}}_i \\
 \tau_i &= {^i\boldsymbol{f}_i}^T \ {^i\widehat{\boldsymbol{Z}}}_i
-\end{align*}</script>
+\end{align*}</script><h2 id="Chap-5-Dynamics-of-Manipulators"><a href="#Chap-5-Dynamics-of-Manipulators" class="headerlink" title="Chap 5. Dynamics of Manipulators"></a>Chap 5. Dynamics of Manipulators</h2><h3 id="Sec-5-1-Jacobian"><a href="#Sec-5-1-Jacobian" class="headerlink" title="Sec 5.1 Jacobian"></a>Sec 5.1 Jacobian</h3><p>In the previous section, we have talked about the Jacobian. And now we will talk how to get Jacobian from the manipulator’s kinematic model.</p>
+<p><img src = "https://img.dexbug.com/i/2025/06/13/sf7dqv.png" width = 50%></p>
+<p>Find the Jacobian of the manipulator with three degrees of freedom from the figure above. Write it in terms of a frame $\{4\}$ located at the tip of the hand and having the same orientation as frame $\{3\}$. Derive the Jacobian in three different ways: velocity propagation from base to tip, static force propagation from tip to base, and (optional) by direct differentiation of the kinematic equations.</p>
+<h4 id="Sec-5-1-1-Forward-Kinematics"><a href="#Sec-5-1-1-Forward-Kinematics" class="headerlink" title="Sec 5.1.1 Forward Kinematics"></a>Sec 5.1.1 Forward Kinematics</h4><p>The D-H parameters of the manipulator and the transformation matrices:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\alpha_{i - 1}$</th>
+<th style="text-align:center">$a_{i - 1}$</th>
+<th style="text-align:center">$d_{i}$</th>
+<th style="text-align:center">$\theta _{i}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$\theta _{1}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$90^{\circ}$</td>
+<td style="text-align:center">$L_{1}$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$\theta _{2}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$L_{2}$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$\theta _{3}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<script type="math/tex; mode=display">
+^0T_1 = 
+\begin{bmatrix}
+C_1 & -S_1 & 0 & 0 \\
+S_1 & C_1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}</script><script type="math/tex; mode=display">
+^1T_2 = 
+\begin{bmatrix}
+C_2 & -S_2 & 0 & L_1 \\
+0 & 0 & -1 & 0 \\
+S_2 & C_2 & 0 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}</script><script type="math/tex; mode=display">{^3T} = 
+\begin{bmatrix}
+C_3 & -S_3 & 0 & L_2 \\
+S_3 & C_3 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}</script><script type="math/tex; mode=display">
+{}_{W}^{B}T = {}_{3}^{0}T \cdot {}_{1}^{0}T_{2}^{2}T_{3}^{3}</script><script type="math/tex; mode=display">
+^B_T \mathbf{T} = 
+\begin{bmatrix}
+C_1C_{23} & -C_1S_{23} & S_1 & L_1C_1 + L_2C_1C_2 \\
+S_1C_{23} & -S_1S_{23} & -C_1 & L_1S_1 + L_2S_1C_2 \\
+S_{23} & C_{23} & 0 & L_2S_2 \\
+0 & 0 & 0 & 1
+\end{bmatrix}</script><h4 id="Sec-5-1-2-Velocity-Analysis"><a href="#Sec-5-1-2-Velocity-Analysis" class="headerlink" title="Sec 5.1.2 Velocity Analysis"></a>Sec 5.1.2 Velocity Analysis</h4><script type="math/tex; mode=display">
+^{1}w_{1}={_{0}^{1}R}{^{0}w_{0}}+\dot{\theta}_{1}{^{1}z_{1}}=\dot{\theta}_{1}\hat{z}</script><script type="math/tex; mode=display">
+^{1}v_{1}={_{0}^{1}R}({^{0}v_{0}}+{^{0}w_{0}}\times{^{0}p_{1}})=0</script><script type="math/tex; mode=display">
+^{2}w_{2}={_{1}^{2}R}{^{1}w_{1}}+\dot{\theta}_{2}{^{2}\hat{z}_{2}}</script><script type="math/tex; mode=display">^{2}w_{2}=\begin{bmatrix}C_{2}&0&S_{2}\\-S_{2}&0&C_{2}\\0&-1&0\end{bmatrix}\begin{bmatrix}0\\0\\\dot{\theta}_{1}\end{bmatrix}+\begin{bmatrix}0\\0\\\dot{\theta}_{2}\end{bmatrix}=\begin{bmatrix}S_{2}\dot{\theta}_{1}\\C_{2}\dot{\theta}_{1}\\\dot{\theta}_{2}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{2}v_{2}={_{1}^{2}R}({^{1}v_{1}}+{^{1}w_{1}}\times{^{1}p_{2}})</script><script type="math/tex; mode=display">
+^{2}v_{2}=\begin{bmatrix}C_{2}&0&S_{2}\\-S_{2}&0&C_{2}\\0&-1&0\end{bmatrix}\bigg(\begin{bmatrix}0\\0\\0\end{bmatrix}+\begin{bmatrix}0\\0\\\dot{\theta}_{1}\end{bmatrix}\times\begin{bmatrix}L_{1}\\0\\0\end{bmatrix}\bigg)</script><script type="math/tex; mode=display">
+^{2}v_{2}=\begin{bmatrix}C_{2}&0&S_{2}\\-S_{2}&0&C_{2}\\0&-1&0\end{bmatrix}\begin{bmatrix}0\\L_{1}\dot{\theta}_{1}\\0\end{bmatrix}=\begin{bmatrix}0\\0\\-L_{1}\dot{\theta}_{1}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{3}w_{3}={_{2}^{3}R}{^{2}w_{2}}+\dot{\theta}_{3}{^{3}\hat{z}_{3}}</script><script type="math/tex; mode=display">
+^{3}w_{3}=\begin{bmatrix}C_{3}&S_{3}&0\\-S_{3}&C_{3}&0\\0&0&1\end{bmatrix}\begin{bmatrix}S_{2}\dot{\theta}_{1}\\C_{2}\dot{\theta}_{1}\\\dot{\theta}_{2}\end{bmatrix}+\begin{bmatrix}0\\0\\\dot{\theta}_{3}\end{bmatrix}=\begin{bmatrix}S_{2}C_{3}\dot{\theta}_{1}+C_{2}S_{3}\dot{\theta}_{1}\\-S_{2}S_{3}\dot{\theta}_{1}+C_{2}C_{3}\dot{\theta}_{1}\\\dot{\theta}_{2}+\dot{\theta}_{3}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{3}w_{3}=\begin{bmatrix}S_{23}\dot{\theta}_{1}\\C_{23}\dot{\theta}_{1}\\\dot{\theta}_{2}+\dot{\theta}_{3}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{3}v_{3}={_{2}^{3}R}({^{2}v_{2}}+{^{2}w_{2}}\times{^{2}p_{3}})</script><script type="math/tex; mode=display">
+^{3}v_{3}={_{2}^{3}R}\bigg(\begin{bmatrix}0\\0\\-L_{1}\dot{\theta}_{1}\end{bmatrix}+\begin{bmatrix}S_{2}\dot{\theta}_{1}\\C_{2}\dot{\theta}_{1}\\\dot{\theta}_{2}\end{bmatrix}\times\begin{bmatrix}L_{2}\\0\\0\end{bmatrix}\bigg)</script><script type="math/tex; mode=display">
+^{3}v_{3}=\begin{bmatrix}C_{3}&S_{3}&0\\-S_{3}&C_{3}&0\\0&0&1\end{bmatrix}\begin{bmatrix}0\\L_{2}\dot{\theta}_{2}\\-L_{1}\dot{\theta}_{1}-L_{2}C_{2}\dot{\theta}_{1}\end{bmatrix}=\begin{bmatrix}L_{2}S_{3}\dot{\theta}_{2}\\L_{2}C_{3}\dot{\theta}_{2}\\-L_{1}\dot{\theta}_{1}-L_{2}C_{2}\dot{\theta}_{1}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{4}w_{4}={_{3}^{4}R}{^{3}w_{3}}+O;\ {_{3}^{4}R}=I;\ ^{4}w_{4}={^{3}w_{3}}</script><script type="math/tex; mode=display">
+^{4}v_{4}={_{3}^{4}R}({^{3}v_{3}}+{^{3}w_{3}}\times{^{3}p_{4}})</script><script type="math/tex; mode=display">
+^{4}v_{4}={_{3}^{4}R}\bigg(\begin{bmatrix}L_{2}S_{3}\dot{\theta}_{2}\\L_{2}C_{3}\dot{\theta}_{2}\\-L_{1}\dot{\theta}_{1}-L_{2}C_{2}\dot{\theta}_{1}\end{bmatrix}+\begin{bmatrix}S_{23}\dot{\theta}_{1}\\C_{23}\dot{\theta}_{1}\\\dot{\theta}_{2}+\dot{\theta}_{3}\end{bmatrix}\times\begin{bmatrix}L_{3}\\0\\0\end{bmatrix}\bigg)</script><script type="math/tex; mode=display">
+^{4}v_{4}=\bigg(\begin{bmatrix}L_{2}S_{3}\dot{\theta}_{2}\\L_{2}C_{3}\dot{\theta}_{2}\\-L_{1}\dot{\theta}_{1}-L_{2}C_{2}\dot{\theta}_{1}\end{bmatrix}+\begin{bmatrix}0\\L_{3}(\dot{\theta}_{2}+\dot{\theta}_{3})\\-L_{3}C_{23}\dot{\theta}_{1}\end{bmatrix}\bigg)</script><script type="math/tex; mode=display">
+^{4}v_{4}=\begin{bmatrix}L_{2}S_{3}\dot{\theta}_{2}\\L_{2}C_{3}\dot{\theta}_{2}+L_{3}(\dot{\theta}_{2}+\dot{\theta}_{3})\\-L_{1}\dot{\theta}_{1}-L_{2}C_{2}\dot{\theta}_{1}-L_{3}C_{23}\dot{\theta}_{1}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{4}v_{4}={^{4}J}(\underline{\theta})\underline{\dot{\theta}}</script><script type="math/tex; mode=display">
+\therefore\ ^{4}J(\underline{\theta})=\begin{bmatrix}0&L_{2}S_{3}&0\\0&L_{2}C_{3}+L_{3}&L_{3}\\-L_{1}-L_{2}C_{2}-L_{3}C_{23}&0&0\end{bmatrix}</script><h4 id="Sec-5-1-3-Force-Analysis"><a href="#Sec-5-1-3-Force-Analysis" class="headerlink" title="Sec 5.1.3 Force Analysis"></a>Sec 5.1.3 Force Analysis</h4><script type="math/tex; mode=display">
+^{4}F_{4}=\begin{bmatrix}F_{X}\\F_{Y}\\F_{Z}\end{bmatrix}\ ^{4}N_{4}=\begin{bmatrix}0\\0\\0\end{bmatrix}</script><script type="math/tex; mode=display">
+^{3}F_{3}={_{4}^{3}R}{^{4}F_{4}}=\begin{bmatrix}F_{X}\\F_{Y}\\F_{Z}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{3}N_{3}={_{4}^{3}R}{^{4}N_{4}}+{^{3}P_{4}}\times{^{3}F_{3}}=\begin{bmatrix}L_{3}\\0\\0\end{bmatrix}\times\begin{bmatrix}F_{X}\\F_{Y}\\F_{Z}\end{bmatrix}=\begin{bmatrix}0\\-L_{3}F_{Z}\\L_{3}F_{Y}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{2}F_{2}={_{3}^{2}R}{^{3}F_{3}}=\begin{bmatrix}C_{3}&-S_{3}&0\\S_{3}&C_{3}&0\\0&0&1\end{bmatrix}\begin{bmatrix}F_{X}\\F_{Y}\\F_{Z}\end{bmatrix}=\begin{bmatrix}C_{3}F_{X}-S_{3}F_{Y}\\S_{3}F_{X}+C_{3}F_{Y}\\F_{Z}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{2}N_{2}={_{3}^{2}R}{^{3}N_{3}}+{^{2}P_{3}}\times{^{2}F_{2}}</script><script type="math/tex; mode=display">
+^{2}N_{2}=\begin{bmatrix}C_{3}&-S_{3}&0\\S_{3}&C_{3}&0\\0&0&1\end{bmatrix}\begin{bmatrix}0\\-L_{3}F_{Z}\\L_{3}F_{Y}\end{bmatrix}+\begin{bmatrix}L_{2}\\0\\0\end{bmatrix}\times\begin{bmatrix}C_{3}F_{X}-S_{3}F_{Y}\\S_{3}F_{X}+C_{3}F_{Y}\\F_{Z}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{2}N_{2}=\begin{bmatrix}L_{3}S_{3}F_{Z}\\-L_{2}F_{Z}-L_{3}C_{3}F_{Z}\\L_{2}(S_{3}F_{X}+C_{3}F_{Y})+L_{3}F_{Y}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{1}F_{1}={_{2}^{1}R}{^{2}F_{2}}=\begin{bmatrix}C_{2}&-S_{2}&0\\0&0&-1\\S_{2}&C_{2}&0\end{bmatrix}\begin{bmatrix}C_{3}F_{X}-S_{3}F_{Y}\\S_{3}F_{X}+C_{3}F_{Y}\\F_{Z}\end{bmatrix}</script><script type="math/tex; mode=display">
+^{1}F_{1}=\begin{bmatrix}C_{2}(C_{3}F_{X}-S_{3}F_{Y})-S_{2}(S_{3}F_{X}+C_{3}F_{Y})\\-F_{Z}\\S_{2}(C_{3}F_{X}-S_{3}F_{Y})+C_{2}(S_{3}F_{X}+C_{3}F_{Y})\end{bmatrix}</script><script type="math/tex; mode=display">
+^{1}N_{1}={_{2}^{1}R}{^{2}N_{2}}+{^{1}P_{2}}\times{^{1}F_{1}}</script><script type="math/tex; mode=display">
+^{1}N_{1}=\begin{bmatrix}C_{2}&-S_{2}&0\\0&0&-1\\S_{2}&C_{2}&0\end{bmatrix}\begin{bmatrix}L_{3}S_{3}F_{Z}\\-L_{2}F_{Z}-L_{3}C_{3}F_{Z}\\L_{2}(S_{3}F_{X}+C_{3}F_{Y})+L_{3}F_{Y}\end{bmatrix}+\begin{bmatrix}L_{1}\\0\\0\end{bmatrix}\times{^{1}F_{1}}</script><script type="math/tex; mode=display">
+^{1}N_{1}=\begin{bmatrix}C_{2}L_{3}S_{3}F_{Z}+S_{2}L_{2}F_{Z}+S_{2}L_{3}C_{3}F_{Z}\\-L_{2}(S_{3}F_{X}+C_{3}F_{Y})-L_{3}F_{Y}\\L_{3}S_{2}S_{3}F_{Z}-L_{2}C_{2}F_{Z}-L_{3}C_{2}C_{3}F_{Z}\end{bmatrix}+\begin{bmatrix}0\\-L_{1}S_{2}(C_{3}F_{X}-S_{3}F_{Y})-L_{1}C_{2}(S_{3}F_{X}+C_{3}F_{Y})\\-L_{1}F_{Z}\end{bmatrix}</script><p>Joint torque</p>
+<script type="math/tex; mode=display">
+\tau_{1}=[-L_{1}-L_{2}C_{2}+L_{3}(S_{2}S_{3}-C_{2}C_{3})]F_{Z}</script><script type="math/tex; mode=display">
+\tau_{2}=L_{2}S_{3}F_{X}+(L_{2}C_{3}+L_{3})F_{Y}</script><script type="math/tex; mode=display">
+\tau_{3}=L_{3}F_{Y}</script><script type="math/tex; mode=display">
+\underline{\tau}={^{4}J^{T}(\underline{\theta})}\begin{bmatrix}F_{X}\\F_{Y}\\F_{Z}\end{bmatrix}</script><p>Which leads to same expression as before for $^{4}J(\underline{\theta})$.</p>
+<h3 id="Sec-5-2-Newton-Euler-Formulation"><a href="#Sec-5-2-Newton-Euler-Formulation" class="headerlink" title="Sec 5.2 Newton-Euler Formulation"></a>Sec 5.2 Newton-Euler Formulation</h3><p>The basic Newton Equation of motion is:</p>
+<script type="math/tex; mode=display">
+F =m\dot{v}_c</script><p>The basic Euler Equation of motion is:</p>
+<script type="math/tex; mode=display">
+M = I\dot{\omega}_c + \omega_c \times I\omega_c</script><p>The iterative Newton—Euler dynamics algorithm:</p>
+<p>Outward iterations: $i:0\rightarrow5$</p>
+<script type="math/tex; mode=display">
+{^{i+1}\omega}_{i+1}={_i^{i+1}R}\ {^i\omega}_i+\dot{\theta}_{i+1}\ {^{i+1}\hat{Z}}_{i+1}</script><script type="math/tex; mode=display">
+{^{i+1}\dot{\omega}}_{i+1}={_i^{i+1}R}\ {^i\dot{\omega}}_i+{_i^{i+1}R}\ {^i\omega}_i\times\dot{\theta}_{i+1}\ {^{i+1}\hat{Z}}_{i+1}+\ddot{\theta}_{i+1}\ {^{i+1}\hat{Z}}_{i+1}</script><script type="math/tex; mode=display">
+{^{i+1}\dot{v}}_{i+1}={_i^{i+1}R}({^i\dot{\omega}}_i\times{^iP}_{i+1}+{^i\omega}_i\times({^i\omega}_i\times{^iP}_{i+1})+{^i\dot{v}}_i)</script><script type="math/tex; mode=display">
+\begin{aligned}
+{^{i+1}\dot{v}}_{C_{i+1}}=&{^{i+1}\dot{\omega}}_{i+1}\times{^{i+1}P}_{C_{i+1}}\\
+&+{^{i+1}\omega}_{i+1}\times({^{i+1}\omega}_{i+1}\times{^{i+1}P}_{C_{i+1}})+{^{i+1}\dot{v}}_{i+1}
+\end{aligned}</script><script type="math/tex; mode=display">
+{^{i+1}F}_{i+1}=m_{i+1}\ {^{i+1}\dot{v}}_{C_{i+1}}</script><script type="math/tex; mode=display">
+{^{i+1}N}_{i+1}={^{C_{i+1}}I}_{i+1}\ {^{i+1}\dot{\omega}}_{i+1}+{^{i+1}\omega}_{i+1}\times{^{C_{i+1}}I}_{i+1}\ {^{i+1}\omega}_{i+1}</script><p>Inward iterations: $i:6\rightarrow1$</p>
+<script type="math/tex; mode=display">
+{^i f}_i={_{i+1}^i R}\ {^{i+1}f}_{i+1}+{^i F}_i</script><script type="math/tex; mode=display">
+\begin{aligned}
+{^i n}_i=&{^i N}_i+{_{i+1}^i R}\ {^{i+1}n}_{i+1}+{^i P}_{C_i}\times{^i F}_i\\
+&+{^i P}_{i+1}\times{_{i+1}^i R}\ {^{i+1}f}_{i+1}
+\end{aligned}</script><script type="math/tex; mode=display">
+\tau_i={^i n}_i^T\ {^i\hat{Z}}_i</script><h3 id="Sec-5-3-Lagrangian-Formulation"><a href="#Sec-5-3-Lagrangian-Formulation" class="headerlink" title="Sec 5.3 Lagrangian Formulation"></a>Sec 5.3 Lagrangian Formulation</h3><h3 id="Sec-5-4"><a href="#Sec-5-4" class="headerlink" title="Sec 5.4"></a>Sec 5.4</h3><h2 id="Chap-6-Trajectory-Generation"><a href="#Chap-6-Trajectory-Generation" class="headerlink" title="Chap 6. Trajectory Generation"></a>Chap 6. Trajectory Generation</h2>
 <div class="article-footer fs14"></div>
 </article>
 <div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/notes/index.html">Forehead</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/notes/autocontrol.html">ME Control(EN)</a></div></section></div>
@@ -779,7 +902,7 @@ z = k_4 \tag{8}</script><p>Otherwise,</p>
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Spatial-Descriptions-and-Transformations"><span class="toc-text">Chap1. Spatial Descriptions and Transformations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Descriptions-Positions-Orientations-and-Frames"><span class="toc-text">Sec 1.1 Descriptions: Positions, Orientations and Frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Mappings"><span class="toc-text">Sec 1.2 Mappings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Operators"><span class="toc-text">Sec 1.3 Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Transformation-Arithmetic"><span class="toc-text">Sec 1.4 Transformation Arithmetic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-More-on-Representation-of-Orientation"><span class="toc-text">Sec 1.5 More on Representation of Orientation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Manipulator-Kinematics"><span class="toc-text">Chap 2. Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Link-Description"><span class="toc-text">Sec 2.1 Link Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2 Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-1-Convention-for-Affixing-Frames-to-Links"><span class="toc-text">Sec 2.2.1 Convention for Affixing Frames to Links</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2.2 Manipulator Kinematics</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Inverse-Manipulator-Kinematics"><span class="toc-text">Chap 3. Inverse Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Solvability-Algebraic-Solution-and-Geometric-Solution"><span class="toc-text">Sec 3.1: Solvability, Algebraic Solution and Geometric Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-1-Solvability"><span class="toc-text">Sec 3.1.1 Solvability</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-1-Existence-of-solutions"><span class="toc-text">3.1.1.1 Existence of solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-2-Multiple-solutions"><span class="toc-text">3.1.1.2 Multiple solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-3-Method-of-solution"><span class="toc-text">3.1.1.3 Method of solution</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-2-Algebraic-solution"><span class="toc-text">Sec 3.1.2 Algebraic solution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-3-Geometric-solution"><span class="toc-text">Sec 3.1.3 Geometric solution</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-2-Pieper%E2%80%99s-Solution-When-Three-Axes-Intersect"><span class="toc-text">Sec 3.2 Pieper’s Solution When Three Axes Intersect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-Velocities-and-Static-Forces"><span class="toc-text">Chap 4. Velocities and Static Forces</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-1-Velocity-of-rigid-body-and-velocity-propagation-from-link-to"><span class="toc-text">Sec 4.1 Velocity of rigid body and velocity propagation from link to</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-1-Differentiation-of-position-vectors"><span class="toc-text">Sec 4.1.1 Differentiation of position vectors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-2-Angular-velocity-vector"><span class="toc-text">Sec 4.1.2 Angular velocity vector</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-3-Linear-velocity"><span class="toc-text">Sec 4.1.3 Linear velocity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-4-Rotational-velocity"><span class="toc-text">Sec 4.1.4 Rotational velocity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-5-Simultaneous-linear-and-rotational-velocity"><span class="toc-text">Sec 4.1.5 Simultaneous linear and rotational velocity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-6-Velocity-propagation-from-link-to-link"><span class="toc-text">Sec 4.1.6 Velocity propagation from link to link</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-2-Jacobians-and-static-forces-in-manipulators"><span class="toc-text">Sec 4.2 Jacobians and static forces in manipulators</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-2-1-Jacobian"><span class="toc-text">Sec 4.2.1 Jacobian</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-2-2-Static-forces-in-manipulators"><span class="toc-text">Sec 4.2.2 Static forces in manipulators</span></a></li></ol></li></ol></li></ol></div><div class="widget-footer">
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap1-Spatial-Descriptions-and-Transformations"><span class="toc-text">Chap1. Spatial Descriptions and Transformations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-1-Descriptions-Positions-Orientations-and-Frames"><span class="toc-text">Sec 1.1 Descriptions: Positions, Orientations and Frames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-2-Mappings"><span class="toc-text">Sec 1.2 Mappings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-3-Operators"><span class="toc-text">Sec 1.3 Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-4-Transformation-Arithmetic"><span class="toc-text">Sec 1.4 Transformation Arithmetic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-1-5-More-on-Representation-of-Orientation"><span class="toc-text">Sec 1.5 More on Representation of Orientation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-2-Manipulator-Kinematics"><span class="toc-text">Chap 2. Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-1-Link-Description"><span class="toc-text">Sec 2.1 Link Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2 Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-1-Convention-for-Affixing-Frames-to-Links"><span class="toc-text">Sec 2.2.1 Convention for Affixing Frames to Links</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-2-2-2-Manipulator-Kinematics"><span class="toc-text">Sec 2.2.2 Manipulator Kinematics</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-3-Inverse-Manipulator-Kinematics"><span class="toc-text">Chap 3. Inverse Manipulator Kinematics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-1-Solvability-Algebraic-Solution-and-Geometric-Solution"><span class="toc-text">Sec 3.1: Solvability, Algebraic Solution and Geometric Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-1-Solvability"><span class="toc-text">Sec 3.1.1 Solvability</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-1-Existence-of-solutions"><span class="toc-text">3.1.1.1 Existence of solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-2-Multiple-solutions"><span class="toc-text">3.1.1.2 Multiple solutions</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-1-3-Method-of-solution"><span class="toc-text">3.1.1.3 Method of solution</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-2-Algebraic-solution"><span class="toc-text">Sec 3.1.2 Algebraic solution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-3-1-3-Geometric-solution"><span class="toc-text">Sec 3.1.3 Geometric solution</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-3-2-Pieper%E2%80%99s-Solution-When-Three-Axes-Intersect"><span class="toc-text">Sec 3.2 Pieper’s Solution When Three Axes Intersect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-4-Velocities-and-Static-Forces"><span class="toc-text">Chap 4. Velocities and Static Forces</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-1-Velocity-of-rigid-body-and-velocity-propagation-from-link-to"><span class="toc-text">Sec 4.1 Velocity of rigid body and velocity propagation from link to</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-1-Differentiation-of-position-vectors"><span class="toc-text">Sec 4.1.1 Differentiation of position vectors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-2-Angular-velocity-vector"><span class="toc-text">Sec 4.1.2 Angular velocity vector</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-3-Linear-velocity"><span class="toc-text">Sec 4.1.3 Linear velocity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-4-Rotational-velocity"><span class="toc-text">Sec 4.1.4 Rotational velocity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-5-Simultaneous-linear-and-rotational-velocity"><span class="toc-text">Sec 4.1.5 Simultaneous linear and rotational velocity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-1-6-Velocity-propagation-from-link-to-link"><span class="toc-text">Sec 4.1.6 Velocity propagation from link to link</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-4-2-Jacobians-and-static-forces-in-manipulators"><span class="toc-text">Sec 4.2 Jacobians and static forces in manipulators</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-2-1-Jacobian"><span class="toc-text">Sec 4.2.1 Jacobian</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-4-2-2-Static-forces-in-manipulators"><span class="toc-text">Sec 4.2.2 Static forces in manipulators</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-5-Dynamics-of-Manipulators"><span class="toc-text">Chap 5. Dynamics of Manipulators</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-1-Jacobian"><span class="toc-text">Sec 5.1 Jacobian</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-5-1-1-Forward-Kinematics"><span class="toc-text">Sec 5.1.1 Forward Kinematics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-5-1-2-Velocity-Analysis"><span class="toc-text">Sec 5.1.2 Velocity Analysis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sec-5-1-3-Force-Analysis"><span class="toc-text">Sec 5.1.3 Force Analysis</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-2-Newton-Euler-Formulation"><span class="toc-text">Sec 5.2 Newton-Euler Formulation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-3-Lagrangian-Formulation"><span class="toc-text">Sec 5.3 Lagrangian Formulation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sec-5-4"><span class="toc-text">Sec 5.4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chap-6-Trajectory-Generation"><span class="toc-text">Chap 6. Trajectory Generation</span></a></li></ol></div><div class="widget-footer">
 
 <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel blur'>
