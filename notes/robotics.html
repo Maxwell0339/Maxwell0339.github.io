@@ -29,8 +29,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/rcbtv2.png">
 <meta property="og:image" content="https://img.dexbug.com/i/2025/03/25/re1z8g.png">
-<meta property="article:published_time" content="2025-06-13T14:06:34.029Z">
-<meta property="article:modified_time" content="2025-06-13T14:06:34.029Z">
+<meta property="article:published_time" content="2025-06-14T08:40:06.656Z">
+<meta property="article:modified_time" content="2025-06-14T08:40:06.656Z">
 <meta property="article:author" content="Maxwell">
 <meta property="article:tag" content="Robotics, Embedding system">
 <meta name="twitter:card" content="summary">
@@ -818,6 +818,7 @@ S_{23} & C_{23} & 0 & L_2S_2 \\
 F =m\dot{v}_c</script><p>The basic Euler Equation of motion is:</p>
 <script type="math/tex; mode=display">
 M = I\dot{\omega}_c + \omega_c \times I\omega_c</script><p>The iterative Newtonâ€”Euler dynamics algorithm:</p>
+<p>if it is revolute joint:</p>
 <p>Outward iterations: $i:0\rightarrow5$</p>
 <script type="math/tex; mode=display">
 {^{i+1}\omega}_{i+1}={_i^{i+1}R}\ {^i\omega}_i+\dot{\theta}_{i+1}\ {^{i+1}\hat{Z}}_{i+1}</script><script type="math/tex; mode=display">
@@ -835,7 +836,21 @@ M = I\dot{\omega}_c + \omega_c \times I\omega_c</script><p>The iterative Newtonâ
 {^i n}_i=&{^i N}_i+{_{i+1}^i R}\ {^{i+1}n}_{i+1}+{^i P}_{C_i}\times{^i F}_i\\
 &+{^i P}_{i+1}\times{_{i+1}^i R}\ {^{i+1}f}_{i+1}
 \end{aligned}</script><script type="math/tex; mode=display">
-\tau_i={^i n}_i^T\ {^i\hat{Z}}_i</script><h3 id="Sec-5-3-Lagrangian-Formulation"><a href="#Sec-5-3-Lagrangian-Formulation" class="headerlink" title="Sec 5.3 Lagrangian Formulation"></a>Sec 5.3 Lagrangian Formulation</h3><p>We start by developing an expression for the kinetic energy of a manipulator. The kinetic energy of the $i$ -th link, $k_i$, can be expressed as</p>
+\tau_i={^i n}_i^T\ {^i\hat{Z}}_i</script><p>if it is prismatic joint:</p>
+<p>Outward iterations: $i:0\rightarrow5$</p>
+<script type="math/tex; mode=display">
+{}^{i+1}\boldsymbol{W}_{i+1} = {}_i^{i+1}\boldsymbol{R}\,{}^i\boldsymbol{W}_i</script><script type="math/tex; mode=display">
+{}^{i+1}\dot{\boldsymbol{W}}_{i+1} = {}_i^{i+1}\boldsymbol{R}\,{}^i\dot{\boldsymbol{W}}_i</script><script type="math/tex; mode=display">
+\begin{align*}
+   {}^{i+1}\dot{\boldsymbol{V}}_{i+1} &= {}_i^{i+1}\boldsymbol{R}\left( {}^i\dot{\boldsymbol{W}}_i \times {}^i\boldsymbol{P}_{i+1} + {}^i\boldsymbol{W}_i \times \left( {}^i\boldsymbol{W}_i \times {}^i\boldsymbol{P}_{i+1} \right) + {}^i\dot{\boldsymbol{V}}_i \right) \\&+ 2\,{}^{i+1}\boldsymbol{W}_{i+1} \times \dot{d}_{i+1}\,{}^{i+1}\hat{\boldsymbol{Z}}_{i+1} + \ddot{d}_{i+1}\,{}^{i+1}\hat{\boldsymbol{Z}}_{i+1}
+\end{align*}</script><script type="math/tex; mode=display">
+^{i+1}\dot{\boldsymbol{V}}_{C_{i+1}} = ^{i+1}\dot{\boldsymbol{W}}_{i+1} \times ^{i+1}\boldsymbol{P}_{C_{i+1}} + ^{i+1}\boldsymbol{W}_{i+1} \times \left( ^{i+1}\boldsymbol{W}_{i+1} \times ^{i+1}\boldsymbol{P}_{C_{i+1}} \right) + ^{i+1}\dot{\boldsymbol{V}}_{i+1}</script><script type="math/tex; mode=display">
+{}^{i+1}\boldsymbol{F}_{i+1} = m_{i+1}\,{}^{i+1}\dot{\boldsymbol{V}}_{C_{i+1}}</script><script type="math/tex; mode=display">
+{}^{i+1}\boldsymbol{N}_{i+1} = {}^{C_{i+1}}\boldsymbol{I}_{i+1}\, {}^{i+1}\dot{\boldsymbol{W}}_{i+1} + {}^{i+1}\boldsymbol{W}_{i+1} \times {}^{C_{i+1}}\boldsymbol{I}_{i+1}\, {}^{i+1}\boldsymbol{W}_{i+1}</script><p>Inward iterations: $i:6\rightarrow1$</p>
+<script type="math/tex; mode=display">
+^i\boldsymbol{f}_i = {}_{i+1}^i\boldsymbol{R}\,{}^{i+1}\boldsymbol{f}_{i+1} + ^i\boldsymbol{F}_i</script><script type="math/tex; mode=display">
+^i\boldsymbol{n}_i = ^i\boldsymbol{N}_i + {}_{i+1}^i\boldsymbol{R}\,{}^{i+1}\boldsymbol{n}_{i+1} + ^i\boldsymbol{P}_{C_i} \times ^i\boldsymbol{F}_i + ^i\boldsymbol{P}_{i+1} \times {}_{i+1}^i\boldsymbol{R}\,{}^{i+1}\boldsymbol{f}_{i+1}</script><script type="math/tex; mode=display">
+\boldsymbol{\tau}_i = {}^i\boldsymbol{f}_i^T \,{}^i\hat{\boldsymbol{Z}}_i</script><h3 id="Sec-5-3-Lagrangian-Formulation"><a href="#Sec-5-3-Lagrangian-Formulation" class="headerlink" title="Sec 5.3 Lagrangian Formulation"></a>Sec 5.3 Lagrangian Formulation</h3><p>We start by developing an expression for the kinetic energy of a manipulator. The kinetic energy of the $i$ -th link, $k_i$, can be expressed as</p>
 <script type="math/tex; mode=display">
 k_i = \frac{1}{2} m_i {^{i}v_{C_i}}^T {^{i}v_{C_i}} + \frac{1}{2} {^{i}\omega_i}^T {^{C_i}I_i} {^{i}\omega_i}</script><p>The $v_{c_i}$ and $^i\omega_i$ in the above equation are functions of $\Theta$ and $\dot{\Theta}$, so we see that the kinetic energy of a manipulator can be described by a scalar formula as a function of joint position and velocity, $k(\Theta, \dot{\Theta})$. In fact, the kinetic energy of a manipulator is given by</p>
 <script type="math/tex; mode=display">
