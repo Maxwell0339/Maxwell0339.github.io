@@ -78,8 +78,10 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-
 .academic-section + .academic-section { margin-top: clamp(2.6rem, 4.5vw, 4.25rem); }
 .academic-section h2 { display: flex; align-items: center; gap: .18em; margin: 0 0 1.28rem; color: #414749; font-size: clamp(2rem, 2.8vw, 2.55rem); font-weight: 700; line-height: 1.25; letter-spacing: -.025em; }
 .academic-section h2 span { font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif; font-size: .78em; line-height: 1; }
-.academic-section p { max-width: 76ch; margin: 0; font-size: clamp(1.04rem, 1.25vw, 1.16rem); line-height: 1.95; }
+.academic-section p, .education-list { max-width: 76ch; margin: 0; font-size: clamp(1.04rem, 1.25vw, 1.16rem); line-height: 1.95; }
 .academic-section--intro p { font-size: clamp(1.08rem, 1.35vw, 1.22rem); }
+.education-list { padding-left: 1.5em; }
+.education-list li + li { margin-top: .5rem; }
 .section-placeholder { color: var(--muted); }
 
 .page-footer { max-width: 1450px; margin: 0 auto; padding: 1.6rem 5.4vw 2.5rem; border-top: 1px solid var(--line); color: var(--muted); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif; font-size: .82rem; }
@@ -107,7 +109,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-
   .profile__links a { font-size: .8rem; }
   .profile__links svg { width: 16px; height: 16px; }
   .academic-section h2 { font-size: 1.8rem; }
-  .academic-section p { font-size: 1rem; }
+  .academic-section p, .education-list { font-size: 1rem; }
   .page-footer { padding: 1.4rem 6vw 2rem; }
 }
 
