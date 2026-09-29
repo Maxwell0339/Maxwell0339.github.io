@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="720" viewBox="0 0 1920 720" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="200" y1="0" x2="1550" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#102e40"/><stop offset="1" stop-color="#367d80"/>
+    </linearGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" stroke="#b5d9d8" stroke-opacity=".07"/>
+    </pattern>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1920v720H0z"/>
+  <path fill="url(#grid)" d="M0 0h1920v720H0z"/>
+  <circle cx="1460" cy="210" r="108" fill="#b6d6c3" fill-opacity=".12"/>
+  <circle cx="1460" cy="210" r="145" stroke="#b6d6c3" stroke-opacity=".14"/>
+  <path d="M-40 660L195 402L375 527L638 307L978 623L1225 410L1508 556L1740 367L1980 570V760H-40Z" fill="#143e4c" fill-opacity=".45"/>
+  <path d="M-50 687L190 545L404 614L735 440L1032 640L1365 464L1685 585L1930 476V740H-50Z" fill="#133645" fill-opacity=".64"/>
+  <path d="M0 707L278 607L590 665L906 565L1197 692L1508 612L1740 655L1920 598V720H0Z" fill="#102f40"/>
+  <path d="M-80 410C205 168 325 200 533 228M1380 369C1590 405 1670 191 1990 258" stroke="#c8e6df" stroke-opacity=".3" stroke-dasharray="6 12"/>
+  <g fill="#d6eee5" fill-opacity=".65">
+    <circle cx="260" cy="229" r="4"/><circle cx="1620" cy="313" r="4"/><circle cx="1290" cy="123" r="2"/><circle cx="610" cy="128" r="2"/><circle cx="1720" cy="136" r="2"/>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+{
+  "name": "maxwell-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Maxwell 的 Hexo 博客，使用 Butterfly 主题并通过 GitHub Pages 发布。",
+  "scripts": {
+    "build": "hexo clean && hexo generate",
+    "clean": "hexo clean",
+    "server": "hexo server",
+    "new": "hexo new"
+  },
+  "engines": { "node": ">=22" },
+  "hexo": { "version": "8.1.2" },
+  "dependencies": {
+    "hexo": "8.1.2",
+    "hexo-generator-archive": "2.0.0",
+    "hexo-generator-category": "2.0.0",
+    "hexo-generator-index": "4.0.0",
+    "hexo-generator-searchdb": "1.5.0",
+    "hexo-generator-sitemap": "3.0.1",
+    "hexo-generator-tag": "2.0.0",
+    "hexo-renderer-marked": "7.0.1",
+    "hexo-server": "3.0.0",
+    "hexo-theme-butterfly": "5.7.0"
+  }
+}

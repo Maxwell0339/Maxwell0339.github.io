@@ -1,0 +1,122 @@
+# 此文件覆盖主题配置；升级主题时无需修改 node_modules。
+nav:
+  fixed: true
+menu:
+  首页: / || fas fa-house
+  归档: /archives/ || fas fa-box-archive
+  分类: /categories/ || fas fa-folder-open
+  标签: /tags/ || fas fa-tags
+  项目: /projects/ || fas fa-code
+  关于: /about/ || fas fa-user
+
+social:
+  fab fa-github: https://github.com/Maxwell0339 || GitHub
+favicon: /img/favicon.svg
+avatar:
+  img: /img/avatar.svg
+  effect: false
+index_img: /img/skyline.svg
+default_top_img: /img/skyline.svg
+archive_img: /img/skyline.svg
+index_top_img_height: 480px
+index_layout: 1
+subtitle:
+  enable: true
+  effect: false
+  source: false
+  sub:
+    - 记录技术，也记录生活
+cover:
+  default_cover:
+    - /img/notes.svg
+index_post_content:
+  method: 2
+  length: 180
+
+post_meta:
+  page:
+    date_type: created
+    date_format: date
+    categories: true
+    tags: true
+toc:
+  post: true
+  page: true
+  number: false
+  expand: true
+code_blocks:
+  theme: light
+  copy: true
+  language: true
+  word_wrap: false
+
+search:
+  use: local_search
+  placeholder: 搜索文章与页面
+  local_search:
+    preload: false
+    top_n_per_article: 2
+    unescape: true
+
+aside:
+  card_author:
+    description: 记录学习中的发现，整理实践中的经验。
+    button:
+      enable: true
+      icon: fab fa-github
+      text: 在 GitHub 找到我
+      link: https://github.com/Maxwell0339
+  card_announcement:
+    enable: false
+  card_archives:
+    format: YYYY年MM月
+  card_webinfo:
+    last_push_date: false
+
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: 1
+readmode: true
+rightside_scroll_percent: true
+
+theme_color:
+  enable: true
+  main: '#267f87'
+  paginator: '#267f87'
+  button_hover: '#215e68'
+  text_selection: '#b9ddd9'
+  link_color: '#267f87'
+  toc_color: '#267f87'
+  blockquote_padding_color: '#267f87'
+  scrollbar_color: '#267f87'
+font:
+  global_font_size: 16px
+  code_font_size: 14px
+  font_family: '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif'
+
+footer:
+  owner:
+    enable: true
+    since: 2025
+  copyright:
+    enable: true
+    version: false
+  custom_text: 记录 · 实践 · 思考
+error_404:
+  enable: true
+  subtitle: 这一页还没有留下足迹
+  background: /img/notes.svg
+
+# 无需第三方账号的功能可直接使用。
+comments:
+  use:
+share:
+  use:
+busuanzi:
+  site_uv: false
+  site_pv: false
+  page_pv: false
+inject:
+  head:
+    - <link rel="stylesheet" href="/css/custom.css">
