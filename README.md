@@ -65,6 +65,8 @@ GitHub 仓库 **Settings → Pages → Build and deployment → Source** 应选�
 | --- | --- |
 | `_config.yml` | 标题、作者、域名、语言、文章链接 |
 | `_config.butterfly.yml` | 导航、侧栏、配色、搜索、深色模式 |
+| `source/index.md` | 网站首页 |
+| `source/archives/index.md` | 文章归档页 |
 | `source/_posts/` | 文章正文 |
 | `source/about/index.md` | 关于页面 |
 | `source/projects/index.md` | 项目页面 |
