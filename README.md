@@ -84,12 +84,6 @@ GitHub 仓库 **Settings → Pages → Build and deployment → Source** 应选�
 
 主题通过 npm 安装，并由 `package-lock.json` 记录依赖版本。自定义配置独立于主题包，后续升级无需修改主题源码。
 
-## 内容迁移
-
-原仓库存放的是 Stellar 生成后的静态网页。此次将文章、“关于”“项目”及专栏内容恢复为 Markdown，并保留原文章路径 `/2026/02/15/20250324/` 和分类、标签、归档入口。
-
-文章中关于当时使用 Stellar 的历史叙述保持原意；当前项目页的技术栈已更新为 Butterfly。旧站的网页和历史提交仍保留在 Git 历史中。
-
 ## 参考
 
 - [Hexo 官方 GitHub Pages 部署文档](https://hexo.io/docs/github-pages)
