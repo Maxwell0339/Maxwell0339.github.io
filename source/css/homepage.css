@@ -1,0 +1,120 @@
+:root {
+  color-scheme: light;
+  --ink: #45494a;
+  --muted: #737b7d;
+  --accent: #267f87;
+  --line: #e8ebea;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #fafaf9;
+  color: var(--ink);
+  font-family: Georgia, "Noto Serif SC", "Songti SC", "SimSun", serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-underline-offset: .14em; }
+a:hover { color: #1b5e65; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+
+.site-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 68px;
+  padding: 0 max(5.4vw, calc((100vw - 1450px) / 2));
+  border-bottom: 1px solid var(--line);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.site-bar a { text-decoration: none; }
+.site-bar__brand { color: var(--ink); font-size: .94rem; font-weight: 650; letter-spacing: .02em; }
+.site-bar__brand span { color: #a9b0af; margin: 0 .42em; }
+.site-bar__back { font-size: .9rem; }
+.site-bar__back span { display: inline-block; margin-left: .25em; }
+
+.academic-page {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  gap: clamp(3.5rem, 7vw, 7rem);
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 5.5vw, 6rem) 5.4vw 6rem;
+}
+
+.profile { text-align: center; align-self: start; }
+
+.profile__portrait-frame {
+  width: 218px;
+  height: 218px;
+  max-width: 100%;
+  padding: 7px;
+  margin: 0 auto 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+}
+
+.profile__portrait { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+.profile__name { margin: 0; color: #202729; font-size: 1.78rem; line-height: 1.25; }
+.profile__role { margin: .5rem 0 0; font-size: 1rem; line-height: 1.65; }
+.profile__rule { width: 32px; height: 1px; margin: 1.25rem auto; background: #cdd6d3; }
+.profile__focus { margin: 0; color: var(--muted); font-size: .93rem; line-height: 1.8; }
+
+.profile__links { display: flex; justify-content: center; gap: 1.4rem; margin-top: 1.5rem; }
+.profile__links a { display: inline-flex; align-items: center; gap: .35rem; color: #202729; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif; font-size: .88rem; text-decoration: none; }
+.profile__links a:hover { color: var(--accent); }
+.profile__links svg { width: 18px; height: 18px; fill: currentColor; }
+.profile__note { margin: 1.6rem 0 0; color: #909897; font-size: .85rem; }
+
+.academic-content { min-width: 0; padding-top: .9rem; }
+.academic-section + .academic-section { margin-top: clamp(2.6rem, 4.5vw, 4.25rem); }
+.academic-section h2 { display: flex; align-items: center; gap: .18em; margin: 0 0 1.28rem; color: #414749; font-size: clamp(2rem, 2.8vw, 2.55rem); font-weight: 700; line-height: 1.25; letter-spacing: -.025em; }
+.academic-section h2 span { font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif; font-size: .78em; line-height: 1; }
+.academic-section p, .news-list { max-width: 76ch; margin: 0; font-size: clamp(1.04rem, 1.25vw, 1.16rem); line-height: 1.95; }
+.academic-section--intro p { font-size: clamp(1.08rem, 1.35vw, 1.22rem); }
+.news-list { padding-left: 1.4em; }
+.news-list li { padding-left: .2em; }
+.news-list time { margin-right: .85em; color: var(--muted); font-style: italic; white-space: nowrap; }
+.section-placeholder { color: var(--muted); }
+
+.page-footer { max-width: 1450px; margin: 0 auto; padding: 1.6rem 5.4vw 2.5rem; border-top: 1px solid var(--line); color: var(--muted); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif; font-size: .82rem; }
+.page-footer span { margin: 0 .4em; }
+
+@media (max-width: 820px) {
+  .academic-page { grid-template-columns: 1fr; gap: 3.6rem; padding-top: 3rem; }
+  .profile { display: grid; grid-template-columns: 126px minmax(0, 1fr); column-gap: 1.6rem; text-align: left; align-items: center; }
+  .profile__portrait-frame { width: 126px; height: 126px; grid-row: 1 / 5; margin: 0; padding: 5px; }
+  .profile__name { align-self: end; }
+  .profile__role { margin-top: .2rem; }
+  .profile__rule, .profile__focus, .profile__note { display: none; }
+  .profile__links { justify-content: flex-start; margin-top: .4rem; }
+  .academic-content { padding-top: 0; }
+}
+
+@media (max-width: 520px) {
+  .site-bar { min-height: 60px; padding: 0 6vw; }
+  .academic-page { padding: 2.5rem 6vw 4rem; gap: 3rem; }
+  .profile { grid-template-columns: 95px minmax(0, 1fr); column-gap: 1rem; }
+  .profile__portrait-frame { width: 95px; height: 95px; }
+  .profile__name { font-size: 1.45rem; }
+  .profile__role { font-size: .85rem; }
+  .profile__links { gap: .8rem; }
+  .profile__links a { font-size: .8rem; }
+  .profile__links svg { width: 16px; height: 16px; }
+  .academic-section h2 { font-size: 1.8rem; }
+  .academic-section p, .news-list { font-size: 1rem; }
+  .news-list time { display: block; margin-bottom: .15rem; }
+  .page-footer { padding: 1.4rem 6vw 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

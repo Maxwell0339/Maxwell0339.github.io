@@ -21,6 +21,7 @@ archive_dir: archives
 category_dir: categories
 skip_render:
   - robots.txt
+  - homepage/index.html
 
 new_post_name: :title.md
 default_layout: post

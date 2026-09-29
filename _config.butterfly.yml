@@ -6,7 +6,7 @@ menu:
   归档: /archives/ || fas fa-box-archive
   分类: /categories/ || fas fa-folder-open
   标签: /tags/ || fas fa-tags
-  项目: /projects/ || fas fa-code
+  homepage: /homepage/ || fas fa-address-card
   关于: /about/ || fas fa-user
 
 social:
